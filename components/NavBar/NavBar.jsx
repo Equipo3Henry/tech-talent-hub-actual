@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   home,
   Vector,
@@ -14,22 +14,19 @@ import styles from "./NavBar.module.css";
 import { useEffect } from "react";
 
 const NavBar = ({ handleBotonMenu }) => {
-  const router = useRouter();
   const [isProfile, setIsProfile] = useState(false);
 
+  const router = usePathname();
+
   useEffect(() => {
-    if (router.pathname === "/profile") {
+    if (router.includes("profile")) {
       setIsProfile(true);
     } else {
       setIsProfile(false);
     }
-  }, [router.pathname]);
+  }, [router]);
 
-  /*   useEffect(() => {
-    if (router.pathname) {
-      setIsProfile(router.pathname === "/profile");
-    }
-  }, [router.pathname]); */
+  console.log(router);
 
   return isProfile ? (
     <div className={styles.Navbar}>
