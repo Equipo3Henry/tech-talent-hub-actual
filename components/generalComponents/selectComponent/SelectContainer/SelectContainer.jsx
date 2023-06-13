@@ -1,4 +1,4 @@
-import filtersDB from "../../helpers/provisionalFiltersDB";
+import filtersDB from "../../../../helpers/provisionalFiltersDB";
 import Select from "../Select/Select";
 import styles from "./SelectContainer.module.css";
 

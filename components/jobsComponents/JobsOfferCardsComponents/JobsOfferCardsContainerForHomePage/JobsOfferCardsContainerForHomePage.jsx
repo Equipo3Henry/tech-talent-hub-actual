@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
-import formatDate from "../../../helpers/formatDate";
+import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
 
 const JobsOfferCardsContainerForHome = ({ jobs }) => {
