@@ -1,0 +1,33 @@
+.ContainerDetail {
+  border: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-right-width: 9px;
+  width: 525px;
+  height: 554px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 16px;
+  border-color: #7155d9;
+}
+
+.InfoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.CompanyNameContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 10px;
+}
