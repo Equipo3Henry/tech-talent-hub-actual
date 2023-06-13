@@ -1,5 +1,5 @@
 import React from "react";
-import PricingTable from "../../components/PricingTable/PricingTable";
+import PricingTable from "../../components/servicesComponents/PricingTable/PricingTable";
 import styles from "./services.module.css";
 
 const plans = [

@@ -10,7 +10,7 @@ import {
   au7,
   au8,
 } from "../../public/assets/page";
-import UsContainer from "../../components/UsContainer/UsContainer";
+import UsContainer from "../../components/aboutComponents/UsContainer/UsContainer";
 
 const us = [
   {

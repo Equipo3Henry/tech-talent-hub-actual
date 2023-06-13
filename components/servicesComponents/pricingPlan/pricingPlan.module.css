@@ -82,6 +82,6 @@
 }
 
 .list {
-  list-style-image: url("../../public/images/pointbullet.png");
+  list-style-image: url("../../../public/images/pointbullet.png");
   margin: 10px 0;
 }

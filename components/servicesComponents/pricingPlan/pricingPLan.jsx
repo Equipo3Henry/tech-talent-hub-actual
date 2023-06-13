@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./pricingPlan.module.css";
-import pointbullet from "../../public/images/pointbullet.png";
 
 const PricingPlan = ({ plan, borderColor }) => {
   return (
