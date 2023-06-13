@@ -1,6 +1,7 @@
 import React from "react";
 import PricingTable from "../../components/servicesComponents/PricingTable/PricingTable";
 import styles from "./services.module.css";
+import Link from "next/link";
 
 const plans = [
   {
@@ -45,6 +46,9 @@ const Page = () => {
         <div className={styles.plansContainer}>
           <PricingTable plan={plans} />
         </div>
+        <Link href="/profile/login">
+          <button>probar el nombre de la ruta</button>
+        </Link>
       </div>
     </div>
   );

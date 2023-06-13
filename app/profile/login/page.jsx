@@ -1,5 +1,6 @@
+"use client";
+
 import React from "react";
-import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./login.module.css";
 import Image from "next/image";
 import {
@@ -8,11 +9,11 @@ import {
   github,
   signinvector,
 } from "../../../public/assets/page";
+import { useRouter } from "next/navigation";
 
 const login = () => {
   return (
     <div>
-      <NavBar />
       <div className={styles.LogInContainer}>
         <div className={styles.InputsLogIn}>
           <div className={styles.TitleLogIn}>
