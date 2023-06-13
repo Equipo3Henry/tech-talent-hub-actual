@@ -1,5 +1,5 @@
 /* id, company, name, programming_Languages, description, salary, start, end  */
-import { wix, GoogleBlack, meta, windows } from "../../src/assets/page";
+import { wix, GoogleBlack, meta, windows } from "../public/assets/page";
 
 const jobsTemplate = [
   {
