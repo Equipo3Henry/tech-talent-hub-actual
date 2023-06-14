@@ -6,6 +6,7 @@ CREATE TABLE "User" (
     "name" VARCHAR(50) NOT NULL,
     "lastname" VARCHAR(50) NOT NULL,
     "birth" TEXT NOT NULL,
+    "country" VARCHAR(50) NOT NULL,
     "working" BOOLEAN NOT NULL DEFAULT false,
     "cv" TEXT,
     "email" TEXT NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE "User" (
 CREATE TABLE "SoftSkills" (
     "id" TEXT NOT NULL,
     "name" VARCHAR(50) NOT NULL,
+    "optimism" VARCHAR(50),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -34,12 +36,15 @@ CREATE TABLE "SoftSkills" (
 -- CreateTable
 CREATE TABLE "Company" (
     "id" TEXT NOT NULL,
-    "name" VARCHAR(50) NOT NULL,
-    "image" TEXT,
+    "email" VARCHAR(50) NOT NULL,
+    "logo" TEXT NOT NULL,
     "type" VARCHAR(50) NOT NULL,
     "description" TEXT,
     "employes" INTEGER NOT NULL DEFAULT 0,
     "jobs" INTEGER NOT NULL DEFAULT 0,
+    "vacancies" INTEGER NOT NULL,
+    "password" VARCHAR(20) NOT NULL,
+    "country" VARCHAR(50) NOT NULL,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
 );
@@ -51,4 +56,7 @@ CREATE UNIQUE INDEX "User_image_key" ON "User"("image");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Company_image_key" ON "Company"("image");
+CREATE UNIQUE INDEX "Company_email_key" ON "Company"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_vacancies_key" ON "Company"("vacancies");
