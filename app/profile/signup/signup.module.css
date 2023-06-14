@@ -1,17 +1,27 @@
+/* PAGE CONTAINER */
+.page_container{
+    margin-left: 100px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: fit-content;
+}
+
 /* title */
 
+.titles_container{
+    align-items:flex-start;
+}
+
 .title{
-    position: absolute;
     width: 403px;
     height: 42px;
-    left: calc(50% - 403px/2 - 256.5px);
     top: 52px;
     font-family: 'Merriweather';
     font-style: normal;
     font-weight: 900;
     font-size: 30px;
-    line-height: 139%;
-    /* identical to box height, or 42px */
     letter-spacing: -0.011em;
     color: #000000;
 }
@@ -19,7 +29,6 @@
 /* subtitle */
 
 .subtitle{
-    position: absolute;
     width: 614px;
     height: 25px;
     left: calc(50% - 614px/2 - 151px);
@@ -36,375 +45,276 @@
 }
 
 /* boton-linkedin */
-
-.boton-linkedin{
+/* 
+.boton_linkedin{
     position: absolute;
     width: 270px;
     height: 53px;
     left: 583px;
     top: 173px;
-}
+} */
 
 
 
 /* linkedin-texto */
 
-.linkedin-texto{
+/* .linkedin_texto{
     position: absolute;
     width: 153px;
     height: 22px;
     left: 619px;
     top: 189px;
-    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 16px;
     line-height: 139%;
-    /* or 22px */
-    
     letter-spacing: -0.011em;
-    
     color: #FFFFFF;
-}
+} */
 
 
 
 /* linkedin-logo */
 
-.linkedin-logo{
+/* .linkedin_logo{
     position: absolute;
     left: 54.86%;
     right: 43.32%;
     top: 19.44%;
     bottom: 77.98%;
-    
     background: #FFFFFF;
-}
+} */
 
 
 /* boton-google */
 
-.boton-google{
+/* .boton_google{
     position: absolute;
     width: 270px;
     height: 53px;
     left: 262px;
     top: 173px;
-}
+} */
 
 
 
 /* google-texto */
 
-.google-texto{
+/* .google_texto{
     position: absolute;
     width: 142px;
     height: 22px;
     left: 301px;
     top: 189px;
-    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
+    line-height: 139%;    
     letter-spacing: -0.011em;
-    
     color: #FFFFFF;
-}
+} */
 
 
 
 /* google-logo */
-
-.google-logo{
+/* 
+.google_logo{
     position: absolute;
     left: 32.5%;
     right: 65.8%;
     top: 19.54%;
     bottom: 77.85%;
-    
     background: #FFFFFF;
-}
+} */
 
 
 /* boton-github */
 
-.boton-github{
+/* .boton_github{
     position: absolute;
     width: 270px;
     height: 53px;
     left: 904px;
     top: 173px;
-}
+} */
 
 
 
 /* github-texto */
 
-.github-texto{
+/* .github_texto{
     position: absolute;
     width: 141px;
     height: 22px;
     left: 941px;
     top: 189px;
-    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 16px;
     line-height: 139%;
-    /* or 22px */
-    
     letter-spacing: -0.011em;
-    
     color: #FFFFFF;
-}
+} */
 
 
 
 /* github-logo */
 
 
-.github-logo{
+/* .github_logo{
     position: absolute;
     left: 77.29%;
     right: 20.97%;
     top: 19.44%;
     bottom: 78.02%;
-    
     background: #FFFFFF;
-}
+} */
 
 /* divider */
 
 .divider{
-    position: absolute;
-    width: 913px;
-    height: 22px;
-    left: 264px;
-    top: 257px;
+    width: 96%;
+    margin-bottom: 2rem;
 }
 
-/* rect-username */
+.divider hr{
+    border: 2px solid black;
+}
 
-.rect_username{
-    box-sizing: border-box;
-    
-    position: absolute;
-    width: 912px;
-    height: 53px;
-    left: 265px;
-    top: 631px;
+/* FORM */
+
+.form_container{
+    display: flex;
+    justify-content: center;
+}
+
+.form{
+    width: 1000px;
+}
+
+.name_container, .lastname_container, .email_container, .username_container, .password_container,  .dateOfBirth_container,  .cv_container,  .country_container,  .progLanguages_container,  .degree_container,  .softSkills_container,  .languages_container,  .seniority_container,  .specialization_container,  .working_container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 
 
-/* Username */
+/* labels */
 
-.username{
-    position: absolute;
-    width: 73px;
+.name, .lastname, .email, .username, .password, .dateOfBirth, .cv, .country, .progLanguages, .degree, .softSkills, .languages, .seniority, .specialization, .working{
+    width: 250px;
     height: 22px;
-    left: 265px;
-    top: 605px;
-    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
     letter-spacing: -0.011em;
-    
     color: #000000;
 }
 
-
-
-/* rect-name */
-
-.rect_name{
-    box-sizing: border-box;
-    border: 0.5px 0.5px 4px 0.5px;
-    position: absolute;
-    width: 913px;
-    height: 53px;
-    left: 264px;
-    top: 337px;
+/* FILA 1 y 3 */
+.row1_container, .row2_container, .row3_container, .row4_container, .row5_container, .row6_container, .row7_container{
+    display: flex;
 }
 
-
-
-/* Name */
-
-.name{
-    position: absolute;
-    width: 42px;
-    height: 22px;
-    left: 264px;
-    top: 311px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
-    letter-spacing: -0.011em;
-    
-    color: #000000;
+.name_container, .lastname_container, .username_container, .password_container, .dateOfBirth_container, .cv_container, .country_container, .progLanguages_container, .degree_container, .softSkills_container, .languages_container, .seniority_container, .specialization_container, .working_container{
+    flex: 1;
 }
 
-
-
-/* rect-lastname */
-
-.rect_lastname{
-    box-sizing: border-box;
-    
-    position: absolute;
-    width: 915px;
-    height: 53px;
-    left: 262px;
-    top: 435px;
+.input_name, .input_lastname, .input_username, .input_password, .input_dateOfBirth, .input_cv, .input_country, .input_progLanguages, .input_degree, .input_softSkills, .input_languages, .input_seniority, .input_specialization, .input_working{
+    width: 90%;
+    height: 50px;
+    padding-left: 10px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 0.5px 0.5px 4px 0.5px;
+    font-size: 18px;
 }
 
-
-
-/* Last Name */
-
-.lastname{
-    position: absolute;
-    width: 76px;
-    height: 22px;
-    left: 262px;
-    top: 409px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
-    letter-spacing: -0.011em;
-    
-    color: #000000;
+/* FILA 2 */
+.input_email, .textarea_aboutMe{
+    width: 95%;
+    height: 50px;
+    padding-left: 10px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 0.5px 0.5px 4px 0.5px;
+    font-size: 18px;
 }
 
-
-
-/* rect-email */
-
-.rect_email{
-    box-sizing: border-box;
-    
-    position: absolute;
-    width: 912px;
-    height: 53px;
-    left: 265px;
-    top: 533px;
-}
-
-
-
-/* Email */
-
-.email{
-    position: absolute;
-    width: 40px;
-    height: 22px;
-    left: 265px;
-    top: 507px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
-    letter-spacing: -0.011em;
-    
-    color: #000000;
-}
-
-
-
-/* rect-password */
-
-.rect_password{
-    box-sizing: border-box;
-    position: absolute;
-    width: 915px;
-    height: 53px;
-    left: 262px;
-    top: 729px;
-    border: 0.5px 0.5px 4px 0.5px solid #000000;
-
-}
-
-
-
-/* Password */
-
-.password{
-    position: absolute;
-    width: 70px;
-    height: 22px;
-    left: 262px;
-    top: 703px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    /* or 22px */
-    
-    letter-spacing: -0.011em;
-    
-    color: #000000;
-}
 
 /* button */
 
 .button{
-
-        background: #6850BF;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
+    width: 96%;
+    height: 59px;
+    left: 265px;
+    top: 825px;
+    margin-top: 20px;
+    background: #7155d9;
+    box-shadow: 2px 2px 4px #00000040;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;  
+    transition: transform 0.5 ease;
 }
 
-.button{
-        background: #7155d9;
-        box-shadow: 2px 2px 4px #00000040;
-        border-radius: 15px;
-        width: 148px;
-        height: 59px;
-        border: none;
-        color: white;
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 28px;
-        transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+.button:hover{
+    background: none;
+    border: solid;
+    border-color: #7155d9;
+    color: #7155d9;
+    transform: translateY(-3px);
+    cursor: pointer;
 }
-
 
 /* footer */
 
 .footer{
-    position: absolute;
-    width: 347px;
-    height: 25px;
-    left: 542px;
-    top: 907px;
+    display: flex; 
+    gap: 20px
+}
+
+.footer_title{
+        width: 220px;
+        height: 25px;
+        left: calc(50% - 220px/2 - 68px);
+        top: 307px;
+    
+        font-family: 'Merriweather';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 139%;
+        /* identical to box height, or 25px */
+    
+        letter-spacing: -0.011em;
+    
+        color: #000000;
+}
+
+.footer_login{
+        width: 107px;
+        height: 25px;
+        left: calc(50% - 107px/2 + 115.5px);
+        top: 307px;
+        font-family: 'Merriweather';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 139%;
+        /* identical to box height, or 25px */
+    
+        letter-spacing: -0.011em;
+    
+        color: #7155D9;
 }
