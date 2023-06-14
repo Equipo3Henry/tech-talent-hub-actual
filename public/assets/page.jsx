@@ -25,6 +25,8 @@ import windows from "../images/windows.svg";
 import samplepost from "../images/SamplePosts.png";
 import dashboard from "../images/dashboard-companys.svg";
 import posts from "../images/posts.svg";
+import loginusername from "../images/logInUserName.svg";
+import logingroup from "../images/logInGroup.svg";
 
 export {
   favorites,
@@ -54,4 +56,6 @@ export {
   samplepost,
   dashboard,
   posts,
+  loginusername,
+  logingroup,
 };

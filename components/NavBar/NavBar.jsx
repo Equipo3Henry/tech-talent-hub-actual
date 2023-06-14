@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import {
   home,
   Vector,
-  search,
   notification,
   favorites,
   dashboard,
   posts,
+  loginusername,
+  logingroup,
 } from "../../public/assets/page";
 import styles from "./NavBar.module.css";
 import { useEffect } from "react";
@@ -85,18 +86,25 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
       </div>
     );
-    /*  } else if (isPreLogIn){
+  } else if (isPreLogIn) {
     return (
       <div className={styles.Navbar}>
-      <div className={styles.MenuContainer} onClick={handleBotonMenu}>
-        <Image src={Vector} alt="image" className={styles.Menu} />
+        <div className={styles.MenuContainer} onClick={handleBotonMenu}>
+          <Image src={Vector} alt="image" className={styles.Menu} />
+        </div>
+        <div className={styles.IconsContainer}>
+          <Link href="/">
+            <Image src={home} alt="image" className={styles.Icons} />
+          </Link>
+          <Link href="/logincomp">
+            <Image src={loginusername} alt="image" className={styles.Icons} />
+          </Link>
+          <Link href="/loginpro">
+            <Image src={logingroup} alt="image" className={styles.Icons} />
+          </Link>
+        </div>
       </div>
-      <div className={styles.IconsContainer}>
-        <Link href="/home">
-          <Image src={home} alt="image" className={styles.Icons} />
-        </Link>
-        <Link href="/about-us">
-          <Image stc = {} */
+    );
   }
 };
 
