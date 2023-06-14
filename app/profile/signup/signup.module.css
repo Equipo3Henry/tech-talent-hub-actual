@@ -1,0 +1,150 @@
+/* title */
+
+.title{
+    position: absolute;
+    width: 403px;
+    height: 42px;
+    left: calc(50% - 403px/2 - 256.5px);
+    top: 52px;
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 139%;
+    /* identical to box height, or 42px */
+    letter-spacing: -0.011em;
+    color: #000000;
+}
+
+/* subtitle */
+
+.subtitle{
+    position: absolute;
+    width: 614px;
+    height: 25px;
+    left: calc(50% - 614px/2 - 151px);
+    top: 102px;
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 139%;
+    /* identical to box height, or 25px */
+    text-align: justify;
+    letter-spacing: -0.011em;
+    color: #000000;
+}
+
+/* linkedIn */
+
+.linkedIn{
+    position: absolute;
+    width: 270px;
+    height: 53px;
+    left: 583px;
+    top: 173px;
+}
+
+
+/* google */
+
+.google{
+    position: absolute;
+    width: 270px;
+    height: 53px;
+    left: 262px;
+    top: 173px;
+}
+
+
+/* gitHub */
+
+.gitHub{
+    position: absolute;
+    width: 270px;
+    height: 53px;
+    left: 904px;
+    top: 173px;
+}
+
+
+/* divider */
+
+.divider{
+    position: absolute;
+    width: 913px;
+    height: 22px;
+    left: 264px;
+    top: 257px;
+}
+
+/* username */
+
+.username{
+    position: absolute;
+    width: 912px;
+    height: 79px;
+    left: 265px;
+    top: 605px;
+}
+
+/* name */
+
+.name{
+    position: absolute;
+    width: 913px;
+    height: 79px;
+    left: 264px;
+    top: 311px;
+}
+
+/* lastName */
+
+.lastName{
+    position: absolute;
+    width: 915px;
+    height: 79px;
+    left: 262px;
+    top: 409px;
+}
+
+/* email */
+
+.email{
+    position: absolute;
+    width: 912px;
+    height: 79px;
+    left: 265px;
+    top: 507px;
+}
+
+/* password */
+
+.password{
+    position: absolute;
+    width: 915px;
+    height: 79px;
+    left: 262px;
+    top: 703px;
+}
+
+/* button */
+
+.button{
+    position: absolute;
+    width: 912px;
+    height: 59px;
+    left: 265px;
+    top: 825px;
+}
+
+
+/* footer */
+
+.footer{
+    position: absolute;
+    width: 347px;
+    height: 25px;
+    left: 542px;
+    top: 907px;
+}
