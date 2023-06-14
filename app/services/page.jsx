@@ -46,9 +46,6 @@ const Page = () => {
         <div className={styles.plansContainer}>
           <PricingTable plan={plans} />
         </div>
-        <Link href="/profile/login">
-          <button>probar el nombre de la ruta</button>
-        </Link>
       </div>
     </div>
   );

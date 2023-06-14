@@ -14,6 +14,7 @@ import {
 } from "../../public/assets/page";
 import styles from "./NavBar.module.css";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const NavBar = ({ handleBotonMenu }) => {
   const [isProfile, setIsProfile] = useState(false);
@@ -37,10 +38,18 @@ const NavBar = ({ handleBotonMenu }) => {
         <Image src={Vector} alt="image" className={styles.Menu} />
       </div>
       <div className={styles.IconsContainer}>
-        <Image src={dashboard} alt="image" className={styles.Icons} />
-        <Image src={posts} alt="image" className={styles.Icons} />
-        <Image src={notification} alt="image" className={styles.Icons} />
-        <Image src={favorites} alt="image" className={styles.Icons} />
+        <Link href="/profile/dashboard">
+          <Image src={dashboard} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/profile/my-applications">
+          <Image src={posts} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/profile/notifications">
+          <Image src={notification} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/profile/favorites">
+          <Image src={favorites} alt="image" className={styles.Icons} />
+        </Link>
       </div>
     </div>
   ) : (
