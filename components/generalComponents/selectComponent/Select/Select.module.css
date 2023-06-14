@@ -1,0 +1,10 @@
+.select {
+  width: 188px;
+  height: 39px;
+  background-color: #efefef;
+  border: solid black;
+  border-bottom-width: 4px;
+  border-top-width: 0.5px;
+  border-left-width: 0.5px;
+  border-right-width: 0.5px;
+}
