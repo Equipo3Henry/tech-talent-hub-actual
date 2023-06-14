@@ -1,0 +1,34 @@
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.searchBar {
+  display: flex;
+}
+.input {
+  background-color: #d9d9d9;
+  width: 506px;
+  height: 51px;
+  border-radius: 41px 0px 0px 41px;
+  border-style: none;
+  display: flex;
+  padding: 10px;
+  color: black;
+  font-family: "Roboto";
+  font-style: normal;
+}
+
+.button {
+  width: 36px;
+  height: 51px;
+  background: #6850bf;
+  border-radius: 0px 41px 41px 0px;
+  border-style: none;
+}
+
+.Icons {
+  width: 22.73px;
+  height: 22.75px;
+}

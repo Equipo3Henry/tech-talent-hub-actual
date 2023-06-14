@@ -1,0 +1,87 @@
+.Contenedor {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px 1px 9px 1px;
+  border-style: solid;
+  border-color: #000000;
+  border-radius: 6px;
+  padding: 40px;
+  width: 300px;
+  align-items: center;
+}
+
+.title {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 139%;
+  /* or 44px */
+
+  letter-spacing: -0.011em;
+
+  color: #000000;
+}
+
+.subtitles {
+  width: 384px;
+  height: 61px;
+  margin-top: -20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 1;
+  font-size: 16px;
+  line-height: 139%;
+  /* or 22px */
+
+  text-align: center;
+  letter-spacing: -0.011em;
+
+  color: #000000;
+}
+
+.prices {
+  width: 64px;
+  height: 133px;
+  margin-top: -60px;
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 96px;
+  line-height: 139%;
+  /* or 133px */
+
+  letter-spacing: -0.011em;
+
+  color: #000000;
+}
+
+.button {
+  margin-top: -60px;
+
+  background: #7155d9;
+  box-shadow: 2px 2px 4px #00000040;
+  border-radius: 15px;
+  width: 192px;
+  height: 53px;
+  border: none;
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.button:hover {
+  background: none;
+  border: solid;
+  border-color: #7155d9;
+  color: #7155d9;
+}
+
+.list {
+  list-style-image: url("../../../public/images/pointbullet.png");
+  margin: 10px 0;
+}

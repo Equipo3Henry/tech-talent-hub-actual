@@ -1,0 +1,48 @@
+.Contenedor {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px 1px 9px 1px;
+  border-style: solid;
+  border-color: #000000;
+  border-radius: 6px;
+  padding: 40px;
+  width: 150px;
+  align-items: center;
+  height: auto;
+}
+
+.Contenedor:hover {
+  border-color: #7155d9;
+}
+
+.image {
+  width: 168px;
+  height: auto;
+}
+
+.title {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 139%;
+  margin-top: 0px;
+  letter-spacing: -0.011em;
+
+  color: #000000;
+}
+
+.icon {
+  width: 30px;
+}
+
+.icon:hover {
+  width: 35px;
+  fill: #7155d9;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  margin-top: 0px;
+}
