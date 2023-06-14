@@ -1,5 +1,5 @@
 {
-  "data": [
+  "companies": [
     {
       "name": "Google",
       "image": "https://viapais.com.ar/resizer/Qiq243clu5Q2m8ZIgXv6opSipR0=/980x640/smart/filters:quality(75):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/6GRIZT4NFNAT3P73R4BHY2V7YM.jpg",
@@ -17,6 +17,78 @@
       "employes": "50",
       "jobs": "100",
       "id": "2"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "user": "Iván Scarsella",
+      "name": "Iván",
+      "lastName": "Scarsella",
+      "birthdate": "1998-05-19",
+      "age": 25,
+      "working": true,
+      "country": "Argentina",
+      "email": "scarsellaivan@gmail.com",
+      "password": "contraseña",
+      "degree": 3,
+      "languages": 1,
+      "programming_Languages": 6,
+      "profile_picture": "foto_de_perfil",
+      "programming_level": 1,
+      "CV": "link_al_CV",
+      "soft-skills": 14
+    },
+    {
+      "id": 2,
+      "user": "Iair Kaplun",
+      "name": "Iair",
+      "lastName": "Kaplun",
+      "birthdate": "1994-01-10",
+      "age": 29,
+      "working": true,
+      "country": "Israel",
+      "email": "iairkaplun@gmail.com",
+      "password": "password",
+      "degree": 4,
+      "languages": 2,
+      "programming_Languages": 8,
+      "profile_picture": "foto_de_perfil",
+      "programming_level": 2,
+      "CV": "link_al_CV",
+      "soft-skills": 10
+    }
+  ],
+  "vacancies": [
+    {
+      "name_Vacancy": "Software Developer",
+      "company": "Google",
+      "logo_Company": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png",
+      "programming_Languages": 1,
+      "programming_Level": 1,
+      "years_of_experience": 2,
+      "description": "Desarrollar aplicaciones",
+      "workday": "2",
+      "salary": 1000,
+      "date_Hire": "2023-08-10",
+      "isActive": true,
+      "Relevance": 1,
+      "id": 1
+    },
+    {
+      "name_Vacancy": "Data Scientist",
+      "company": "Amazon",
+      "logo_Company": "https://ams3.digitaloceanspaces.com/graffica/2023/03/amazon_logo._CB633267048_.png",
+      "programming_Languages": 6,
+      "programming_Level": 2,
+      "years_of_experience": 3,
+      "description": "Analizar datos",
+      "workday": "1",
+      "salary": 1100,
+      "date_Hire": "2023-07-20",
+      "isActive": true,
+      "Relevance": 2,
+      "id": 2
     }
   ]
 }
