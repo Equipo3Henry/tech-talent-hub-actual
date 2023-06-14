@@ -1,0 +1,9 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 39px;
+  row-gap: 40px;
+  margin-left: 241px;
+  margin-right: 182px;
+}
