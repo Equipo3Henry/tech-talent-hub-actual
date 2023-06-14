@@ -35,9 +35,9 @@
     color: #000000;
 }
 
-/* linkedIn */
+/* boton-linkedin */
 
-.linkedIn{
+.boton-linkedin{
     position: absolute;
     width: 270px;
     height: 53px;
@@ -46,9 +46,46 @@
 }
 
 
-/* google */
 
-.google{
+/* linkedin-texto */
+
+.linkedin-texto{
+    position: absolute;
+    width: 153px;
+    height: 22px;
+    left: 619px;
+    top: 189px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #FFFFFF;
+}
+
+
+
+/* linkedin-logo */
+
+.linkedin-logo{
+    position: absolute;
+    left: 54.86%;
+    right: 43.32%;
+    top: 19.44%;
+    bottom: 77.98%;
+    
+    background: #FFFFFF;
+}
+
+
+/* boton-google */
+
+.boton-google{
     position: absolute;
     width: 270px;
     height: 53px;
@@ -57,9 +94,46 @@
 }
 
 
-/* gitHub */
 
-.gitHub{
+/* google-texto */
+
+.google-texto{
+    position: absolute;
+    width: 142px;
+    height: 22px;
+    left: 301px;
+    top: 189px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #FFFFFF;
+}
+
+
+
+/* google-logo */
+
+.google-logo{
+    position: absolute;
+    left: 32.5%;
+    right: 65.8%;
+    top: 19.54%;
+    bottom: 77.85%;
+    
+    background: #FFFFFF;
+}
+
+
+/* boton-github */
+
+.boton-github{
     position: absolute;
     width: 270px;
     height: 53px;
@@ -67,6 +141,43 @@
     top: 173px;
 }
 
+
+
+/* github-texto */
+
+.github-texto{
+    position: absolute;
+    width: 141px;
+    height: 22px;
+    left: 941px;
+    top: 189px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #FFFFFF;
+}
+
+
+
+/* github-logo */
+
+
+.github-logo{
+    position: absolute;
+    left: 77.29%;
+    right: 20.97%;
+    top: 19.44%;
+    bottom: 78.02%;
+    
+    background: #FFFFFF;
+}
 
 /* divider */
 
@@ -78,64 +189,213 @@
     top: 257px;
 }
 
-/* username */
+/* rect-username */
+
+.rect_username{
+    box-sizing: border-box;
+    
+    position: absolute;
+    width: 912px;
+    height: 53px;
+    left: 265px;
+    top: 631px;
+}
+
+
+
+/* Username */
 
 .username{
     position: absolute;
-    width: 912px;
-    height: 79px;
+    width: 73px;
+    height: 22px;
     left: 265px;
     top: 605px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #000000;
 }
 
-/* name */
+
+
+/* rect-name */
+
+.rect_name{
+    box-sizing: border-box;
+    border: 0.5px 0.5px 4px 0.5px;
+    position: absolute;
+    width: 913px;
+    height: 53px;
+    left: 264px;
+    top: 337px;
+}
+
+
+
+/* Name */
 
 .name{
     position: absolute;
-    width: 913px;
-    height: 79px;
+    width: 42px;
+    height: 22px;
     left: 264px;
     top: 311px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #000000;
 }
 
-/* lastName */
 
-.lastName{
+
+/* rect-lastname */
+
+.rect_lastname{
+    box-sizing: border-box;
+    
     position: absolute;
     width: 915px;
-    height: 79px;
+    height: 53px;
     left: 262px;
-    top: 409px;
+    top: 435px;
 }
 
-/* email */
+
+
+/* Last Name */
+
+.lastname{
+    position: absolute;
+    width: 76px;
+    height: 22px;
+    left: 262px;
+    top: 409px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #000000;
+}
+
+
+
+/* rect-email */
+
+.rect_email{
+    box-sizing: border-box;
+    
+    position: absolute;
+    width: 912px;
+    height: 53px;
+    left: 265px;
+    top: 533px;
+}
+
+
+
+/* Email */
 
 .email{
     position: absolute;
-    width: 912px;
-    height: 79px;
+    width: 40px;
+    height: 22px;
     left: 265px;
     top: 507px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #000000;
 }
 
-/* password */
+
+
+/* rect-password */
+
+.rect_password{
+    box-sizing: border-box;
+    position: absolute;
+    width: 915px;
+    height: 53px;
+    left: 262px;
+    top: 729px;
+    border: 0.5px 0.5px 4px 0.5px solid #000000;
+
+}
+
+
+
+/* Password */
 
 .password{
     position: absolute;
-    width: 915px;
-    height: 79px;
+    width: 70px;
+    height: 22px;
     left: 262px;
     top: 703px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 139%;
+    /* or 22px */
+    
+    letter-spacing: -0.011em;
+    
+    color: #000000;
 }
 
 /* button */
 
 .button{
-    position: absolute;
-    width: 912px;
-    height: 59px;
-    left: 265px;
-    top: 825px;
+
+        background: #6850BF;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+}
+
+.button{
+        background: #7155d9;
+        box-shadow: 2px 2px 4px #00000040;
+        border-radius: 15px;
+        width: 148px;
+        height: 59px;
+        border: none;
+        color: white;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 28px;
+        transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 
