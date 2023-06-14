@@ -1,5 +1,5 @@
 {
-  "data": [
+  "companies": [
     {
       "name": "Google",
       "image": "https://viapais.com.ar/resizer/Qiq243clu5Q2m8ZIgXv6opSipR0=/980x640/smart/filters:quality(75):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/6GRIZT4NFNAT3P73R4BHY2V7YM.jpg",
@@ -17,6 +17,16 @@
       "employes": "50",
       "jobs": "100",
       "id": "2"
+    }
+  ],
+  "users": [
+    {
+      "name": "Fulanito",
+      "id": 1
+    },
+    {
+      "name": "Menganito",
+      "id": 2
     }
   ]
 }

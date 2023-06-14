@@ -1,7 +1,7 @@
 const handler = async (req, res) => {
     if (req.method === 'GET') {
         const id = req.query.id;
-        const response = await fetch(`http://localhost:3001/data/${id}`, {
+        const response = await fetch(`http://localhost:3001/companies/${id}`, {
             headers: {
                 'Content-Type': 'application/json'
             },
