@@ -16,6 +16,7 @@ model User {
   name       String   @db.VarChar(50)
   lastname   String   @db.VarChar(50)
   birth      String
+  country    String   @db.VarChar(50)
   working    Boolean  @default(false)
   cv         String?
   email      String   @unique
@@ -32,16 +33,20 @@ model User {
 model SoftSkills {
   id        String   @id @default(uuid())
   name      String   @db.VarChar(50)
+  optimism  String?  @db.VarChar(50)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Company {
   id          String  @id @default(uuid())
-  name        String  @db.VarChar(50)
-  image       String? @unique
+  email       String  @unique @db.VarChar(50)
+  logo        String
   type        String  @db.VarChar(50)
   description String?
   employes    Int     @default(0)
   jobs        Int     @default(0)
+  vacancies   Int     @unique
+  password    String  @db.VarChar(20)
+  country     String  @db.VarChar(50)
 }
