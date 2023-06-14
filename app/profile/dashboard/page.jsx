@@ -2,7 +2,7 @@
 import SearchBar from "../../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import jobsTemplate from "../../../helpers/provisionalDB";
+import { jobsTemplate } from "../../../helpers/provisionalDB";
 import JobsOfferDetail from "../../../components/jobsComponents/JobsOfferDetail/JobsOfferDetail";
 import React, { useState } from "react";
 import SelectsContainer from "../../../components/generalComponents/selectComponent/SelectContainer/SelectContainer";

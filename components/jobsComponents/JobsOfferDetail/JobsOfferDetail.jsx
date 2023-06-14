@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./JobsOfferDetail.module.css";
-import jobsTemplate from "../../../helpers/provisionalDB";
+import { jobsTemplate } from "../../../helpers/provisionalDB";
 import { useEffect, useState } from "react";
 
 const JobsOfferDetail = ({ selectedJobId }) => {

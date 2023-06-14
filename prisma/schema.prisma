@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  password   String
+  image      String?  @unique
+  name       String   @db.VarChar(50)
+  lastname   String   @db.VarChar(50)
+  birth      String
+  country    String   @db.VarChar(50)
+  working    Boolean  @default(false)
+  cv         String?
+  email      String   @unique
+  enfoque1   String
+  enfoque2   String
+  aboutme    String?
+  experience String[]
+  titles     String[]
+  knowledges String[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model SoftSkills {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(50)
+  optimism  String?  @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Company {
+  id          String  @id @default(uuid())
+  email       String  @unique @db.VarChar(50)
+  logo        String
+  type        String  @db.VarChar(50)
+  description String?
+  employes    Int     @default(0)
+  jobs        Int     @default(0)
+  vacancies   Int     @unique
+  password    String  @db.VarChar(20)
+  country     String  @db.VarChar(50)
+}
