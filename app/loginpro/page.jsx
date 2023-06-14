@@ -1,4 +1,4 @@
-/* "use client";
+"use client";
 
 import React from "react";
 import styles from "./login.module.css";
@@ -8,8 +8,7 @@ import {
   linkedin,
   github,
   signinvector,
-} from "../../../public/assets/page";
-import { useRouter } from "next/navigation";
+} from "../../public/assets/page";
 
 const login = () => {
   return (
@@ -80,4 +79,3 @@ const login = () => {
 };
 
 export default login;
- */
