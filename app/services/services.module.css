@@ -1,0 +1,25 @@
+.ServicesContainer {
+  margin-left: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.plansContainer {
+  display: flex;
+  gap: 50px;
+}
+
+.title {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 75px;
+  line-height: 139%;
+  /* or 44px */
+
+  letter-spacing: -0.011em;
+
+  color: #000000;
+}

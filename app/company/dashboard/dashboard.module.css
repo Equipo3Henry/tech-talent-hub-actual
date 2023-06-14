@@ -1,0 +1,26 @@
+.globalContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.jobsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  margin-left: 167px;
+  margin-top: 66px;
+}
+
+.detailContainer {
+}
+
+.forniculo {
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+}
+
+.usersContainer {
+  display: flex;
+  flex-direction: row;
+}
