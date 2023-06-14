@@ -206,7 +206,7 @@
 /* labels */
 
 .name, .lastname, .email, .username, .password, .dateOfBirth, .cv, .country, .progLanguages, .degree, .softSkills, .languages, .seniority, .specialization, .working{
-    width: 200px;
+    width: 250px;
     height: 22px;
     font-family: 'Roboto';
     font-style: normal;
@@ -236,7 +236,7 @@
 }
 
 /* FILA 2 */
-.input_email{
+.input_email, .textarea_aboutMe{
     width: 95%;
     height: 50px;
     padding-left: 10px;

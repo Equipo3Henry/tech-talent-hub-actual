@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "./signup.module.css";
 import { useState } from "react";
+import Select from "react-select";
 
 function SignUp() {
   //? USE STATE FORM
@@ -12,7 +13,7 @@ function SignUp() {
     email: "",
     username: "",
     password: "",
-    dateOfBirth: "",
+    birth: "",
     cv: "",
     country: "",
     progLanguages: [],
@@ -20,8 +21,9 @@ function SignUp() {
     softSkills: [],
     languages: [],
     seniority: "",
-    specialization: "",
-    working: "",
+    specialization: [],
+    working: false,
+    aboutMe: "",
   });
 
   //? ON CHANGE INPUT HANDLER
@@ -44,6 +46,17 @@ function SignUp() {
       })
       .catch((err) => alert("An error occurred"));
   };
+
+  //? OPTIONS SELECT PROGRAMMING LANGUAGES
+  const options = [
+    { value: "react", label: "React" },
+    { value: "javascript", label: "JavaScript" },
+    { value: "c++", label: "C++" },
+    { value: "mongodb", label: "MongoDB" },
+    { value: "python", label: "Python" },
+    { value: "html", label: "HTML" },
+    { value: "css", label: "CSS" },
+  ];
 
   return (
     <div className={styles.page_container}>
@@ -124,7 +137,7 @@ function SignUp() {
               <label className={styles.dateOfBirth}>Date of Birth</label>
               <input
                 type="text"
-                name="dateOfBirth"
+                name="birth"
                 className={styles.input_dateOfBirth}
                 onChange={changeHandler}
               />
@@ -159,12 +172,19 @@ function SignUp() {
               <label className={styles.progLanguages}>
                 Programming Languages
               </label>
-              <input
+              <Select
+                isMulti
+                options={options}
+                isClearable={false}
+                isSearchable={true}
+                closeMenuOnSelect={false}
+              />
+              {/* <input
                 type="text"
                 name="progLanguages"
                 className={styles.input_progLanguages}
                 onChange={changeHandler}
-              />
+              /> */}
             </div>
           </div>
 
@@ -240,6 +260,19 @@ function SignUp() {
                 onChange={changeHandler}
               />
             </div>
+          </div>
+
+          {/* About Me */}
+          <div className={styles.working_container}>
+            <label className={styles.working}>
+              A brief description about you
+            </label>
+            <textarea
+              type="text"
+              name="aboutMe"
+              className={styles.textarea_aboutMe}
+              onChange={changeHandler}
+            />
           </div>
 
           {/* Botón */}
