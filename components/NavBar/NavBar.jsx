@@ -58,10 +58,18 @@ const NavBar = ({ handleBotonMenu }) => {
         <Image src={Vector} alt="image" className={styles.Menu} />
       </div>
       <div className={styles.IconsContainer}>
-        <Image src={dashboard} alt="image" className={styles.Icons} />
-        <Image src={posts} alt="image" className={styles.Icons} />
-        <Image src={notification} alt="image" className={styles.Icons} />
-        <Image src={favorites} alt="image" className={styles.Icons} />{" "}
+        <Link href="/company/dashboard">
+          <Image src={dashboard} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/company/my-posts">
+          <Image src={posts} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/company/notifications">
+          <Image src={notification} alt="image" className={styles.Icons} />
+        </Link>
+        <Link href="/company/favorites">
+          <Image src={favorites} alt="image" className={styles.Icons} />{" "}
+        </Link>
       </div>
     </div>
   );
