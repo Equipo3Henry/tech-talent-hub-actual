@@ -285,7 +285,7 @@ const usersTemplate = [
     languages: ["spanish native", "english fluent"],
     programming_Languages: ["Python", "R", "Java"],
     aboutme:
-      "Me llamo Carmen Rios, estudié en la Universidad de Sevilla, Ciencias de la Computación.",
+      "Me llamo Carmen Rios, estudié en la Universidad de Sevilla, Ciencias de la Computación. Soy una persona muy creativa y me encanta resolver problemas. Me gustaría trabajar en una empresa que me permita desarrollarme profesionalmente para eso estoy estudiando un máster en Inteligencia Artificial, y llevo 2 años trabajando en un proyecto de investigación en la universidad, gane una beca para trabajar en el proyecto entre una competencia de mas de 500 personas de todo el mundo, soy la mejor, aguante yo, metallica, y nadie mas. hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola",
     programming_level: "Junior",
     CV: true,
     softskills: ["Analytical Skills", "Critical Thinking", "Mathematics"],
@@ -322,7 +322,7 @@ const usersTemplate = [
     email: "rosario.vega@gmail.com",
     degree: "computer engineering",
     specialization: "backend developer",
-    languages: ["spanish native", "english advanced"],
+    languages: ["Spanish Native", "English Advanced"],
     programming_Languages: ["Python", "Java", "SQL"],
     aboutme:
       "Me llamo Rosario Vega, estudié en la Universidad de Chile, Ingeniería Informática.",
