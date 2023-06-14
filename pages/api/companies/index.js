@@ -8,8 +8,8 @@ const handler = async (req, res) => {
             body: JSON.stringify(req.body)
         })
 
-        return res.status(201).json(newCompany)
-    }
+    return res.status(201).json(newCompany);
+  }
 
     if (req.method === 'GET') {
         const response = await fetch('http://localhost:3001/companies', {
@@ -24,3 +24,5 @@ const handler = async (req, res) => {
 }
 
 export default handler;
+
+// deberíamos utilizar la carpeta api dentro de app, estamos usando el app router, no el page router
