@@ -6,7 +6,7 @@ import signinvector from "../images/signinvector.png";
 import Vector from "../images/Vector.png";
 import home from "../images/home.svg";
 import search from "../images/search.svg";
-import notification from "../images/notification.svg";
+import notification from "../images/notifications.svg";
 import imagen_1 from "../images/imagen_1.png";
 import imagen_2 from "../images/imagen_2.png";
 import imagen_3 from "../images/imagen_3.png";
@@ -23,6 +23,8 @@ import GoogleBlack from "../images/GoogleBlack.svg";
 import meta from "../images/meta.svg";
 import windows from "../images/windows.svg";
 import samplepost from "../images/SamplePosts.png";
+import dashboard from "../images/dashboard-companys.svg";
+import posts from "../images/posts.svg";
 
 export {
   favorites,
@@ -50,4 +52,6 @@ export {
   meta,
   windows,
   samplepost,
+  dashboard,
+  posts,
 };

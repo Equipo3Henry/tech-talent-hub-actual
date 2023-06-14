@@ -22,3 +22,18 @@
   flex-direction: column;
   gap: 3rem;
 }
+
+.NavbarCompanies {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100%;
+  background-color: #b682d9;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-direction: column;
+}
