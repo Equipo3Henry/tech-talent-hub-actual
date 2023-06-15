@@ -27,6 +27,7 @@ import dashboard from "../images/dashboard-companys.svg";
 import posts from "../images/posts.svg";
 import loginusername from "../images/logInUserName.svg";
 import logingroup from "../images/logInGroup.svg";
+import landing from "../images/landing.png";
 
 export {
   favorites,
@@ -58,4 +59,5 @@ export {
   posts,
   loginusername,
   logingroup,
+  landing,
 };

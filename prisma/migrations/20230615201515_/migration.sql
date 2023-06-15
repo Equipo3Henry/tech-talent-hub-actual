@@ -92,7 +92,7 @@ CREATE TABLE "Vacancy" (
     "years_of_experience" INTEGER NOT NULL DEFAULT 0,
     "description" TEXT NOT NULL,
     "workday" "Workday" NOT NULL DEFAULT 'FULLTIME',
-    "salary" BIGINT NOT NULL DEFAULT 1000,
+    "salary" INTEGER NOT NULL DEFAULT 1000,
     "date_Hire" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT false,
     "Relevance" "Relevance" NOT NULL DEFAULT 'SMALL',
