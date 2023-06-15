@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./UserOfferDetail.module.css";
-import { usersTemplate } from "@/src/app/helpers/provisionalDB";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function UserOfferDetail({ selectedUserId }) {
@@ -10,15 +10,19 @@ function UserOfferDetail({ selectedUserId }) {
 
   useEffect(() => {
     if (selectedUserId) {
-      const userDetail = usersTemplate.find(
-        (user) => user.id === Number(selectedUserId)
-      );
-      setUser(userDetail);
+      axios
+        .get(`http://localhost:3000/api/users/${selectedUserId}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   }, [selectedUserId]);
 
   if (!user) {
-    return <div>aca iria el id del detail [00]</div>;
+    return <div>Aquí iría el id del detail [00]</div>;
   }
 
   return (
@@ -30,15 +34,15 @@ function UserOfferDetail({ selectedUserId }) {
         </div>
         <div className={styles.InfoContainer}>
           <div className={styles.UserNameCompanyContainer}>
-            <h1>{`${user.name} ${user.lastName}`}</h1>
+            <h1>{`${user.name} ${user.lastname}`}</h1>
             <div className={styles.specializationContainer}>
               <h1 className={styles.subtitle}>{user.specialization}</h1>
               <h4 className={styles.subtitleProgramming}>{user.seniority}</h4>
             </div>
-            <h1 className={styles.subtitle}> Im from: {user.country}</h1>
+            <h1 className={styles.subtitle}> I'm from: {user.country}</h1>
           </div>
         </div>
-        <span className={styles.aboutme}>{user.aboutMe}</span>
+        <span className={styles.aboutme}>{user.aboutme}</span>
         <div className={styles.listados}>
           <ul>
             {user.progLanguages.map((lang, index) => (
