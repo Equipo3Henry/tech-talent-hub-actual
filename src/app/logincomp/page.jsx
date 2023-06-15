@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import { google, linkedin, github, signinvector } from "../public/assets/page";
-import Link from "next/link";
 
 const login = () => {
   return (
@@ -61,11 +60,9 @@ const login = () => {
           <div>
             <br />
             <br />
-            <Link href="/profile/signup">
-              <button className={styles.ButtonB}>
-                New to HighTech Fusion? Join now
-              </button>
-            </Link>
+            <button className={styles.ButtonB}>
+              New to HighTech Fusion? Join now
+            </button>
           </div>
         </div>
         <div className={styles.imagenContenedor}>
