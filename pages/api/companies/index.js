@@ -13,45 +13,21 @@ export default async function handler(req, res) {
         vacancies,
         description,
         employes,
-        jobs
-
-
-        // email,
-        // logo,
-        // type,
-        // description,
-        // employes,
-        // jobs,
-        // vacancies,
-        // password,
-        // country
-
+        jobs,
       } = req.body;
-
-
 
       const newCompany = await prisma.company.create({
         data: {
-            name,
-            logo_Company,
-            type,
-            email,
-            password,
-            country,
-            vacancies,
-            description,
-            employes,
-            jobs
-
-        //   email,
-        //   logo,
-        //   type,
-        //   description,
-        //   employes,
-        //   jobs,
-        //   vacancies,
-        //   password,
-        //   country
+          name,
+          logo_Company,
+          type,
+          email,
+          password,
+          country,
+          vacancies,
+          description,
+          employes,
+          jobs,
         },
       });
 
@@ -60,7 +36,7 @@ export default async function handler(req, res) {
       console.error("Error creating company:", error);
       return res.status(500).json({ error: error.message });
     }
-  };
+  }
 
   if (req.method === "GET") {
     const { country } = req.query;
@@ -69,9 +45,9 @@ export default async function handler(req, res) {
         const companies = await prisma.company.findMany({
           where: {
             country: {
-              equals: country
-            }
-          }
+              equals: country,
+            },
+          },
         });
 
         return res.status(200).json(companies);
@@ -90,4 +66,4 @@ export default async function handler(req, res) {
     }
   }
   return res.status(405).json({ error: "Method Not Allowed" });
-};
+}
