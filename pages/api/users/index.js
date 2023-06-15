@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const {
       username,
       name,
-      lastName,
+      lastname,
       birth,
       aboutMe,
       working,
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       data: {
         username,
         name,
-        lastName,
+        lastname,
         birth,
         aboutMe,
         working,
