@@ -21,15 +21,29 @@ function SignUp() {
     softSkills: [],
     languages: [],
     seniority: "",
-    specialization: [],
+    specialization: "",
     working: false,
     aboutMe: "",
   });
 
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    let property = event.target.name;
+    let value = event.target.value;
+
+    if (
+      property === "progLanguages" ||
+      property === "softSkills" ||
+      property === "languages"
+    ) {
+      value = Array.isArray(value) ? value.map((option) => option.value) : [];
+    } else if (
+      property === "country" ||
+      property === "seniority" ||
+      property === "working"
+    ) {
+      value = value.value;
+    }
 
     setForm({
       ...form,
@@ -39,16 +53,19 @@ function SignUp() {
 
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
+    event.preventDefault();
+    // setForm(form);
+    // console.log(form);
     axios
-      .post("ruta del post", form)
+      .post("ruta", form)
       .then((response) => {
         alert("Yay! The user was created successfully.");
       })
       .catch((err) => alert("An error occurred"));
   };
 
-  //? OPTIONS SELECT PROGRAMMING LANGUAGES
-  const options = [
+  //? OPTIONS SELECT PROGRAMMING LANGUAGES -
+  const progLanguages = [
     { value: "react", label: "React" },
     { value: "javascript", label: "JavaScript" },
     { value: "c++", label: "C++" },
@@ -56,6 +73,83 @@ function SignUp() {
     { value: "python", label: "Python" },
     { value: "html", label: "HTML" },
     { value: "css", label: "CSS" },
+  ];
+
+  //? OPTIONS SELECT COUNTRIES
+  const countries = [
+    { value: "argentina", label: "Argentina" },
+    { value: "bolivia", label: "Bolivia" },
+    { value: "brasil", label: "Brasil" },
+    { value: "chile", label: "Chile" },
+    { value: "colombia", label: "Colombia" },
+    { value: "costaRica", label: "Costa Rica" },
+    { value: "cuba", label: "Cuba" },
+    { value: "ecuador", label: "Ecuador" },
+    { value: "elSalvador", label: "El Salvador" },
+    { value: "guatemala", label: "Guatemala" },
+    { value: "honduras", label: "Honduras" },
+    { value: "mexico", label: "Mexico" },
+    { value: "nicaragua", label: "Nicaragua" },
+    { value: "panama", label: "Panama" },
+    { value: "paraguay", label: "Paraguay" },
+    { value: "peru", label: "Perú" },
+    { value: "puertoRico", label: "Puerto Rico" },
+    { value: "dominicana", label: "República Dominicana" },
+    { value: "uruguay", label: "Uruguay" },
+    { value: "venezuela", label: "Venezuela" },
+  ];
+
+  //? OPTIONS SELECT SOFT SKILLS
+  const softSkills = [
+    { value: "communication", label: "Communication" },
+    { value: "teamWork", label: "Team Work" },
+    { value: "problemSolving", label: "Problem Solving" },
+    { value: "timeManagement", label: "Time Management" },
+    { value: "critialThinking", label: "Critical Thinking" },
+    { value: "decisionMaking", label: "Decision Making" },
+    { value: "organizational", label: "Organizational" },
+    { value: "stressManagement", label: "Stress Management" },
+    { value: "adaptability", label: "Adaptability" },
+    { value: "conflictManagement", label: "Conflict Management" },
+    { value: "leadership", label: "Leadership" },
+    { value: "creativity", label: "Creativity" },
+    { value: "resourcefulness", label: "Resourcefulness" },
+    { value: "persuasion", label: "Persuasion" },
+    { value: "openToCriticism", label: "Open to Criticism" },
+  ];
+
+  //? OPTIONS SELECT LANGUAGES
+  const languages = [
+    { value: "englishBasic", label: "English (Basic)" },
+    { value: "englishIntermediate", label: "English (Intermediate)" },
+    { value: "englishAdvanced", label: "English (Advanced)" },
+    { value: "englishNative", label: "English (Native)" },
+    { value: "spanishBasic", label: "Spanish (Basic)" },
+    { value: "spanishIntermediate", label: "Spanish (Intermediate)" },
+    { value: "spanishAdvanced", label: "Spanish (Advanced)" },
+    { value: "spanishNative", label: "Spanish (Native)" },
+    { value: "portugueseBasic", label: "Portuguese (Basic)" },
+    { value: "portugueseIntermediate", label: "Portuguese (Intermediate)" },
+    { value: "portugueseAdvanced", label: "Portuguese (Advanced)" },
+    { value: "portugueseNative", label: "Portuguese (Native)" },
+    { value: "italianBasic", label: "Italian (Basic)" },
+    { value: "italianIntermediate", label: "Italian (Intermediate)" },
+    { value: "italianAdvanced", label: "Italian (Advanced)" },
+    { value: "italianNative", label: "Italian (Native)" },
+  ];
+
+  //? OPTIONS SELECT SENIORITY
+  const seniority = [
+    { value: "trainee", label: "Trainee" },
+    { value: "junior", label: "Junior" },
+    { value: "semiSenior", label: "Semi-Senior" },
+    { value: "senior", label: "Senior" },
+  ];
+
+  //? OPTIONS SELECT ARE YOU WORKING
+  const working = [
+    { value: true, label: "Yes" },
+    { value: false, label: "No" },
   ];
 
   return (
@@ -159,11 +253,31 @@ function SignUp() {
             {/* Country */}
             <div className={styles.country_container}>
               <label className={styles.country}>Country</label>
-              <input
-                type="text"
+              <Select
+                options={countries}
                 name="country"
-                className={styles.input_country}
-                onChange={changeHandler}
+                onChange={(selectedOption) =>
+                  changeHandler({
+                    target: { name: "country", value: selectedOption },
+                  })
+                }
+                isClearable={true}
+                isSearchable={true}
+                closeMenuOnSelect={true}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
             </div>
 
@@ -174,17 +288,31 @@ function SignUp() {
               </label>
               <Select
                 isMulti
-                options={options}
+                options={progLanguages}
+                name="progLanguages"
+                onChange={(selectedOptions) =>
+                  changeHandler({
+                    target: { name: "progLanguages", value: selectedOptions },
+                  })
+                }
                 isClearable={false}
                 isSearchable={true}
                 closeMenuOnSelect={false}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
-              {/* <input
-                type="text"
-                name="progLanguages"
-                className={styles.input_progLanguages}
-                onChange={changeHandler}
-              /> */}
             </div>
           </div>
 
@@ -203,11 +331,32 @@ function SignUp() {
             {/* Soft Skills */}
             <div className={styles.softSkills_container}>
               <label className={styles.softSkills}>Soft Skills</label>
-              <input
-                type="text"
+              <Select
+                isMulti
+                options={softSkills}
                 name="softSkills"
-                className={styles.input_softSkills}
-                onChange={changeHandler}
+                onChange={(selectedOptions) =>
+                  changeHandler({
+                    target: { name: "softSkills", value: selectedOptions },
+                  })
+                }
+                isClearable={false}
+                isSearchable={true}
+                closeMenuOnSelect={false}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
             </div>
           </div>
@@ -216,22 +365,63 @@ function SignUp() {
             {/* Languages */}
             <div className={styles.languages_container}>
               <label className={styles.languages}>Languages</label>
-              <input
-                type="text"
+              <Select
+                isMulti
+                options={languages}
                 name="languages"
-                className={styles.input_languages}
-                onChange={changeHandler}
+                onChange={(selectedOptions) =>
+                  changeHandler({
+                    target: { name: "languages", value: selectedOptions },
+                  })
+                }
+                isClearable={false}
+                isSearchable={true}
+                closeMenuOnSelect={false}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
             </div>
 
             {/* Seniority */}
             <div className={styles.seniority_container}>
               <label className={styles.seniority}>Seniority</label>
-              <input
-                type="text"
+              <Select
+                options={seniority}
                 name="seniority"
-                className={styles.input_seniority}
-                onChange={changeHandler}
+                onChange={(selectedOption) =>
+                  changeHandler({
+                    target: { name: "seniority", value: selectedOption },
+                  })
+                }
+                isClearable={true}
+                isSearchable={true}
+                closeMenuOnSelect={true}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
             </div>
           </div>
@@ -253,20 +443,38 @@ function SignUp() {
               <label className={styles.working}>
                 Are you currently working?
               </label>
-              <input
-                type="text"
+              <Select
+                options={working}
                 name="working"
-                className={styles.input_working}
-                onChange={changeHandler}
+                onChange={(selectedOption) =>
+                  changeHandler({
+                    target: { name: "working", value: selectedOption },
+                  })
+                }
+                isClearable={true}
+                isSearchable={true}
+                closeMenuOnSelect={true}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
             </div>
           </div>
 
           {/* About Me */}
           <div className={styles.working_container}>
-            <label className={styles.working}>
-              A brief description about you
-            </label>
+            <label className={styles.working}>About you</label>
             <textarea
               type="text"
               name="aboutMe"
@@ -292,5 +500,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-//hola
