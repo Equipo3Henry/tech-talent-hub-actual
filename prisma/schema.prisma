@@ -69,13 +69,13 @@ model Vacancy {
   years_of_experience   Int         @default(0)
   description           String
   workday               Workday     @default(FULLTIME)
-  salary                BigInt      @default(1000)
+  salary                Int      @default(1000)
   date_Hire             DateTime
   isActive              Boolean     @default(false)
   Relevance             Relevance   @default(SMALL)
 }
 
-enum CompanyType {
+enum CompanyType {d
   STARTUP
   SMALL
   MEDIUM
