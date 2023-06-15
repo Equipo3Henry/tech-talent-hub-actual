@@ -10,43 +10,140 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  password   String
-  image      String?  @unique
-  name       String   @db.VarChar(50)
-  lastname   String   @db.VarChar(50)
-  birth      String
-  country    String   @db.VarChar(50)
-  working    Boolean  @default(false)
-  cv         String?
-  email      String   @unique
-  enfoque1   String
-  enfoque2   String
-  aboutme    String?
-  experience String[]
-  titles     String[]
-  knowledges String[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                String   @id @default(uuid())
+  username          String
+  name              String   @db.VarChar(50)
+  lastname          String   @db.VarChar(50)
+  birth             String
+  aboutme           String?
+  working           Boolean  @default(false)
+  country           String   @db.VarChar(50)
+  email             String   @unique
+  password          String
+  degree            String?
+  languages         String[]
+  progLanguages     String[]
+  profile_pictures  String?  @unique
+  seniority         String?
+  cv                String?
+  softSkills        String[]
+  recruiter         Boolean @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
 
 model SoftSkills {
   id        String   @id @default(uuid())
   name      String   @db.VarChar(50)
-  optimism  String?  @db.VarChar(50)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+model Review {
+  id          String   @id @default(uuid())
+  id_user     String
+  id_company  String
+}
+
 model Company {
-  id          String  @id @default(uuid())
-  email       String  @unique @db.VarChar(50)
-  logo        String
-  type        String  @db.VarChar(50)
-  description String?
-  employes    Int     @default(0)
-  jobs        Int     @default(0)
-  vacancies   Int     @unique
-  password    String  @db.VarChar(20)
-  country     String  @db.VarChar(50)
+  id            String        @id @default(uuid())
+  name          String
+  logo_Company  String
+  type          CompanyType   @default(STARTUP)
+  email         String        @unique @db.VarChar(50)
+  password      String        @db.VarChar(20)
+  country       String        @db.VarChar(50)
+  vacancies     Int           @default(autoincrement())
+  description   String?
+  employes      Int           @default(0)
+  jobs          Int           @default(0)
+}
+
+model Vacancy {
+  id                    String      @id @default(uuid())
+  name_Vacancy          String
+  company               String
+  logo_Company          String
+  programming_Langueges String[]
+  seniority             Seniority   @default(JUNIOR)
+  years_of_experience   Int         @default(0)
+  description           String
+  workday               Workday     @default(FULLTIME)
+  salary                BigInt      @default(1000)
+  date_Hire             DateTime
+  isActive              Boolean     @default(false)
+  Relevance             Relevance   @default(SMALL)
+}
+
+enum CompanyType {
+  STARTUP
+  SMALL
+  MEDIUM
+  BIG
+  MULTINATIONAL
+}
+
+enum ProgrammingLanguages {
+  C
+  GO
+  JAVA
+  JAVASCRIPT
+  KOTLIN
+  R
+  OBJECTIVEC
+  PHP
+  POSTSCRIPT
+  PYTHON
+  REACT
+  RUBY
+  RUST
+  SCALA
+  SCHEME
+  SQL
+  SWIFT
+  TYPESCRIPT
+  VISUALBASICNET
+  ELIXIR
+  ERLANG
+}
+
+enum Seniority {
+  JUNIOR
+  SEMISENIOR
+  SENIOR
+}
+
+enum Workday {
+  FULLTIME
+  PARTTIME
+  INTERMEDIATE
+  TEMPORAL
+  INTERNSHIPTRAINEE
+}
+
+enum Plan {
+  SMALL
+  MEDIUM
+  HIGH
+  GOLD
+  PREMIUM
+  ALL
+}
+
+enum Volume {
+  SMALL
+  MEDIUM
+  BIG
+  HIGH
+  HIGHER
+  ABSOLUTE
+}
+
+enum Relevance {
+  SMALL
+  MEDIUM
+  ADVANCE
+  PRO
+  ELITE
+  GLOBAL
 }
