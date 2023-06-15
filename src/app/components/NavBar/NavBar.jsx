@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
@@ -14,35 +13,15 @@ import {
   logingroup,
 } from "../../public/assets/page";
 import styles from "./NavBar.module.css";
-import { useEffect } from "react";
 import Link from "next/link";
 
 const NavBar = ({ handleBotonMenu }) => {
-  const [isProfile, setIsProfile] = useState(false);
-  const [isCompany, setIsCompany] = useState(false);
-  const [isPreLogIn, setIsPreLogIn] = useState(false);
 
-  const router = usePathname();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    if (router.includes("profile")) {
-      setIsProfile(true);
-      setIsCompany(false);
-      setIsPreLogIn(false);
-    } else if (router.includes("company")) {
-      setIsProfile(false);
-      setIsCompany(true);
-      setIsPreLogIn(false);
-    } else {
-      setIsProfile(false);
-      setIsCompany(false);
-      setIsPreLogIn(true);
-    }
-  }, [router]);
+  console.log(pathname);
 
-  console.log(router);
-
-  if (isProfile) {
+  if (pathname.includes("profile")) {
     return (
       <div className={styles.Navbar}>
         <div className={styles.MenuContainer} onClick={handleBotonMenu}>
@@ -64,7 +43,7 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
       </div>
     );
-  } else if (isCompany) {
+  } else if (pathname.includes("company")) {
     return (
       <div className={styles.NavbarCompanies}>
         <div className={styles.MenuContainer} onClick={handleBotonMenu}>
@@ -86,7 +65,7 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
       </div>
     );
-  } else if (isPreLogIn) {
+  } else {
     return (
       <div className={styles.Navbar}>
         <div className={styles.MenuContainer} onClick={handleBotonMenu}>
