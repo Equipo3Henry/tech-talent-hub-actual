@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./jobs.module.css";
-import jobsTemplate from "../helpers/provisionalDB";
+import { jobsTemplate } from "../helpers/provisionalDB";
 import JobsOfferCardsContainer from "../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainer/JobsOfferCardsContainer";
 import Image from "next/image";
 import { samplepost } from "../public/assets/page";
