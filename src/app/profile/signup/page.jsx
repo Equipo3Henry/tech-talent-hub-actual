@@ -4,12 +4,13 @@ import React from "react";
 import styles from "./signup.module.css";
 import { useState } from "react";
 import Select from "react-select";
+import axios from "axios";
 
 function SignUp() {
   //? USE STATE FORM
   const [form, setForm] = useState({
     name: "",
-    lastName: "",
+    lastname: "",
     email: "",
     username: "",
     password: "",
@@ -23,7 +24,8 @@ function SignUp() {
     seniority: "",
     specialization: "",
     working: false,
-    aboutMe: "",
+    recruiter: false,
+    aboutme: "",
   });
 
   //? ON CHANGE INPUT HANDLER
@@ -55,9 +57,9 @@ function SignUp() {
   const submitHandler = (event) => {
     event.preventDefault();
     // setForm(form);
-    // console.log(form);
+    console.log(form);
     axios
-      .post("ruta", form)
+      .post("http://localhost:3000/api/users", form)
       .then((response) => {
         alert("Yay! The user was created successfully.");
       })
@@ -179,7 +181,7 @@ function SignUp() {
               <label className={styles.lastname}>Last Name</label>
               <input
                 type="text"
-                name="lastName"
+                name="lastname"
                 className={styles.input_lastname}
                 onChange={changeHandler}
               />
@@ -477,7 +479,7 @@ function SignUp() {
             <label className={styles.working}>About you</label>
             <textarea
               type="text"
-              name="aboutMe"
+              name="aboutme"
               className={styles.textarea_aboutMe}
               onChange={changeHandler}
             />
