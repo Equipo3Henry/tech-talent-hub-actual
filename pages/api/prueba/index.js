@@ -3,40 +3,44 @@ import prisma from "@/prisma/client";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const {
+      username,
       name,
-      lastname,
-      password,
-      image,
+      lastName,
       birth,
-      country,
+      aboutMe,
       working,
-      cv,
+      country,
       email,
-      enfoque1,
-      enfoque2,
-      aboutme,
-      experience,
-      titles,
-      knowledges,
+      password,
+      degree,
+      languages,
+      progLanguages,
+      profile_picture,
+      seniority,
+      cv,
+      softSkills,
+      recruiter,
     } = req.body;
 
     const newUser = await prisma.user.create({
       data: {
+        username,
         name,
-        lastname,
-        password,
-        image,
+        lastName,
         birth,
-        country,
+        aboutMe,
         working,
-        cv,
+        country,
         email,
-        enfoque1,
-        enfoque2,
-        aboutme,
-        experience,
-        titles,
-        knowledges,
+        password,
+        degree,
+        languages,
+        progLanguages,
+        profile_picture,
+        seniority,
+        cv,
+        softSkills,
+        recruiter,
       },
     });
 
@@ -45,5 +49,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const allUsers = await prisma.user.findMany();
+
+    return res.status(200).json(allUsers)
   }
 }
