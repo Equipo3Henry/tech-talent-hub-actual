@@ -40,8 +40,6 @@ const NavBar = ({ handleBotonMenu }) => {
     }
   }, [router]);
 
-  console.log(router);
-
   if (isProfile) {
     return (
       <div className={styles.Navbar}>
@@ -96,10 +94,10 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/">
             <Image src={home} alt="image" className={styles.Icons} />
           </Link>
-          <Link href="/logincomp">
+          <Link href="/loginpro">
             <Image src={loginusername} alt="image" className={styles.Icons} />
           </Link>
-          <Link href="/loginpro">
+          <Link href="/logincomp">
             <Image src={logingroup} alt="image" className={styles.Icons} />
           </Link>
         </div>
