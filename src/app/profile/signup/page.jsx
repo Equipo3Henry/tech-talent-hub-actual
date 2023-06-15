@@ -491,10 +491,10 @@ function SignUp() {
           </div>
         </form>
       </div>
-      <div className={styles.footer}>
+      {/* <div className={styles.footer}>
         <h3 className={styles.footer_title}>Already have an account?</h3>
         <h3 className={styles.footer_login}>Log in here</h3>
-      </div>
+      </div> */}
     </div>
   );
 }
