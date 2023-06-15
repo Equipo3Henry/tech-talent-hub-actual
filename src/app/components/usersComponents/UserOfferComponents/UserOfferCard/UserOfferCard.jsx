@@ -5,10 +5,14 @@ import Link from "next/link";
 const UserOfferCard = ({
   id,
   name,
-  lastName,
-  specialization,
+  lastname,
+  progLanguages,
   onUserSelected,
 }) => {
+  const formattedLanguages = progLanguages
+    .map((lang) => lang.charAt(0).toUpperCase() + lang.slice(1))
+    .join(", ");
+
   return (
     <div
       className={styles.Container}
@@ -18,11 +22,11 @@ const UserOfferCard = ({
       <div className={styles.InfoContainer}>
         <div className={styles.nameContainer}>
           <span className={styles.nameUser}>
-            {name} {lastName}
+            {name} {lastname}
           </span>
         </div>
-        <div className={styles.softwareSkills}>
-          <h1>{specialization}</h1>
+        <div className={styles.progLanguages}>
+          <h1>{formattedLanguages}</h1>
         </div>
       </div>
     </div>
