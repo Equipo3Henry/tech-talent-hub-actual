@@ -33,22 +33,20 @@ function UserOfferDetail({ selectedUserId }) {
             <h1>{`${user.name} ${user.lastName}`}</h1>
             <div className={styles.specializationContainer}>
               <h1 className={styles.subtitle}>{user.specialization}</h1>
-              <h4 className={styles.subtitleProgramming}>
-                {user.programming_level}
-              </h4>
+              <h4 className={styles.subtitleProgramming}>{user.seniority}</h4>
             </div>
-            <h1 className={styles.subtitle}> I'm from: {user.country}</h1>
+            <h1 className={styles.subtitle}> Im from: {user.country}</h1>
           </div>
         </div>
-        <span className={styles.aboutme}>{user.aboutme}</span>
+        <span className={styles.aboutme}>{user.aboutMe}</span>
         <div className={styles.listados}>
           <ul>
-            {user.programming_Languages.map((lang, index) => (
+            {user.progLanguages.map((lang, index) => (
               <li key={index}>{lang}</li>
             ))}
           </ul>
           <ul>
-            {user.softskills.map((soft, index) => (
+            {user.softSkills.map((soft, index) => (
               <li key={index}>{soft}</li>
             ))}
           </ul>

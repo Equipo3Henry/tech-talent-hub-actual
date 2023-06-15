@@ -1,4 +1,3 @@
-/* id, company, name, programming_Languages, description, salary, start, end  */
 import { wix, GoogleBlack, meta, windows } from "../public/assets/page";
 
 const jobsTemplate = [
@@ -7,8 +6,8 @@ const jobsTemplate = [
     company: "Google",
     logo_Company: GoogleBlack,
     name_Vacancy: "Frontend Developer",
-    seniority: "Junior", //reemplazar por programming_Level
-    programming_Languages: ["React", "Redux", "CSS", "HTML"],
+    seniority: "Junior", //reemplazar por seniority
+    progLanguages: ["React", "Redux", "CSS", "HTML"],
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus adipisci placeat ipsam ratione maiores veritatis earum eos corporis omnis. Expedita odit ut ipsum accusantium est cupiditate iste praesentium et cumNemo maxime facere expedita aliquam, atque quam laudantium id laboriosam non, a",
     salary: 50000,
@@ -23,7 +22,7 @@ const jobsTemplate = [
     logo_Company: wix,
     name_Vacancy: "Backend Developer",
     seniority: "Trainee",
-    programming_Languages: ["Node, Express, MongoDB"],
+    progLanguages: ["Node, Express, MongoDB"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -38,7 +37,7 @@ const jobsTemplate = [
     logo_Company: meta,
     name_Vacancy: "Data Scientist",
     seniority: "Senior",
-    programming_Languages: ["Python, Pandas, Numpy, Matplotlib"],
+    progLanguages: ["Python, Pandas, Numpy, Matplotlib"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -53,7 +52,7 @@ const jobsTemplate = [
     logo_Company: windows,
     name_Vacancy: "Fullstack Developer",
     seniority: "Senior",
-    programming_Languages: ["React, Redux, CSS, HTML, Node, Express, MongoDB"],
+    progLanguages: ["React, Redux, CSS, HTML, Node, Express, MongoDB"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -68,7 +67,7 @@ const jobsTemplate = [
     logo_Company: GoogleBlack,
     name_Vacancy: "Frontend Developer",
     seniority: "Junior",
-    programming_Languages: ["React, Redux, CSS, HTML"],
+    progLanguages: ["React, Redux, CSS, HTML"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -83,7 +82,7 @@ const jobsTemplate = [
     logo_Company: wix,
     name_Vacancy: "Backend Developer",
     seniority: "Trainee",
-    programming_Languages: ["Node, Express, MongoDB"],
+    progLanguages: ["Node, Express, MongoDB"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -98,7 +97,7 @@ const jobsTemplate = [
     logo_Company: meta,
     name_Vacancy: "Data Scientist",
     seniority: "Senior",
-    programming_Languages: ["Python, Pandas, Numpy, Matplotlib"],
+    progLanguages: ["Python, Pandas, Numpy, Matplotlib"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -113,7 +112,7 @@ const jobsTemplate = [
     logo_Company: windows,
     name_Vacancy: "Fullstack Developer",
     seniority: "Senior",
-    programming_Languages: ["React, Redux, CSS, HTML, Node, Express, MongoDB"],
+    progLanguages: ["React, Redux, CSS, HTML, Node, Express, MongoDB"],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl aliquet nunc, vitae al",
     salary: 50000,
@@ -124,13 +123,13 @@ const jobsTemplate = [
   },
 ];
 
-// id, name, secondname, lastname, secondlastname, birth, age, working, cv, email, password, enfoque1, enfoque2, aboutme, titulos, seniority, logo_Company
+// id, name, secondname, lastname, secondlastname, birth, age, working, cv, email, password, enfoque1, enfoque2, aboutMe, titulos, seniority, logo_Company
 const usersTemplate = [
   {
     id: 1,
     name: "Juan",
     lastName: "Perez",
-    birthdate: "1990-01-01",
+    birth: "1990-01-01",
     age: 31,
     working: false,
     country: "Chile",
@@ -138,12 +137,12 @@ const usersTemplate = [
     degree: "Software Engineer",
     specialization: "Fullstack Developer",
     languages: ["spanish native", "english advanced"],
-    programming_Languages: ["Javascript", "Python", "C++"],
-    aboutme:
+    progLanguages: ["Javascript", "Python", "C++"],
+    aboutMe:
       "me llamo Juan Perez, estudie en la Universidad de Chile, Ingenieria Civil en Computacion, me especializo en el desarrollo de aplicaciones web, me gusta el trabajo en equipo y soy muy responsable",
-    programming_level: "Junior",
-    CV: false,
-    softskills: ["Communication", "Teamwork", "Leadership"],
+    seniority: "Junior",
+    cv: false,
+    softSkills: ["Communication", "Teamwork", "Leadership"],
     profile_picture:
       "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
   },
@@ -151,7 +150,7 @@ const usersTemplate = [
     id: 2,
     name: "Maria",
     lastName: "Rodriguez",
-    birthdate: "1995-04-20",
+    birth: "1995-04-20",
     age: 28,
     working: true,
     country: "Argentina",
@@ -159,12 +158,12 @@ const usersTemplate = [
     degree: "computer science",
     specialization: "Frontend Developer",
     languages: ["spanish native", "english intermediate"],
-    programming_Languages: ["Javascript", "HTML", "CSS"],
-    aboutme:
+    progLanguages: ["Javascript", "HTML", "CSS"],
+    aboutMe:
       "Me llamo María Rodriguez, estudié en la Universidad de Buenos Aires, Licenciatura en Informática.",
-    programming_level: "Mid-level",
-    CV: true,
-    softskills: ["Problem Solving", "Creativity", "Adaptability"],
+    seniority: "Mid-level",
+    cv: true,
+    softSkills: ["Problem Solving", "Creativity", "Adaptability"],
     profile_picture:
       "https://images.unsplash.com/photo-1573166953836-06864dc70a21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=988&q=80",
   },
@@ -172,7 +171,7 @@ const usersTemplate = [
     id: 3,
     name: "Carlos",
     lastName: "Gomez",
-    birthdate: "1988-08-15",
+    birth: "1988-08-15",
     age: 35,
     working: true,
     country: "Mexico",
@@ -180,12 +179,12 @@ const usersTemplate = [
     degree: "systems engineering",
     specialization: "Backend Developer",
     languages: ["spanish native", "english advanced"],
-    programming_Languages: ["Java", "SQL", "Python"],
-    aboutme:
+    progLanguages: ["Java", "SQL", "Python"],
+    aboutMe:
       "Me llamo Carlos Gomez, estudié en la Universidad Autónoma de México, Ingeniería en Sistemas.",
-    programming_level: "Senior",
-    CV: true,
-    softskills: ["Leadership", "Teamwork", "Critical Thinking"],
+    seniority: "Senior",
+    cv: true,
+    softSkills: ["Leadership", "Teamwork", "Critical Thinking"],
     profile_picture:
       "https://plus.unsplash.com/premium_photo-1661764406095-b2aabae753ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
   },
@@ -193,7 +192,7 @@ const usersTemplate = [
     id: 4,
     name: "Luisa",
     lastName: "Martinez",
-    birthdate: "1992-11-07",
+    birth: "1992-11-07",
     age: 30,
     working: true,
     country: "Colombia",
@@ -201,12 +200,12 @@ const usersTemplate = [
     degree: "Software Engineer",
     specialization: "Data Science",
     languages: ["spanish native", "english advanced"],
-    programming_Languages: ["Python", "R", "SQL"],
-    aboutme:
+    progLanguages: ["Python", "R", "SQL"],
+    aboutMe:
       "Me llamo Luisa Martinez, estudié en la Universidad de Los Andes, Ingeniería de Software.",
-    programming_level: "Mid-level",
-    CV: true,
-    softskills: ["Analytical Skills", "Mathematics", "Problem Solving"],
+    seniority: "Mid-level",
+    cv: true,
+    softSkills: ["Analytical Skills", "Mathematics", "Problem Solving"],
     profile_picture:
       "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
   },
@@ -214,7 +213,7 @@ const usersTemplate = [
     id: 5,
     name: "Diego",
     lastName: "Santos",
-    birthdate: "1986-12-12",
+    birth: "1986-12-12",
     age: 36,
     working: true,
     country: "Spain",
@@ -222,12 +221,12 @@ const usersTemplate = [
     degree: "computer science",
     specialization: "AI Developer",
     languages: ["spanish native", "english fluent"],
-    programming_Languages: ["Python", "C++", "Java"],
-    aboutme:
+    progLanguages: ["Python", "C++", "Java"],
+    aboutMe:
       "Me llamo Diego Santos, estudié en la Universidad Politécnica de Madrid, Ciencias de la Computación.",
-    programming_level: "Senior",
-    CV: true,
-    softskills: ["Critical Thinking", "Mathematics", "Machine Learning"],
+    seniority: "Senior",
+    cv: true,
+    softSkills: ["Critical Thinking", "Mathematics", "Machine Learning"],
     profile_picture:
       "https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1335&q=80",
   },
@@ -235,7 +234,7 @@ const usersTemplate = [
     id: 6,
     name: "Patricia",
     lastName: "Lopez",
-    birthdate: "1994-06-10",
+    birth: "1994-06-10",
     age: 29,
     working: true,
     country: "Peru",
@@ -243,19 +242,19 @@ const usersTemplate = [
     degree: "information technology",
     specialization: "systems analyst",
     languages: ["spanish native", "english intermediate"],
-    programming_Languages: ["Java", "Python", "SQL"],
-    aboutme:
+    progLanguages: ["Java", "Python", "SQL"],
+    aboutMe:
       "Me llamo Patricia Lopez, estudié en la Universidad de Lima, Tecnología de la Información.",
-    programming_level: "Mid-level",
-    CV: true,
-    softskills: ["Analytical Skills", "Problem Solving", "Communication"],
+    seniority: "Mid-level",
+    cv: true,
+    softSkills: ["Analytical Skills", "Problem Solving", "Communication"],
     profile_picture: "https://link_to_patricia_picture",
   },
   {
     id: 7,
     name: "Ernesto",
     lastName: "Gutierrez",
-    birthdate: "1989-02-28",
+    birth: "1989-02-28",
     age: 34,
     working: false,
     country: "Uruguay",
@@ -263,19 +262,19 @@ const usersTemplate = [
     degree: "software engineer",
     specialization: "mobile developer",
     languages: ["spanish native", "english advanced"],
-    programming_Languages: ["Java", "Swift", "Kotlin"],
-    aboutme:
+    progLanguages: ["Java", "Swift", "Kotlin"],
+    aboutMe:
       "Me llamo Ernesto Gutierrez, estudié en la Universidad de la República, Ingeniería de Software.",
-    programming_level: "Senior",
-    CV: false,
-    softskills: ["Creativity", "Problem Solving", "Time Management"],
+    seniority: "Senior",
+    cv: false,
+    softSkills: ["Creativity", "Problem Solving", "Time Management"],
     profile_picture: "https://link_to_ernesto_picture",
   },
   {
     id: 8,
     name: "Carmen",
     lastName: "Rios",
-    birthdate: "1997-09-05",
+    birth: "1997-09-05",
     age: 25,
     working: true,
     country: "Spain",
@@ -283,19 +282,19 @@ const usersTemplate = [
     degree: "computer science",
     specialization: "AI developer",
     languages: ["spanish native", "english fluent"],
-    programming_Languages: ["Python", "R", "Java"],
-    aboutme:
+    progLanguages: ["Python", "R", "Java"],
+    aboutMe:
       "Me llamo Carmen Rios, estudié en la Universidad de Sevilla, Ciencias de la Computación. Soy una persona muy creativa y me encanta resolver problemas. Me gustaría trabajar en una empresa que me permita desarrollarme profesionalmente para eso estoy estudiando un máster en Inteligencia Artificial, y llevo 2 años trabajando en un proyecto de investigación en la universidad, gane una beca para trabajar en el proyecto entre una competencia de mas de 500 personas de todo el mundo, soy la mejor, aguante yo, metallica, y nadie mas. hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola",
-    programming_level: "Junior",
-    CV: true,
-    softskills: ["Analytical Skills", "Critical Thinking", "Mathematics"],
+    seniority: "Junior",
+    cv: true,
+    softSkills: ["Analytical Skills", "Critical Thinking", "Mathematics"],
     profile_picture: "https://link_to_carmen_picture",
   },
   {
     id: 9,
     name: "Alfredo",
     lastName: "Ramirez",
-    birthdate: "1991-12-17",
+    birth: "1991-12-17",
     age: 31,
     working: false,
     country: "Mexico",
@@ -303,19 +302,19 @@ const usersTemplate = [
     degree: "information systems",
     specialization: "fullstack developer",
     languages: ["spanish native", "english intermediate"],
-    programming_Languages: ["Javascript", "Python", "SQL"],
-    aboutme:
+    progLanguages: ["Javascript", "Python", "SQL"],
+    aboutMe:
       "Me llamo Alfredo Ramirez, estudié en el Instituto Politécnico Nacional, Sistemas Informáticos.",
-    programming_level: "Mid-level",
-    CV: false,
-    softskills: ["Teamwork", "Communication", "Problem Solving"],
+    seniority: "Mid-level",
+    cv: false,
+    softSkills: ["Teamwork", "Communication", "Problem Solving"],
     profile_picture: "https://link_to_alfredo_picture",
   },
   {
     id: 10,
     name: "Rosario",
     lastName: "Vega",
-    birthdate: "1992-04-30",
+    birth: "1992-04-30",
     age: 31,
     working: true,
     country: "Chile",
@@ -323,16 +322,33 @@ const usersTemplate = [
     degree: "computer engineering",
     specialization: "backend developer",
     languages: ["Spanish Native", "English Advanced"],
-    programming_Languages: ["Python", "Java", "SQL"],
-    aboutme:
+    progLanguages: ["Python", "Java", "SQL"],
+    aboutMe:
       "Me llamo Rosario Vega, estudié en la Universidad de Chile, Ingeniería Informática.",
-    programming_level: "Senior",
-    CV: true,
-    softskills: ["Leadership", "Critical Thinking", "Time Management"],
+    seniority: "Senior",
+    cv: true,
+    softSkills: ["Leadership", "Critical Thinking", "Time Management"],
     profile_picture: "https://link_to_rosario_picture",
   },
 ];
 
-//id, name, lastName, birthdate, age, working, country, email, degree, specialization, languages, programming_Languages, aboutme, programming_level, CV, softskills, profile_picture
+/* 
+name: "",
+lastName: "",
+email: "",
+username: "",
+password: "",
+birth: "",
+cv: "",
+country: "",
+progLanguages: [],
+degree: "",
+softSkills: [],
+languages: [],
+seniority: "",
+specialization: "",
+working: false,
+aboutMe: "",
+}); */
 
 export { jobsTemplate, usersTemplate };

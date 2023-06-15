@@ -32,6 +32,4 @@ function formatDate(start) {
   return displayDate;
 }
 
-console.log(formatDate("2023-05-22"));
-
 export default formatDate;
