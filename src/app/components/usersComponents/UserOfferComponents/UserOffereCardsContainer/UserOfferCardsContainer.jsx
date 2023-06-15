@@ -23,8 +23,8 @@ const UserOfferCardsContainerForDashboard = ({ users }) => {
                   key={index}
                   id={user.id}
                   name={user.name}
-                  lastName={user.lastName}
-                  specialization={user.specialization}
+                  lastname={user.lastname}
+                  progLanguages={user.progLanguages}
                   onUserSelected={onUserSelected}
                 />
               );
