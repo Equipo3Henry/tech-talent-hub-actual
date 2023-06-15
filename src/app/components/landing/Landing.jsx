@@ -11,7 +11,7 @@ function LandingFirstPart(props) {
           <h1 className={styles.title}>
             We connect IT Talent with Israel’s Companies
           </h1>
-          <p classname={styles.parrafo}>
+          <p className={styles.parrafo}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget
             felis et urna mollis tincidunt. Proin felis sem, aliquet eu turpis
             eget, consectetur suscipit magna. Curabitur et quam eu ante gravida

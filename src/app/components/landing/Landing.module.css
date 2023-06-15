@@ -5,16 +5,27 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3em;
+  gap: 10em;
 }
 
 .textContainer {
-  flex: 1;
-  padding: 1em;
-  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 448px;
 }
 
 .parrafo {
+  width: 448px;
+  overflow-wrap: break-word;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 139%;
+  /* or 28px */
+
+  text-align: justify;
+  letter-spacing: -0.011em; /* Esto asegurará que las palabras largas no desborden el contenedor */
 }
 
 .imageContainer {
@@ -27,8 +38,36 @@
   height: 80%;
 }
 
+.botonera {
+  display: flex;
+  justify-content: space-between;
+}
 .botonUsers {
+  background: #7155d9;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border-style: none;
+  width: 192px;
+  height: 59px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
 }
 
 .botonCompany {
+  background: #b682d9;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  border-style: none;
+  width: 192px;
+  height: 59px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
 }
