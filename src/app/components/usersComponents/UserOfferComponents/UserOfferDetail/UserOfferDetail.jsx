@@ -11,7 +11,7 @@ function UserOfferDetail({ selectedUserId }) {
   useEffect(() => {
     if (selectedUserId) {
       const userDetail = usersTemplate.find(
-        (user) => user.id === isNaN(selectedUserId)
+        (user) => user.id === Number(selectedUserId)
       );
       setUser(userDetail);
     }
@@ -35,7 +35,7 @@ function UserOfferDetail({ selectedUserId }) {
               <h1 className={styles.subtitle}>{user.specialization}</h1>
               <h4 className={styles.subtitleProgramming}>{user.seniority}</h4>
             </div>
-            <h1 className={styles.subtitle}> I'm from: {user.country}</h1>
+            <h1 className={styles.subtitle}> Im from: {user.country}</h1>
           </div>
         </div>
         <span className={styles.aboutme}>{user.aboutMe}</span>

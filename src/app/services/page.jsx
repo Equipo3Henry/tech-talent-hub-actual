@@ -36,7 +36,7 @@ const plans = [
   },
 ];
 
-const Page = () => {
+const Services = () => {
   return (
     <div>
       <div className={styles.ServicesContainer}>
@@ -51,4 +51,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Services;
