@@ -12,10 +12,10 @@ const JobsOfferCardsContainer = ({ jobs }) => {
           key={index}
           id={job.id}
           company={job.company}
-          logo_Company={job.logo_Company}
-          name_Vacancy={job.name_Vacancy}
-          seniority={job.seniority}
-          showButton={true}
+          /*           logo_Company={job.logo_Company}
+           */ name_Vacancy={job.name_Vacancy}
+          /*           seniority={job.seniority}
+           */ showButton={true}
           showSpan={false}
         />
       ))}

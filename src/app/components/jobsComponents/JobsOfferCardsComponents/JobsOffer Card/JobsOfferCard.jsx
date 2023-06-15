@@ -22,7 +22,6 @@ const JobsOfferCard = ({
     >
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
-          <Image src={logo_Company} alt="imagen" className={styles.image} />
           <span className={styles.span}>{company}</span>
         </div>
         <h1 className={styles.CompanyTitle}> {name_Vacancy} </h1>
