@@ -12,7 +12,7 @@ datasource db {
 model Company {
   id           String      @id @default(uuid())
   name         String
-  logo_Company String
+  logo_Company String?
   type         CompanyType @default(STARTUP)
   email        String      @unique @db.VarChar(50)
   password     String      @db.VarChar(20)
@@ -54,6 +54,7 @@ model User {
   seniority        String?
   cv               String?
   softSkills       String[]
+  specialization   Spec 
   recruiter        Boolean  @default(false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime
@@ -64,7 +65,7 @@ model Vacancy {
   name_Vacancy          String
   company               String
   logo_Company          String
-  programming_Langueges String[]
+  programming_Languages String[]
   seniority             Seniority @default(JUNIOR)
   years_of_experience   Int       @default(0)
   description           String
@@ -146,4 +147,12 @@ enum Workday {
   INTERMEDIATE
   TEMPORAL
   INTERNSHIPTRAINEE
+}
+
+enum Spec {
+  FRONTEND
+  BACKEND
+  DATASCIENTIST
+  FULLSTACK
+  AI_ENGINEER
 }
