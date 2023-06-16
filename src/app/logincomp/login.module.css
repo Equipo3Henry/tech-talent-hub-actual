@@ -42,7 +42,7 @@
   font-size: 16px;
 }
 .input {
-  width: 440px;
+  width: 500px;
   height: 53px;
   left: 122px;
   top: 212px;
@@ -60,10 +60,10 @@
 }
 
 .ButtonSignIn {
-  background: #7155d9;
+  background: #b682d9;
   box-shadow: 2px 2px 4px #00000040;
   border-radius: 15px;
-  width: 440px;
+  width: 500px;
   height: 53px;
   border: none;
   color: white;
@@ -72,19 +72,21 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
+  cursor: pointer;
 }
 
+
 .ButtonB {
-  background: #b682d9;
+  background: #7155d9;
   box-shadow: 2px 2px 4px #00000040;
   border-radius: 15px;
-  width: 440px;
+  width: 500px;
   height: 53px;
   border: none;
   color: white;
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 24px;
   line-height: 28px;
 }
@@ -124,7 +126,7 @@
 }
 
 .ButtonAuth {
-  background: #7155d9;
+  background: #b682d9;
   box-shadow: 2px 2px 4px #00000040;
   border-radius: 15px;
   width: 126px;

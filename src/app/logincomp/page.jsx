@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import { google, linkedin, github, signinvector } from "../public/assets/page";
+import Link from "next/link";
 
 const login = () => {
   return (
@@ -11,7 +12,7 @@ const login = () => {
       <div className={styles.LogInContainer}>
         <div className={styles.InputsLogIn}>
           <div className={styles.TitleLogIn}>
-            <h1 className={styles.title}>Unlock your potential in tech!</h1>
+            <h1 className={styles.title}>Unlock LATAM tech potential</h1>
             <h4 className={styles.subtitle}>Create an account or Sign in</h4>
           </div>
           <div className={styles.inPutsContainer}>
@@ -38,7 +39,9 @@ const login = () => {
           </div>
           <br />
           <br />
-          <button className={styles.ButtonSignIn}>Log In!</button>
+          <Link href="company/dashboard">
+            <button className={styles.ButtonSignIn}>Log In</button>
+          </Link>
           <br />
           <br />
           <div className={styles.Separator}>
