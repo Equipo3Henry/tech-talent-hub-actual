@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       seniority,
       cv,
       softSkills,
+      specialization,
       recruiter,
     } = req.body;
 
@@ -40,6 +41,7 @@ export default async function handler(req, res) {
         seniority,
         cv,
         softSkills,
+        specialization,
         recruiter,
       },
     });

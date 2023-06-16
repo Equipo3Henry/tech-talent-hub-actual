@@ -19,11 +19,14 @@ CREATE TYPE "Volume" AS ENUM ('SMALL', 'MEDIUM', 'BIG', 'HIGH', 'HIGHER', 'ABSOL
 -- CreateEnum
 CREATE TYPE "Workday" AS ENUM ('FULLTIME', 'PARTTIME', 'INTERMEDIATE', 'TEMPORAL', 'INTERNSHIPTRAINEE');
 
+-- CreateEnum
+CREATE TYPE "Spec" AS ENUM ('FRONTEND', 'BACKEND', 'DATASCIENTIST', 'FULLSTACK', 'AI_ENGINEER');
+
 -- CreateTable
 CREATE TABLE "Company" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "logo_Company" TEXT NOT NULL,
+    "logo_Company" TEXT,
     "type" "CompanyType" NOT NULL DEFAULT 'STARTUP',
     "email" VARCHAR(50) NOT NULL,
     "password" VARCHAR(20) NOT NULL,
@@ -74,6 +77,7 @@ CREATE TABLE "User" (
     "seniority" TEXT,
     "cv" TEXT,
     "softSkills" TEXT[],
+    "specialization" "Spec" NOT NULL,
     "recruiter" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -87,7 +91,7 @@ CREATE TABLE "Vacancy" (
     "name_Vacancy" TEXT NOT NULL,
     "company" TEXT NOT NULL,
     "logo_Company" TEXT NOT NULL,
-    "programming_Langueges" TEXT[],
+    "programming_Languages" TEXT[],
     "seniority" "Seniority" NOT NULL DEFAULT 'JUNIOR',
     "years_of_experience" INTEGER NOT NULL DEFAULT 0,
     "description" TEXT NOT NULL,
