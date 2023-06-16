@@ -16,7 +16,7 @@ const JobsLanding = () => {
 
   useEffect(() => {
     axios
-      .get("/api/vacancies")
+      .get("http://localhost:3000/api/vacancies")
       .then((res) => {
         console.log(res.data);
         setJobs(res.data);

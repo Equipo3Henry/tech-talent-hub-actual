@@ -1,4 +1,5 @@
 import favorites from "../images/favorites.svg";
+import logoff from "../images/logoff.svg";
 import google from "../images/google.svg";
 import linkedin from "../images/linkedin.svg";
 import github from "../images/github.svg";
@@ -31,6 +32,7 @@ import landing from "../images/landing.png";
 
 export {
   favorites,
+  logoff,
   google,
   linkedin,
   github,

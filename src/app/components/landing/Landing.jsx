@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { landing } from "../../public/assets/page";
 import styles from "./Landing.module.css";
+import Link from "next/link";
 
 function LandingFirstPart(props) {
   return (
@@ -12,14 +13,17 @@ function LandingFirstPart(props) {
             We connect IT Talent with Israel’s Companies
           </h1>
           <p className={styles.parrafo}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget
-            felis et urna mollis tincidunt. Proin felis sem, aliquet eu turpis
-            eget, consectetur suscipit magna. Curabitur et quam eu ante gravida
-            ultricies.{" "}
+            Whether you're a company seeking exceptional talent or a skilled
+            professional ready to make your mark, Tech Talent Hub is your
+            gateway to unlimited possibilities.{" "}
           </p>
           <div className={styles.botonera}>
-            <button className={styles.botonUsers}>Log In Users</button>
-            <button className={styles.botonCompany}>Log In Company</button>
+            <Link href="/loginpro">
+              <button className={styles.botonUsers}>Log In Users</button>
+            </Link>
+            <Link href="/logincomp">
+              <button className={styles.botonCompany}>Log In Companies</button>
+            </Link>
           </div>
         </div>
         <div className={styles.imageContainer}>

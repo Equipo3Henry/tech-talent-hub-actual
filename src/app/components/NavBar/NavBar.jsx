@@ -8,6 +8,7 @@ import {
   Vector,
   notification,
   favorites,
+  logoff,
   dashboard,
   posts,
   loginusername,
@@ -59,6 +60,9 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/profile/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />
           </Link>
+          <Link href="/loginpro">
+            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+          </Link>
         </div>
       </div>
     );
@@ -81,6 +85,9 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/company/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />{" "}
           </Link>
+          <Link href="/logincomp">
+            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+          </Link>
         </div>
       </div>
     );
@@ -91,7 +98,7 @@ const NavBar = ({ handleBotonMenu }) => {
           <Image src={Vector} alt="image" className={styles.Menu} />
         </div>
         <div className={styles.IconsContainer}>
-          <Link href="/">
+          <Link href="/landing">
             <Image src={home} alt="image" className={styles.Icons} />
           </Link>
           <Link href="/loginpro">

@@ -12,7 +12,7 @@ const login = () => {
       <div className={styles.LogInContainer}>
         <div className={styles.InputsLogIn}>
           <div className={styles.TitleLogIn}>
-            <h1 className={styles.title}>Unlock your potential in tech!</h1>
+            <h1 className={styles.title}>Unlock your potential in tech</h1>
             <h4 className={styles.subtitle}>Create an account or Sign in</h4>
           </div>
           <div className={styles.inPutsContainer}>
@@ -39,7 +39,9 @@ const login = () => {
           </div>
           <br />
           <br />
-          <button className={styles.ButtonSignIn}>Log In!</button>
+          <Link href="profile/dashboard">
+            <button className={styles.ButtonSignIn}>Log In</button>
+          </Link>
           <br />
           <br />
           <div className={styles.Separator}>
@@ -61,7 +63,7 @@ const login = () => {
           <div>
             <br />
             <br />
-            <Link href="/profile/signup">
+            <Link href="/signup">
               <button className={styles.ButtonB}>
                 New to HighTech Fusion? Join now
               </button>
