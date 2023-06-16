@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Company {
-  id           String      @id
+  id           String      @id @default(uuid())
   name         String
   logo_Company String
   type         CompanyType @default(STARTUP)
@@ -24,20 +24,20 @@ model Company {
 }
 
 model Review {
-  id         String @id
+  id         String @id @default(uuid())
   id_user    String
   id_company String
 }
 
 model SoftSkills {
-  id        String   @id
+  id        String   @id @default(uuid())
   name      String   @db.VarChar(50)
   createdAt DateTime @default(now())
   updatedAt DateTime
 }
 
 model User {
-  id               String   @id
+  id               String   @id @default(uuid())
   username         String
   name             String   @db.VarChar(50)
   lastname         String   @db.VarChar(50)
@@ -60,7 +60,7 @@ model User {
 }
 
 model Vacancy {
-  id                    String    @id
+  id                    String    @id @default(uuid())
   name_Vacancy          String
   company               String
   logo_Company          String
