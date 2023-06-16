@@ -9,8 +9,35 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model Company {
+  id           String      @id
+  name         String
+  logo_Company String
+  type         CompanyType @default(STARTUP)
+  email        String      @unique @db.VarChar(50)
+  password     String      @db.VarChar(20)
+  country      String      @db.VarChar(50)
+  vacancies    Int         @default(autoincrement())
+  description  String?
+  employes     Int         @default(0)
+  jobs         Int         @default(0)
+}
+
+model Review {
+  id         String @id
+  id_user    String
+  id_company String
+}
+
+model SoftSkills {
+  id        String   @id
+  name      String   @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
 model User {
-  id               String   @id @default(uuid())
+  id               String   @id
   username         String
   name             String   @db.VarChar(50)
   lastname         String   @db.VarChar(50)
@@ -29,38 +56,11 @@ model User {
   softSkills       String[]
   recruiter        Boolean  @default(false)
   createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model SoftSkills {
-  id        String   @id @default(uuid())
-  name      String   @db.VarChar(50)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Review {
-  id         String @id @default(uuid())
-  id_user    String
-  id_company String
-}
-
-model Company {
-  id           String      @id @default(uuid())
-  name         String
-  logo_Company String
-  type         CompanyType @default(STARTUP)
-  email        String      @unique @db.VarChar(50)
-  password     String      @db.VarChar(20)
-  country      String      @db.VarChar(50)
-  vacancies    Int         @default(autoincrement())
-  description  String?
-  employes     Int         @default(0)
-  jobs         Int         @default(0)
+  updatedAt        DateTime
 }
 
 model Vacancy {
-  id                    String    @id @default(uuid())
+  id                    String    @id
   name_Vacancy          String
   company               String
   logo_Company          String
@@ -81,6 +81,15 @@ enum CompanyType {
   MEDIUM
   BIG
   MULTINATIONAL
+}
+
+enum Plan {
+  SMALL
+  MEDIUM
+  HIGH
+  GOLD
+  PREMIUM
+  ALL
 }
 
 enum ProgrammingLanguages {
@@ -107,27 +116,19 @@ enum ProgrammingLanguages {
   ERLANG
 }
 
+enum Relevance {
+  SMALL
+  MEDIUM
+  ADVANCE
+  PRO
+  ELITE
+  GLOBAL
+}
+
 enum Seniority {
   JUNIOR
   SEMISENIOR
   SENIOR
-}
-
-enum Workday {
-  FULLTIME
-  PARTTIME
-  INTERMEDIATE
-  TEMPORAL
-  INTERNSHIPTRAINEE
-}
-
-enum Plan {
-  SMALL
-  MEDIUM
-  HIGH
-  GOLD
-  PREMIUM
-  ALL
 }
 
 enum Volume {
@@ -139,11 +140,10 @@ enum Volume {
   ABSOLUTE
 }
 
-enum Relevance {
-  SMALL
-  MEDIUM
-  ADVANCE
-  PRO
-  ELITE
-  GLOBAL
+enum Workday {
+  FULLTIME
+  PARTTIME
+  INTERMEDIATE
+  TEMPORAL
+  INTERNSHIPTRAINEE
 }
