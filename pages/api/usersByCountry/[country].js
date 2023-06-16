@@ -2,13 +2,13 @@ import prisma from "@/prisma/client";
 
 export default async function handler(req, res) {
     
-    const { id } = req.query;
+    const {country } = req.query;
 
     if (req.method === "GET") {
         try {
-            const user = await prisma.user.findUnique({
+            const user = await prisma.user.findMany({
                 where: {
-                    id: id,
+                country: country,
                 },
             });
             res.status(200).json(user);
