@@ -1,0 +1,23 @@
+.forajido {
+  display: flex;
+}
+
+.containerAll {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20rem;
+  margin-top: 1em;
+}
+
+.scrollableList {
+  max-height: 564px; /* Altura ajustada para que sea igual a la altura de 5 tarjetas */
+  overflow-y: auto;
+  display: flex;
+  padding: 10px; /* Agrega un poco de padding alrededor de la lista */
+}
+
+.list {
+  flex: 1;
+  color: gray;
+  text-shadow: white;
+}

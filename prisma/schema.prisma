@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Company {
+  id           String      @id
+  name         String
+  logo_Company String
+  type         CompanyType @default(STARTUP)
+  email        String      @unique @db.VarChar(50)
+  password     String      @db.VarChar(20)
+  country      String      @db.VarChar(50)
+  vacancies    Int         @default(autoincrement())
+  description  String?
+  employes     Int         @default(0)
+  jobs         Int         @default(0)
+}
+
+model Review {
+  id         String @id
+  id_user    String
+  id_company String
+}
+
+model SoftSkills {
+  id        String   @id
+  name      String   @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
+model User {
+  id               String   @id
+  username         String
+  name             String   @db.VarChar(50)
+  lastname         String   @db.VarChar(50)
+  birth            String
+  aboutme          String?
+  working          Boolean  @default(false)
+  country          String   @db.VarChar(50)
+  email            String   @unique
+  password         String
+  degree           String?
+  languages        String[]
+  progLanguages    String[]
+  profile_pictures String?  @unique
+  seniority        String?
+  cv               String?
+  softSkills       String[]
+  recruiter        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime
+}
+
+model Vacancy {
+  id                    String    @id
+  name_Vacancy          String
+  company               String
+  logo_Company          String
+  programming_Langueges String[]
+  seniority             Seniority @default(JUNIOR)
+  years_of_experience   Int       @default(0)
+  description           String
+  workday               Workday   @default(FULLTIME)
+  salary                Int       @default(1000)
+  date_Hire             DateTime
+  isActive              Boolean   @default(false)
+  Relevance             Relevance @default(SMALL)
+}
+
+enum CompanyType {
+  STARTUP
+  SMALL
+  MEDIUM
+  BIG
+  MULTINATIONAL
+}
+
+enum Plan {
+  SMALL
+  MEDIUM
+  HIGH
+  GOLD
+  PREMIUM
+  ALL
+}
+
+enum ProgrammingLanguages {
+  C
+  GO
+  JAVA
+  JAVASCRIPT
+  KOTLIN
+  R
+  OBJECTIVEC
+  PHP
+  POSTSCRIPT
+  PYTHON
+  REACT
+  RUBY
+  RUST
+  SCALA
+  SCHEME
+  SQL
+  SWIFT
+  TYPESCRIPT
+  VISUALBASICNET
+  ELIXIR
+  ERLANG
+}
+
+enum Relevance {
+  SMALL
+  MEDIUM
+  ADVANCE
+  PRO
+  ELITE
+  GLOBAL
+}
+
+enum Seniority {
+  JUNIOR
+  SEMISENIOR
+  SENIOR
+}
+
+enum Volume {
+  SMALL
+  MEDIUM
+  BIG
+  HIGH
+  HIGHER
+  ABSOLUTE
+}
+
+enum Workday {
+  FULLTIME
+  PARTTIME
+  INTERMEDIATE
+  TEMPORAL
+  INTERNSHIPTRAINEE
+}

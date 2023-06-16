@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.ContainerDetail {
+  border: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-right-width: 9px;
+  width: 525px;
+  height: 545px; /* Ajusta la altura para que sea igual a la altura de 5 tarjetas */
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 16px;
+  border-color: #b682d9;
+  overflow: auto;
+}
+
+.InfoContainer {
+  flex-direction: row;
+}
+
+.botonera {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.buttonConnect {
+  background-color: #b682d9;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 40%;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  padding: 1rem;
+}
+.buttonDownload {
+  background-color: #b682d9;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 50%;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  padding: 1rem;
+}
+
+.buttonLike {
+  background-color: #6850bf;
+  border-style: none;
+  width: 40%;
+  height: 59px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+}
+
+.subtitle {
+  margin-top: -1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 139%;
+  letter-spacing: -0.011em;
+  color: #000000;
+}
+.subtitleProgramming {
+  margin-top: -1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 139%;
+  letter-spacing: -0.011em;
+  color: #000000;
+}
+
+.UserNameCompanyContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 2rem;
+}
+
+.aboutme {
+  padding: 2em;
+}
+
+.listados {
+  display: flex;
+  flex-direction: row;
+}
+
+.specializationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

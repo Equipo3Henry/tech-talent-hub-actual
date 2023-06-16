@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+.Container {
+  border: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 9px;
+  border-color: black;
+  width: 542px;
+  height: 106.8px;
+  display: flex;
+}
+
+.Container:hover {
+  border-color: #b682d9;
+}
+.InfoContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.nameUser {
+  margin-top: 0px;
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2em;
+  line-height: 139%;
+  letter-spacing: -0.011em;
+  color: #000000;
+  margin-top: -1rem;
+}
+
+.progLanguages {
+  width: 292px;
+  height: 38px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 0.5rem;
+  line-height: 139%;
+  letter-spacing: -0.011em;
+  color: #000000;
+}
