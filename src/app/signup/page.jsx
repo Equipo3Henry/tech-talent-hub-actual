@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./signup.module.css";
-import { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
+import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
   countries,
@@ -13,7 +13,7 @@ import {
   working,
   languages,
   specialization,
-} from "./variables";
+} from "../helpers/signup-users/variables";
 
 function SignUp() {
   //? USE STATE FORM
@@ -71,6 +71,11 @@ function SignUp() {
     cv: "Upload a CV in .pdf format",
   });
 
+  //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  useEffect(() => {
+    validation(form, errors, setErrors, placeholder, setPlaceholder);
+  }, [form]);
+
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
@@ -95,6 +100,17 @@ function SignUp() {
       ...form,
       [property]: value,
     });
+
+    validation(
+      {
+        ...form,
+        [property]: value,
+      },
+      errors,
+      setErrors,
+      placeholder,
+      setPlaceholder
+    );
   };
 
   //? SUBMIT BUTTON HANDLER
@@ -106,8 +122,27 @@ function SignUp() {
       .post("http://localhost:3000/api/users", form)
       .then((response) => {
         alert("Yay! The user was created successfully.");
+        setForm({
+          username: "",
+          name: "",
+          lastname: "",
+          birth: "",
+          aboutme: "",
+          working: false,
+          country: "",
+          email: "",
+          password: "",
+          degree: "",
+          languages: [],
+          progLanguages: [],
+          seniority: "",
+          cv: "",
+          softSkills: [],
+          specialization: "",
+          recruiter: false,
+        });
       })
-      .catch((err) => alert("An error occurred"));
+      .catch((err) => ({ error: err.message }));
   };
 
   return (
@@ -123,10 +158,13 @@ function SignUp() {
           <div className={styles.row1_container}>
             {/* Name */}
             <div className={styles.name_container}>
-              <label className={styles.name}>Name</label>
+              <label className={styles.name}>
+                Name <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 name="name"
+                required
                 placeholder={placeholder.name}
                 className={styles.input_name}
                 onChange={changeHandler}
@@ -138,10 +176,13 @@ function SignUp() {
 
             {/* LastName */}
             <div className={styles.lastname_container}>
-              <label className={styles.lastname}>Last Name</label>
+              <label className={styles.lastname}>
+                Last Name <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 name="lastname"
+                required
                 placeholder={placeholder.lastname}
                 className={styles.input_lastname}
                 onChange={changeHandler}
@@ -153,10 +194,13 @@ function SignUp() {
           </div>
           {/* Email */}
           <div className={styles.email_container}>
-            <label className={styles.email}>Email</label>
+            <label className={styles.email}>
+              Email <span className={styles.required}>*</span>
+            </label>
             <input
               type="text"
               name="email"
+              required
               placeholder={placeholder.email}
               className={styles.input_email}
               onChange={changeHandler}
@@ -169,10 +213,13 @@ function SignUp() {
           <div className={styles.row2_container}>
             {/* Username */}
             <div className={styles.username_container}>
-              <label className={styles.username}>Username</label>
+              <label className={styles.username}>
+                Username <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 name="username"
+                required
                 placeholder={placeholder.username}
                 className={styles.input_username}
                 onChange={changeHandler}
@@ -184,10 +231,13 @@ function SignUp() {
 
             {/* Password */}
             <div className={styles.password_container}>
-              <label className={styles.password}>Password</label>
+              <label className={styles.password}>
+                Password <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 name="password"
+                required
                 placeholder={placeholder.password}
                 className={styles.input_password}
                 onChange={changeHandler}
@@ -206,10 +256,13 @@ function SignUp() {
           <div className={styles.row3_container}>
             {/* Date of Birth */}
             <div className={styles.dateOfBirth_container}>
-              <label className={styles.dateOfBirth}>Date of Birth</label>
+              <label className={styles.dateOfBirth}>
+                Date of Birth <span className={styles.required}>*</span>
+              </label>
               <input
                 type="text"
                 name="birth"
+                required
                 placeholder={placeholder.birth}
                 className={styles.input_dateOfBirth}
                 onChange={changeHandler}
@@ -238,10 +291,13 @@ function SignUp() {
           <div className={styles.row4_container}>
             {/* Country */}
             <div className={styles.country_container}>
-              <label className={styles.country}>Country</label>
+              <label className={styles.country}>
+                Country <span className={styles.required}>*</span>
+              </label>
               <Select
                 options={countries}
                 name="country"
+                required
                 onChange={(selectedOption) =>
                   changeHandler({
                     target: { name: "country", value: selectedOption },
@@ -274,12 +330,13 @@ function SignUp() {
             {/* Programming Languages */}
             <div className={styles.progLanguages_container}>
               <label className={styles.progLanguages}>
-                Programming Languages
+                Programming Languages <span className={styles.required}>*</span>
               </label>
               <Select
                 isMulti
                 options={progLanguages}
                 name="progLanguages"
+                required
                 onChange={(selectedOptions) =>
                   changeHandler({
                     target: { name: "progLanguages", value: selectedOptions },
@@ -330,11 +387,14 @@ function SignUp() {
 
             {/* Soft Skills */}
             <div className={styles.softSkills_container}>
-              <label className={styles.softSkills}>Soft Skills</label>
+              <label className={styles.softSkills}>
+                Soft Skills <span className={styles.required}>*</span>
+              </label>
               <Select
                 isMulti
                 options={softSkills}
                 name="softSkills"
+                required
                 onChange={(selectedOptions) =>
                   changeHandler({
                     target: { name: "softSkills", value: selectedOptions },
@@ -370,7 +430,9 @@ function SignUp() {
           <div className={styles.row6_container}>
             {/* Languages */}
             <div className={styles.languages_container}>
-              <label className={styles.languages}>Languages</label>
+              <label className={styles.languages}>
+                Languages <span className={styles.required}>*</span>
+              </label>
               <Select
                 isMulti
                 options={languages}
@@ -382,6 +444,7 @@ function SignUp() {
                 }
                 isClearable={false}
                 isSearchable={true}
+                required
                 placeholder="Select the languages you know"
                 closeMenuOnSelect={false}
                 styles={{
@@ -447,7 +510,9 @@ function SignUp() {
           <div className={styles.row7_container}>
             {/* Specialization */}
             <div className={styles.specialization_container}>
-              <label className={styles.specialization}>Specialization</label>
+              <label className={styles.specialization}>
+                Specialization <span className={styles.required}>*</span>
+              </label>
               <Select
                 options={specialization}
                 name="specialization"
@@ -459,6 +524,7 @@ function SignUp() {
                 isClearable={true}
                 placeholder="What do you specialize in?"
                 isSearchable={true}
+                required
                 closeMenuOnSelect={true}
                 styles={{
                   container: (baseStyles, state) => ({

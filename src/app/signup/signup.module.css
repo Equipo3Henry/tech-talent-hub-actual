@@ -27,6 +27,11 @@
     color: #000000;
 }
 
+/* required */
+.required{
+    color: red;
+}
+
 /* subtitle */
 
 .subtitle {
@@ -38,134 +43,6 @@
     color: #000000;
 }
 
-/* boton-linkedin */
-/* 
-.boton_linkedin{
-    position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 583px;
-    top: 173px;
-} */
-
-
-
-/* linkedin-texto */
-
-/* .linkedin_texto{
-    position: absolute;
-    width: 153px;
-    height: 22px;
-    left: 619px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* linkedin-logo */
-
-/* .linkedin_logo{
-    position: absolute;
-    left: 54.86%;
-    right: 43.32%;
-    top: 19.44%;
-    bottom: 77.98%;
-    background: #FFFFFF;
-} */
-
-
-/* boton-google */
-
-/* .boton_google{
-    position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 262px;
-    top: 173px;
-} */
-
-
-
-/* google-texto */
-
-/* .google_texto{
-    position: absolute;
-    width: 142px;
-    height: 22px;
-    left: 301px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;    
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* google-logo */
-/* 
-.google_logo{
-    position: absolute;
-    left: 32.5%;
-    right: 65.8%;
-    top: 19.54%;
-    bottom: 77.85%;
-    background: #FFFFFF;
-} */
-
-
-/* boton-github */
-
-/* .boton_github{
-    position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 904px;
-    top: 173px;
-} */
-
-
-
-/* github-texto */
-
-/* .github_texto{
-    position: absolute;
-    width: 141px;
-    height: 22px;
-    left: 941px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* github-logo */
-
-
-/* .github_logo{
-    position: absolute;
-    left: 77.29%;
-    right: 20.97%;
-    top: 19.44%;
-    bottom: 78.02%;
-    background: #FFFFFF;
-} */
 
 /* divider */
 
