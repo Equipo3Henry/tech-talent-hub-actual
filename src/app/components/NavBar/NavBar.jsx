@@ -49,19 +49,19 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
         <div className={styles.IconsContainer}>
           <Link href="/profile/dashboard">
-            <Image src={dashboard} alt="image" className={styles.Icons} />
+            <Image src={dashboard} alt="image" className={styles.Icons} title="dashboard"/>
           </Link>
           <Link href="/profile/my-applications">
-            <Image src={posts} alt="image" className={styles.Icons} />
+            <Image src={posts} alt="image" className={styles.Icons} title="posts"/>
           </Link>
           <Link href="/profile/notifications">
-            <Image src={notification} alt="image" className={styles.Icons} />
+            <Image src={notification} alt="image" className={styles.Icons} title="notifications"/>
           </Link>
           <Link href="/profile/favorites">
-            <Image src={favorites} alt="image" className={styles.Icons} />
+            <Image src={favorites} alt="image" className={styles.Icons} title="favorites"/>
           </Link>
           <Link href="/loginpro">
-            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+            <Image src={logoff} alt="image" className={styles.Icons} title="logof"/>{" "}
           </Link>
         </div>
       </div>
@@ -74,19 +74,19 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
         <div className={styles.IconsContainer}>
           <Link href="/company/dashboard">
-            <Image src={dashboard} alt="image" className={styles.Icons} />
+            <Image src={dashboard} alt="image" className={styles.Icons} title="dashboard"/>
           </Link>
           <Link href="/company/my-posts">
-            <Image src={posts} alt="image" className={styles.Icons} />
+            <Image src={posts} alt="image" className={styles.Icons} title="posts"/>
           </Link>
           <Link href="/company/notifications">
-            <Image src={notification} alt="image" className={styles.Icons} />
+            <Image src={notification} alt="image" className={styles.Icons} title="notifications"/>
           </Link>
           <Link href="/company/favorites">
-            <Image src={favorites} alt="image" className={styles.Icons} />{" "}
+            <Image src={favorites} alt="image" className={styles.Icons} title="favorites"/>{" "}
           </Link>
           <Link href="/logincomp">
-            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+            <Image src={logoff} alt="image" className={styles.Icons} title="logoff"/>{" "}
           </Link>
         </div>
       </div>
@@ -99,13 +99,13 @@ const NavBar = ({ handleBotonMenu }) => {
         </div>
         <div className={styles.IconsContainer}>
           <Link href="/landing">
-            <Image src={home} alt="image" className={styles.Icons} />
+            <Image src={home} alt="image" className={styles.Icons} title="home"/>
           </Link>
           <Link href="/loginpro">
-            <Image src={loginusername} alt="image" className={styles.Icons} />
+            <Image src={loginusername} alt="image" className={styles.Icons} title="login user"/>
           </Link>
           <Link href="/logincomp">
-            <Image src={logingroup} alt="image" className={styles.Icons} />
+            <Image src={logingroup} alt="image" className={styles.Icons} title="login group" />
           </Link>
         </div>
       </div>
