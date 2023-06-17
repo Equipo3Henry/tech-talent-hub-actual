@@ -1,6 +1,6 @@
 import React from "react";
-import PricingPlan from "../pricingPlan/pricingPlan";
-import styles from "./pricingTable.module.css";
+import styles from "../PricingTable/PricingTable.module.css";
+import PricingPlan from "../pricingPlan/pricingPLan";
 
 const pricingTable = ({ plan }) => {
   return (
