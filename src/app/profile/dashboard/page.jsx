@@ -6,10 +6,56 @@ import SelectsContainer from "../../components/generalComponents/selectComponent
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
+import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
+import { useEffect } from "react";
+import axios from "axios";
 
 function homePage() {
-  const { jobs } = useContext(GlobalContext);
+  const { jobs, setJobs } = useContext(GlobalContext);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
+  const [selectedSeniority, setSelectedSeniority] = useState("");
+  const [selectedSpec, setSelectedSpec] = useState("");
+  const [selectedWorkday, setSelectedWorkday] = useState("");
+
+  useEffect(() => {
+    const fetchFilteredJobs = async () => {
+      const url = "http://localhost:3000/api/vacanciesFilters";
+      const params = {};
+
+      if (selectedProgLanguage) {
+        params.progLanguage = selectedProgLanguage;
+      }
+
+      if (selectedSeniority) {
+        params.seniority = selectedSeniority;
+      }
+
+      if (selectedSpec) {
+        params.spec = selectedSpec;
+      }
+
+      if (selectedWorkday) {
+        params.workday = selectedWorkday;
+      }
+
+      try {
+        const response = await axios.get(url, { params });
+        setJobs(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (
+      selectedProgLanguage ||
+      selectedSeniority ||
+      selectedSpec ||
+      selectedWorkday
+    ) {
+      fetchFilteredJobs();
+    }
+  }, [selectedProgLanguage, selectedSeniority, selectedSpec, selectedWorkday]);
 
   const handleJobSelect = (jobId) => {
     const jobDetail = jobs.find((job) => job.id === jobId);
@@ -20,7 +66,12 @@ function homePage() {
     <div className={styles.globalContainer}>
       <SearchBar />
       <br />
-      <SelectsContainer />
+      <FiltersSelectorProfile
+        setSelectedProgLanguage={setSelectedProgLanguage}
+        setSelectedSeniority={setSelectedSeniority}
+        setSelectedSpec={setSelectedSpec}
+        setSelectedWorkday={setSelectedWorkday}
+      />
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>

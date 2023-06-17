@@ -16,7 +16,7 @@ export default function Layout({ children }) {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ jobs }}>
+    <GlobalContext.Provider value={{ jobs, setJobs }}>
       {children}
     </GlobalContext.Provider>
   );
