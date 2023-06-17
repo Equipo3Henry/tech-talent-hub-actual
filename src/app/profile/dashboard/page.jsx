@@ -2,15 +2,17 @@
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import { jobsTemplate } from "../../helpers/provisionalDB";
-import JobsOfferDetail from "../../components/jobsComponents/JobsOfferDetail/JobsOfferDetail";
-import React, { useState } from "react";
 import SelectsContainer from "../../components/generalComponents/selectComponent/SelectContainer/SelectContainer";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../layout";
+import { getLayout } from "../layout";
 
-const jobs = jobsTemplate;
+
 function homePage() {
+  
+  const { jobs } = useContext(GlobalContext);
   const [selectedJob, setSelectedJob] = useState(null);
-
+  
   const handleJobSelect = (jobId) => {
     const jobDetail = jobs.find((job) => job.id === jobId);
     setSelectedJob(jobDetail);
@@ -28,10 +30,13 @@ function homePage() {
             jobs={jobs}
             onJobSelect={handleJobSelect}
           />
+          {console.log(jobs)}
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>
     </div>
   );
 }
+homePage.getLayout = getLayout;
+
 export default homePage;

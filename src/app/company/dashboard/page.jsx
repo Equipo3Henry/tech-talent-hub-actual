@@ -2,7 +2,7 @@
 import SearchBar from "@/src/app/components/generalComponents/SearchBar/searchBar";
 import UserOfferCardsContainerForDashboard from "@/src/app/components/usersComponents/UserOfferComponents/UserOffereCardsContainer/UserOfferCardsContainer";
 import styles from "./dashboard.module.css";
-import { usersTemplate } from "@/src/app/helpers/provisionalDB";
+//import { usersTemplate } from "@/src/app/helpers/provisionalDB";
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
