@@ -5,27 +5,70 @@ import styles from "./signup.module.css";
 import { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
+import {
+  progLanguages,
+  countries,
+  softSkills,
+  seniority,
+  working,
+  languages,
+  specialization,
+} from "./variables";
 
 function SignUp() {
   //? USE STATE FORM
   const [form, setForm] = useState({
+    username: "",
     name: "",
     lastname: "",
-    email: "",
-    username: "",
-    password: "",
     birth: "",
-    cv: "",
-    country: "",
-    progLanguages: [],
-    degree: "",
-    softSkills: [],
-    languages: [],
-    seniority: "",
-    specialization: "",
-    working: false,
-    recruiter: false,
     aboutme: "",
+    working: false,
+    country: "",
+    email: "",
+    password: "",
+    degree: "",
+    languages: [],
+    progLanguages: [],
+    seniority: "",
+    cv: "",
+    softSkills: [],
+    specialization: "",
+    recruiter: false,
+  });
+
+  //? USE STATE ERRORS
+  const [errors, setErrors] = useState({
+    username: "",
+    name: "",
+    lastname: "",
+    birth: "",
+    aboutme: "",
+    working: "",
+    country: "",
+    email: "",
+    password: "",
+    degree: "",
+    languages: "",
+    progLanguages: "",
+    seniority: "",
+    cv: "",
+    softSkills: "",
+    specialization: "",
+    recruiter: "",
+  });
+
+  //? USE STATE PLACEHOLDER
+  const [placeholder, setPlaceholder] = useState({
+    username: "Enter the username you want to use on the site",
+    name: "Enter your first name",
+    lastname: "Enter your last name",
+    birth: "Enter your date of birth",
+    aboutme: "Write a short summary about yourself",
+    email: "Enter your email",
+    password: "Enter a password",
+    degree: "Enter the last degree you have",
+    cv: "Upload a CV in .pdf format",
   });
 
   //? ON CHANGE INPUT HANDLER
@@ -42,7 +85,8 @@ function SignUp() {
     } else if (
       property === "country" ||
       property === "seniority" ||
-      property === "working"
+      property === "working" ||
+      property === "specialization"
     ) {
       value = value.value;
     }
@@ -66,94 +110,6 @@ function SignUp() {
       .catch((err) => alert("An error occurred"));
   };
 
-  //? OPTIONS SELECT PROGRAMMING LANGUAGES -
-  const progLanguages = [
-    { value: "react", label: "React" },
-    { value: "javascript", label: "JavaScript" },
-    { value: "c++", label: "C++" },
-    { value: "mongodb", label: "MongoDB" },
-    { value: "python", label: "Python" },
-    { value: "html", label: "HTML" },
-    { value: "css", label: "CSS" },
-  ];
-
-  //? OPTIONS SELECT COUNTRIES
-  const countries = [
-    { value: "argentina", label: "Argentina" },
-    { value: "bolivia", label: "Bolivia" },
-    { value: "brasil", label: "Brasil" },
-    { value: "chile", label: "Chile" },
-    { value: "colombia", label: "Colombia" },
-    { value: "costaRica", label: "Costa Rica" },
-    { value: "cuba", label: "Cuba" },
-    { value: "ecuador", label: "Ecuador" },
-    { value: "elSalvador", label: "El Salvador" },
-    { value: "guatemala", label: "Guatemala" },
-    { value: "honduras", label: "Honduras" },
-    { value: "mexico", label: "Mexico" },
-    { value: "nicaragua", label: "Nicaragua" },
-    { value: "panama", label: "Panama" },
-    { value: "paraguay", label: "Paraguay" },
-    { value: "peru", label: "Perú" },
-    { value: "puertoRico", label: "Puerto Rico" },
-    { value: "dominicana", label: "República Dominicana" },
-    { value: "uruguay", label: "Uruguay" },
-    { value: "venezuela", label: "Venezuela" },
-  ];
-
-  //? OPTIONS SELECT SOFT SKILLS
-  const softSkills = [
-    { value: "communication", label: "Communication" },
-    { value: "teamWork", label: "Team Work" },
-    { value: "problemSolving", label: "Problem Solving" },
-    { value: "timeManagement", label: "Time Management" },
-    { value: "critialThinking", label: "Critical Thinking" },
-    { value: "decisionMaking", label: "Decision Making" },
-    { value: "organizational", label: "Organizational" },
-    { value: "stressManagement", label: "Stress Management" },
-    { value: "adaptability", label: "Adaptability" },
-    { value: "conflictManagement", label: "Conflict Management" },
-    { value: "leadership", label: "Leadership" },
-    { value: "creativity", label: "Creativity" },
-    { value: "resourcefulness", label: "Resourcefulness" },
-    { value: "persuasion", label: "Persuasion" },
-    { value: "openToCriticism", label: "Open to Criticism" },
-  ];
-
-  //? OPTIONS SELECT LANGUAGES
-  const languages = [
-    { value: "englishBasic", label: "English (Basic)" },
-    { value: "englishIntermediate", label: "English (Intermediate)" },
-    { value: "englishAdvanced", label: "English (Advanced)" },
-    { value: "englishNative", label: "English (Native)" },
-    { value: "spanishBasic", label: "Spanish (Basic)" },
-    { value: "spanishIntermediate", label: "Spanish (Intermediate)" },
-    { value: "spanishAdvanced", label: "Spanish (Advanced)" },
-    { value: "spanishNative", label: "Spanish (Native)" },
-    { value: "portugueseBasic", label: "Portuguese (Basic)" },
-    { value: "portugueseIntermediate", label: "Portuguese (Intermediate)" },
-    { value: "portugueseAdvanced", label: "Portuguese (Advanced)" },
-    { value: "portugueseNative", label: "Portuguese (Native)" },
-    { value: "italianBasic", label: "Italian (Basic)" },
-    { value: "italianIntermediate", label: "Italian (Intermediate)" },
-    { value: "italianAdvanced", label: "Italian (Advanced)" },
-    { value: "italianNative", label: "Italian (Native)" },
-  ];
-
-  //? OPTIONS SELECT SENIORITY
-  const seniority = [
-    { value: "trainee", label: "Trainee" },
-    { value: "junior", label: "Junior" },
-    { value: "semiSenior", label: "Semi-Senior" },
-    { value: "senior", label: "Senior" },
-  ];
-
-  //? OPTIONS SELECT ARE YOU WORKING
-  const working = [
-    { value: true, label: "Yes" },
-    { value: false, label: "No" },
-  ];
-
   return (
     <div className={styles.page_container}>
       <div className={styles.titles_container}>
@@ -171,9 +127,13 @@ function SignUp() {
               <input
                 type="text"
                 name="name"
+                placeholder={placeholder.name}
                 className={styles.input_name}
                 onChange={changeHandler}
               />
+              {errors.name !== null && (
+                <span className={styles.name_span}>{errors.name}</span>
+              )}
             </div>
 
             {/* LastName */}
@@ -182,9 +142,13 @@ function SignUp() {
               <input
                 type="text"
                 name="lastname"
+                placeholder={placeholder.lastname}
                 className={styles.input_lastname}
                 onChange={changeHandler}
               />
+              {errors.lastname !== null && (
+                <span className={styles.lastname_span}>{errors.lastname}</span>
+              )}
             </div>
           </div>
           {/* Email */}
@@ -193,9 +157,13 @@ function SignUp() {
             <input
               type="text"
               name="email"
+              placeholder={placeholder.email}
               className={styles.input_email}
               onChange={changeHandler}
             />
+            {errors.email !== null && (
+              <span className={styles.email_span}>{errors.email}</span>
+            )}
           </div>
 
           <div className={styles.row2_container}>
@@ -205,9 +173,13 @@ function SignUp() {
               <input
                 type="text"
                 name="username"
+                placeholder={placeholder.username}
                 className={styles.input_username}
                 onChange={changeHandler}
               />
+              {errors.username !== null && (
+                <span className={styles.username_span}>{errors.username}</span>
+              )}
             </div>
 
             {/* Password */}
@@ -216,12 +188,16 @@ function SignUp() {
               <input
                 type="text"
                 name="password"
+                placeholder={placeholder.password}
                 className={styles.input_password}
                 onChange={changeHandler}
               />
+              {errors.password !== null && (
+                <span className={styles.password_span}>{errors.password}</span>
+              )}
             </div>
 
-            {/* DIVIDER   */}
+            {/* DIVIDER */}
           </div>
           <div className={styles.divider}>
             <hr />
@@ -234,9 +210,13 @@ function SignUp() {
               <input
                 type="text"
                 name="birth"
+                placeholder={placeholder.birth}
                 className={styles.input_dateOfBirth}
                 onChange={changeHandler}
               />
+              {errors.password !== null && (
+                <span className={styles.password_span}>{errors.password}</span>
+              )}
             </div>
 
             {/* CV */}
@@ -245,9 +225,13 @@ function SignUp() {
               <input
                 type="text"
                 name="cv"
+                placeholder={placeholder.cv}
                 className={styles.input_cv}
                 onChange={changeHandler}
               />
+              {errors.cv !== null && (
+                <span className={styles.cv_span}>{errors.cv}</span>
+              )}
             </div>
           </div>
 
@@ -265,6 +249,7 @@ function SignUp() {
                 }
                 isClearable={true}
                 isSearchable={true}
+                placeholder="Select your country of residence"
                 closeMenuOnSelect={true}
                 styles={{
                   container: (baseStyles, state) => ({
@@ -281,6 +266,9 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.country !== null && (
+                <span className={styles.country_span}>{errors.country}</span>
+              )}
             </div>
 
             {/* Programming Languages */}
@@ -298,6 +286,7 @@ function SignUp() {
                   })
                 }
                 isClearable={false}
+                placeholder="Select the programming languages you know"
                 isSearchable={true}
                 closeMenuOnSelect={false}
                 styles={{
@@ -315,6 +304,11 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.progLanguages !== null && (
+                <span className={styles.progLanguages_span}>
+                  {errors.progLanguages}
+                </span>
+              )}
             </div>
           </div>
 
@@ -325,9 +319,13 @@ function SignUp() {
               <input
                 type="text"
                 name="degree"
+                placeholder={placeholder.degree}
                 className={styles.input_degree}
                 onChange={changeHandler}
               />
+              {errors.degree !== null && (
+                <span className={styles.degree_span}>{errors.degree}</span>
+              )}
             </div>
 
             {/* Soft Skills */}
@@ -344,6 +342,7 @@ function SignUp() {
                 }
                 isClearable={false}
                 isSearchable={true}
+                placeholder="Select the soft skills that better describe you"
                 closeMenuOnSelect={false}
                 styles={{
                   container: (baseStyles, state) => ({
@@ -360,6 +359,11 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.softSkills !== null && (
+                <span className={styles.softSkills_span}>
+                  {errors.softSkills}
+                </span>
+              )}
             </div>
           </div>
 
@@ -378,6 +382,7 @@ function SignUp() {
                 }
                 isClearable={false}
                 isSearchable={true}
+                placeholder="Select the languages you know"
                 closeMenuOnSelect={false}
                 styles={{
                   container: (baseStyles, state) => ({
@@ -394,6 +399,11 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.languages !== null && (
+                <span className={styles.languages_span}>
+                  {errors.languages}
+                </span>
+              )}
             </div>
 
             {/* Seniority */}
@@ -408,6 +418,7 @@ function SignUp() {
                   })
                 }
                 isClearable={true}
+                placeholder="Select your seniority"
                 isSearchable={true}
                 closeMenuOnSelect={true}
                 styles={{
@@ -425,6 +436,11 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.seniority !== null && (
+                <span className={styles.seniority_span}>
+                  {errors.seniority}
+                </span>
+              )}
             </div>
           </div>
 
@@ -432,19 +448,43 @@ function SignUp() {
             {/* Specialization */}
             <div className={styles.specialization_container}>
               <label className={styles.specialization}>Specialization</label>
-              <input
-                type="text"
+              <Select
+                options={specialization}
                 name="specialization"
-                className={styles.input_specialization}
-                onChange={changeHandler}
+                onChange={(selectedOption) =>
+                  changeHandler({
+                    target: { name: "specialization", value: selectedOption },
+                  })
+                }
+                isClearable={true}
+                placeholder="What do you specialize in?"
+                isSearchable={true}
+                closeMenuOnSelect={true}
+                styles={{
+                  container: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    borderWidth: "0.5px 0.5px 4px 0.5px",
+                    fontSize: 18,
+                    width: "93%",
+                  }),
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    height: 50,
+                  }),
+                }}
               />
+              {errors.specialization !== null && (
+                <span className={styles.specialization_span}>
+                  {errors.specialization}
+                </span>
+              )}
             </div>
 
             {/* Working */}
             <div className={styles.working_container}>
-              <label className={styles.working}>
-                Are you currently working?
-              </label>
+              <label className={styles.working}>Work</label>
               <Select
                 options={working}
                 name="working"
@@ -455,6 +495,7 @@ function SignUp() {
                 }
                 isClearable={true}
                 isSearchable={true}
+                placeholder="Are you currently working?"
                 closeMenuOnSelect={true}
                 styles={{
                   container: (baseStyles, state) => ({
@@ -471,6 +512,9 @@ function SignUp() {
                   }),
                 }}
               />
+              {errors.working !== null && (
+                <span className={styles.working_span}>{errors.working}</span>
+              )}
             </div>
           </div>
 
@@ -480,9 +524,13 @@ function SignUp() {
             <textarea
               type="text"
               name="aboutme"
+              placeholder={placeholder.aboutme}
               className={styles.textarea_aboutMe}
               onChange={changeHandler}
             />
+            {errors.aboutme !== null && (
+              <span className={styles.aboutme_span}>{errors.aboutme}</span>
+            )}
           </div>
 
           {/* Botón */}
