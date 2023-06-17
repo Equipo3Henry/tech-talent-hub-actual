@@ -45,6 +45,12 @@ const filtersDB = {
     { id: 3, name: "Multinacional" },
     { id: 4, name: "Medium" },
   ],
+  fabrizio: [
+    { id: 1, name: "Startup" },
+    { id: 2, name: "Pyme" },
+    { id: 3, name: "Multinacional" },
+    { id: 4, name: "Medium" },
+  ],
 };
 
 export default filtersDB;

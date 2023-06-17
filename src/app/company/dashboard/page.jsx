@@ -1,75 +1,72 @@
-/* "use client";
-import SearchBar from "@/src/app/components/generalComponents/SearchBar/searchBar";
-import UserOfferCardsContainerForDashboard from "@/src/app/components/usersComponents/UserOfferComponents/UserOffereCardsContainer/UserOfferCardsContainer";
-import styles from "./dashboard.module.css";
-import { usersTemplate } from "@/src/app/helpers/provisionalDB";
-import React, { useState } from "react";
-import SelectsContainer from "@/src/app/components/generalComponents/selectComponent/SelectContainer/SelectContainer";
-
-const users = usersTemplate;
-
-function dashboardPage() {
-  const [selectedUser, setSelectedUser] = useState(null);
-
-  const handleUserSelect = (userId) => {
-    const userDetail = users.find((user) => user.id === userId);
-    setSelectedUser(userDetail);
-  };
-  return (
-    <div className={styles.globalContainer}>
-      <SearchBar />
-      <br />
-      <SelectsContainer />
-      <br />
-      <div className={styles.forniculo}>
-        <div className={styles.usersContainer}>
-          <UserOfferCardsContainerForDashboard
-            users={users}
-            onUserSelect={handleUserSelect}
-          />
-          <div className={styles.usersDetailContainer}></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default dashboardPage;
- */
-
 "use client";
 import SearchBar from "@/src/app/components/generalComponents/SearchBar/searchBar";
 import UserOfferCardsContainerForDashboard from "@/src/app/components/usersComponents/UserOfferComponents/UserOffereCardsContainer/UserOfferCardsContainer";
 import styles from "./dashboard.module.css";
 import { usersTemplate } from "@/src/app/helpers/provisionalDB";
 import React, { useState } from "react";
-import SelectsContainer from "@/src/app/components/generalComponents/selectComponent/SelectContainer/SelectContainer";
 import axios from "axios";
 import { useEffect } from "react";
+import Optionb from "../../components/SelectorFiltersForCompanyDashboard/SoftSkillsSelector";
 
 function dashboardPage() {
   const [users, setUsers] = useState([]);
+  const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedSeniority, setSelectedSeniority] = useState("");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/users")
-      .then((res) => {
-        console.log(res.data);
-        setUsers(res.data);
-      })
-      .catch((err) => console.error(err));
+    // Hook para cargar todos los usuarios al cargar la página
+    const fetchAllUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/users");
+        setUsers(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchAllUsers();
   }, []);
+
+  useEffect(() => {
+    const fetchFilteredUsers = async () => {
+      const url = "http://localhost:3000/api/usersFilters";
+      const params = {};
+
+      if (selectedProgLanguage) {
+        params.progLanguage = selectedProgLanguage;
+      }
+
+      if (selectedSeniority) {
+        params.seniority = selectedSeniority;
+      }
+
+      try {
+        const response = await axios.get(url, { params });
+        setUsers(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (selectedProgLanguage || selectedSeniority) {
+      fetchFilteredUsers();
+    }
+  }, [selectedProgLanguage, selectedSeniority]);
 
   const handleUserSelect = (userId) => {
     const userDetail = users.find((user) => user.id === userId);
     setSelectedUser(userDetail);
   };
+
   return (
     <div className={styles.globalContainer}>
       <SearchBar />
       <br />
-      <SelectsContainer />
+      <Optionb
+        setSelectedProgLanguage={setSelectedProgLanguage}
+        setSelectedSeniority={setSelectedSeniority}
+      />
       <br />
       <div className={styles.forniculo}>
         <div className={styles.usersContainer}>
