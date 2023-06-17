@@ -2,7 +2,6 @@
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import SelectsContainer from "../../components/generalComponents/selectComponent/SelectContainer/SelectContainer";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
