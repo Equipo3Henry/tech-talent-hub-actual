@@ -21,12 +21,16 @@ model Company {
   description  String?
   employes     Int         @default(0)
   jobs         Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
 model Review {
   id         String @id @default(uuid())
   id_user    String
   id_company String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model SoftSkills {
@@ -74,6 +78,9 @@ model Vacancy {
   date_Hire             DateTime
   isActive              Boolean   @default(false)
   Relevance             Relevance @default(SMALL)
+  specialization        Spec?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 }
 
 enum CompanyType {
