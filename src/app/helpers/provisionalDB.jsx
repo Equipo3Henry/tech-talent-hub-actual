@@ -1,4 +1,4 @@
-import { wix, GoogleBlack, meta, windows } from "../public/assets/page";
+import { wix, GoogleBlack, meta, windows } from "../public/assets/imagesCodes";
 
 const jobsTemplate = [
   {

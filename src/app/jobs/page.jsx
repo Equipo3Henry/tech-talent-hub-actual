@@ -4,7 +4,7 @@ import styles from "./jobs.module.css";
 import { jobsTemplate } from "../helpers/provisionalDB";
 import JobsOfferCardsContainer from "../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainer/JobsOfferCardsContainer";
 import Image from "next/image";
-import { samplepost } from "../public/assets/page";
+import { samplepost } from "../public/assets/imagesCodes";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";

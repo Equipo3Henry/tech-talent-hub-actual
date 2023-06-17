@@ -7,9 +7,13 @@ import FiltersSelector from "../../components/SelectorFiltersForCompanyDashboard
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 
-function dashboardPage() {
-  
-  const { users, setSelectedProgLanguage, setSelectedSeniority, setSelectedSoftSkill } = useContext(GlobalContext);
+function DashboardPage() {
+  const {
+    users,
+    setSelectedProgLanguage,
+    setSelectedSeniority,
+    setSelectedSoftSkill,
+  } = useContext(GlobalContext);
 
   const handleUserSelect = (userId) => {
     const userDetail = users.find((user) => user.id === userId);
@@ -38,5 +42,5 @@ function dashboardPage() {
     </div>
   );
 }
-dashboardPage.getLayout = getLayout;
-export default dashboardPage;
+DashboardPage.getLayout = getLayout;
+export default DashboardPage;

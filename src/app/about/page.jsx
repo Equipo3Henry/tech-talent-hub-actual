@@ -1,6 +1,15 @@
 import React from "react";
 import styles from "./about-us.module.css";
-import { au1, au2, au3, au4, au5, au6, au7, au8 } from "../public/assets/page";
+import {
+  au1,
+  au2,
+  au3,
+  au4,
+  au5,
+  au6,
+  au7,
+  au8,
+} from "../public/assets/imagesCodes";
 import UsContainer from "../components/aboutComponents/UsContainer/UsContainer";
 
 const us = [

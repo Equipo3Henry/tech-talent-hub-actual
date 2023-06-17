@@ -8,7 +8,7 @@ import {
   linkedin,
   github,
   signinvector,
-} from "../../public/assets/page";
+} from "../../public/assets/imagesCodes";
 import { useRouter } from "next/navigation";
 
 const login = () => {
