@@ -30,7 +30,6 @@ function homePage() {
             jobs={jobs}
             onJobSelect={handleJobSelect}
           />
-          {console.log(jobs)}
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>

@@ -1,25 +1,24 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import styles from "./UserOfferDetail.module.css";
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 
-function UserOfferDetail({ selectedUserId }) {
+function UserOfferDetail({ selectedUserId, setSelectedUserId ,users }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (selectedUserId) {
-      axios
-        .get(`http://localhost:3000/api/users/${selectedUserId}`)
-        .then((res) => {
-          setUser(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+    
+    if (selectedUserId && users) {
+      const userDetail = users.find(
+        (user) => user.id === selectedUserId
+      );
+      setUser(userDetail);
     }
-  }, [selectedUserId]);
+    else {
+      setSelectedUserId(null);
+      setUser(null);
+    }
+  }, [selectedUserId,users]);
 
   if (!user) {
     return <div>Aquí iría el id del detail [00]</div>;
@@ -27,6 +26,7 @@ function UserOfferDetail({ selectedUserId }) {
 
   return (
     <div>
+      {console.log(selectedUserId)}
       <div className={styles.ContainerDetail}>
         <div className={styles.botonera}>
           <button className={styles.buttonConnect}>Connect!</button>
