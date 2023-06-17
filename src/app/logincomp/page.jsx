@@ -3,7 +3,12 @@
 import React from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
-import { google, linkedin, github, signinvector } from "../public/assets/page";
+import {
+  google,
+  linkedin,
+  github,
+  signinvector,
+} from "../public/assets/imagesCodes";
 import Link from "next/link";
 
 const login = () => {

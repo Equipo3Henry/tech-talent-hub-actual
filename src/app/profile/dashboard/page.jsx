@@ -2,14 +2,13 @@
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
-import { useEffect } from "react";
 import axios from "axios";
 
-function homePage() {
+function HomePage() {
   const { jobs, setJobs } = useContext(GlobalContext);
   const [selectedJob, setSelectedJob] = useState(null);
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
@@ -84,6 +83,6 @@ function homePage() {
     </div>
   );
 }
-homePage.getLayout = getLayout;
+HomePage.getLayout = getLayout;
 
-export default homePage;
+export default HomePage;

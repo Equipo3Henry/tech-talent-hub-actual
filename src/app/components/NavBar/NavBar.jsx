@@ -13,7 +13,7 @@ import {
   posts,
   loginusername,
   logingroup,
-} from "../../public/assets/page";
+} from "../../public/assets/imagesCodes";
 import styles from "./NavBar.module.css";
 import { useEffect } from "react";
 import Link from "next/link";
