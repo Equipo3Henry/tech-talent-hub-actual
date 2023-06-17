@@ -55,6 +55,14 @@ const FiltersSelector = ({
     "Collaboration",
   ];
 
+  const specialization = [
+    "FRONTEND",
+    "BACKEND",
+    "FULLSTACK",
+    "DATASCIENTIST",
+    "AI_ENGINEER",
+  ];
+
   return (
     <div className={styles.selectorsContainer}>
       <select
