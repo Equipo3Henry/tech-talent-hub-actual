@@ -7,12 +7,10 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 
-
 function homePage() {
-  
   const { jobs } = useContext(GlobalContext);
   const [selectedJob, setSelectedJob] = useState(null);
-  
+
   const handleJobSelect = (jobId) => {
     const jobDetail = jobs.find((job) => job.id === jobId);
     setSelectedJob(jobDetail);
