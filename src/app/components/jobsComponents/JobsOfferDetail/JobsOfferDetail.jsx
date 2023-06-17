@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./JobsOfferDetail.module.css";
-import { jobsTemplate } from "../../../helpers/provisionalDB";
 import { useEffect, useState } from "react";
 
-const JobsOfferDetail = ({ selectedJobId }) => {
+const JobsOfferDetail = ({ selectedJobId, jobs }) => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
     if (selectedJobId) {
-      const jobDetail = jobsTemplate.find(
-        (job) => job.id === Number(selectedJobId)
+      const jobDetail = jobs.find(
+        (job) => job.id === selectedJobId
       );
       setJob(jobDetail);
     }
@@ -24,7 +23,7 @@ const JobsOfferDetail = ({ selectedJobId }) => {
     <div className={styles.ContainerDetail}>
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
-          <Image src={job.logo_Company} alt="imagen" className={styles.image} />
+          <img src={job.logo_Company} alt="imagen" className={styles.image} />
           <span className={styles.span}>{job.company}</span>
         </div>
         <h1 className={styles.CompanyTitle}> {job.name_Vacancy} </h1>
