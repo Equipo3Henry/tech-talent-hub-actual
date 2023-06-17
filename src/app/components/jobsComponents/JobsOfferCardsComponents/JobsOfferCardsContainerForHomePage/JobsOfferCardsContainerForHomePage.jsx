@@ -27,7 +27,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
             textShadow: "white",
           }}
         >
-          {jobs.map((job, index) => {
+          {jobs && jobs.map((job, index) => {
             const formatStart = formatDate(job.start); // Llama a formatDate aquí
             return (
               <JobsOfferCard
@@ -45,7 +45,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
           })}
         </ul>
       </div>
-      <JobsOfferDetail selectedJobId={selectedJobId} />
+      <JobsOfferDetail selectedJobId={selectedJobId} jobs={jobs} />
     </div>
   );
 };
