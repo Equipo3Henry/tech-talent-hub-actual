@@ -59,7 +59,7 @@ function SignUp() {
     // setForm(form);
     console.log(form);
     axios
-      .post("http://localhost:3000/api/users", form)
+      .post("api/users", form)
       .then((response) => {
         alert("Yay! The user was created successfully.");
       })
