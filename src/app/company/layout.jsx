@@ -13,7 +13,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("api/users");
+      const response = await axios.get("/api/users");
       setDataUsers(response.data);
       setUsers(response.data);
     };
@@ -22,7 +22,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const fetchFilteredUsers = async () => {
-      const url = "api/usersFilters";
+      const url = "/api/usersFilters";
       const params = {};
 
       if (selectedProgLanguage) {
