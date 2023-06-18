@@ -10,6 +10,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
+      console.log(response.data); // Aquí se añade el console.log
       setJobs(response.data);
     };
     fetchData();
