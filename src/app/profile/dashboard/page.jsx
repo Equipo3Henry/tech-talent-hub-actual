@@ -18,7 +18,7 @@ function HomePage() {
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
-      const url = "api/vacanciesFilters";
+      const url = "/api/vacanciesFilters";
       const params = {};
 
       if (selectedProgLanguage) {
