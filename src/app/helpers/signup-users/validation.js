@@ -1,10 +1,4 @@
-export const validation = (
-  form,
-  errors,
-  setErrors,
-  placeholder,
-  setPlaceholder
-) => {
+export const validation = (form, errors, setErrors) => {
   //? NAME VALIDATION
   if (form.name.length > 50) {
     setErrors((errors) => ({
@@ -30,16 +24,13 @@ export const validation = (
     }));
   }
   //? USERNAME VALIDATION
+  //! traer los usernames de la bdd y que se muestre un mensaje de error si el ingresado ya existe
+
   //? PASSWORD
+
   //? BIRTH VALIDATION
   //? ABOUT ME VALIDATION
-  //? WORKING VALIDATION
-  //? COUNTRY VALIDATION
   //? EMAIL VALIDATION
   //? DEGREE VALIDATION
-  //? LANGUAGES VALIDATION
-  //? PROGRAMMING LANGUAGES VALIDATION
-  //? SENIORITY VALIDATION
-  //? SOFT SKILLS VALIDATION
-  //? SPECIALIZATION VALIDATION
+  //? CV VALIDATION
 };

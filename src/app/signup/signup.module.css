@@ -22,7 +22,7 @@
     font-family: 'Merriweather';
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
+    font-size: 39px;
     letter-spacing: -0.011em;
     color: #000000;
 }
@@ -36,11 +36,23 @@
 
 .subtitle {
     font-family: 'Merriweather';
+    margin-top: -10px;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     letter-spacing: -0.011em;
     color: #000000;
+}
+
+.password_toggle_container{
+    position: relative;
+}
+
+.password_icon{
+    position: absolute;
+    top: 32%;
+    right: 12%;
+    cursor: pointer;
 }
 
 
@@ -110,9 +122,10 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: -0.011em;
     color: #000000;
+    margin-bottom: 3px;
 }
 
 /* FILA 1 y 3 */
@@ -175,7 +188,14 @@
     border-style: solid;
     border-color: #000000;
     border-width: 0.5px 0.5px 4px 0.5px;
-    font-size: 18px;
+    font-size: 19px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.textarea_aboutMe{
+    height: 100px;
+    padding-top: 10px ;
 }
 
 

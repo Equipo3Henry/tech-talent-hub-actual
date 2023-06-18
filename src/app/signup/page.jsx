@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import styles from "./signup.module.css";
 import Select from "react-select";
 import axios from "axios";
+import { eyeopen, eyeclosed } from "../public/assets/page";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -44,36 +46,25 @@ function SignUp() {
     lastname: "",
     birth: "",
     aboutme: "",
-    working: "",
-    country: "",
     email: "",
     password: "",
     degree: "",
-    languages: "",
-    progLanguages: "",
-    seniority: "",
     cv: "",
-    softSkills: "",
-    specialization: "",
-    recruiter: "",
   });
 
-  //? USE STATE PLACEHOLDER
-  const [placeholder, setPlaceholder] = useState({
-    username: "Enter the username you want to use on the site",
-    name: "Enter your first name",
-    lastname: "Enter your last name",
-    birth: "Enter your date of birth",
-    aboutme: "Write a short summary about yourself",
-    email: "Enter your email",
-    password: "Enter a password",
-    degree: "Enter the last degree you have",
-    cv: "Upload a CV in .pdf format",
-  });
+  //? USE STATE PASSWORD
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordIcon, setShowPasswordIcon] = useState(eyeclosed);
+
+  //? TOGGLE PASSWORD
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+    setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
+  };
 
   //? USE EFFECT - SEND INFO TO VALIDATION.JS
   useEffect(() => {
-    validation(form, errors, setErrors, placeholder, setPlaceholder);
+    validation(form, errors, setErrors);
   }, [form]);
 
   //? ON CHANGE INPUT HANDLER
@@ -107,9 +98,7 @@ function SignUp() {
         [property]: value,
       },
       errors,
-      setErrors,
-      placeholder,
-      setPlaceholder
+      setErrors
     );
   };
 
@@ -165,15 +154,14 @@ function SignUp() {
                 type="text"
                 name="name"
                 required
-                placeholder={placeholder.name}
+                placeholder="Enter your first name"
                 className={styles.input_name}
                 onChange={changeHandler}
               />
               {errors.name !== null && (
-                <span className={styles.name_span}>{errors.name}</span>
+                <span className={styles.error_span}>{errors.name}</span>
               )}
             </div>
-
             {/* LastName */}
             <div className={styles.lastname_container}>
               <label className={styles.lastname}>
@@ -183,12 +171,12 @@ function SignUp() {
                 type="text"
                 name="lastname"
                 required
-                placeholder={placeholder.lastname}
+                placeholder="Enter your last name"
                 className={styles.input_lastname}
                 onChange={changeHandler}
               />
               {errors.lastname !== null && (
-                <span className={styles.lastname_span}>{errors.lastname}</span>
+                <span className={styles.error_span}>{errors.lastname}</span>
               )}
             </div>
           </div>
@@ -198,15 +186,15 @@ function SignUp() {
               Email <span className={styles.required}>*</span>
             </label>
             <input
-              type="text"
+              type="email"
               name="email"
               required
-              placeholder={placeholder.email}
+              placeholder="Enter your email"
               className={styles.input_email}
               onChange={changeHandler}
             />
             {errors.email !== null && (
-              <span className={styles.email_span}>{errors.email}</span>
+              <span className={styles.error_span}>{errors.email}</span>
             )}
           </div>
 
@@ -220,12 +208,12 @@ function SignUp() {
                 type="text"
                 name="username"
                 required
-                placeholder={placeholder.username}
+                placeholder="Enter the username you want to use on the site"
                 className={styles.input_username}
                 onChange={changeHandler}
               />
               {errors.username !== null && (
-                <span className={styles.username_span}>{errors.username}</span>
+                <span className={styles.error_span}>{errors.username}</span>
               )}
             </div>
 
@@ -234,16 +222,24 @@ function SignUp() {
               <label className={styles.password}>
                 Password <span className={styles.required}>*</span>
               </label>
-              <input
-                type="text"
-                name="password"
-                required
-                placeholder={placeholder.password}
-                className={styles.input_password}
-                onChange={changeHandler}
-              />
+              <div className={styles.password_toggle_container}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  placeholder="Enter a password"
+                  className={styles.input_password}
+                  onChange={changeHandler}
+                />
+                <Image
+                  src={showPasswordIcon}
+                  alt={showPassword ? "Hide Password" : "Show Password"}
+                  className={styles.password_icon}
+                  onClick={togglePassword}
+                />
+              </div>
               {errors.password !== null && (
-                <span className={styles.password_span}>{errors.password}</span>
+                <span className={styles.error_span}>{errors.password}</span>
               )}
             </div>
 
@@ -263,12 +259,12 @@ function SignUp() {
                 type="text"
                 name="birth"
                 required
-                placeholder={placeholder.birth}
+                placeholder="Enter your date of birth"
                 className={styles.input_dateOfBirth}
                 onChange={changeHandler}
               />
               {errors.password !== null && (
-                <span className={styles.password_span}>{errors.password}</span>
+                <span className={styles.error_span}>{errors.password}</span>
               )}
             </div>
 
@@ -278,12 +274,12 @@ function SignUp() {
               <input
                 type="text"
                 name="cv"
-                placeholder={placeholder.cv}
+                placeholder="Enter your CV in .pdf format"
                 className={styles.input_cv}
                 onChange={changeHandler}
               />
               {errors.cv !== null && (
-                <span className={styles.cv_span}>{errors.cv}</span>
+                <span className={styles.error_span}>{errors.cv}</span>
               )}
             </div>
           </div>
@@ -322,9 +318,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.country !== null && (
-                <span className={styles.country_span}>{errors.country}</span>
-              )}
             </div>
 
             {/* Programming Languages */}
@@ -361,11 +354,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.progLanguages !== null && (
-                <span className={styles.progLanguages_span}>
-                  {errors.progLanguages}
-                </span>
-              )}
             </div>
           </div>
 
@@ -376,12 +364,12 @@ function SignUp() {
               <input
                 type="text"
                 name="degree"
-                placeholder={placeholder.degree}
+                placeholder="Select the last degree you have"
                 className={styles.input_degree}
                 onChange={changeHandler}
               />
               {errors.degree !== null && (
-                <span className={styles.degree_span}>{errors.degree}</span>
+                <span className={styles.error_span}>{errors.degree}</span>
               )}
             </div>
 
@@ -420,9 +408,7 @@ function SignUp() {
                 }}
               />
               {errors.softSkills !== null && (
-                <span className={styles.softSkills_span}>
-                  {errors.softSkills}
-                </span>
+                <span className={styles.error_span}>{errors.softSkills}</span>
               )}
             </div>
           </div>
@@ -462,11 +448,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.languages !== null && (
-                <span className={styles.languages_span}>
-                  {errors.languages}
-                </span>
-              )}
             </div>
 
             {/* Seniority */}
@@ -499,11 +480,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.seniority !== null && (
-                <span className={styles.seniority_span}>
-                  {errors.seniority}
-                </span>
-              )}
             </div>
           </div>
 
@@ -541,11 +517,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.specialization !== null && (
-                <span className={styles.specialization_span}>
-                  {errors.specialization}
-                </span>
-              )}
             </div>
 
             {/* Working */}
@@ -578,9 +549,6 @@ function SignUp() {
                   }),
                 }}
               />
-              {errors.working !== null && (
-                <span className={styles.working_span}>{errors.working}</span>
-              )}
             </div>
           </div>
 
@@ -590,12 +558,12 @@ function SignUp() {
             <textarea
               type="text"
               name="aboutme"
-              placeholder={placeholder.aboutme}
+              placeholder="Write a short summary about yourself"
               className={styles.textarea_aboutMe}
               onChange={changeHandler}
             />
             {errors.aboutme !== null && (
-              <span className={styles.aboutme_span}>{errors.aboutme}</span>
+              <span className={styles.error_span}>{errors.aboutme}</span>
             )}
           </div>
 
@@ -607,10 +575,6 @@ function SignUp() {
           </div>
         </form>
       </div>
-      {/* <div className={styles.footer}>
-        <h3 className={styles.footer_title}>Already have an account?</h3>
-        <h3 className={styles.footer_login}>Log in here</h3>
-      </div> */}
     </div>
   );
 }

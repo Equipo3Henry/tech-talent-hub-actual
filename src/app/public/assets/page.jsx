@@ -1,5 +1,7 @@
 import favorites from "../images/favorites.svg";
 import logoff from "../images/logoff.svg";
+import eyeopen from "../images/eyeopen.png";
+import eyeclosed from "../images/eyeclosed.png";
 import google from "../images/google.svg";
 import linkedin from "../images/linkedin.svg";
 import github from "../images/github.svg";
@@ -38,6 +40,8 @@ export {
   github,
   signinvector,
   Vector,
+  eyeopen,
+  eyeclosed,
   home,
   search,
   notification,
