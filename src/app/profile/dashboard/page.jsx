@@ -83,6 +83,6 @@ function HomePage() {
     </div>
   );
 }
-omePage.getLayout = getLayout;
+HomePage.getLayout = getLayout;
 
 export default HomePage;
