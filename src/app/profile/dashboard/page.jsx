@@ -18,7 +18,7 @@ function HomePage() {
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
-      const url = "http://localhost:3000/api/vacanciesFilters";
+      const url = "api/vacanciesFilters";
       const params = {};
 
       if (selectedProgLanguage) {
@@ -83,6 +83,6 @@ function HomePage() {
     </div>
   );
 }
-HomePage.getLayout = getLayout;
+omePage.getLayout = getLayout;
 
 export default HomePage;

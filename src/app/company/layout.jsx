@@ -13,16 +13,16 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("/api/users");
+      const response = await axios.get("api/users");
       setDataUsers(response.data);
-      setUsers(response.data);     
+      setUsers(response.data);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
     const fetchFilteredUsers = async () => {
-      const url = "http://localhost:3000/api/usersFilters";
+      const url = "api/usersFilters";
       const params = {};
 
       if (selectedProgLanguage) {
@@ -46,13 +46,19 @@ export default function Layout({ children }) {
     };
 
     selectedProgLanguage || selectedSeniority || selectedSoftSkill
-    ? fetchFilteredUsers()
-    : setUsers(dataUsers);
-   
+      ? fetchFilteredUsers()
+      : setUsers(dataUsers);
   }, [selectedProgLanguage, selectedSeniority, selectedSoftSkill]);
 
   return (
-    <GlobalContext.Provider value={{ users, setSelectedProgLanguage, setSelectedSeniority, setSelectedSoftSkill }}>
+    <GlobalContext.Provider
+      value={{
+        users,
+        setSelectedProgLanguage,
+        setSelectedSeniority,
+        setSelectedSoftSkill,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
