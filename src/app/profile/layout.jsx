@@ -7,6 +7,8 @@ export const GlobalContext = createContext();
 export default function Layout({ children }) {
   const [jobs, setJobs] = useState([]);
 
+  console.log(jobs); // Aquí se añade el console.log
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
