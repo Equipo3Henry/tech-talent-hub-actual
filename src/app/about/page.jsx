@@ -20,12 +20,6 @@ const us = [
     image: au3,
   },
   {
-    name: "Ignacio Cenni",
-    github: "https://github.com/ignaciocenni",
-    linkedin: "https://www.linkedin.com/in/ignaciocenni",
-    image: au5,
-  },
-  {
     name: "Jorge Acosta",
     github: "https://github.com/jacosta1111",
     linkedin: "",
@@ -54,12 +48,6 @@ const us = [
     github: "https://github.com/Uruvsereg",
     linkedin: "",
     image: au7,
-  },
-  {
-    name: "Michelle Díaz",
-    github: "https://github.com/Michellemishna",
-    linkedin: "",
-    image: au2,
   },
 ];
 
