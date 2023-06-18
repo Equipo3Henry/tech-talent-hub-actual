@@ -1,12 +1,26 @@
 //? OPTIONS SELECT PROGRAMMING LANGUAGES -
 const progLanguages = [
-  { value: "react", label: "React" },
-  { value: "javascript", label: "JavaScript" },
-  { value: "c++", label: "C++" },
-  { value: "mongodb", label: "MongoDB" },
-  { value: "python", label: "Python" },
-  { value: "html", label: "HTML" },
-  { value: "css", label: "CSS" },
+  { value: "C", label: "C" },
+  { value: "GO", label: "Go" },
+  { value: "JAVA", label: "Java" },
+  { value: "JAVASCRIPT", label: "JavaScript" },
+  { value: "KOTLIN", label: "Kotlin" },
+  { value: "R", label: "R" },
+  { value: "OBJECTIVEC", label: "Objective-C" },
+  { value: "PHP", label: "PhP" },
+  { value: "POSTSCRIPT", label: "PostScript" },
+  { value: "PYTHON", label: "Python" },
+  { value: "REACT", label: "React" },
+  { value: "RUBY", label: "Ruby" },
+  { value: "RUST", label: "Rust" },
+  { value: "SCALA", label: "Scala" },
+  { value: "SCHEME", label: "Scheme" },
+  { value: "SQL", label: "SQL" },
+  { value: "SWIFT", label: "Swift" },
+  { value: "TYPESCRIPT", label: "TypeScript" },
+  { value: "VISUALBASICNET", label: "Visual Basic .NET" },
+  { value: "ELIXIR", label: "Elixir" },
+  { value: "ERLANG", label: "Erlang" },
 ];
 
 //? OPTIONS SELECT COUNTRIES

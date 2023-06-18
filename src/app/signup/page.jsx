@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./signup.module.css";
 import Select from "react-select";
 import axios from "axios";
+import ReactDatePicker from "react-datepicker";
+import format from "date-fns/format";
+import "react-datepicker/dist/react-datepicker.css";
 import { eyeopen, eyeclosed } from "../public/assets/page";
 import { validation } from "../helpers/signup-users/validation";
 import {
@@ -62,6 +65,19 @@ function SignUp() {
     setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
   };
 
+  //? USE STATE DATE PICKER
+  const [startDate, setStartDate] = useState(new Date());
+
+  //? CHANGE HANDLER DATE PICKER
+  const handleDateOfBirthChange = (date) => {
+    const formattedDate = format(date, "MM/dd/yyyy");
+    setStartDate(date);
+    setForm({
+      ...form,
+      birth: formattedDate,
+    });
+  };
+
   //? USE EFFECT - SEND INFO TO VALIDATION.JS
   useEffect(() => {
     validation(form, errors, setErrors);
@@ -100,6 +116,7 @@ function SignUp() {
       errors,
       setErrors
     );
+    console.log(form);
   };
 
   //? SUBMIT BUTTON HANDLER
@@ -255,16 +272,16 @@ function SignUp() {
               <label className={styles.dateOfBirth}>
                 Date of Birth <span className={styles.required}>*</span>
               </label>
-              <input
-                type="text"
-                name="birth"
+
+              <ReactDatePicker
+                selected={startDate}
+                onChange={handleDateOfBirthChange}
                 required
                 placeholder="Enter your date of birth"
                 className={styles.input_dateOfBirth}
-                onChange={changeHandler}
               />
-              {errors.password !== null && (
-                <span className={styles.error_span}>{errors.password}</span>
+              {errors.birth !== null && (
+                <span className={styles.error_span}>{errors.birth}</span>
               )}
             </div>
 
@@ -274,7 +291,7 @@ function SignUp() {
               <input
                 type="text"
                 name="cv"
-                placeholder="Enter your CV in .pdf format"
+                placeholder="Enter your CV in PDF format"
                 className={styles.input_cv}
                 onChange={changeHandler}
               />

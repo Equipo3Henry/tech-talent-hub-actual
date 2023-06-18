@@ -198,7 +198,10 @@
     padding-top: 10px ;
 }
 
-
+.error_span{
+    color: rgb(201, 16, 16);
+    margin-top: 10px;
+}
 
 /* button */
 
