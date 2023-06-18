@@ -41,30 +41,35 @@ import Image from "next/image";
 
 function SearchBar({ onSearch }) {
   const [searchValue, setSearchValue] = useState("");
+  const [timer, setTimer] = useState(null);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-
-    // Llama a la función de búsqueda que se pasó como un prop
-    onSearch(searchValue);
+  const handleInputChange = (event) => {
+    const newValue = event.target.value;
+    setSearchValue(newValue);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(() => {
+        onSearch(newValue);
+      }, 300)
+    );
   };
 
   return (
     <div className={styles.searchBarContainer}>
-      <form onSubmit={handleSearch}>
-        <div className={styles.searchBar}>
-          <input
-            type="search"
-            placeholder="Search for job titles, companies or keywords"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className={styles.input}
-          />
-          <button type="submit" className={styles.button}>
-            <Image src={search} alt="image" className={styles.Icons} />
-          </button>
-        </div>
-      </form>
+      <div className={styles.searchBar}>
+        <input
+          type="search"
+          placeholder="Search for job titles, companies or keywords"
+          value={searchValue}
+          onChange={handleInputChange}
+          className={styles.input}
+        />
+        <button className={styles.button}>
+          <Image src={search} alt="image" className={styles.Icons} />
+        </button>
+      </div>
     </div>
   );
 }
