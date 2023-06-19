@@ -68,7 +68,7 @@ const login = () => {
           <div>
             <br />
             <br />
-            <Link href="/signup">
+            <Link href="/signupusers">
               <button className={styles.ButtonB}>
                 New to HighTech Fusion? Join now
               </button>
