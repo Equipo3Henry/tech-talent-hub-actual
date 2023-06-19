@@ -19,7 +19,6 @@
   /* or 44px */
 
   letter-spacing: -0.011em;
-
   color: #000000;
 }
 
@@ -27,10 +26,11 @@
   width: 384px;
   height: 61px;
   margin-top: -20px;
+  margin-bottom: 40px;
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 1;
-  font-size: 16px;
+  font-weight: 200;
+  font-size: 18px;
   line-height: 139%;
   /* or 22px */
 
@@ -41,13 +41,13 @@
 }
 
 .prices {
-  width: 64px;
+  width: 159px;
   height: 133px;
   margin-top: -60px;
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 900;
-  font-size: 96px;
+  font-size: 76px;
   line-height: 139%;
   /* or 133px */
 
@@ -58,7 +58,7 @@
 
 .button {
   margin-top: -60px;
-
+  margin-bottom: 30px;
   background: #7155d9;
   box-shadow: 2px 2px 4px #00000040;
   border-radius: 15px;
@@ -83,5 +83,5 @@
 
 .list {
   list-style-image: url("../../../public/images/pointbullet.png");
-  margin: 10px 0;
+  margin: 15px 0;
 }

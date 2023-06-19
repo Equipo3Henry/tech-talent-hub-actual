@@ -30,7 +30,7 @@ const JobsOfferCard = ({
       {showButton && (
         <div className={styles.contenedorButton}>
           <Link href={`/profile/login`}>
-            <button className={styles.button}>Apply!</button>
+            <button className={styles.button}>Apply</button>
           </Link>
         </div>
       )}

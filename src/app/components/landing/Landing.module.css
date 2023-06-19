@@ -5,21 +5,25 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 18em;
+  gap: 16em;
 }
 
 .textContainer {
   display: flex;
   flex-direction: column;
-  width: 470px;
+  width: 490px;
 }
 
 .title{
-  font-size: 40px;
+  font-size: 46px;
+  word-spacing: 10px;
+  text-align: left;
+  font-weight: 800;
+    font-family: "Merriweather";
 }
 
 .parrafo {
-  width: 470px;
+  width: 490px;
   overflow-wrap: break-word;
   font-family: "Roboto";
   font-style: normal;
@@ -68,7 +72,7 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  width: 225px;
+  width: 235px;
   height: 59px;
   cursor: pointer;
   font-family: "Roboto";

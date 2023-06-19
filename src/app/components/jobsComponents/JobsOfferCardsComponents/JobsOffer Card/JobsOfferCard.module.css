@@ -37,10 +37,11 @@
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
+  margin-top: 10px;
 }
 .CompanyNameContainer {
   display: flex;
