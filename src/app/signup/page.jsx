@@ -8,7 +8,7 @@ import axios from "axios";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import { eyeopen, eyeclosed } from "../public/assets/page";
+import { eyeopen, eyeclosed } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,

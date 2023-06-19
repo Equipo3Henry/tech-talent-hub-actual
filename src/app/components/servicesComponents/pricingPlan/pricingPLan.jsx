@@ -8,7 +8,7 @@ const PricingPlan = ({ plan, borderColor }) => {
         <h1 className={styles.title}>{plan.title}</h1>
         <h3 className={styles.subtitles}>{plan.subtitles}</h3>
         <h1 className={styles.prices}>{plan.price}</h1>
-        <button className={styles.button}>Join!</button>
+        <button className={styles.button}>Join now</button>
         <ul>
           {plan.features.map((feature, index) => (
             <li className={styles.list} key={index}>
