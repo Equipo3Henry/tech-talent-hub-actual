@@ -2,10 +2,10 @@ import transporter from "..";
 
 export default async function register(req, res) {
   const { method } = req;
-  console.log(req.body.string);
   if (method == "POST") {
-    // const { email } = req.body;
-    const  email  = 'scarsellaivan@gmail.com';
+      console.log(req);
+    const { email } = req.body;
+    // const  email  = 'scarsellaivan@gmail.com';
     // console.log(req.method);
     try {
       await transporter.verify();

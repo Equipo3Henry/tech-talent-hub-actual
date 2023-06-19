@@ -157,7 +157,6 @@ function SignUp() {
           recruiter: false,
         });
       })
-      .catch((err) => ({ error: err.message }));
   };
 
   return (

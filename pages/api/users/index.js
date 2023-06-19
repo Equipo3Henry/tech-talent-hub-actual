@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import axios from "axios";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -59,6 +60,14 @@ export default async function handler(req, res) {
             recruiter,
           },
         });
+
+        // const dataToSendEmail = {
+        //   url: '/api/sendEmail/signup',
+        //   email: newUser.email
+        // }
+
+        // axios.post(dataToSendEmail)
+        axios.post("/api/sendEmail/signup", {email: newUser.data.email})
 
         return res.status(201).json(newUser);
       } catch (error) {

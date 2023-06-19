@@ -13,7 +13,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
   };
 
   const sendEmail = async () => {
-    const mail = await axios.post("/api/sendEmail/postulation");
+    const mail = await axios.post("/api/sendEmail/postulation", {string: 'string------'});
     console.log(mail);
   }
 
