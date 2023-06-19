@@ -67,6 +67,17 @@ function SignUp() {
     let property = event.target.name;
     let value = event.target.value;
 
+    if (property === "country" || property === "type") {
+      value = value.value;
+    }
+
+    if (
+      property === "vacancies" ||
+      property === "jobs" ||
+      property === "employes"
+    ) {
+      value = parseInt(value);
+    }
     setForm({
       ...form,
       [property]: value,
@@ -160,7 +171,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="logo_Company"
-                  required
                   placeholder="Enter a PNG image"
                   className={styles.input_logo_Company}
                   onChange={changeHandler}
