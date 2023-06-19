@@ -34,29 +34,11 @@ function SearchBar() {
 export default SearchBar;
  */
 
-import { useState } from "react";
 import styles from "./searchBar.module.css";
 import search from "../../../public/images/search.svg";
 import Image from "next/image";
 
 function SearchBar({ setSearchValue }) {
-  /*
-  const [searchValue, setSearchValue] = useState("");
-  const [timer, setTimer] = useState(null);
-  
-  const handleInputChange = (event) => {
-    const newValue = event.target.value;
-    setSearchValue(newValue);
-    if (timer) {
-      clearTimeout(timer);
-    }
-    setTimer(
-      setTimeout(() => {
-        onSearch(newValue);
-      }, 300)
-    );
-  };*/
-
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   }

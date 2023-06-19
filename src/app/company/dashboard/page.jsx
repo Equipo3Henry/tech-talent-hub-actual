@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import SearchBar from "@/src/app/components/generalComponents/SearchBar/searchBar";
 import UserOfferCardsContainerForDashboard from "@/src/app/components/usersComponents/UserOfferComponents/UserOffereCardsContainer/UserOfferCardsContainer";
 import styles from "./dashboard.module.css";
@@ -16,11 +16,6 @@ function DashboardPage() {
     setSearchValue
   } = useContext(GlobalContext);
 
-  const handleUserSelect = (userId) => {
-    const userDetail = users.find((user) => user.id === userId);
-    setSelectedUser(userDetail);
-  };
-  
   return (
     <div className={styles.globalContainer}>
       <SearchBar setSearchValue={setSearchValue} />
@@ -36,7 +31,6 @@ function DashboardPage() {
         <div className={styles.usersContainer}>
           <UserOfferCardsContainerForDashboard
             users={users}
-            onUserSelect={handleUserSelect}
           />
           <div className={styles.usersDetailContainer}></div>
         </div>
