@@ -18,7 +18,7 @@ function HomePage() {
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
-      const url = "api/vacanciesFilters";
+      const url = "/api/vacanciesFilters";
       const params = {};
 
       if (selectedProgLanguage) {
@@ -51,15 +51,15 @@ function HomePage() {
       selectedSpec ||
       selectedWorkday
     ) {
+      console.log('hola');
       fetchFilteredJobs();
     }
   }, [selectedProgLanguage, selectedSeniority, selectedSpec, selectedWorkday]);
 
   const handleJobSelect = (jobId) => {
-    const jobDetail = jobs.find((job) => job.id === jobId);
-    setSelectedJob(jobDetail);
+    // const jobDetail = jobs.find((job) => job.id === jobId);
+    // setSelectedJob(jobDetail);
   };
-
   return (
     <div className={styles.globalContainer}>
       <SearchBar />
@@ -73,10 +73,10 @@ function HomePage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-          <JobsOfferCardsContainerForHome
+          {/* <JobsOfferCardsContainerForHome
             jobs={jobs}
             onJobSelect={handleJobSelect}
-          />
+          /> */}
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>
