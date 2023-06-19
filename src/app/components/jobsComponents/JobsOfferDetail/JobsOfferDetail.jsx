@@ -30,9 +30,9 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
             alt="Company Logo"
             className={styles.image}
           />
-          <span className={styles.span}>{job.name_Vacancy}</span>
-          <span className={styles.span}> {job.seniority} </span>
         </div>
+        <span className={styles.span}>{job.name_Vacancy}</span>
+        <span className={styles.span}> {job.seniority} </span>
       </div>
       <div className={styles.contenedorButton}>
         <Link href={`/profile/login`}>
