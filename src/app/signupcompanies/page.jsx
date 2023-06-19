@@ -100,7 +100,7 @@ function SignUp() {
     // setForm(form);
     console.log(form);
     axios
-      .post("http://localhost:3000/api/companies", form)
+      .post("/api/companies", form)
       .then((response) => {
         console.log(form);
         setShowModal(true);
@@ -204,7 +204,7 @@ function SignUp() {
               {/* Type */}
               <div className={styles.type_container}>
                 <label className={styles.type}>
-                  What's the size of your company?
+                  What is the size of your company?
                   <span className={styles.required}>*</span>
                 </label>
                 <Select
