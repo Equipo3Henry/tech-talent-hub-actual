@@ -27,7 +27,12 @@ const JobsLanding = () => {
   return (
     <div>
       <div className={styles.allContainer}>
-        <h1 className={styles.title}>Sample Posts</h1>
+        <div className={styles.texts_container}>
+          <h1 className={styles.title}>Find your dream job today</h1>
+          <p className={styles.paragraph}>
+            The biggest companies in Israel are looking for you
+          </p>
+        </div>
         <div className={styles.container}>
           <div className={styles.JobsContainer}>
             <JobsOfferCardsContainer jobs={jobs} />

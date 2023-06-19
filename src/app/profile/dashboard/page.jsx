@@ -8,8 +8,15 @@ import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
 
 function HomePage() {
-  const { jobs, setSelectedProgLanguage, setSelectedSeniority, setSelectedSpec, setSelectedWorkday, setSearchValue } = useContext(GlobalContext);
- 
+  const {
+    jobs,
+    setSelectedProgLanguage,
+    setSelectedSeniority,
+    setSelectedSpec,
+    setSelectedWorkday,
+    setSearchValue,
+  } = useContext(GlobalContext);
+
   return (
     <div className={styles.globalContainer}>
       <SearchBar setSearchValue={setSearchValue} />
@@ -23,9 +30,7 @@ function HomePage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-            <JobsOfferCardsContainerForHome
-              jobs={jobs}
-            /> 
+          <JobsOfferCardsContainerForHome jobs={jobs} />
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>

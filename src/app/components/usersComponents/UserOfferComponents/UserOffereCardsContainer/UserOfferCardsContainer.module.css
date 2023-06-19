@@ -2,6 +2,11 @@
   display: flex;
 }
 
+.contains{
+  margin-left: 120px;
+  margin-top: 20px;
+}
+
 .containerAll {
   display: flex;
   flex-direction: row;
@@ -13,11 +18,11 @@
   max-height: 564px; /* Altura ajustada para que sea igual a la altura de 5 tarjetas */
   overflow-y: auto;
   display: flex;
-  padding: 10px; /* Agrega un poco de padding alrededor de la lista */
 }
 
 .list {
   flex: 1;
   color: gray;
   text-shadow: white;
+  padding-left: 10px;
 }

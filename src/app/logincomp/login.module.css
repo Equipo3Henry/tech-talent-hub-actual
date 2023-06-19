@@ -29,17 +29,17 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
-  margin: 0;
+  margin: 15px 0;
 }
 
 .labelInput {
   font-family: "Roboto";
   font-style: black;
-  font-size: 16px;
+  font-size: 18px;
 }
 .input {
   width: 500px;
@@ -144,11 +144,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5em;
 }
 
 .Vector {
-  width: 530px;
-  color: transparent;
-  height: 521px;
+  width: 700px;
+    color: transparent;
+    height: 670px;
 }

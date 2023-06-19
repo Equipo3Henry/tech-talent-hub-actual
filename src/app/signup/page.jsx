@@ -1,32 +1,95 @@
 "use client";
 
-import React from "react";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import styles from "./signup.module.css";
-import { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
+import Link from "next/link";
+import ReactDatePicker from "react-datepicker";
+import format from "date-fns/format";
+import "react-datepicker/dist/react-datepicker.css";
+import { eyeopen, eyeclosed } from "../public/assets/imagesCodes";
+import { validation } from "../helpers/signup-users/validation";
+import {
+  progLanguages,
+  countries,
+  softSkills,
+  seniority,
+  working,
+  languages,
+  specialization,
+} from "../helpers/signup-users/variables";
 
 function SignUp() {
   //? USE STATE FORM
   const [form, setForm] = useState({
+    username: "",
     name: "",
     lastname: "",
-    email: "",
-    username: "",
-    password: "",
     birth: "",
-    cv: "",
-    country: "",
-    progLanguages: [],
-    degree: "",
-    softSkills: [],
-    languages: [],
-    seniority: "",
-    specialization: "",
-    working: false,
-    recruiter: false,
     aboutme: "",
+    working: false,
+    country: "",
+    email: "",
+    password: "",
+    degree: "",
+    languages: [],
+    progLanguages: [],
+    seniority: "",
+    cv: "",
+    softSkills: [],
+    specialization: "",
+    recruiter: false,
   });
+
+  //? USE STATE ERRORS
+  const [errors, setErrors] = useState({
+    username: "",
+    name: "",
+    lastname: "",
+    birth: "",
+    aboutme: "",
+    email: "",
+    password: "",
+    degree: "",
+    cv: "",
+  });
+
+  //? USE STATE PASSWORD
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordIcon, setShowPasswordIcon] = useState(eyeclosed);
+
+  //? USE STATE MODAL
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  //? TOGGLE PASSWORD
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+    setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
+  };
+
+  //? USE STATE DATE PICKER
+  const [startDate, setStartDate] = useState(new Date());
+
+  //? CHANGE HANDLER DATE PICKER
+  const handleDateOfBirthChange = (date) => {
+    const formattedDate = format(date, "MM/dd/yyyy");
+    setStartDate(date);
+    setForm({
+      ...form,
+      birth: formattedDate,
+    });
+  };
+
+  //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  useEffect(() => {
+    validation(form, errors, setErrors);
+  }, [form]);
 
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
@@ -42,7 +105,8 @@ function SignUp() {
     } else if (
       property === "country" ||
       property === "seniority" ||
-      property === "working"
+      property === "working" ||
+      property === "specialization"
     ) {
       value = value.value;
     }
@@ -51,6 +115,16 @@ function SignUp() {
       ...form,
       [property]: value,
     });
+
+    validation(
+      {
+        ...form,
+        [property]: value,
+      },
+      errors,
+      setErrors
+    );
+    console.log(form);
   };
 
   //? SUBMIT BUTTON HANDLER
@@ -59,445 +133,493 @@ function SignUp() {
     // setForm(form);
     console.log(form);
     axios
-      .post("api/users", form)
+      .post("http://localhost:3000/api/users", form)
       .then((response) => {
-        alert("Yay! The user was created successfully.");
+        console.log(form);
+        setShowModal(true);
+        setForm({
+          username: "",
+          name: "",
+          lastname: "",
+          birth: "",
+          aboutme: "",
+          working: false,
+          country: "",
+          email: "",
+          password: "",
+          degree: "",
+          languages: [],
+          progLanguages: [],
+          seniority: "",
+          cv: "",
+          softSkills: [],
+          specialization: "",
+          recruiter: false,
+        });
       })
-      .catch((err) => alert("An error occurred"));
+      .catch((err) => ({ error: err.message }));
   };
 
-  //? OPTIONS SELECT PROGRAMMING LANGUAGES -
-  const progLanguages = [
-    { value: "react", label: "React" },
-    { value: "javascript", label: "JavaScript" },
-    { value: "c++", label: "C++" },
-    { value: "mongodb", label: "MongoDB" },
-    { value: "python", label: "Python" },
-    { value: "html", label: "HTML" },
-    { value: "css", label: "CSS" },
-  ];
-
-  //? OPTIONS SELECT COUNTRIES
-  const countries = [
-    { value: "argentina", label: "Argentina" },
-    { value: "bolivia", label: "Bolivia" },
-    { value: "brasil", label: "Brasil" },
-    { value: "chile", label: "Chile" },
-    { value: "colombia", label: "Colombia" },
-    { value: "costaRica", label: "Costa Rica" },
-    { value: "cuba", label: "Cuba" },
-    { value: "ecuador", label: "Ecuador" },
-    { value: "elSalvador", label: "El Salvador" },
-    { value: "guatemala", label: "Guatemala" },
-    { value: "honduras", label: "Honduras" },
-    { value: "mexico", label: "Mexico" },
-    { value: "nicaragua", label: "Nicaragua" },
-    { value: "panama", label: "Panama" },
-    { value: "paraguay", label: "Paraguay" },
-    { value: "peru", label: "Perú" },
-    { value: "puertoRico", label: "Puerto Rico" },
-    { value: "dominicana", label: "República Dominicana" },
-    { value: "uruguay", label: "Uruguay" },
-    { value: "venezuela", label: "Venezuela" },
-  ];
-
-  //? OPTIONS SELECT SOFT SKILLS
-  const softSkills = [
-    { value: "communication", label: "Communication" },
-    { value: "teamWork", label: "Team Work" },
-    { value: "problemSolving", label: "Problem Solving" },
-    { value: "timeManagement", label: "Time Management" },
-    { value: "critialThinking", label: "Critical Thinking" },
-    { value: "decisionMaking", label: "Decision Making" },
-    { value: "organizational", label: "Organizational" },
-    { value: "stressManagement", label: "Stress Management" },
-    { value: "adaptability", label: "Adaptability" },
-    { value: "conflictManagement", label: "Conflict Management" },
-    { value: "leadership", label: "Leadership" },
-    { value: "creativity", label: "Creativity" },
-    { value: "resourcefulness", label: "Resourcefulness" },
-    { value: "persuasion", label: "Persuasion" },
-    { value: "openToCriticism", label: "Open to Criticism" },
-  ];
-
-  //? OPTIONS SELECT LANGUAGES
-  const languages = [
-    { value: "englishBasic", label: "English (Basic)" },
-    { value: "englishIntermediate", label: "English (Intermediate)" },
-    { value: "englishAdvanced", label: "English (Advanced)" },
-    { value: "englishNative", label: "English (Native)" },
-    { value: "spanishBasic", label: "Spanish (Basic)" },
-    { value: "spanishIntermediate", label: "Spanish (Intermediate)" },
-    { value: "spanishAdvanced", label: "Spanish (Advanced)" },
-    { value: "spanishNative", label: "Spanish (Native)" },
-    { value: "portugueseBasic", label: "Portuguese (Basic)" },
-    { value: "portugueseIntermediate", label: "Portuguese (Intermediate)" },
-    { value: "portugueseAdvanced", label: "Portuguese (Advanced)" },
-    { value: "portugueseNative", label: "Portuguese (Native)" },
-    { value: "italianBasic", label: "Italian (Basic)" },
-    { value: "italianIntermediate", label: "Italian (Intermediate)" },
-    { value: "italianAdvanced", label: "Italian (Advanced)" },
-    { value: "italianNative", label: "Italian (Native)" },
-  ];
-
-  //? OPTIONS SELECT SENIORITY
-  const seniority = [
-    { value: "trainee", label: "Trainee" },
-    { value: "junior", label: "Junior" },
-    { value: "semiSenior", label: "Semi-Senior" },
-    { value: "senior", label: "Senior" },
-  ];
-
-  //? OPTIONS SELECT ARE YOU WORKING
-  const working = [
-    { value: true, label: "Yes" },
-    { value: false, label: "No" },
-  ];
-
   return (
-    <div className={styles.page_container}>
-      <div className={styles.titles_container}>
-        <h1 className={styles.title}>Sign up to Tech Talent Hub</h1>
-        <h3 className={styles.subtitle}>
-          Ready to find your dream job? Discover companies from all over Israel
-        </h3>
-      </div>
-      <div className={styles.form_container}>
-        <form className={styles.form} onSubmit={submitHandler}>
-          <div className={styles.row1_container}>
-            {/* Name */}
-            <div className={styles.name_container}>
-              <label className={styles.name}>Name</label>
-              <input
-                type="text"
-                name="name"
-                className={styles.input_name}
-                onChange={changeHandler}
-              />
-            </div>
-
-            {/* LastName */}
-            <div className={styles.lastname_container}>
-              <label className={styles.lastname}>Last Name</label>
-              <input
-                type="text"
-                name="lastname"
-                className={styles.input_lastname}
-                onChange={changeHandler}
-              />
-            </div>
+    <>
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModal}></div>
+          <div className={styles.modal_content}>
+            <h2>Thank you for registering!</h2>
+            <p>
+              Please Log In to your account to start looking for your dream job.
+            </p>
+            <Link href="/landing">
+              <button className={styles.btn_modal}>Go to Home Page</button>
+            </Link>
           </div>
-          {/* Email */}
-          <div className={styles.email_container}>
-            <label className={styles.email}>Email</label>
-            <input
-              type="text"
-              name="email"
-              className={styles.input_email}
-              onChange={changeHandler}
-            />
-          </div>
-
-          <div className={styles.row2_container}>
-            {/* Username */}
-            <div className={styles.username_container}>
-              <label className={styles.username}>Username</label>
-              <input
-                type="text"
-                name="username"
-                className={styles.input_username}
-                onChange={changeHandler}
-              />
+        </div>
+      )}
+      <div className={styles.page_container}>
+        <div className={styles.titles_container}>
+          <h1 className={styles.title}>Sign up to Tech Talent Hub</h1>
+          <h3 className={styles.subtitle}>
+            Ready to find your dream job? Discover companies from all over
+            Israel
+          </h3>
+        </div>
+        <div className={styles.form_container}>
+          <form className={styles.form} onSubmit={submitHandler}>
+            <div className={styles.row1_container}>
+              {/* Name */}
+              <div className={styles.name_container}>
+                <label className={styles.name}>
+                  Name <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Enter your first name"
+                  className={styles.input_name}
+                  onChange={changeHandler}
+                />
+                {errors.name !== null && (
+                  <span className={styles.error_span}>{errors.name}</span>
+                )}
+              </div>
+              {/* LastName */}
+              <div className={styles.lastname_container}>
+                <label className={styles.lastname}>
+                  Last Name <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="text"
+                  name="lastname"
+                  required
+                  placeholder="Enter your last name"
+                  className={styles.input_lastname}
+                  onChange={changeHandler}
+                />
+                {errors.lastname !== null && (
+                  <span className={styles.error_span}>{errors.lastname}</span>
+                )}
+              </div>
             </div>
-
-            {/* Password */}
-            <div className={styles.password_container}>
-              <label className={styles.password}>Password</label>
-              <input
-                type="text"
-                name="password"
-                className={styles.input_password}
-                onChange={changeHandler}
-              />
-            </div>
-
-            {/* DIVIDER   */}
-          </div>
-          <div className={styles.divider}>
-            <hr />
-          </div>
-
-          <div className={styles.row3_container}>
-            {/* Date of Birth */}
-            <div className={styles.dateOfBirth_container}>
-              <label className={styles.dateOfBirth}>Date of Birth</label>
-              <input
-                type="text"
-                name="birth"
-                className={styles.input_dateOfBirth}
-                onChange={changeHandler}
-              />
-            </div>
-
-            {/* CV */}
-            <div className={styles.cv_container}>
-              <label className={styles.cv}>Curriculum Vitae</label>
-              <input
-                type="text"
-                name="cv"
-                className={styles.input_cv}
-                onChange={changeHandler}
-              />
-            </div>
-          </div>
-
-          <div className={styles.row4_container}>
-            {/* Country */}
-            <div className={styles.country_container}>
-              <label className={styles.country}>Country</label>
-              <Select
-                options={countries}
-                name="country"
-                onChange={(selectedOption) =>
-                  changeHandler({
-                    target: { name: "country", value: selectedOption },
-                  })
-                }
-                isClearable={true}
-                isSearchable={true}
-                closeMenuOnSelect={true}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
-              />
-            </div>
-
-            {/* Programming Languages */}
-            <div className={styles.progLanguages_container}>
-              <label className={styles.progLanguages}>
-                Programming Languages
+            {/* Email */}
+            <div className={styles.email_container}>
+              <label className={styles.email}>
+                Email <span className={styles.required}>*</span>
               </label>
-              <Select
-                isMulti
-                options={progLanguages}
-                name="progLanguages"
-                onChange={(selectedOptions) =>
-                  changeHandler({
-                    target: { name: "progLanguages", value: selectedOptions },
-                  })
-                }
-                isClearable={false}
-                isSearchable={true}
-                closeMenuOnSelect={false}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
-              />
-            </div>
-          </div>
-
-          <div className={styles.row5_container}>
-            {/* Degree */}
-            <div className={styles.degree_container}>
-              <label className={styles.degree}>Degree</label>
               <input
-                type="text"
-                name="degree"
-                className={styles.input_degree}
+                type="email"
+                name="email"
+                required
+                placeholder="Enter your email"
+                className={styles.input_email}
                 onChange={changeHandler}
               />
+              {errors.email !== null && (
+                <span className={styles.error_span}>{errors.email}</span>
+              )}
             </div>
 
-            {/* Soft Skills */}
-            <div className={styles.softSkills_container}>
-              <label className={styles.softSkills}>Soft Skills</label>
-              <Select
-                isMulti
-                options={softSkills}
-                name="softSkills"
-                onChange={(selectedOptions) =>
-                  changeHandler({
-                    target: { name: "softSkills", value: selectedOptions },
-                  })
-                }
-                isClearable={false}
-                isSearchable={true}
-                closeMenuOnSelect={false}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
-              />
-            </div>
-          </div>
+            <div className={styles.row2_container}>
+              {/* Username */}
+              <div className={styles.username_container}>
+                <label className={styles.username}>
+                  Username <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  required
+                  placeholder="Enter the username you want to use on the site"
+                  className={styles.input_username}
+                  onChange={changeHandler}
+                />
+                {errors.username !== null && (
+                  <span className={styles.error_span}>{errors.username}</span>
+                )}
+              </div>
 
-          <div className={styles.row6_container}>
-            {/* Languages */}
-            <div className={styles.languages_container}>
-              <label className={styles.languages}>Languages</label>
-              <Select
-                isMulti
-                options={languages}
-                name="languages"
-                onChange={(selectedOptions) =>
-                  changeHandler({
-                    target: { name: "languages", value: selectedOptions },
-                  })
-                }
-                isClearable={false}
-                isSearchable={true}
-                closeMenuOnSelect={false}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
-              />
+              {/* Password */}
+              <div className={styles.password_container}>
+                <label className={styles.password}>
+                  Password <span className={styles.required}>*</span>
+                </label>
+                <div className={styles.password_toggle_container}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    required
+                    placeholder="Enter a password"
+                    className={styles.input_password}
+                    onChange={changeHandler}
+                  />
+                  <Image
+                    src={showPasswordIcon}
+                    alt={showPassword ? "Hide Password" : "Show Password"}
+                    className={styles.password_icon}
+                    onClick={togglePassword}
+                  />
+                </div>
+                {errors.password !== null && (
+                  <span className={styles.error_span}>{errors.password}</span>
+                )}
+              </div>
+
+              {/* DIVIDER */}
+            </div>
+            <div className={styles.divider}>
+              <hr />
             </div>
 
-            {/* Seniority */}
-            <div className={styles.seniority_container}>
-              <label className={styles.seniority}>Seniority</label>
-              <Select
-                options={seniority}
-                name="seniority"
-                onChange={(selectedOption) =>
-                  changeHandler({
-                    target: { name: "seniority", value: selectedOption },
-                  })
-                }
-                isClearable={true}
-                isSearchable={true}
-                closeMenuOnSelect={true}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
-              />
-            </div>
-          </div>
+            <div className={styles.row3_container}>
+              {/* Date of Birth */}
+              <div className={styles.dateOfBirth_container}>
+                <label className={styles.dateOfBirth}>
+                  Date of Birth <span className={styles.required}>*</span>
+                </label>
 
-          <div className={styles.row7_container}>
-            {/* Specialization */}
-            <div className={styles.specialization_container}>
-              <label className={styles.specialization}>Specialization</label>
-              <input
-                type="text"
-                name="specialization"
-                className={styles.input_specialization}
-                onChange={changeHandler}
-              />
+                <ReactDatePicker
+                  selected={startDate}
+                  onChange={handleDateOfBirthChange}
+                  required
+                  placeholder="Enter your date of birth"
+                  className={styles.input_dateOfBirth}
+                />
+                {errors.birth !== null && (
+                  <span className={styles.error_span}>{errors.birth}</span>
+                )}
+              </div>
+
+              {/* CV */}
+              <div className={styles.cv_container}>
+                <label className={styles.cv}>Curriculum Vitae</label>
+                <input
+                  type="text"
+                  name="cv"
+                  placeholder="Enter your CV in PDF format"
+                  className={styles.input_cv}
+                  onChange={changeHandler}
+                />
+                {errors.cv !== null && (
+                  <span className={styles.error_span}>{errors.cv}</span>
+                )}
+              </div>
             </div>
 
-            {/* Working */}
+            <div className={styles.row4_container}>
+              {/* Country */}
+              <div className={styles.country_container}>
+                <label className={styles.country}>
+                  Country <span className={styles.required}>*</span>
+                </label>
+                <Select
+                  options={countries}
+                  name="country"
+                  required
+                  onChange={(selectedOption) =>
+                    changeHandler({
+                      target: { name: "country", value: selectedOption },
+                    })
+                  }
+                  isClearable={true}
+                  isSearchable={true}
+                  placeholder="Select your country of residence"
+                  closeMenuOnSelect={true}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+
+              {/* Programming Languages */}
+              <div className={styles.progLanguages_container}>
+                <label className={styles.progLanguages}>
+                  Programming Languages{" "}
+                  <span className={styles.required}>*</span>
+                </label>
+                <Select
+                  isMulti
+                  options={progLanguages}
+                  name="progLanguages"
+                  required
+                  onChange={(selectedOptions) =>
+                    changeHandler({
+                      target: { name: "progLanguages", value: selectedOptions },
+                    })
+                  }
+                  isClearable={false}
+                  placeholder="Select the programming languages you know"
+                  isSearchable={true}
+                  closeMenuOnSelect={false}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className={styles.row5_container}>
+              {/* Degree */}
+              <div className={styles.degree_container}>
+                <label className={styles.degree}>Degree</label>
+                <input
+                  type="text"
+                  name="degree"
+                  placeholder="Select the last degree you have"
+                  className={styles.input_degree}
+                  onChange={changeHandler}
+                />
+                {errors.degree !== null && (
+                  <span className={styles.error_span}>{errors.degree}</span>
+                )}
+              </div>
+
+              {/* Soft Skills */}
+              <div className={styles.softSkills_container}>
+                <label className={styles.softSkills}>
+                  Soft Skills <span className={styles.required}>*</span>
+                </label>
+                <Select
+                  isMulti
+                  options={softSkills}
+                  name="softSkills"
+                  required
+                  onChange={(selectedOptions) =>
+                    changeHandler({
+                      target: { name: "softSkills", value: selectedOptions },
+                    })
+                  }
+                  isClearable={false}
+                  isSearchable={true}
+                  placeholder="Select the soft skills that better describe you"
+                  closeMenuOnSelect={false}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+                {errors.softSkills !== null && (
+                  <span className={styles.error_span}>{errors.softSkills}</span>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.row6_container}>
+              {/* Languages */}
+              <div className={styles.languages_container}>
+                <label className={styles.languages}>
+                  Languages <span className={styles.required}>*</span>
+                </label>
+                <Select
+                  isMulti
+                  options={languages}
+                  name="languages"
+                  onChange={(selectedOptions) =>
+                    changeHandler({
+                      target: { name: "languages", value: selectedOptions },
+                    })
+                  }
+                  isClearable={false}
+                  isSearchable={true}
+                  required
+                  placeholder="Select the languages you know"
+                  closeMenuOnSelect={false}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+
+              {/* Seniority */}
+              <div className={styles.seniority_container}>
+                <label className={styles.seniority}>Seniority</label>
+                <Select
+                  options={seniority}
+                  name="seniority"
+                  onChange={(selectedOption) =>
+                    changeHandler({
+                      target: { name: "seniority", value: selectedOption },
+                    })
+                  }
+                  isClearable={true}
+                  placeholder="Select your seniority"
+                  isSearchable={true}
+                  closeMenuOnSelect={true}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className={styles.row7_container}>
+              {/* Specialization */}
+              <div className={styles.specialization_container}>
+                <label className={styles.specialization}>
+                  Specialization <span className={styles.required}>*</span>
+                </label>
+                <Select
+                  options={specialization}
+                  name="specialization"
+                  onChange={(selectedOption) =>
+                    changeHandler({
+                      target: { name: "specialization", value: selectedOption },
+                    })
+                  }
+                  isClearable={true}
+                  placeholder="What do you specialize in?"
+                  isSearchable={true}
+                  required
+                  closeMenuOnSelect={true}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+
+              {/* Working */}
+              <div className={styles.working_container}>
+                <label className={styles.working}>Work</label>
+                <Select
+                  options={working}
+                  name="working"
+                  onChange={(selectedOption) =>
+                    changeHandler({
+                      target: { name: "working", value: selectedOption },
+                    })
+                  }
+                  isClearable={true}
+                  isSearchable={true}
+                  placeholder="Are you currently working?"
+                  closeMenuOnSelect={true}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* About Me */}
             <div className={styles.working_container}>
-              <label className={styles.working}>
-                Are you currently working?
-              </label>
-              <Select
-                options={working}
-                name="working"
-                onChange={(selectedOption) =>
-                  changeHandler({
-                    target: { name: "working", value: selectedOption },
-                  })
-                }
-                isClearable={true}
-                isSearchable={true}
-                closeMenuOnSelect={true}
-                styles={{
-                  container: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderStyle: "solid",
-                    borderColor: "black",
-                    borderWidth: "0.5px 0.5px 4px 0.5px",
-                    fontSize: 18,
-                    width: "93%",
-                  }),
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: 50,
-                  }),
-                }}
+              <label className={styles.working}>About you</label>
+              <textarea
+                type="text"
+                name="aboutme"
+                placeholder="Write a short summary about yourself"
+                className={styles.textarea_aboutMe}
+                onChange={changeHandler}
               />
+              {errors.aboutme !== null && (
+                <span className={styles.error_span}>{errors.aboutme}</span>
+              )}
             </div>
-          </div>
 
-          {/* About Me */}
-          <div className={styles.working_container}>
-            <label className={styles.working}>About you</label>
-            <textarea
-              type="text"
-              name="aboutme"
-              className={styles.textarea_aboutMe}
-              onChange={changeHandler}
-            />
-          </div>
-
-          {/* Botón */}
-          <div className={styles.boton_container}>
-            <button className={styles.button} type="submit">
-              Sign up
-            </button>
-          </div>
-        </form>
+            {/* Botón */}
+            <div className={styles.boton_container}>
+              <button className={styles.button} type="submit">
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      {/* <div className={styles.footer}>
-        <h3 className={styles.footer_title}>Already have an account?</h3>
-        <h3 className={styles.footer_login}>Log in here</h3>
-      </div> */}
-    </div>
+    </>
   );
 }
 
