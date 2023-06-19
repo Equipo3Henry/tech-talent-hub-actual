@@ -1,35 +1,3 @@
-.ContainerDetail {
-  border: solid;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
-  border-right-width: 9px;
-  width: 525px;
-  height: 554px;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  margin-top: 16px;
-  border-color: #b682d9;
-}
-
-.InfoContainer {
-  display: flex;
-  flex-direction: row;
-  background-color: blue;
-}
-
-.image {
-  width: 40px;
-  height: 40px;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-
-.CompanyNameContainer {
-  background-color: red;
-}
-
 .InfoContainer {
   flex-direction: row;
 }
