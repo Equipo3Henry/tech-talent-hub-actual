@@ -127,7 +127,9 @@ function SignUp() {
     axios
       .post("http://localhost:3000/api/users", form)
       .then((response) => {
-        alert("Yay! The user was created successfully.");
+        alert(
+          "The user was created successfully. Please log in to go to your dashboard"
+        );
         setForm({
           username: "",
           name: "",
