@@ -35,7 +35,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
-      const url = "http://localhost:3000/api/vacanciesFilters";
+      const url = "/api/vacanciesFilters";
       const params = {};
 
       if (selectedProgLanguage) {
