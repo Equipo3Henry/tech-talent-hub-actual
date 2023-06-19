@@ -21,6 +21,9 @@ model Company {
   description  String?
   employes     Int         @default(0)
   jobs         Int         @default(0)
+  vacanciesCount Int          @default(autoincrement())
+  postedVacancies Vacancy[]
+
 }
 
 model Review {
@@ -58,12 +61,13 @@ model User {
   recruiter        Boolean  @default(false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  appliedVacancies Vacancy[] @relation("applications")
+
 }
 
 model Vacancy {
   id                    String    @id @default(uuid())
   name_Vacancy          String
-  company               String
   logo_Company          String
   programming_Languages String[]
   seniority             Seniority @default(JUNIOR)
@@ -73,7 +77,11 @@ model Vacancy {
   salary                Int       @default(1000)
   date_Hire             DateTime
   isActive              Boolean   @default(false)
-  Relevance             Relevance @default(SMALL)
+  Relevance             Relevance @default(SMALL) 
+  companyId    String
+  company      Company  @relation(fields: [companyId], references: [id])
+  applicants   User[]   @relation("applications")
+
 }
 
 enum CompanyType {

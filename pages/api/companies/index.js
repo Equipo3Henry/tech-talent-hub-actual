@@ -8,12 +8,10 @@ export default async function handler(req, res) {
         logo_Company,
         type,
         email,
-        password,
+        password, // remember to hash this before saving
         country,
-        vacancies,
         description,
         employes,
-        jobs,
       } = req.body;
 
       const newCompany = await prisma.company.create({
@@ -24,10 +22,8 @@ export default async function handler(req, res) {
           email,
           password,
           country,
-          vacancies,
           description,
           employes,
-          jobs,
         },
       });
 
