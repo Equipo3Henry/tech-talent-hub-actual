@@ -35,8 +35,6 @@ CREATE TABLE "Company" (
     "description" TEXT,
     "employes" INTEGER NOT NULL DEFAULT 0,
     "jobs" INTEGER NOT NULL DEFAULT 0,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
 );
@@ -46,8 +44,6 @@ CREATE TABLE "Review" (
     "id" TEXT NOT NULL,
     "id_user" TEXT NOT NULL,
     "id_company" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
 );
@@ -104,9 +100,6 @@ CREATE TABLE "Vacancy" (
     "date_Hire" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT false,
     "Relevance" "Relevance" NOT NULL DEFAULT 'SMALL',
-    "specialization" "Spec",
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Vacancy_pkey" PRIMARY KEY ("id")
 );

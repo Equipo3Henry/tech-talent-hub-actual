@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const JobsOfferCard = ({
   id,
-  logo_Company,
   company,
   name_Vacancy,
   seniority,
