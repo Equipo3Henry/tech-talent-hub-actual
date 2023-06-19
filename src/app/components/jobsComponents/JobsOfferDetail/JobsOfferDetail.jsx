@@ -17,17 +17,21 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
   }, [selectedJobId, jobs]);
 
   if (!job) {
-    return;
+    return null; // Return null instead of an empty div when there's no job
   }
 
   return (
     <div className={styles.ContainerDetail}>
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
-          <img src={job.logo_Company} alt="imagen" className={styles.image} />
-          <span className={styles.span}>{job.name}</span>
+          <span className={styles.span}>{job.company && job.company.name}</span>
+          <img
+            src={job.logo_Company}
+            alt="Company Logo"
+            className={styles.image}
+          />
         </div>
-        <span className={styles.span}>{job.name}</span>
+        <span className={styles.span}>{job.name_Vacancy}</span>
         <span className={styles.span}> {job.seniority} </span>
       </div>
       <div className={styles.contenedorButton}>

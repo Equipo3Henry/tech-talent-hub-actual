@@ -29,12 +29,12 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
         >
           {jobs &&
             jobs.map((job, index) => {
-              const formatStart = formatDate(job.start); // Llama a formatDate aquí
+              const formatStart = formatDate(job.start);
+
               return (
                 <JobsOfferCard
                   key={index}
                   id={job.id}
-                  company={job.name} // Aquí es donde cambiamos la propiedad de la compañía para asegurarnos de que es una cadena.
                   // logo_Company={job.logo_Company} // Esta línea ha sido eliminada ya que no la estás utilizando en `JobsOfferCard`.
                   name_Vacancy={job.name_Vacancy}
                   seniority={job.seniority}
