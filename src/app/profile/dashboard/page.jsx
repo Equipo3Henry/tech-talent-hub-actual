@@ -15,6 +15,7 @@ function HomePage() {
   const [selectedSeniority, setSelectedSeniority] = useState("");
   const [selectedSpec, setSelectedSpec] = useState("");
   const [selectedWorkday, setSelectedWorkday] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
@@ -43,6 +44,7 @@ function HomePage() {
       } catch (err) {
         console.error(err);
       }
+
     };
 
     if (
@@ -51,18 +53,30 @@ function HomePage() {
       selectedSpec ||
       selectedWorkday
     ) {
-      console.log('hola');
       fetchFilteredJobs();
     }
   }, [selectedProgLanguage, selectedSeniority, selectedSpec, selectedWorkday]);
 
   const handleJobSelect = (jobId) => {
-    // const jobDetail = jobs.find((job) => job.id === jobId);
-    // setSelectedJob(jobDetail);
+    const jobDetail = jobs.find((job) => job.id === jobId);
+    setSelectedJob(jobDetail);
   };
+
+  const handleSearch = async (searchValue) => {
+    if (searchValue) {
+      const res = await fetch(`/api/searchVacancies?q=${searchValue}`);
+      const data = await res.json();
+      setSearchResults(data);
+    } else {
+      const res = await fetch("/api/searchVacancies?q=");
+      const data = await res.json();
+      setSearchResults(data);
+    }
+  };
+  console.log(jobs);
   return (
     <div className={styles.globalContainer}>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <br />
       <FiltersSelectorProfile
         setSelectedProgLanguage={setSelectedProgLanguage}
@@ -73,10 +87,10 @@ function HomePage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-          {/* <JobsOfferCardsContainerForHome
-            jobs={jobs}
-            onJobSelect={handleJobSelect}
-          /> */}
+            <JobsOfferCardsContainerForHome
+              jobs={searchResults}
+              onJobSelect={handleJobSelect}
+            /> 
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>

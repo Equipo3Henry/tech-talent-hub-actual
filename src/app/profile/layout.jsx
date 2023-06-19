@@ -9,7 +9,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("/api/vacancies");
+      const response = await axios.get("/api/searchVacancies?q=");
       setJobs(response.data);
     };
     fetchData();
