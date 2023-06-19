@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export const validation = async (form, errors, setErrors) => {
   //? NAME VALIDATION
   if (form.name.length > 50) {
