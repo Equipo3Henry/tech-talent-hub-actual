@@ -2,14 +2,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const { programming_Languages, seniority, specialization, workday } =
+  const { programming_Languajes, seniority, specialization, workday } =
     req.query;
   console.log("Incoming query parameters: ", req.query);
-
   if (req.method === "GET") {
     try {
       const vacancies = await getVacancies(
-        programming_Languages,
+        programming_Languajes,
         seniority,
         specialization,
         workday
@@ -26,16 +25,16 @@ export default async function handler(req, res) {
 }
 
 async function getVacancies(
-  programming_Languages,
+  programming_Languajes,
   seniority,
   specialization,
   workday
 ) {
   let where = {};
 
-  if (programming_Languages) {
+  if (programming_Languajes) {
     where.programming_Languages = {
-      hasSome: programming_Languages.split(","),
+      hasSome: programming_Languajes.split(","),
     };
   }
   if (seniority) {
@@ -62,6 +61,7 @@ async function getVacancies(
     where,
   });
 
+  console.log(programming_Languajes, seniority, specialization, workday);
   console.log("Query result: ", vacancies);
 
   return vacancies;

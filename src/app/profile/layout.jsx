@@ -36,7 +36,7 @@ export default function Layout({ children }) {
       const params = {};
 
       if (selectedProgLanguage) {
-        params.progLanguage = selectedProgLanguage;
+        params.programming_Languajes = selectedProgLanguage;
       }
 
       if (selectedSeniority) {
@@ -50,7 +50,6 @@ export default function Layout({ children }) {
       if (selectedWorkday) {
         params.workday = selectedWorkday;
       }
-
       try {
         const response = await axios.get(url, { params });
         setJobs(response.data);
