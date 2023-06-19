@@ -25,17 +25,22 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
       {console.log(selectedUserId)}
       <div className={styles.ContainerDetail}>
         <div className={styles.botonera}>
-          <button className={styles.buttonConnect}>Connect!</button>
-          <button className={styles.buttonLike}> like</button>
+          <button className={styles.buttonConnect}>Connect</button>
+          <button className={styles.buttonLike}>Favorite</button>
         </div>
         <div className={styles.InfoContainer}>
           <div className={styles.UserNameCompanyContainer}>
-            <h1>{`${user.name} ${user.lastname}`}</h1>
+            <h1
+              className={styles.username_name}
+            >{`${user.name} ${user.lastname}`}</h1>
             <div className={styles.specializationContainer}>
               <h1 className={styles.subtitle}>{user.specialization}</h1>
               <h4 className={styles.subtitleProgramming}>{user.seniority}</h4>
             </div>
-            <h1 className={styles.subtitle}> I am from: {user.country}</h1>
+            <h1 className={styles.subtitle}>
+              {" "}
+              Hello! I am from {user.country}
+            </h1>
           </div>
         </div>
         <span className={styles.aboutme}>{user.aboutme}</span>
@@ -52,9 +57,7 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
           </ul>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.buttonDownload}>
-            Download the Resume!
-          </button>
+          <button className={styles.buttonDownload}>Download the Resume</button>
         </div>
       </div>
     </div>
