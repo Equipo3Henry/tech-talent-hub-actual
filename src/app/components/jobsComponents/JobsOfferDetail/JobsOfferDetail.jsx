@@ -3,17 +3,18 @@ import Link from "next/link";
 import styles from "./JobsOfferDetail.module.css";
 import { useEffect, useState } from "react";
 
-const JobsOfferDetail = ({ selectedJobId, jobs }) => {
+const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
     if (selectedJobId) {
-      const jobDetail = jobs.find(
-        (job) => job.id === selectedJobId
-      );
+      const jobDetail = jobs.find((job) => job.id === selectedJobId);
       setJob(jobDetail);
+    }else{
+      setSelectedJobId(null);
+      setJob(null);
     }
-  }, [selectedJobId]);
+  }, [selectedJobId, jobs]);
 
   if (!job) {
     return <div>aca iria el id del detail [00]</div>;

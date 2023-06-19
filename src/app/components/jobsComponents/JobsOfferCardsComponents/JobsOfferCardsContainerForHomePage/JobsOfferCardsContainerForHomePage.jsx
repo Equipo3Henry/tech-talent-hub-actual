@@ -45,7 +45,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
           })}
         </ul>
       </div>
-      <JobsOfferDetail selectedJobId={selectedJobId} jobs={jobs} />
+      <JobsOfferDetail selectedJobId={selectedJobId} jobs={jobs} setSelectedJobId={setSelectedJobId} />
     </div>
   );
 };
