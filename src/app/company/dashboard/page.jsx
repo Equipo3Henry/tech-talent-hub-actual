@@ -13,39 +13,17 @@ function DashboardPage() {
     setSelectedProgLanguage,
     setSelectedSeniority,
     setSelectedSoftSkill,
+    setSearchValue
   } = useContext(GlobalContext);
 
-  const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await fetch("/api/searchUsers?q=");
-      const data = await res.json();
-      setSearchResults(data);
-    };
-    fetchUsers();
-  }, []);
-
   const handleUserSelect = (userId) => {
-    const userDetail = searchResults.find((user) => user.id === userId);
+    const userDetail = users.find((user) => user.id === userId);
     setSelectedUser(userDetail);
   };
-
-  const handleSearch = async (searchValue) => {
-    if (searchValue) {
-      const res = await fetch(`/api/searchUsers?q=${searchValue}`);
-      const data = await res.json();
-      setSearchResults(data);
-    } else {
-      const res = await fetch("/api/searchUsers?q=");
-      const data = await res.json();
-      setSearchResults(data);
-    }
-  };
-
+  
   return (
     <div className={styles.globalContainer}>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar setSearchValue={setSearchValue} />
 
       <br />
       <FiltersSelector
@@ -57,7 +35,7 @@ function DashboardPage() {
       <div className={styles.forniculo}>
         <div className={styles.usersContainer}>
           <UserOfferCardsContainerForDashboard
-            users={searchResults}
+            users={users}
             onUserSelect={handleUserSelect}
           />
           <div className={styles.usersDetailContainer}></div>
