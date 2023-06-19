@@ -1,4 +1,6 @@
 .ContainerDetail {
+  display: flex;
+  padding: 0 4rem;
   border: solid;
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -15,8 +17,7 @@
 
 .InfoContainer {
   display: flex;
-  flex-direction: row;
-  background-color: blue;
+  flex-direction: column;
 }
 
 .image {
@@ -27,11 +28,16 @@
 }
 
 .CompanyNameContainer {
-  background-color: red;
-}
-
-.InfoContainer {
+  display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2em;
+  color: #000000;
+  text-align: left;
 }
 
 .botonera {
