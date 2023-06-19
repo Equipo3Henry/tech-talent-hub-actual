@@ -2,6 +2,8 @@ import favorites from "../images/favorites.svg";
 import logoff from "../images/logoff.svg";
 import google from "../images/google.svg";
 import linkedin from "../images/linkedin.svg";
+import eyeopen from "../images/eyeopen.png";
+import eyeclosed from "../images/eyeclosed.png";
 import github from "../images/github.svg";
 import signinvector from "../images/signinvector.png";
 import Vector from "../images/Vector.png";
@@ -39,6 +41,8 @@ export {
   signinvector,
   Vector,
   home,
+  eyeclosed,
+  eyeopen,
   search,
   notification,
   imagen_1,
