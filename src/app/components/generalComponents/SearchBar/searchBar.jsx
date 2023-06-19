@@ -39,10 +39,11 @@ import styles from "./searchBar.module.css";
 import search from "../../../public/images/search.svg";
 import Image from "next/image";
 
-function SearchBar({ onSearch }) {
+function SearchBar({ setSearchValue }) {
+  /*
   const [searchValue, setSearchValue] = useState("");
   const [timer, setTimer] = useState(null);
-
+  
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     setSearchValue(newValue);
@@ -54,15 +55,18 @@ function SearchBar({ onSearch }) {
         onSearch(newValue);
       }, 300)
     );
-  };
+  };*/
 
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value);
+  }
+  
   return (
     <div className={styles.searchBarContainer}>
       <div className={styles.searchBar}>
         <input
           type="search"
           placeholder="Search for job titles, companies or keywords"
-          value={searchValue}
           onChange={handleInputChange}
           className={styles.input}
         />
