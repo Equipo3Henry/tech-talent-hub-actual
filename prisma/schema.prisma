@@ -10,17 +10,19 @@ datasource db {
 }
 
 model Company {
-  id           String      @id @default(uuid())
-  name         String
-  logo_Company String?
-  type         CompanyType @default(STARTUP)
-  email        String      @unique @db.VarChar(50)
-  password     String      @db.VarChar(20)
-  country      String      @db.VarChar(50)
-  vacancies    Int         @default(autoincrement())
-  description  String?
-  employes     Int         @default(0)
-  jobs         Int         @default(0)
+  id             String      @id @default(uuid())
+  name           String
+  logo_Company   String?
+  type           CompanyType @default(STARTUP)
+  email          String      @unique @db.VarChar(50)
+  password       String      @db.VarChar(20)
+  country        String      @db.VarChar(50)
+  vacancies      Int         @default(autoincrement())
+  description    String?
+  employes       Int         @default(0)
+  jobs           Int         @default(0)
+  vacanciesCount Int         @default(autoincrement())
+  Vacancy        Vacancy[]
 }
 
 model Review {
@@ -37,33 +39,33 @@ model SoftSkills {
 }
 
 model User {
-  id               String   @id @default(uuid())
+  id               String    @id @default(uuid())
   username         String
-  name             String   @db.VarChar(50)
-  lastname         String   @db.VarChar(50)
+  name             String    @db.VarChar(50)
+  lastname         String    @db.VarChar(50)
   birth            String
   aboutme          String?
-  working          Boolean  @default(false)
-  country          String   @db.VarChar(50)
-  email            String   @unique
+  working          Boolean   @default(false)
+  country          String    @db.VarChar(50)
+  email            String    @unique
   password         String
   degree           String?
   languages        String[]
   progLanguages    String[]
-  profile_pictures String?  @unique
+  profile_pictures String?   @unique
   seniority        String?
   cv               String?
   softSkills       String[]
   specialization   Spec
-  recruiter        Boolean  @default(false)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  recruiter        Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  Vacancy          Vacancy[] @relation("applications")
 }
 
 model Vacancy {
   id                    String    @id @default(uuid())
   name_Vacancy          String
-  company               String
   logo_Company          String
   programming_Languages String[]
   seniority             Seniority @default(JUNIOR)
@@ -74,6 +76,9 @@ model Vacancy {
   date_Hire             DateTime
   isActive              Boolean   @default(false)
   Relevance             Relevance @default(SMALL)
+  companyId             String
+  Company               Company   @relation(fields: [companyId], references: [id])
+  User                  User[]    @relation("applications")
 }
 
 enum CompanyType {
