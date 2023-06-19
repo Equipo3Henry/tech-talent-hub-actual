@@ -16,7 +16,7 @@ export default function Layout({ children }) {
     const fetchData = async () => {
       const response = await axios.get("/api/users");
       setDataUsers(response.data);
-      setUsers(response.data);     
+      setUsers(response.data);
     };
     fetchData();
   }, []);
@@ -25,13 +25,13 @@ export default function Layout({ children }) {
     const fetchSearchUsers = async () => {
       const response = await axios.get(`/api/searchUsers?q=${searchValue}`);
       setUsers(response.data);
-    }
+    };
     fetchSearchUsers();
-  },[searchValue]);
+  }, [searchValue]);
 
   useEffect(() => {
     const fetchFilteredUsers = async () => {
-      const url = "http://localhost:3000/api/usersFilters";
+      const url = "/api/usersFilters";
       const params = {};
 
       if (selectedProgLanguage) {
@@ -55,13 +55,20 @@ export default function Layout({ children }) {
     };
 
     selectedProgLanguage || selectedSeniority || selectedSoftSkill
-    ? fetchFilteredUsers()
-    : setUsers(dataUsers);
-   
+      ? fetchFilteredUsers()
+      : setUsers(dataUsers);
   }, [selectedProgLanguage, selectedSeniority, selectedSoftSkill]);
 
   return (
-    <GlobalContext.Provider value={{ users, setSelectedProgLanguage, setSelectedSeniority, setSelectedSoftSkill, setSearchValue }}>
+    <GlobalContext.Provider
+      value={{
+        users,
+        setSelectedProgLanguage,
+        setSelectedSeniority,
+        setSelectedSoftSkill,
+        setSearchValue,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
