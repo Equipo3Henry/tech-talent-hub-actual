@@ -3,8 +3,8 @@
 
 .ContainerDetail {
   border: solid;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
+  border-top-width: 3px;
+  border-bottom-width: 3px;
   border-left-width: 0px;
   border-right-width: 9px;
   width: 525px;
@@ -16,6 +16,7 @@
   border-color: #b682d9;
   overflow: auto;
 }
+
 
 .InfoContainer {
   flex-direction: row;
@@ -40,18 +41,20 @@
   font-size: 20px;
   color: white;
   padding: 1rem;
+  cursor: pointer;
 }
 .buttonDownload {
   background-color: #b682d9;
   border-style: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  width: 50%;
+  width: 85%;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   color: white;
+  cursor: pointer;
   padding: 1rem;
 }
 
@@ -67,6 +70,7 @@
   font-weight: 500;
   font-size: 20px;
   color: white;
+  cursor: pointer;
 }
 
 .subtitle {
@@ -77,6 +81,7 @@
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
+  text-align: left;
 }
 .subtitleProgramming {
   margin-top: -1rem;
@@ -92,7 +97,18 @@
   display: flex;
   flex-direction: column;
   padding: 2em;
+  font-family: "Marriweather";
 }
+
+.username_name{
+      font-family: "Merriweather";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 2em;
+      color: #000000;
+      text-align: left;
+}
+
 
 .buttonContainer {
   display: flex;
@@ -100,17 +116,23 @@
   padding-bottom: 2rem;
 }
 
-.aboutme {
-  padding: 2em;
-}
+/* .aboutme {
+  padding: 1em;
+} */
 
 .listados {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  gap: 90px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  
 }
 
 .specializationContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 40px;
 }

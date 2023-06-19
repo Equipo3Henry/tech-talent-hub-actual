@@ -31,7 +31,11 @@ const UserOfferCardsContainerForDashboard = ({ users }) => {
             })}
           </ul>
         </div>
-        <UserOfferDetail selectedUserId={selectedUserId} users={users} setSelectedUserId={setSelectedUserId}/>
+        <UserOfferDetail
+          selectedUserId={selectedUserId}
+          users={users}
+          setSelectedUserId={setSelectedUserId}
+        />
       </div>
     </div>
   );

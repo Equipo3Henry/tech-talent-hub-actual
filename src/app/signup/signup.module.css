@@ -1,3 +1,65 @@
+
+body.active-modal {
+    overflow-y: hidden;
+}
+.btn_modal {
+    width: 96%;
+    height: 59px;
+    left: 265px;
+    top: 825px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: #7155d9;
+    box-shadow: 2px 2px 4px #00000040;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    transition: transform 0.5 ease;
+}
+
+.btn_modal:hover {
+    background: none;
+    border: solid;
+    border-color: #7155d9;
+    color: #7155d9;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.modal,
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 1000;
+}
+
+.overlay {
+    background: rgba(49, 49, 49, 0.8);
+}
+
+.modal_content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 20px 35px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+    z-index: 2000;
+}
 /* PAGE CONTAINER */
 .page_container {
     margin-left: 100px;
@@ -22,15 +84,21 @@
     font-family: 'Merriweather';
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
+    font-size: 39px;
     letter-spacing: -0.011em;
     color: #000000;
+}
+
+/* required */
+.required {
+    color: red;
 }
 
 /* subtitle */
 
 .subtitle {
     font-family: 'Merriweather';
+    margin-top: -10px;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -38,134 +106,17 @@
     color: #000000;
 }
 
-/* boton-linkedin */
-/* 
-.boton_linkedin{
+.password_toggle_container {
+    position: relative;
+}
+
+.password_icon {
     position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 583px;
-    top: 173px;
-} */
+    top: 32%;
+    right: 12%;
+    cursor: pointer;
+}
 
-
-
-/* linkedin-texto */
-
-/* .linkedin_texto{
-    position: absolute;
-    width: 153px;
-    height: 22px;
-    left: 619px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* linkedin-logo */
-
-/* .linkedin_logo{
-    position: absolute;
-    left: 54.86%;
-    right: 43.32%;
-    top: 19.44%;
-    bottom: 77.98%;
-    background: #FFFFFF;
-} */
-
-
-/* boton-google */
-
-/* .boton_google{
-    position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 262px;
-    top: 173px;
-} */
-
-
-
-/* google-texto */
-
-/* .google_texto{
-    position: absolute;
-    width: 142px;
-    height: 22px;
-    left: 301px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;    
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* google-logo */
-/* 
-.google_logo{
-    position: absolute;
-    left: 32.5%;
-    right: 65.8%;
-    top: 19.54%;
-    bottom: 77.85%;
-    background: #FFFFFF;
-} */
-
-
-/* boton-github */
-
-/* .boton_github{
-    position: absolute;
-    width: 270px;
-    height: 53px;
-    left: 904px;
-    top: 173px;
-} */
-
-
-
-/* github-texto */
-
-/* .github_texto{
-    position: absolute;
-    width: 141px;
-    height: 22px;
-    left: 941px;
-    top: 189px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 139%;
-    letter-spacing: -0.011em;
-    color: #FFFFFF;
-} */
-
-
-
-/* github-logo */
-
-
-/* .github_logo{
-    position: absolute;
-    left: 77.29%;
-    right: 20.97%;
-    top: 19.44%;
-    bottom: 78.02%;
-    background: #FFFFFF;
-} */
 
 /* divider */
 
@@ -233,9 +184,10 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: -0.011em;
     color: #000000;
+    margin-bottom: 3px;
 }
 
 /* FILA 1 y 3 */
@@ -298,10 +250,21 @@
     border-style: solid;
     border-color: #000000;
     border-width: 0.5px 0.5px 4px 0.5px;
-    font-size: 18px;
+    font-size: 19px;
+    font-family: 'Roboto';
+    font-style: normal;
 }
 
+.textarea_aboutMe {
+    height: 100px;
+    padding-top: 10px;
+}
 
+.error_span {
+    color: rgb(201, 16, 16);
+    margin-top: 10px;
+    font-size: 17px;
+}
 
 /* button */
 

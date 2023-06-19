@@ -10,7 +10,7 @@
   display: flex;
 }
 
-.Container:hover {
+.Container:hover, .Container:focus{
   border-color: #b682d9;
 }
 .InfoContainer {

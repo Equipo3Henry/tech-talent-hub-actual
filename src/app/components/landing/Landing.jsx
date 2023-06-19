@@ -10,7 +10,7 @@ function LandingFirstPart(props) {
       <div className={styles.landingContainer}>
         <div className={styles.textContainer}>
           <h1 className={styles.title}>
-            We connect IT Talent with Israel’s Companies
+            We help connect IT Talent with Israel’s Companies
           </h1>
           <p className={styles.parrafo}>
             Whether you are a company seeking exceptional talent or a skilled

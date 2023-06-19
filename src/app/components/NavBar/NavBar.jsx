@@ -60,7 +60,7 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/profile/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />
           </Link>
-          <Link href="/loginpro">
+          <Link href="/landing">
             <Image src={logoff} alt="image" className={styles.Icons} />{" "}
           </Link>
         </div>
@@ -85,7 +85,7 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/company/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />{" "}
           </Link>
-          <Link href="/logincomp">
+          <Link href="/landing">
             <Image src={logoff} alt="image" className={styles.Icons} />{" "}
           </Link>
         </div>

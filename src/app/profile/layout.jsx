@@ -7,6 +7,8 @@ export const GlobalContext = createContext();
 export default function Layout({ children }) {
   const [dataJobs, setDataJobs] = useState([]);
   const [jobs, setJobs] = useState([]);
+
+  console.log(jobs); // Aquí se añade el console.log
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
   const [selectedSpec, setSelectedSpec] = useState("");
@@ -16,6 +18,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
+      console.log(response.data); // Aquí se añade el console.log
       setDataJobs(response.data);
       setJobs(response.data);
     };
@@ -26,9 +29,9 @@ export default function Layout({ children }) {
     const fetchSearchVacancies = async () => {
       const response = await axios.get(`/api/searchVacancies?q=${searchValue}`);
       setJobs(response.data);
-    }
+    };
     fetchSearchVacancies();
-  },[searchValue]);
+  }, [searchValue]);
 
   useEffect(() => {
     const fetchFilteredJobs = async () => {
@@ -57,15 +60,23 @@ export default function Layout({ children }) {
         console.error(err);
       }
     };
-  
+
     selectedProgLanguage || selectedSeniority || selectedSpec || selectedWorkday
-    ? fetchFilteredJobs()
-    : setJobs(dataJobs);
-    
+      ? fetchFilteredJobs()
+      : setJobs(dataJobs);
   }, [selectedProgLanguage, selectedSeniority, selectedSpec, selectedWorkday]);
 
   return (
-    <GlobalContext.Provider value={{ jobs, setSelectedProgLanguage, setSelectedSeniority, setSelectedSpec, setSelectedWorkday, setSearchValue}}>
+    <GlobalContext.Provider
+      value={{
+        jobs,
+        setSelectedProgLanguage,
+        setSelectedSeniority,
+        setSelectedSpec,
+        setSelectedWorkday,
+        setSearchValue,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
