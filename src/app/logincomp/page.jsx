@@ -68,9 +68,11 @@ const login = () => {
           <div>
             <br />
             <br />
-            <button className={styles.ButtonB}>
-              New to HighTech Fusion? Join now
-            </button>
+            <Link href="/signupcompanies">
+              <button className={styles.ButtonB}>
+                New to HighTech Fusion? Join now
+              </button>
+            </Link>
           </div>
         </div>
         <div className={styles.imagenContenedor}>
