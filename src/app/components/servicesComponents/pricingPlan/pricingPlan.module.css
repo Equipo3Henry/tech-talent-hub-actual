@@ -47,8 +47,9 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 900;
-  font-size: 76px;
+  font-size: 50px;
   line-height: 139%;
+  padding-left: 50px;
   /* or 133px */
 
   letter-spacing: -0.011em;
