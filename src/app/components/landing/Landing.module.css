@@ -5,26 +5,26 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10em;
+  gap: 18em;
 }
 
 .textContainer {
   display: flex;
   flex-direction: column;
-  width: 448px;
+  width: 470px;
 }
 
 .title{
-  font-size: 35px;
+  font-size: 40px;
 }
 
 .parrafo {
-  width: 448px;
+  width: 470px;
   overflow-wrap: break-word;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 139%;
   /* or 28px */
 
@@ -45,14 +45,14 @@
 .botonera {
   display: flex;
   justify-content: space-between;
-  margin-top: 45px;
+  margin-top: 25px;
 }
 .botonUsers {
   background: #7155d9;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  width: 192px;
+  width: 210px;
   height: 59px;
   font-family: "Roboto";
   font-style: normal;
@@ -68,7 +68,7 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  width: 210px;
+  width: 225px;
   height: 59px;
   cursor: pointer;
   font-family: "Roboto";
