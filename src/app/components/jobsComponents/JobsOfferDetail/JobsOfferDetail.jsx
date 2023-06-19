@@ -10,14 +10,14 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
     if (selectedJobId) {
       const jobDetail = jobs.find((job) => job.id === selectedJobId);
       setJob(jobDetail);
-    }else{
+    } else {
       setSelectedJobId(null);
       setJob(null);
     }
   }, [selectedJobId, jobs]);
 
   if (!job) {
-    return <div>aca iria el id del detail [00]</div>;
+    return;
   }
 
   return (
@@ -25,9 +25,9 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
           <img src={job.logo_Company} alt="imagen" className={styles.image} />
-          <span className={styles.span}>{job.company}</span>
+          <span className={styles.span}>{job.name}</span>
         </div>
-        <h1 className={styles.CompanyTitle}> {job.name_Vacancy} </h1>
+        <span className={styles.span}>{job.name}</span>
         <span className={styles.span}> {job.seniority} </span>
       </div>
       <div className={styles.contenedorButton}>
