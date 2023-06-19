@@ -19,7 +19,7 @@ function DashboardPage() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await fetch("/api/search?q=");
+      const res = await fetch("/api/searchUsers?q=");
       const data = await res.json();
       setSearchResults(data);
     };
@@ -33,11 +33,11 @@ function DashboardPage() {
 
   const handleSearch = async (searchValue) => {
     if (searchValue) {
-      const res = await fetch(`/api/search?q=${searchValue}`);
+      const res = await fetch(`/api/searchUsers?q=${searchValue}`);
       const data = await res.json();
       setSearchResults(data);
     } else {
-      const res = await fetch("/api/search?q=");
+      const res = await fetch("/api/searchUsers?q=");
       const data = await res.json();
       setSearchResults(data);
     }
