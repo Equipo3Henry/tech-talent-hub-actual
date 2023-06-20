@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, {useState} from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import {
@@ -10,8 +9,36 @@ import {
   signinvector,
 } from "../public/assets/imagesCodes";
 import Link from "next/link";
-
+import axios from "axios";
+import { useRouter } from 'next/navigation'
 const login = () => {
+
+  const router = useRouter();
+  
+  const [formLogin, setFormLogin] = useState({
+    email: "",
+    password: "",
+  })
+  const [error, setError] = useState("");
+  
+const handleUser = (e) => {
+  const property = e.target.name;
+  const value = e.target.value;
+  setFormLogin({...formLogin,[property]: value});
+}
+
+const handleSubmit = async(e) => {
+  e.preventDefault();
+
+  const response = (await axios.get(`/api/loginUsers?user=${formLogin.email}&password=${formLogin.password}`)).data;
+  console.log(response)
+  if (response.response === "Access granted"){
+    const params = JSON.stringify(response.userData);
+    router.push(`/profile/dashboard?userData=${ params }`);
+  } 
+  else setError(response.response);
+}
+
   return (
     <div>
       <div className={styles.LogInContainer}>
@@ -20,6 +47,8 @@ const login = () => {
             <h1 className={styles.title}>Unlock your potential in tech</h1>
             <h4 className={styles.subtitle}>Create an account or Sign in</h4>
           </div>
+          <form onSubmit={handleSubmit}>
+          <span className={styles.error}>{error}</span>
           <div className={styles.inPutsContainer}>
             <div className={styles.email}>
               <label htmlFor="email">
@@ -29,6 +58,7 @@ const login = () => {
                   name="email"
                   id="email"
                   className={styles.input}
+                  onChange={handleUser}
                 />
               </label>
               <label htmlFor="Password">
@@ -38,15 +68,15 @@ const login = () => {
                   name="password"
                   id="password"
                   className={styles.input}
+                  onChange={handleUser}
                 />
               </label>
             </div>
           </div>
           <br />
           <br />
-          <Link href="profile/dashboard">
-            <button className={styles.ButtonSignIn}>Log In</button>
-          </Link>
+            <button className={styles.ButtonSignIn} type="submit">Log In</button>
+          </form>
           <br />
           <br />
           <div className={styles.Separator}>
