@@ -6,8 +6,13 @@ import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
+import { useSearchParams } from "next/navigation";
 
 function HomePage() {
+  const params = useSearchParams();
+  const userData = JSON.parse(params.get("userData"));
+  console.log(userData);
+
   const {
     jobs,
     setSelectedProgLanguage,
