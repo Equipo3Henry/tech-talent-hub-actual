@@ -36,8 +36,10 @@ import logout from "../images/log-out.svg";
 import settings from "../images/settings.svg";
 import upgrade from "../images/upgrade.svg";
 import user from "../images/user.svg";
+import myApplicationspicture from "../images/my-applications.png";
 
 export {
+  myApplicationspicture,
   user,
   upgrade,
   settings,

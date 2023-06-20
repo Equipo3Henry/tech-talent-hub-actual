@@ -53,9 +53,7 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
         <span>{job.end}</span>
       </div>
       <div className={styles.contenedorButton}>
-        <Link href={`/profile/login`}>
-          <button className={styles.button}>Apply</button>
-        </Link>
+        <button className={styles.button}>Apply</button>
       </div>
     </div>
   );
