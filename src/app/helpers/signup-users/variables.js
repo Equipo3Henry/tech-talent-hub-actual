@@ -25,26 +25,26 @@ const progLanguages = [
 
 //? OPTIONS SELECT COUNTRIES
 const countries = [
-  { value: "argentina", label: "Argentina" },
-  { value: "bolivia", label: "Bolivia" },
-  { value: "brasil", label: "Brasil" },
-  { value: "chile", label: "Chile" },
-  { value: "colombia", label: "Colombia" },
-  { value: "costaRica", label: "Costa Rica" },
-  { value: "cuba", label: "Cuba" },
-  { value: "ecuador", label: "Ecuador" },
-  { value: "elSalvador", label: "El Salvador" },
-  { value: "guatemala", label: "Guatemala" },
-  { value: "honduras", label: "Honduras" },
-  { value: "mexico", label: "Mexico" },
-  { value: "nicaragua", label: "Nicaragua" },
-  { value: "panama", label: "Panama" },
-  { value: "paraguay", label: "Paraguay" },
-  { value: "peru", label: "Perú" },
-  { value: "puertoRico", label: "Puerto Rico" },
-  { value: "dominicana", label: "República Dominicana" },
-  { value: "uruguay", label: "Uruguay" },
-  { value: "venezuela", label: "Venezuela" },
+  { value: "Argentina", label: "Argentina" },
+  { value: "Bolivia", label: "Bolivia" },
+  { value: "Brasil", label: "Brasil" },
+  { value: "Chile", label: "Chile" },
+  { value: "Colombia", label: "Colombia" },
+  { value: "Costa Rica", label: "Costa Rica" },
+  { value: "Cuba", label: "Cuba" },
+  { value: "Ecuador", label: "Ecuador" },
+  { value: "El Salvador", label: "El Salvador" },
+  { value: "Guatemala", label: "Guatemala" },
+  { value: "Honduras", label: "Honduras" },
+  { value: "Mexico", label: "Mexico" },
+  { value: "Nicaragua", label: "Nicaragua" },
+  { value: "Panama", label: "Panama" },
+  { value: "Paraguay", label: "Paraguay" },
+  { value: "Peru", label: "Perú" },
+  { value: "PuertoRico", label: "Puerto Rico" },
+  { value: "Repubica Dominicana", label: "República Dominicana" },
+  { value: "Uruguay", label: "Uruguay" },
+  { value: "Venezuela", label: "Venezuela" },
 ];
 
 //? OPTIONS SELECT SOFT SKILLS
@@ -94,10 +94,10 @@ const languages = [
 
 //? OPTIONS SELECT SENIORITY
 const seniority = [
-  { value: "trainee", label: "Trainee" },
-  { value: "junior", label: "Junior" },
-  { value: "semiSenior", label: "Semi-Senior" },
-  { value: "senior", label: "Senior" },
+  { value: "TRAINEE", label: "Trainee" },
+  { value: "JUNIOR", label: "Junior" },
+  { value: "SEMISENIOR", label: "Semi-Senior" },
+  { value: "SENIOR", label: "Senior" },
 ];
 
 //? OPTIONS SELECT SPECIALIZATION
