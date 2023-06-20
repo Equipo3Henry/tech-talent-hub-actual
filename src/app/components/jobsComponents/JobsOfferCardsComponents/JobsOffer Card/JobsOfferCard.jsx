@@ -24,7 +24,7 @@ const JobsOfferCard = ({
           <span className={styles.span}>{company}</span>
         </div>
         <h1 className={styles.CompanyTitle}> {name_Vacancy} </h1>
-        <span className={styles.span}> {seniority} </span>
+        <span className={styles.spanSeniority}> {seniority} </span>
       </div>
       {showButton && (
         <div className={styles.contenedorButton}>

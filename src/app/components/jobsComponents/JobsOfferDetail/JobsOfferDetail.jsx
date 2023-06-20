@@ -34,11 +34,6 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
         <span className={styles.span}>{job.name_Vacancy}</span>
         <span className={styles.span}> {job.seniority} </span>
       </div>
-      <div className={styles.contenedorButton}>
-        <Link href={`/profile/login`}>
-          <button className={styles.button}>Apply!</button>
-        </Link>
-      </div>
       <div className={styles.contenedorSpan}>
         <span>{job.start}</span>
       </div>
@@ -56,6 +51,11 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
       </div>
       <div className={styles.contenedorSpan}>
         <span>{job.end}</span>
+      </div>
+      <div className={styles.contenedorButton}>
+        <Link href={`/profile/login`}>
+          <button className={styles.button}>Apply</button>
+        </Link>
       </div>
     </div>
   );
