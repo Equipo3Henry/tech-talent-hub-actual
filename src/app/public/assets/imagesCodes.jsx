@@ -31,8 +31,17 @@ import posts from "../images/posts.svg";
 import loginusername from "../images/logInUserName.svg";
 import logingroup from "../images/logInGroup.svg";
 import landing from "../images/landing.png";
+import information from "../images/info.svg";
+import logout from "../images/log-out.svg";
+import settings from "../images/settings.svg";
+import upgrade from "../images/upgrade.svg";
+import user from "../images/user.svg";
 
 export {
+  user,
+  upgrade,
+  settings,
+  logout,
   favorites,
   logoff,
   google,
@@ -66,4 +75,5 @@ export {
   loginusername,
   logingroup,
   landing,
+  information,
 };
