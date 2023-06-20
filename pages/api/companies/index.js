@@ -11,8 +11,10 @@ export default async function handler(req, res) {
         email,
         password, // remember to hash this before saving
         country,
+        vacancies,
         description,
         employes,
+        jobs
       } = req.body;
 
       const companyEmail = email;
@@ -25,8 +27,10 @@ export default async function handler(req, res) {
           email,
           password,
           country,
+          vacancies,
           description,
           employes,
+          jobs
         },
       });
 
