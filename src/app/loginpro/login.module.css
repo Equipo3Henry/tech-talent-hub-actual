@@ -156,3 +156,8 @@
   color: transparent;
   height: 670px;
 }
+
+.error {
+  color: red;
+  font-style: italic;
+}
