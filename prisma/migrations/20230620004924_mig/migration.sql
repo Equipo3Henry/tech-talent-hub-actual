@@ -35,6 +35,7 @@ CREATE TABLE "Company" (
     "description" TEXT,
     "employes" INTEGER NOT NULL DEFAULT 0,
     "jobs" INTEGER NOT NULL DEFAULT 0,
+    "vacanciesCount" SERIAL NOT NULL,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
 );
@@ -89,7 +90,6 @@ CREATE TABLE "User" (
 CREATE TABLE "Vacancy" (
     "id" TEXT NOT NULL,
     "name_Vacancy" TEXT NOT NULL,
-    "company" TEXT NOT NULL,
     "logo_Company" TEXT NOT NULL,
     "programming_Languages" TEXT[],
     "seniority" "Seniority" NOT NULL DEFAULT 'JUNIOR',
@@ -100,8 +100,15 @@ CREATE TABLE "Vacancy" (
     "date_Hire" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT false,
     "Relevance" "Relevance" NOT NULL DEFAULT 'SMALL',
+    "companyId" TEXT NOT NULL,
 
     CONSTRAINT "Vacancy_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_applications" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
 );
 
 -- CreateIndex
@@ -112,3 +119,18 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_profile_pictures_key" ON "User"("profile_pictures");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_applications_AB_unique" ON "_applications"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_applications_B_index" ON "_applications"("B");
+
+-- AddForeignKey
+ALTER TABLE "Vacancy" ADD CONSTRAINT "Vacancy_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_applications" ADD CONSTRAINT "_applications_A_fkey" FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_applications" ADD CONSTRAINT "_applications_B_fkey" FOREIGN KEY ("B") REFERENCES "Vacancy"("id") ON DELETE CASCADE ON UPDATE CASCADE;
