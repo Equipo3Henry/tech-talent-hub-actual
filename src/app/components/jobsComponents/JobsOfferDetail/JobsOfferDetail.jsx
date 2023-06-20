@@ -3,6 +3,24 @@ import Link from "next/link";
 import styles from "./JobsOfferDetail.module.css";
 import { useEffect, useState } from "react";
 
+const applyJob = async (userId, jobId) => {
+  try {
+    const response = await fetch("/api/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, jobId }),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+  } catch (error) {
+    console.error("Error applying to job:", error);
+  }
+};
+
 const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
   const [job, setJob] = useState(null);
 
@@ -53,7 +71,12 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
         <span>{job.end}</span>
       </div>
       <div className={styles.contenedorButton}>
-        <button className={styles.button}>Apply</button>
+        <button
+          className={styles.button}
+          onClick={() => applyJob(user.id, job.id)}
+        >
+          Apply
+        </button>
       </div>
     </div>
   );
