@@ -3,7 +3,6 @@ import styles from "./JobsOfferCardsContainer.module.css";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 
 const JobsOfferCardsContainer = ({ jobs }) => {
-  const firstFiveJobs = jobs.slice(0, 4);
   const companyName = jobs.company && jobs.company.name;
 
   return (

@@ -55,6 +55,11 @@ export default async function handler(req, res) {
       const vacancies = await prisma.vacancy.findMany({
         include: {
           company: true, // Include company details in the response
+          applicants: {
+            select: {
+              id: true, // Only select the id field from applicants
+            },
+          },
         },
       });
 
