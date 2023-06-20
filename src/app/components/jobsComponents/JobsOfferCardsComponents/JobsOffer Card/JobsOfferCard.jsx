@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./JobsOfferCard.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 const JobsOfferCard = ({
   id,
@@ -13,12 +14,17 @@ const JobsOfferCard = ({
   showSpan,
   onJobSelected,
 }) => {
+
+
+
   return (
+
     <div
       className={styles.Container}
       key={id}
       onClick={() => onJobSelected(id)}
     >
+
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
           <span className={styles.span}>{company}</span>

@@ -40,7 +40,10 @@ model SoftSkills {
 
 model User {
   id               String    @id @default(uuid())
+  id               String    @id @default(uuid())
   username         String
+  name             String    @db.VarChar(50)
+  lastname         String    @db.VarChar(50)
   name             String    @db.VarChar(50)
   lastname         String    @db.VarChar(50)
   birth            String
@@ -48,10 +51,14 @@ model User {
   working          Boolean   @default(false)
   country          String    @db.VarChar(50)
   email            String    @unique
+  working          Boolean   @default(false)
+  country          String    @db.VarChar(50)
+  email            String    @unique
   password         String
   degree           String?
   languages        String[]
   progLanguages    String[]
+  profile_pictures String?   @unique
   profile_pictures String?   @unique
   seniority        String?
   cv               String?
