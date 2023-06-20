@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import transporter from "../sendEmail/index";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -16,6 +17,8 @@ export default async function handler(req, res) {
         jobs,
       } = req.body;
 
+      const companyEmail = email;
+
       const newCompany = await prisma.company.create({
         data: {
           name,
@@ -30,6 +33,20 @@ export default async function handler(req, res) {
           jobs,
         },
       });
+
+      await transporter.verify();
+        const mail = {
+          from: 'equipo3.37a@gmail.com',
+          to: companyEmail,
+          subject: "Registro exitoso",
+          html: `
+          <p style="color: black">
+          Mail de prueba a ${email}
+          </p>
+          `,
+        };
+        console.log(mail);
+        await transporter.sendMail(mail);
 
       return res.status(201).json(newCompany);
     } catch (error) {
