@@ -1,5 +1,6 @@
 import prisma from "@/prisma/client";
 import axios from "axios";
+import transporter from "../sendEmail/index";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -36,8 +37,11 @@ export default async function handler(req, res) {
         specialization,
         recruiter,
       } = req.body;
-
+      
+      const userEmail = email;
+      
       try {
+        
         const newUser = await prisma.user.create({
           data: {
             username,
@@ -60,14 +64,24 @@ export default async function handler(req, res) {
             recruiter,
           },
         });
+        console.log(userEmail);
 
-        // const dataToSendEmail = {
-        //   url: '/api/sendEmail/signup',
-        //   email: newUser.email
-        // }
-
-        // axios.post(dataToSendEmail)
-        axios.post("/api/sendEmail/signup", {email: newUser.data.email})
+        await transporter.verify();
+        const mail = {
+          from: 'equipo3.37a@gmail.com',
+          to: userEmail,
+          subject: "Registro exitoso",
+          html: `
+          <p style="color: black">
+          Mail de prueba a ${email}
+          </p>
+          `,
+        };
+        console.log(mail);
+        await transporter.sendMail(mail);
+        // res.status(200).json({
+        //   Message: `Se ha enviado un correo electrónico de prueba a ${email} `,
+        // });
 
         return res.status(201).json(newUser);
       } catch (error) {
