@@ -22,6 +22,7 @@ const NavBar = ({ handleBotonMenu }) => {
   const [isProfile, setIsProfile] = useState(false);
   const [isCompany, setIsCompany] = useState(false);
   const [isPreLogIn, setIsPreLogIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const router = usePathname();
 
