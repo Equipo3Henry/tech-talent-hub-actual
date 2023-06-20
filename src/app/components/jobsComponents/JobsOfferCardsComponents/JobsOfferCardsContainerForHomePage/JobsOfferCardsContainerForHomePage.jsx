@@ -3,6 +3,7 @@ import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.cs
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
+import axios from 'axios';
 
 const JobsOfferCardsContainerForHome = ({ jobs }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
@@ -11,8 +12,14 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
     setSelectedJobId(id);
   };
 
+  const sendEmail = async () => {
+    const mail = await axios.post("/api/sendEmail/postulation", {string: 'string------'});
+    console.log(mail);
+  }
+
   return (
     <div className={styles.forajido}>
+      <button className={styles.button} onClick={sendEmail}>BOTON PARA PROBAR EMAIL</button>
       <div
         style={{
           maxHeight: "572px",
