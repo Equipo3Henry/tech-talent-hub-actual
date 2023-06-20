@@ -133,7 +133,7 @@ function SignUp() {
     // setForm(form);
     console.log(form);
     axios
-      .post("http://localhost:3000/api/users", form)
+      .post("/api/users", form)
       .then((response) => {
         console.log(form);
         setShowModal(true);
