@@ -61,13 +61,14 @@ export default async function handler(req, res) {
           },
         });
 
-        // const dataToSendEmail = {
-        //   url: '/api/sendEmail/signup',
-        //   email: newUser.email
-        // }
-
-        // axios.post(dataToSendEmail)
-        axios.post("/api/sendEmail/signup", {email: newUser.data.email})
+        try {
+          await axios.post("/api/sendEmail/signup", { email: newUser.email });
+        } catch (emailError) {
+          console.error(`Failed to send email: ${emailError}`);
+          // Consider how you want to handle this case. Should the original request fail?
+          // If so, uncomment the next line.
+          // throw emailError;
+        }
 
         return res.status(201).json(newUser);
       } catch (error) {

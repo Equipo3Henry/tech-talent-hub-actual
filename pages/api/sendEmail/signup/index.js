@@ -3,14 +3,14 @@ import transporter from "..";
 export default async function register(req, res) {
   const { method } = req;
   if (method == "POST") {
-      console.log(req);
+    console.log(req);
     const { email } = req.body;
     // const  email  = 'scarsellaivan@gmail.com';
     // console.log(req.method);
     try {
       await transporter.verify();
       const mail = {
-        from: 'equipo3.37a@gmail.com',
+        from: "equipo3.37a@gmail.com",
         to: email,
         subject: "Registro exitoso",
         html: `
