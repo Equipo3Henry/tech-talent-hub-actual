@@ -4,8 +4,7 @@ import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
 import axios from "axios";
-
-const JobsOfferCardsContainerForHome = ({ jobs }) => {
+const JobsOfferCardsContainerForHome = ({ jobs, userData }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
 
   const onJobSelected = (id) => {
@@ -25,12 +24,12 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
         style={{
           maxHeight: "572px",
           overflowY: "auto",
-          display: "flex", // Asegura que el contenedor se comporte como una columna
+          display: "flex",
         }}
       >
         <ul
           style={{
-            flex: "1", // Permite que la lista crezca y ocupe todo el espacio restante
+            flex: "1",
             color: "gray",
             textShadow: "white",
           }}
@@ -44,8 +43,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
                 <JobsOfferCard
                   key={index}
                   id={job.id}
-                  company={companyName} // Aquí es donde cambiamos la propiedad de la compañía para asegurarnos de que es una cadena.
-                  // logo_Company={job.logo_Company} // Esta línea ha sido eliminada ya que no la estás utilizando en `JobsOfferCard`.
+                  company={companyName}
                   name_Vacancy={job.name_Vacancy}
                   seniority={job.seniority}
                   start={formatStart}
@@ -57,6 +55,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
         </ul>
       </div>
       <JobsOfferDetail
+        userData={userData}
         selectedJobId={selectedJobId}
         jobs={jobs}
         setSelectedJobId={setSelectedJobId}
