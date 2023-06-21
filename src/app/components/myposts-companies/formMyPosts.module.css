@@ -31,6 +31,17 @@ body.active-modal {
     cursor: pointer;
 }
 
+.btn_modal:disabled,
+.btn_modal[disabled],
+.btn_modal:disabled:hover {
+    background-color: #cccccc;
+    border-color: #666666;
+    color: #666666;
+    cursor: no-drop;
+    transition: none;
+    transform: none;
+}
+
 .modal,
 .overlay {
     width: 100vw;
