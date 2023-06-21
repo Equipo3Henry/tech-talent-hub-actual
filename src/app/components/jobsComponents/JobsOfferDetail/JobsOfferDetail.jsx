@@ -21,7 +21,12 @@ const applyJob = async (userId, jobId) => {
   }
 };
 
-const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
+const JobsOfferDetail = ({
+  userData,
+  selectedJobId,
+  setSelectedJobId,
+  jobs,
+}) => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
@@ -73,7 +78,7 @@ const JobsOfferDetail = ({ selectedJobId, setSelectedJobId, jobs }) => {
       <div className={styles.contenedorButton}>
         <button
           className={styles.button}
-          onClick={() => applyJob(user.id, job.id)}
+          onClick={() => applyJob(userData.id, job.id)}
         >
           Apply
         </button>

@@ -35,7 +35,8 @@ function HomePage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-          <JobsOfferCardsContainerForHome jobs={jobs} />
+          <JobsOfferCardsContainerForHome jobs={jobs} userData={userData} />
+
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>

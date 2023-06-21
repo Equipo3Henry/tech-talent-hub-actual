@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import JobsOfferCard from "../JobsOfferCardsComponents/JobsOffer Card/JobsOfferCard";
 
-const userId = "30cc77b2-5334-4358-a3bd-c74d5eacc9d1";
+const userId = "9c8f81c7-8d12-40fd-95bf-1563fc47e415";
 
 const MyApplicationsCards = () => {
   const [jobs, setJobs] = useState([]);
