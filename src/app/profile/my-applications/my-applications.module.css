@@ -1,0 +1,8 @@
+.body {
+  margin-left: 70px;
+  padding: 1em;
+}
+
+.container {
+  display: flex;
+}
