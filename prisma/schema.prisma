@@ -15,7 +15,7 @@ model Company {
   logo_Company    String?
   type            CompanyType @default(STARTUP)
   email           String      @unique @db.VarChar(50)
-  password        String      @db.VarChar(20)
+  password        String      
   country         String      @db.VarChar(50)
   vacancies       Int         @default(autoincrement())
   description     String?
