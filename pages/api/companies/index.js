@@ -1,10 +1,11 @@
 import prisma from "@/prisma/client";
 import transporter from "../sendEmail/index";
+import { encrypt } from "@/src/app/helpers/handleBcrypt";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const {
+      let {
         name,
         logo_Company,
         type,
@@ -17,7 +18,10 @@ export default async function handler(req, res) {
         jobs
       } = req.body;
 
+      console.log(email);
       const companyEmail = email;
+
+      password = await encrypt(password)
 
       const newCompany = await prisma.company.create({
         data: {

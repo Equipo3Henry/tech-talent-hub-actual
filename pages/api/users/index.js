@@ -1,5 +1,5 @@
 import prisma from "@/prisma/client";
-import axios from "axios";
+import { encrypt } from "@/src/app/helpers/handleBcrypt";
 import transporter from "../sendEmail/index";
 
 export default async function handler(req, res) {
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: error.message });
       }
     } else {
-      const {
+      let {
         username,
         name,
         lastname,
@@ -37,11 +37,14 @@ export default async function handler(req, res) {
         specialization,
         recruiter,
       } = req.body;
-      
+
       const userEmail = email;
-      
+
+      password = await encrypt(password)
+
+      console.log(password);
       try {
-        
+
         const newUser = await prisma.user.create({
           data: {
             username,
@@ -64,7 +67,6 @@ export default async function handler(req, res) {
             recruiter,
           },
         });
-        console.log(userEmail);
 
         await transporter.verify();
         const mail = {
@@ -77,7 +79,6 @@ export default async function handler(req, res) {
           </p>
           `,
         };
-        console.log(mail);
         await transporter.sendMail(mail);
         // res.status(200).json({
         //   Message: `Se ha enviado un correo electrónico de prueba a ${email} `,

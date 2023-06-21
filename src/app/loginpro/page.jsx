@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import {
@@ -10,8 +10,50 @@ import {
   signinvector,
 } from "../public/assets/imagesCodes";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from 'next/navigation';
+
 
 const login = () => {
+
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
+
+  const [error, setError] = useState("")
+
+  const router = useRouter();
+
+  const checkPassword = async () => {
+    try {
+
+      await axios.post("/api/loginUser", user)
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            console.log("Login successful");
+            router.push('/profile/dashboard');
+          } else {
+            setError("Los campos no coinciden")
+          }
+        })
+    } catch (e) {
+      setError("Los campos no coinciden")
+      console.log(e)
+    }
+  }
+
+  const changeHandler = (event) => {
+    let property = event.target.name;
+    let value = event.target.value;
+
+    setUser({
+      ...user,
+      [property]: value
+    })
+  }
+
   return (
     <div>
       <div className={styles.LogInContainer}>
@@ -29,6 +71,7 @@ const login = () => {
                   name="email"
                   id="email"
                   className={styles.input}
+                  onChange={changeHandler}
                 />
               </label>
               <label htmlFor="Password">
@@ -38,15 +81,17 @@ const login = () => {
                   name="password"
                   id="password"
                   className={styles.input}
+                  onChange={changeHandler}
                 />
               </label>
+              {error ? <span>{error}</span> : null}
             </div>
           </div>
           <br />
           <br />
-          <Link href="profile/dashboard">
-            <button className={styles.ButtonSignIn}>Log In</button>
-          </Link>
+
+          <button className={styles.ButtonSignIn} onClick={checkPassword} >Log In</button>
+
           <br />
           <br />
           <div className={styles.Separator}>
