@@ -1,4 +1,4 @@
-//? OPTIONS SELECT PROGRAMMING LANGUAGES -
+//? OPTIONS SELECT TYPE -
 const type = [
   { value: "STARTUP", label: "Startup" },
   { value: "SMALL", label: "Small" },

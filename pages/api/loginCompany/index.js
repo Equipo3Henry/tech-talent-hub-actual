@@ -15,28 +15,28 @@ export default async function handler(req, res) {
       console.error(`Error while validating user: ${error}`);
       res.status(500).json({ error: "Error validating user." });
     }
-} 
+}
 
 
 async function getValidate( email,password ) {
      
     console.log(`Body condition: email:${email}`);
 
-    const userFound = await prisma.user.findUnique({
+    const companyFound = await prisma.company.findUnique({
         where: {email: email}
     });
-     
-    if (!userFound) return {response: "User not found"};
-    else return await compare(password, userFound.password)
+    
+    if (!companyFound) return {response: "Company not found"};
+    else return await compare(password, companyFound.password)
         ? {
             response: "Access granted", 
-            userData:{
-              id: userFound.id,
-              name: `${userFound.name} ${userFound.lastname}`,
-              user: userFound.username,
-              email: userFound.email,
-              seniority: userFound.seniority,
-              image: userFound.profile_pictures,
+            companyData:{
+              id: companyFound.id,
+              name: companyFound.name,
+              email: companyFound.email,
+              logo: companyFound.logo_Company,
+              type: companyFound.type,
+              country: companyFound.country
           }}
         : {response: "Your email or password are incorrect"} ; 
 }
