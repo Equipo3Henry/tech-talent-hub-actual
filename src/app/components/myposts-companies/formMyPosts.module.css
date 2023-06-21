@@ -159,7 +159,7 @@ body.active-modal {
 .description_container,
 .workday_container,
 .salary_container,
-.relevance_container {
+.date_Hire_container {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -173,7 +173,7 @@ body.active-modal {
 .seniority,
 .workday,
 .salary,
-.relevance,
+.date_Hire,
 .description {
     width: 400px;
     height: 22px;
@@ -199,7 +199,7 @@ body.active-modal {
 .seniority_container,
 .workday_container,
 .salary_container,
-.relevance_container{
+.date_Hire_container{
     flex: 1;
 }
 
@@ -209,7 +209,7 @@ body.active-modal {
 .input_seniority,
 .input_workday,
 .input_salary,
-.input_relevance {
+.input_date_Hire {
     width: 90%;
     height: 50px;
     padding-left: 10px;
@@ -241,4 +241,24 @@ body.active-modal {
     color: rgb(201, 16, 16);
     margin-top: 10px;
     font-size: 17px;
+}
+
+.confirmation_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.confirmation_p{
+    font-size: 19px;
+    font-weight: 600;
+    color: green
+}
+
+.confirmation_span{
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-size: 18px;
 }

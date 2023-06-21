@@ -40,19 +40,8 @@ const seniority = [
   { value: "SENIOR", label: "Senior" },
 ];
 
-//? OPTIONS SELECT RELEVANCE
-const relevance = [
-  { value: "SMALL", label: "Small" },
-  { value: "MEDIUM", label: "Medium" },
-  { value: "ADVANCE", label: "Advance" },
-  { value: "PRO", label: "Pro" },
-  { value: "ELITE", label: "Elite" },
-  { value: "GLOBAL", label: "Global" },
-];
-
 module.exports = {
   seniority,
   workday,
-  relevance,
   programming_Languages,
 };

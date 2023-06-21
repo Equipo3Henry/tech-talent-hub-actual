@@ -1,31 +1,40 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
+import ReactDatePicker from "react-datepicker";
+import format from "date-fns/format";
+import Link from "next/link";
+import { validation } from "../../helpers/myposts-companies/validation";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   seniority,
   workday,
-  relevance,
   programming_Languages,
 } from "../../helpers/myposts-companies/variables";
 import styles from "./formMyPosts.module.css";
 
 const FormMyPosts = () => {
+  //? HARCODEO COMPANIES
+  const idCompany = "24c1e6fa-3a1e-4f9f-a10a-9e3c0ba2f02a";
+  const logoCompany =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png";
+
   //? USE STATE FORM
   const [form, setForm] = useState({
     name_Vacancy: "",
-    logo_Company: "",
+    logo_Company: logoCompany,
     programming_Languages: [],
     seniority: "",
     description: "",
     workday: "",
     salary: 0,
-    date_Hire: new Date(),
+    date_Hire: "",
     isActive: true,
-    Relevance: "",
-    companyId: "",
+    Relevance: "GLOBAL",
+    companyId: idCompany,
   });
 
   //? USE STATE FORM
@@ -43,18 +52,42 @@ const FormMyPosts = () => {
     companyId: "",
   });
 
+  //? USE STATE SPAN CONFIRMATION
+  const [span, setSpan] = useState(false);
+  //? TURN OFF SPAN
+  const spanOff = () => {
+    setSpan(false);
+  };
+
   //? USE STATE MODAL
   const [showModal, setShowModal] = useState(false);
-
   //? TOGGLE MODAL
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  //? USE STATE DATE PICKER
+  const initialDate = new Date();
+  const nextWeekDate = new Date(
+    initialDate.getTime() + 7 * 24 * 60 * 60 * 1000
+  );
+  const [startDate, setStartDate] = useState(nextWeekDate);
+
+  //? CHANGE HANDLER DATE PICKER
+  const handledateHireChange = (date) => {
+    const formattedDate = format(date, "MM/dd/yyyy");
+    setStartDate(date);
+    setForm({
+      ...form,
+      date_Hire: formattedDate,
+    });
+  };
+
   //   //? USE EFFECT - SEND INFO TO VALIDATION.JS
-  //   useEffect(() => {
-  //     validation(form, errors, setErrors);
-  //   }, [form]);
+  useEffect(() => {
+    setSpan(false);
+    validation(form, errors, setErrors);
+  }, [form]);
 
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
@@ -97,25 +130,14 @@ const FormMyPosts = () => {
     event.preventDefault();
     // setForm(form);
     console.log(form);
-    axios
-      .post("/api/companies", form)
-      .then((response) => {
-        console.log(form);
-        setShowModal(true);
-        setForm({
-          name: "",
-          logo_Company: "",
-          type: "",
-          email: "",
-          password: "",
-          country: "",
-          vacancies: 0,
-          description: "",
-          employes: 0,
-          jobs: 0,
-        });
-      })
-      .catch((err) => ({ error: err.message }));
+    setSpan(true);
+    // axios
+    //   .post("/api/vacancies", form)
+    //   .then((response) => {
+    //     console.log(form);
+    //     setSpan(true);
+    //   })
+    //   .catch((err) => ({ error: err.message }));
   };
 
   return (
@@ -129,7 +151,11 @@ const FormMyPosts = () => {
               Create a New Vacancy Post and find the best candidate for the job!
             </p>
             <div className={styles.form_container}>
-              <form className={styles.form} onSubmit={submitHandler}>
+              <form
+                className={styles.form}
+                onSubmit={submitHandler}
+                onClick={spanOff}
+              >
                 <div className={styles.row1_container}>
                   {/* Name Vacancy */}
                   <div className={styles.name_Vacancy_container}>
@@ -209,39 +235,23 @@ const FormMyPosts = () => {
                     />
                   </div>
 
-                  {/* Relevance */}
-                  <div className={styles.relevance_container}>
-                    <label className={styles.relevance}>
-                      Relevance <span className={styles.required}>*</span>
+                  {/* Hiring Date */}
+                  <div className={styles.date_Hire_container}>
+                    <label className={styles.date_Hire}>
+                      Hiring date <span className={styles.required}>*</span>
                     </label>
-                    <Select
-                      options={relevance}
-                      name="Relevance"
+
+                    <ReactDatePicker
+                      selected={startDate}
+                      onChange={handledateHireChange}
                       required
-                      onChange={(selectedOption) =>
-                        changeHandler({
-                          target: { name: "Relevance", value: selectedOption },
-                        })
-                      }
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="Select the required relevance"
-                      closeMenuOnSelect={true}
-                      styles={{
-                        container: (baseStyles, state) => ({
-                          ...baseStyles,
-                          borderStyle: "solid",
-                          borderColor: "black",
-                          borderWidth: "0.5px 0.5px 4px 0.5px",
-                          fontSize: 18,
-                          width: "93%",
-                        }),
-                        control: (baseStyles, state) => ({
-                          ...baseStyles,
-                          height: 50,
-                        }),
-                      }}
+                      className={styles.input_date_Hire}
                     />
+                    {errors.date_Hire !== null && (
+                      <span className={styles.error_span}>
+                        {errors.date_Hire}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className={styles.row3_container}>
@@ -330,9 +340,29 @@ const FormMyPosts = () => {
                     </span>
                   )}
                 </div>
-                <button className={styles.btn_modal} onClick={submitHandler}>
+                <button className={styles.btn_modal} type="submit">
                   Create New Post
                 </button>
+                {span && (
+                  <div className={styles.confirmation_container}>
+                    <p className={styles.confirmation_p}>
+                      {" "}
+                      The post was created successfully!
+                    </p>
+                    <span className={styles.confirmation_span}>
+                      You can create a new post or{" "}
+                      <Link
+                        href="/company/my-posts"
+                        onClick={() => {
+                          toggleModal();
+                          spanOff();
+                        }}
+                      >
+                        go back to your dashboard.
+                      </Link>
+                    </span>
+                  </div>
+                )}
               </form>
             </div>
           </div>
