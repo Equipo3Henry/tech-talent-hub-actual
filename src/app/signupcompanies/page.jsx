@@ -40,6 +40,9 @@ function SignUp() {
     jobs: "",
   });
 
+  //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
+  const [valid, setValid] = useState(false);
+
   //? USE STATE PASSWORD
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordIcon, setShowPasswordIcon] = useState(eyeclosed);
@@ -57,18 +60,13 @@ function SignUp() {
     setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
   };
 
-  //? USE EFFECT - SEND INFO TO VALIDATION.JS
-  useEffect(() => {
-    validation(form, errors, setErrors);
-  }, [form]);
-
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
     let value = event.target.value;
 
     if (property === "country" || property === "type") {
-      value = value.value;
+      value = value ? value.value : "";
     }
 
     if (
@@ -89,10 +87,53 @@ function SignUp() {
         [property]: value,
       },
       errors,
-      setErrors
+      setErrors,
+      valid,
+      setValid,
+      isFormComplete
     );
     console.log(form);
   };
+
+  //? ISFORMCOMPLETE FUNCTION
+  const isFormComplete = () => {
+    const { name, type, email, password, country, vacancies, employes, jobs } =
+      form;
+    const {
+      name: nameError,
+      type: typeError,
+      email: emailError,
+      password: passwordError,
+      country: countryError,
+      vacancies: vacanciesError,
+      employes: employesError,
+      jobs: jobsError,
+    } = errors;
+
+    return (
+      name !== "" &&
+      type !== "" &&
+      email !== "" &&
+      password !== "" &&
+      country !== "" &&
+      vacancies > 0 &&
+      employes > 0 &&
+      jobs > 0 &&
+      nameError === "" &&
+      typeError === "" &&
+      emailError === "" &&
+      countryError === "" &&
+      passwordError === "" &&
+      vacanciesError === "" &&
+      employesError === "" &&
+      jobsError === ""
+    );
+  };
+
+  //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  useEffect(() => {
+    validation(form, errors, setErrors, valid, setValid, isFormComplete);
+  }, [form]);
 
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
@@ -116,9 +157,16 @@ function SignUp() {
           employes: 0,
           jobs: 0,
         });
+        setValid(false);
       })
       .catch((err) => ({ error: err.message }));
   };
+
+  //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
+  useEffect(() => {
+    const submitButton = document.getElementById("submit-button");
+    submitButton.disabled = !valid;
+  }, []);
 
   return (
     <>
@@ -382,7 +430,11 @@ function SignUp() {
 
             {/* Botón */}
             <div className={styles.boton_container}>
-              <button className={styles.button} type="submit">
+              <button
+                className={styles.button}
+                type="submit"
+                id="submit-button"
+              >
                 Sign up
               </button>
             </div>

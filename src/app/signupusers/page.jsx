@@ -56,6 +56,9 @@ function SignUp() {
     cv: "",
   });
 
+  //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
+  const [valid, setValid] = useState(false);
+
   //? USE STATE PASSWORD
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordIcon, setShowPasswordIcon] = useState(eyeclosed);
@@ -78,18 +81,13 @@ function SignUp() {
 
   //? CHANGE HANDLER DATE PICKER
   const handleDateOfBirthChange = (date) => {
-    const formattedDate = format(date, "MM/dd/yyyy");
+    const formattedDate = format(date, "dd/MM/yyyy");
     setStartDate(date);
     setForm({
       ...form,
       birth: formattedDate,
     });
   };
-
-  //? USE EFFECT - SEND INFO TO VALIDATION.JS
-  useEffect(() => {
-    validation(form, errors, setErrors);
-  }, [form]);
 
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
@@ -108,7 +106,7 @@ function SignUp() {
       property === "working" ||
       property === "specialization"
     ) {
-      value = value.value;
+      value = value ? value.value : "";
     }
 
     setForm({
@@ -122,42 +120,99 @@ function SignUp() {
         [property]: value,
       },
       errors,
-      setErrors
+      setErrors,
+      valid,
+      setValid,
+      isFormCompleted
     );
     console.log(form);
   };
+  //? ISFORMCOMPLETE FUNCTION
+  const isFormCompleted = () => {
+    const {
+      username,
+      name,
+      lastname,
+      birth,
+      country,
+      email,
+      password,
+      languages,
+      progLanguages,
+      specialization,
+      softSkills,
+    } = form;
+    const {
+      username: usernameError,
+      name: nameError,
+      lastname: lastnameError,
+      birth: birthError,
+      email: emailError,
+      password: passwordError,
+    } = errors;
+
+    return (
+      username !== "" &&
+      name !== "" &&
+      lastname !== "" &&
+      birth !== "" &&
+      country !== "" &&
+      email !== "" &&
+      password !== "" &&
+      languages.length !== 0 &&
+      progLanguages.length !== 0 &&
+      specialization !== "" &&
+      softSkills.length !== 0 &&
+      usernameError === "" &&
+      nameError === "" &&
+      lastnameError === "" &&
+      birthError === "" &&
+      emailError === "" &&
+      passwordError === ""
+    );
+  };
+
+  //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  useEffect(() => {
+    validation(form, errors, setErrors, valid, setValid, isFormCompleted);
+  }, [form]);
 
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
     // setForm(form);
     console.log(form);
-    axios
-      .post("/api/users", form)
-      .then((response) => {
-        console.log(form);
-        setShowModal(true);
-        setForm({
-          username: "",
-          name: "",
-          lastname: "",
-          birth: "",
-          aboutme: "",
-          working: false,
-          country: "",
-          email: "",
-          password: "",
-          degree: "",
-          languages: [],
-          progLanguages: [],
-          seniority: "",
-          cv: "",
-          softSkills: [],
-          specialization: "",
-          recruiter: false,
-        });
-      })
+    axios.post("/api/users", form).then((response) => {
+      console.log(form);
+      setShowModal(true);
+      setForm({
+        username: "",
+        name: "",
+        lastname: "",
+        birth: "",
+        aboutme: "",
+        working: false,
+        country: "",
+        email: "",
+        password: "",
+        degree: "",
+        languages: [],
+        progLanguages: [],
+        seniority: "",
+        cv: "",
+        softSkills: [],
+        specialization: "",
+        recruiter: false,
+      });
+      setValid(false);
+    });
   };
+
+  //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
+  useEffect(() => {
+    const submitButton = document.getElementById("submit-button");
+    submitButton.disabled = !valid;
+  }, []);
 
   return (
     <>
@@ -611,7 +666,11 @@ function SignUp() {
 
             {/* Botón */}
             <div className={styles.boton_container}>
-              <button className={styles.button} type="submit">
+              <button
+                className={styles.button}
+                type="submit"
+                id="submit-button"
+              >
                 Sign up
               </button>
             </div>
