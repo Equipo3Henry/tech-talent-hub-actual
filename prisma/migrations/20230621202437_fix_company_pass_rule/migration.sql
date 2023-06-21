@@ -29,7 +29,7 @@ CREATE TABLE "Company" (
     "logo_Company" TEXT,
     "type" "CompanyType" NOT NULL DEFAULT 'STARTUP',
     "email" VARCHAR(50) NOT NULL,
-    "password" VARCHAR(20) NOT NULL,
+    "password" TEXT NOT NULL,
     "country" VARCHAR(50) NOT NULL,
     "vacancies" SERIAL NOT NULL,
     "description" TEXT,

@@ -21,22 +21,31 @@ const login = () => {
   })
   const [error, setError] = useState("");
   
-const handleUser = (e) => {
-  const property = e.target.name;
-  const value = e.target.value;
-  setFormLogin({...formLogin,[property]: value});
-}
+  
+  const handleUser = (e) => {
+    const property = e.target.name;
+    const value = e.target.value;
+    setFormLogin({...formLogin,[property]: value});
+  }
 
-const handleSubmit = async(e) => {
-  e.preventDefault();
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    let response = null;
+    
+    await axios.post("/api/loginUsers",formLogin)
+    .then((res) => {
+      response = res.data;
+    })
+    .catch((err) => {
+      alert("There was an error in the login, please try again")
+    })
 
-  const response = (await axios.get(`/api/loginUsers?user=${formLogin.email}&password=${formLogin.password}`)).data;
-  console.log(response)
-  if (response.response === "Access granted"){
-    const params = JSON.stringify(response.userData);
-    router.push(`/profile/dashboard?userData=${ params }`);
-  } 
-  else setError(response.response);
+    console.log(response)
+    if (response.response === "Access granted"){
+      const params = JSON.stringify(response.userData);
+      router.push(`/profile/dashboard?userData=${ params }`);
+    } 
+    else setError(response.response);
 }
 
   return (
