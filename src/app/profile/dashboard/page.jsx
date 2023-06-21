@@ -2,25 +2,29 @@
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
 import { useSearchParams } from "next/navigation";
 
 function HomePage() {
-  const params = useSearchParams();
-  const userData = JSON.parse(params.get("userData"));
-  console.log(userData);
-
+  
   const {
     jobs,
+    user,
     setSelectedProgLanguage,
     setSelectedSeniority,
     setSelectedSpec,
     setSelectedWorkday,
     setSearchValue,
+    setUser
   } = useContext(GlobalContext);
+
+  const params = useSearchParams();
+  const userData = JSON.parse(params.get("userData"));
+  setUser(userData);
+  console.log(user);
 
   return (
     <div className={styles.globalContainer}>

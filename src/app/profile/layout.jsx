@@ -14,6 +14,7 @@ export default function Layout({ children }) {
   const [selectedSpec, setSelectedSpec] = useState("");
   const [selectedWorkday, setSelectedWorkday] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,11 +71,13 @@ export default function Layout({ children }) {
     <GlobalContext.Provider
       value={{
         jobs,
+        user,
         setSelectedProgLanguage,
         setSelectedSeniority,
         setSelectedSpec,
         setSelectedWorkday,
         setSearchValue,
+        setUser
       }}
     >
       {children}

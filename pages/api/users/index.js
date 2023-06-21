@@ -1,12 +1,15 @@
 import prisma from "@/prisma/client";
-import axios from "axios";
 import transporter from "../sendEmail/index";
+import { encrypt } from "../helpers/handleBcrypt";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     if (Array.isArray(req.body)) {
-      const users = req.body;
-
+      const dataUsers = req.body;
+      const users = await dataUsers.map((user) => {
+        user.password = encrypt(user.password);
+        return user;
+      })
       try {
         await prisma.user.createMany({
           data: users,
@@ -39,7 +42,8 @@ export default async function handler(req, res) {
       } = req.body;
       
       const userEmail = email;
-      
+      const encryptPass = await encrypt(password);
+
       try {
         
         const newUser = await prisma.user.create({
@@ -52,7 +56,7 @@ export default async function handler(req, res) {
             working,
             country,
             email,
-            password,
+            password: encryptPass,
             degree,
             languages,
             progLanguages,
