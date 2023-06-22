@@ -1,4 +1,11 @@
-export const validation = async (form, errors, setErrors) => {
+export const validation = async (
+  form,
+  errors,
+  setErrors,
+  valid,
+  setValid,
+  isFormComplete
+) => {
   //? NAME VALIDATION (debería validar que no haya otro en la BDD)
   if (form.name.length > 50) {
     setErrors((errors) => ({
@@ -114,4 +121,8 @@ export const validation = async (form, errors, setErrors) => {
       jobs: "",
     }));
   }
+
+  //? ISVALID STATE
+  const isValid = isFormComplete();
+  setValid(isValid);
 };

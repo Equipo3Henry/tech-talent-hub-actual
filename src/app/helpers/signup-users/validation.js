@@ -1,4 +1,11 @@
-export const validation = async (form, errors, setErrors) => {
+export const validation = async (
+  form,
+  errors,
+  setErrors,
+  valid,
+  setValid,
+  isFormCompleted
+) => {
   //? NAME VALIDATION
   if (form.name.length > 50) {
     setErrors((errors) => ({
@@ -146,4 +153,8 @@ export const validation = async (form, errors, setErrors) => {
       cv: "",
     }));
   }
+
+  //? ISVALID STATE
+  const isValid = isFormCompleted();
+  setValid(isValid);
 };
