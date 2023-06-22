@@ -133,9 +133,7 @@ function SignUp() {
   //? USE EFFECT - SEND INFO TO VALIDATION.JS
   useEffect(() => {
     validation(form, errors, setErrors, valid, setValid, isFormComplete);
-    const submitButton = document.getElementById("submit-button");
-    submitButton.disabled = !valid;
-  }, [form, errors, valid]);
+  }, []);
 
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
@@ -157,7 +155,7 @@ function SignUp() {
   useEffect(() => {
     const submitButton = document.getElementById("submit-button");
     submitButton.disabled = !valid;
-  }, []);
+  }, [valid]);
 
   return (
     <>
