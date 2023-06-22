@@ -7,9 +7,9 @@ import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 function HomePage() {
-  
   const {
     jobs,
     user,
@@ -18,18 +18,21 @@ function HomePage() {
     setSelectedSpec,
     setSelectedWorkday,
     setSearchValue,
-    setUser
+    setUser,
   } = useContext(GlobalContext);
 
   const params = useSearchParams();
   const userData = JSON.parse(params.get("userData"));
-  setUser(userData);
+
+  useEffect(() => {
+    setUser(userData);
+  }, []); // Dependency array
+
   console.log(user);
 
   return (
     <div className={styles.globalContainer}>
-      <SearchBar setSearchValue={setSearchValue} />
-      <br />
+      <SearchBar setSearchValue={setSearchValue} /> <br />
       <FiltersSelectorProfile
         setSelectedProgLanguage={setSelectedProgLanguage}
         setSelectedSeniority={setSelectedSeniority}

@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import JobsOfferCard from "../JobsOfferCardsComponents/JobsOffer Card/JobsOfferCard";
-
-const userId = "9c8f81c7-8d12-40fd-95bf-1563fc47e415";
+import { GlobalContext } from "../../../profile/layout"; // Asegúrate de que esta ruta es correcta
 
 const MyApplicationsCards = () => {
   const [jobs, setJobs] = useState([]);
+  const { user } = useContext(GlobalContext); // Accede al user del contexto global
 
   useEffect(() => {
-    axios
-      .get("/api/vacancies")
-      .then((response) => {
-        const jobsFromServer = response.data;
-        const filteredJobs = jobsFromServer.filter((job) =>
-          job.applicants.some((applicant) => applicant.id === userId)
-        );
-        setJobs(filteredJobs);
-        console.log(jobs); // Agrega esta línea
-      })
-      .catch((error) => {
-        console.error("Error fetching jobs:", error);
-      });
-  }, []);
+    if (user && user.id) {
+      axios
+        .get("/api/vacancies")
+        .then((response) => {
+          const jobsFromServer = response.data;
+          const filteredJobs = jobsFromServer.filter((job) =>
+            job.applicants.some((applicant) => applicant.id === user.id)
+          );
+          setJobs(filteredJobs);
+          console.log(jobs); // Agrega esta línea
+        })
+        .catch((error) => {
+          console.error("Error fetching jobs:", error);
+        });
+    }
+  }, [user]); // Actualiza la llamada a la API cada vez que el user cambia
 
   return (
     <div>

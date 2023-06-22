@@ -54,6 +54,7 @@ export default function Layout({ children }) {
       if (selectedWorkday) {
         params.workday = selectedWorkday;
       }
+
       try {
         const response = await axios.get(url, { params });
         setJobs(response.data);
@@ -62,10 +63,23 @@ export default function Layout({ children }) {
       }
     };
 
-    selectedProgLanguage || selectedSeniority || selectedSpec || selectedWorkday
-      ? fetchFilteredJobs()
-      : setJobs(dataJobs);
-  }, [selectedProgLanguage, selectedSeniority, selectedSpec, selectedWorkday]);
+    if (
+      selectedProgLanguage ||
+      selectedSeniority ||
+      selectedSpec ||
+      selectedWorkday
+    ) {
+      fetchFilteredJobs();
+    } else if (jobs !== dataJobs) {
+      setJobs(dataJobs);
+    }
+  }, [
+    selectedProgLanguage,
+    selectedSeniority,
+    selectedSpec,
+    selectedWorkday,
+    dataJobs,
+  ]);
 
   return (
     <GlobalContext.Provider
@@ -77,7 +91,7 @@ export default function Layout({ children }) {
         setSelectedSpec,
         setSelectedWorkday,
         setSearchValue,
-        setUser
+        setUser,
       }}
     >
       {children}
