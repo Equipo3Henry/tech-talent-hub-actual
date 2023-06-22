@@ -33,6 +33,11 @@ const NavBar = ({ handleBotonMenu }) => {
     routerb.push("/landing");
   }
 
+  function logOutCompanies() {
+    localStorage.removeItem("companyData");
+    routerb.push("/landing");
+  }
+
   useEffect(() => {
     if (router.includes("profile")) {
       setIsProfile(true);
@@ -95,7 +100,7 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/company/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />{" "}
           </Link>
-          <button onClick={logOut}>
+          <button onClick={logOutCompanies} className={styles.logOutButton}>
             <Link href="/landing">
               <Image src={logoff} alt="image" className={styles.Icons} />{" "}
             </Link>

@@ -34,17 +34,17 @@ export const validation = async (
     }));
   }
 
-  //? HIRING DATE VALIDATION
+  /*   //? HIRING DATE VALIDATION
   const dateHireParts = form.date_Hire.split("/"); // Dividir la cadena en partes día, mes y año
   const dateHire = new Date(
     dateHireParts[2],
     dateHireParts[1] - 1,
     dateHireParts[0]
   ); //
-
   const today = new Date();
+  */
 
-  if (isBefore(dateHire, today)) {
+  /*  if (isBefore(dateHire, today)) {
     setErrors((errors) => ({
       ...errors,
       date_Hire: "Please select a date after today",
@@ -54,7 +54,7 @@ export const validation = async (
       ...errors,
       date_Hire: "",
     }));
-  }
+  } */
 
   //? VACANCIES VALIDATION
   if (isNaN(form.salary)) {
