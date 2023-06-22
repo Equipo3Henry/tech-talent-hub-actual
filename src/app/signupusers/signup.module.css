@@ -297,6 +297,17 @@ body.active-modal {
     cursor: pointer;
 }
 
+.button:disabled,
+.button[disabled],
+.button:disabled:hover {
+    background-color: #cccccc;
+    border-color: #666666;
+    color: #666666;
+    cursor: no-drop;
+    transition: none;
+    transform: none;
+}
+
 /* footer */
 
 .footer {

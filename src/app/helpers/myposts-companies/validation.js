@@ -1,7 +1,14 @@
 import { isBefore, format } from "date-fns";
 
-export const validation = async (form, errors, setErrors) => {
-  //? NAME VALIDATION (debería validar que no haya otro en la BDD)
+export const validation = async (
+  form,
+  errors,
+  setErrors,
+  valid,
+  setValid,
+  isFormComplete
+) => {
+  //? VACANCY NAME VALIDATION
   if (form.name_Vacancy.length > 70) {
     setErrors((errors) => ({
       ...errors,
@@ -28,8 +35,14 @@ export const validation = async (form, errors, setErrors) => {
   }
 
   //? HIRING DATE VALIDATION
+  const dateHireParts = form.date_Hire.split("/"); // Dividir la cadena en partes día, mes y año
+  const dateHire = new Date(
+    dateHireParts[2],
+    dateHireParts[1] - 1,
+    dateHireParts[0]
+  ); //
+
   const today = new Date();
-  const dateHire = new Date(form.date_Hire);
 
   if (isBefore(dateHire, today)) {
     setErrors((errors) => ({
@@ -55,4 +68,8 @@ export const validation = async (form, errors, setErrors) => {
       salary: "",
     }));
   }
+
+  //? ISVALID STATE
+  const isValid = isFormComplete();
+  setValid(isValid);
 };

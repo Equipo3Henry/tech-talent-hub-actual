@@ -40,17 +40,15 @@ const FormMyPosts = () => {
   //? USE STATE FORM
   const [errors, setErrors] = useState({
     name_Vacancy: "",
-    logo_Company: "",
-    programming_Languages: "",
     seniority: "",
     description: "",
     workday: "",
     salary: "",
     date_Hire: "",
-    isActive: "",
-    Relevance: "",
-    companyId: "",
   });
+
+  //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
+  const [valid, setValid] = useState(false);
 
   //? USE STATE SPAN CONFIRMATION
   const [span, setSpan] = useState(false);
@@ -83,12 +81,6 @@ const FormMyPosts = () => {
     });
   };
 
-  //   //? USE EFFECT - SEND INFO TO VALIDATION.JS
-  useEffect(() => {
-    setSpan(false);
-    validation(form, errors, setErrors);
-  }, [form]);
-
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
@@ -99,7 +91,7 @@ const FormMyPosts = () => {
       property === "workday" ||
       property === "seniority"
     ) {
-      value = value.value;
+      value = value ? value.value : "";
     }
 
     if (property === "programming_Languages") {
@@ -114,23 +106,68 @@ const FormMyPosts = () => {
       [property]: value,
     });
 
-    // validation(
-    //   {
-    //     ...form,
-    //     [property]: value,
-    //   },
-    //   errors,
-    //   setErrors
-    // );
+    validation(
+      {
+        ...form,
+        [property]: value,
+      },
+      errors,
+      setErrors,
+      valid,
+      setValid,
+      isFormComplete
+    );
     console.log(form);
   };
+
+  //? ISFORMCOMPLETE FUNCTION
+  const isFormComplete = () => {
+    const {
+      name_Vacancy,
+      programming_Languages,
+      seniority,
+      description,
+      workday,
+      salary,
+      date_Hire,
+    } = form;
+    const {
+      name_Vacancy: nameVacancyError,
+      programming_Languages: programmingLanguagesError,
+      seniority: seniorityError,
+      description: descriptionError,
+      workday: workdayError,
+      salary: salaryError,
+      date_Hire: dateHireError,
+    } = errors;
+
+    return (
+      name_Vacancy !== "" &&
+      programming_Languages.length !== 0 &&
+      seniority !== "" &&
+      description !== "" &&
+      workday !== "" &&
+      salary > 0 &&
+      date_Hire !== "" &&
+      (nameVacancyError === "") & (seniorityError === "") &&
+      descriptionError === "" &&
+      workdayError === "" &&
+      salaryError === "" &&
+      dateHireError === ""
+    );
+  };
+
+  //   //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  useEffect(() => {
+    setSpan(false);
+    validation(form, errors, setErrors, valid, setValid, isFormComplete);
+  }, [form]);
 
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
     // setForm(form);
     console.log(form);
-    setSpan(true);
     // axios
     //   .post("/api/vacancies", form)
     //   .then((response) => {
@@ -138,6 +175,8 @@ const FormMyPosts = () => {
     //     setSpan(true);
     //   })
     //   .catch((err) => ({ error: err.message }));
+    setSpan(true);
+    setValid(false);
   };
 
   return (
@@ -165,6 +204,7 @@ const FormMyPosts = () => {
                     <input
                       type="text"
                       name="name_Vacancy"
+                      value={form.name_Vacancy}
                       required
                       placeholder="Enter the name of the vacancy"
                       className={styles.input_name_Vacancy}
@@ -184,6 +224,7 @@ const FormMyPosts = () => {
                     <input
                       type="number"
                       name="salary"
+                      value={form.salary}
                       required
                       placeholder="Estimated Salary"
                       className={styles.input_salary}
@@ -326,10 +367,13 @@ const FormMyPosts = () => {
                 </div>
                 {/* Description */}
                 <div className={styles.description_container}>
-                  <label className={styles.description}>Description</label>
+                  <label className={styles.description}>
+                    Description <span className={styles.required}>*</span>
+                  </label>
                   <textarea
                     type="textarea"
                     name="description"
+                    value={form.description}
                     placeholder="Write a short summary about the vacancy"
                     className={styles.textarea_description}
                     onChange={changeHandler}
@@ -340,7 +384,12 @@ const FormMyPosts = () => {
                     </span>
                   )}
                 </div>
-                <button className={styles.btn_modal} type="submit">
+                <button
+                  className={styles.btn_modal}
+                  type="submit"
+                  id="submit-button"
+                  disabled={!valid}
+                >
                   Create New Post
                 </button>
                 {span && (
