@@ -6,11 +6,13 @@ export const GlobalContext = createContext();
 
 export default function Layout({ children }) {
   const [dataUsers, setDataUsers] = useState([]);
+  const [dataCompanies, setDataCompanies] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
   const [selectedSoftSkill, setSelectedSoftSkill] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +21,15 @@ export default function Layout({ children }) {
       setUsers(response.data);
     };
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      const response = await axios.get("/api/companies");
+      setDataCompanies(response.data);
+      setCompanies(response.data);
+    };
+    fetchCompanies();
   }, []);
 
   useEffect(() => {
