@@ -77,9 +77,9 @@ model Vacancy {
   isActive              Boolean   @default(false)
   Relevance             Relevance @default(SMALL)
   companyId             String
+  status                Status    @default(Applied)
   company               Company   @relation(fields: [companyId], references: [id])
   applicants            User[]    @relation("applications")
-  status                Status    @default(Applied)
 }
 
 enum CompanyType {
@@ -165,7 +165,7 @@ enum Spec {
 
 enum Status {
   Applied
-  InProgress  
+  InProgress
   ProccesCompleted
   WantToGetInTouch
 }
