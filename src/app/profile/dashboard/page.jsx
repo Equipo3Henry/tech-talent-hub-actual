@@ -25,8 +25,10 @@ function HomePage() {
   const userData = JSON.parse(params.get("userData"));
 
   useEffect(() => {
+    const localStorageData = localStorage.getItem("userData");
+    const userData = JSON.parse(localStorageData);
     setUser(userData);
-  }, []); // Dependency array
+  }, []); // Dependency a
 
   console.log(user);
 

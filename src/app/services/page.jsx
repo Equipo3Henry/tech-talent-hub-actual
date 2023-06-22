@@ -24,16 +24,6 @@ const plans = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     ],
   },
-  {
-    title: "Option 3",
-    subtitles: "Lorem ipsum dolor sit amet",
-    price: "$35",
-    features: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ],
-  },
 ];
 
 const Services = () => {

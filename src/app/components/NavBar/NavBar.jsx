@@ -17,6 +17,7 @@ import {
 import styles from "./NavBar.module.css";
 import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavBar = ({ handleBotonMenu }) => {
   const [isProfile, setIsProfile] = useState(false);
@@ -25,6 +26,12 @@ const NavBar = ({ handleBotonMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const router = usePathname();
+  const routerb = useRouter();
+
+  function logOut() {
+    localStorage.removeItem("userData");
+    routerb.push("/landing");
+  }
 
   useEffect(() => {
     if (router.includes("profile")) {
@@ -61,9 +68,11 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/profile/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />
           </Link>
-          <Link href="/landing">
-            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
-          </Link>
+          <button onClick={logOut} className={styles.logOutButton}>
+            <Link href="/landing">
+              <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+            </Link>
+          </button>
         </div>
       </div>
     );
@@ -86,9 +95,11 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/company/favorites">
             <Image src={favorites} alt="image" className={styles.Icons} />{" "}
           </Link>
-          <Link href="/landing">
-            <Image src={logoff} alt="image" className={styles.Icons} />{" "}
-          </Link>
+          <button onClick={logOut}>
+            <Link href="/landing">
+              <Image src={logoff} alt="image" className={styles.Icons} />{" "}
+            </Link>
+          </button>
         </div>
       </div>
     );
