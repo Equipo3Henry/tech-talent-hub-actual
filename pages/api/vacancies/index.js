@@ -45,7 +45,7 @@ export default async function handler(req, res) {
         return res.status(201).json(newVacancy);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error creating vacancy" });
+        res.status(500).json({ error: error.message });
       }
     }
   }
