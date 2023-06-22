@@ -110,7 +110,7 @@ function SignUp() {
       jobs: jobsError,
     } = errors;
 
-    return (
+    const formCompleted =
       name !== "" &&
       type !== "" &&
       email !== "" &&
@@ -126,8 +126,9 @@ function SignUp() {
       passwordError === "" &&
       vacanciesError === "" &&
       employesError === "" &&
-      jobsError === ""
-    );
+      jobsError === "";
+
+    setValid(formCompleted); // cambia el estado de 'valid'
   };
 
   //? USE EFFECT - SEND INFO TO VALIDATION.JS
@@ -166,7 +167,7 @@ function SignUp() {
   useEffect(() => {
     const submitButton = document.getElementById("submit-button");
     submitButton.disabled = !valid;
-  }, []);
+  }, [valid]);
 
   return (
     <>
