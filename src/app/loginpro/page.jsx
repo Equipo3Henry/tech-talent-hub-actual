@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import {
@@ -10,43 +10,41 @@ import {
 } from "../public/assets/imagesCodes";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from 'next/navigation'
-const login = () => {
-
+import { useRouter } from "next/navigation";
+const Login = () => {
   const router = useRouter();
-  
+
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
-  })
+  });
   const [error, setError] = useState("");
-  
-  
+
   const handleUser = (e) => {
     const property = e.target.name;
     const value = e.target.value;
-    setFormLogin({...formLogin,[property]: value});
-  }
+    setFormLogin({ ...formLogin, [property]: value });
+  };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let response = null;
-    
-    await axios.post("/api/loginUsers",formLogin)
-    .then((res) => {
-      response = res.data;
-    })
-    .catch((err) => {
-      alert("There was an error in the login, please try again")
-    })
 
-    console.log(response)
-    if (response.response === "Access granted"){
+    await axios
+      .post("/api/loginUsers", formLogin)
+      .then((res) => {
+        response = res.data;
+      })
+      .catch((err) => {
+        alert("There was an error in the login, please try again");
+      });
+
+    console.log(response);
+    if (response.response === "Access granted") {
       const params = JSON.stringify(response.userData);
-      router.push(`/profile/dashboard?userData=${ params }`);
-    } 
-    else setError(response.response);
-}
+      router.push(`/profile/dashboard?userData=${params}`);
+    } else setError(response.response);
+  };
 
   return (
     <div>
@@ -57,34 +55,36 @@ const login = () => {
             <h4 className={styles.subtitle}>Create an account or Sign in</h4>
           </div>
           <form onSubmit={handleSubmit}>
-          <span className={styles.error}>{error}</span>
-          <div className={styles.inPutsContainer}>
-            <div className={styles.email}>
-              <label htmlFor="email">
-                <h2 className={styles.labelInput}>Email </h2>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  className={styles.input}
-                  onChange={handleUser}
-                />
-              </label>
-              <label htmlFor="Password">
-                <h2 className={styles.labelInput}>Password </h2>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className={styles.input}
-                  onChange={handleUser}
-                />
-              </label>
+            <span className={styles.error}>{error}</span>
+            <div className={styles.inPutsContainer}>
+              <div className={styles.email}>
+                <label htmlFor="email">
+                  <h2 className={styles.labelInput}>Email </h2>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    className={styles.input}
+                    onChange={handleUser}
+                  />
+                </label>
+                <label htmlFor="Password">
+                  <h2 className={styles.labelInput}>Password </h2>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className={styles.input}
+                    onChange={handleUser}
+                  />
+                </label>
+              </div>
             </div>
-          </div>
-          <br />
-          <br />
-            <button className={styles.ButtonSignIn} type="submit">Log In</button>
+            <br />
+            <br />
+            <button className={styles.ButtonSignIn} type="submit">
+              Log In
+            </button>
           </form>
           <br />
           <br />
@@ -122,4 +122,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
