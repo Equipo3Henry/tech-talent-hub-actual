@@ -78,6 +78,8 @@ export default function Layout({ children }) {
         setSelectedSeniority,
         setSelectedSoftSkill,
         setSearchValue,
+        setCompanies,
+        companies,
       }}
     >
       {children}
