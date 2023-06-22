@@ -18,6 +18,7 @@ export default async function handler(req, res) {
         date_Hire,
         isActive,
         Relevance,
+        status,
       } = req.body;
 
       try {
@@ -33,7 +34,9 @@ export default async function handler(req, res) {
             salary,
             date_Hire,
             isActive,
+            status,
             Relevance,
+
             company: {
               connect: {
                 id: companyId, // connecting to existing company by its ID

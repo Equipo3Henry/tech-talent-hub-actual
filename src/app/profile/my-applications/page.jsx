@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import styles from "./my-applications.module.css";
 import { myApplicationspicture } from "../../public/assets/imagesCodes";
 import Image from "next/image";
-import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import MyApplicationsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyApplications/myApplicationsCards";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
