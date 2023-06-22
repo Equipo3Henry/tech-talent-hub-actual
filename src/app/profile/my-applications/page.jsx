@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./my-applications.module.css";
 import { myApplicationspicture } from "../../public/assets/imagesCodes";
 import Image from "next/image";
@@ -9,9 +9,7 @@ import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import { useSearchParams } from "next/navigation";
 
-//traer las cards de los posts que el usuario aplico
-
-function myApplications(props) {
+function MyApplications(props) {
   const { user } = useContext(GlobalContext);
 
   return (
@@ -26,5 +24,5 @@ function myApplications(props) {
     </div>
   );
 }
-myApplications.getLayout = getLayout;
-export default myApplications;
+MyApplications.getLayout = getLayout;
+export default MyApplications;
