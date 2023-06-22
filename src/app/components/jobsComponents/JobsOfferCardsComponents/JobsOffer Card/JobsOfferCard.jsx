@@ -12,6 +12,7 @@ const JobsOfferCard = ({
   start,
   showSpan,
   onJobSelected,
+  status,
 }) => {
   return (
     <div
@@ -40,6 +41,7 @@ const JobsOfferCard = ({
       )}
       <div className={styles.contenedorMyApplications}>
         <span>{applicants}</span>
+        <span> {status}</span>
       </div>
     </div>
   );
