@@ -13,7 +13,7 @@ function DashboardPage() {
     setSelectedProgLanguage,
     setSelectedSeniority,
     setSelectedSoftSkill,
-    setSearchValue
+    setSearchValue,
   } = useContext(GlobalContext);
 
   return (
@@ -29,9 +29,7 @@ function DashboardPage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.usersContainer}>
-          <UserOfferCardsContainerForDashboard
-            users={users}
-          />
+          <UserOfferCardsContainerForDashboard users={users} />
           <div className={styles.usersDetailContainer}></div>
         </div>
       </div>

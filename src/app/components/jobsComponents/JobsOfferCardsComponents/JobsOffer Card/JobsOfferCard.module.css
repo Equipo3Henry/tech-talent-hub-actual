@@ -93,6 +93,11 @@
   justify-content: flex-end;
 }
 
-.spanSeniority{
+.spanSeniority {
   margin-top: -15px;
+}
+
+.contenedorMyApplications {
+  display: flex;
+  flex-direction: column;
 }
