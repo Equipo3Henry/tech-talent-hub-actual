@@ -79,6 +79,7 @@ model Vacancy {
   companyId             String
   company               Company   @relation(fields: [companyId], references: [id])
   applicants            User[]    @relation("applications")
+  status                Status    @default(Applied)
 }
 
 enum CompanyType {
@@ -160,4 +161,11 @@ enum Spec {
   DATASCIENTIST
   FULLSTACK
   AI_ENGINEER
+}
+
+enum Status {
+  Applied
+  InProgress  
+  ProccesCompleted
+  WantToGetInTouch
 }

@@ -1,8 +1,15 @@
 .body {
-  margin-left: 70px;
-  padding: 1em;
+  margin-top: 10em;
 }
 
 .container {
   display: flex;
+  margin-left: 2em;
+  margin-top: 5em;
+  justify-content: space-evenly;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: center;
 }

@@ -39,6 +39,7 @@ const MyApplicationsCards = () => {
             showSpan={true}
             start={job.start}
             onJobSelected={() => {}}
+            applicants={`${job.applicants.length} candidates applied`}
           />
         );
       })}

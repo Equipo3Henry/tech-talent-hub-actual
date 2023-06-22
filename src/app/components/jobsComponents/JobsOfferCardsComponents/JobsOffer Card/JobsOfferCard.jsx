@@ -38,6 +38,9 @@ const JobsOfferCard = ({
           <span>{start}</span>
         </div>
       )}
+      <div className={styles.contenedorMyApplications}>
+        <span>{applicants}</span>
+      </div>
     </div>
   );
 };
