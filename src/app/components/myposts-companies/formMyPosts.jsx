@@ -7,6 +7,8 @@ import axios from "axios";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import Link from "next/link";
+import { GlobalContext } from "../../company/layout";
+import Layout from "../../company/layout";
 import { validation } from "../../helpers/myposts-companies/validation";
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -157,7 +159,7 @@ const FormMyPosts = () => {
     );
   };
 
-  //   //? USE EFFECT - SEND INFO TO VALIDATION.JS
+  //? USE EFFECT - SEND INFO TO VALIDATION.JS
   useEffect(() => {
     setSpan(false);
     validation(form, errors, setErrors, valid, setValid, isFormComplete);
@@ -168,15 +170,13 @@ const FormMyPosts = () => {
     event.preventDefault();
     // setForm(form);
     console.log(form);
-    // axios
-    //   .post("/api/vacancies", form)
-    //   .then((response) => {
-    //     console.log(form);
-    //     setSpan(true);
-    //   })
-    //   .catch((err) => ({ error: err.message }));
-    setSpan(true);
-    setValid(false);
+    axios
+      .post("/api/vacancies", form)
+      .then((response) => {
+        setSpan(true);
+        setValid(false);
+      })
+      .catch((err) => ({ error: err.message }));
   };
 
   return (
