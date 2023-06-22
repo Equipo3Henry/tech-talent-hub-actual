@@ -37,8 +37,10 @@ import settings from "../images/settings.svg";
 import upgrade from "../images/upgrade.svg";
 import user from "../images/user.svg";
 import myApplicationspicture from "../images/my-applications.png";
+import userPhotoDefault from "../images/userPhotoDefault.png";
 
 export {
+  userPhotoDefault,
   myApplicationspicture,
   user,
   upgrade,
