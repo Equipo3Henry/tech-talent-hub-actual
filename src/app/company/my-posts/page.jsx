@@ -7,6 +7,14 @@ import Image from "next/image";
 import MyPostsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyPosts/myPosts";
 
 function MyPosts(props) {
+  const localStorageData = localStorage.getItem("companyData");
+  console.log("localStorageData:", localStorageData);
+
+  const companyData = JSON.parse(localStorageData);
+  console.log("companyData:", companyData);
+
+  const companyId = companyData.id;
+  const companyPicture = companyData && companyData.logo_Company;
   return (
     <>
       <div className={styles.page_container}>
@@ -15,7 +23,7 @@ function MyPosts(props) {
         </div>
         <h1>My Posts</h1>
 
-        <FormMyPosts />
+        <FormMyPosts companyId={companyId} companyPicture={companyPicture} />
       </div>
     </>
   );

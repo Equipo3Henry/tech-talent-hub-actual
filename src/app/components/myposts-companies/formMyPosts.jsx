@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
@@ -17,17 +17,13 @@ import {
   programming_Languages,
 } from "../../helpers/myposts-companies/variables";
 import styles from "./formMyPosts.module.css";
+import { parseISO } from "date-fns";
 
-const FormMyPosts = () => {
-  //? HARCODEO COMPANIES
-  const idCompany = "24c1e6fa-3a1e-4f9f-a10a-9e3c0ba2f02a";
-  const logoCompany =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png";
-
+const FormMyPosts = ({ companyId, companyPicture }) => {
   //? USE STATE FORM
   const [form, setForm] = useState({
     name_Vacancy: "",
-    logo_Company: logoCompany,
+    logo_Company: companyPicture,
     programming_Languages: [],
     seniority: "",
     description: "",
@@ -36,7 +32,7 @@ const FormMyPosts = () => {
     date_Hire: "",
     isActive: true,
     Relevance: "GLOBAL",
-    companyId: idCompany,
+    companyId: companyId,
   });
 
   //? USE STATE FORM
@@ -75,14 +71,12 @@ const FormMyPosts = () => {
 
   //? CHANGE HANDLER DATE PICKER
   const handledateHireChange = (date) => {
-    const formattedDate = format(date, "MM/dd/yyyy");
     setStartDate(date);
     setForm({
       ...form,
-      date_Hire: formattedDate,
+      date_Hire: date instanceof Date ? date : parseISO(date),
     });
   };
-
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
