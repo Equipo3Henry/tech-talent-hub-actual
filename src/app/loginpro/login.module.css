@@ -40,6 +40,17 @@
   margin: 15px 0;
 }
 
+.password_toggle_container {
+  position: relative;
+}
+
+.password_icon {
+  position: absolute;
+  top: 32%;
+  right: 5%;
+  cursor: pointer;
+}
+
 .labelInput {
   font-family: "Roboto";
   font-style: black;
