@@ -10,6 +10,7 @@ import {
   favorites,
   logoff,
   dashboard,
+  myprofile,
   posts,
   loginusername,
   logingroup,
@@ -64,6 +65,9 @@ const NavBar = ({ handleBotonMenu }) => {
           <Link href="/profile/dashboard">
             <Image src={dashboard} alt="image" className={styles.Icons} />
           </Link>
+          <Link href="/profile/mydata">
+            <Image src={myprofile} alt="image" className={styles.Icons} />
+          </Link>
           <Link href="/profile/my-applications">
             <Image src={posts} alt="image" className={styles.Icons} />
           </Link>
@@ -90,6 +94,9 @@ const NavBar = ({ handleBotonMenu }) => {
         <div className={styles.IconsContainer}>
           <Link href="/company/dashboard">
             <Image src={dashboard} alt="image" className={styles.Icons} />
+          </Link>
+          <Link href="/company/mydata">
+            <Image src={myprofile} alt="image" className={styles.Icons} />
           </Link>
           <Link href="/company/my-posts">
             <Image src={posts} alt="image" className={styles.Icons} />
