@@ -27,12 +27,12 @@ const Barchar = () =>{
     const [chartOptions, setChartOptions] = useState({})
     useEffect(() =>{
         setChartData({
-            labels: ['Student', 'Junior', 'Semi-Senior', 'Senior'],
+            labels: ['Vacancies', 'Apply'],
             datasets:[
                 {
                     label: 'CV sends',
                     // data: [10, 50, 1000], basicUsers.amount, proUsers.amount, goldUsers.amount, globalUsers.amount 
-                    data: [10, 3, 1, 0],
+                    data: [10, 3],
                     borderColor: '#262626',
                     backgroundColor: '#B682D9',
                 },
@@ -45,7 +45,7 @@ const Barchar = () =>{
                 },
                 title: {
                     display: true,
-                    text: 'Users suscription',
+                    text: 'Vacancies Apply',
                 }
             },
             maintainAspectRatio: false,

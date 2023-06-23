@@ -1,0 +1,60 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    padding-top: 3rem;
+}
+.card{
+    grid-column-start: span 1;
+    grid-column-end: span 2;
+    background-color: #B682D9;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #262626;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: .2rem .3rem 1rem #961ee6;
+}
+.card:hover{
+    transform: scale(1.05);
+}
+.cardtotal{
+    background-color: #B682D9;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #262626;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: .2rem .3rem 1rem #961ee6;
+}
+.cardtotal:hover{
+    transform: scale(1.05);
+}
+.cardinfo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+.grade{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.containerlot{
+    width: 5rem;
+    background-color: #961ee6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border:3px groove #262626;
+    border-radius: 0.5rem;
+}
+.lot{
+    color: #262626;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
