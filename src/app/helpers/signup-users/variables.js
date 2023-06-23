@@ -94,7 +94,6 @@ const languages = [
 
 //? OPTIONS SELECT SENIORITY
 const seniority = [
-  { value: "TRAINEE", label: "Trainee" },
   { value: "JUNIOR", label: "Junior" },
   { value: "SEMISENIOR", label: "Semi-Senior" },
   { value: "SENIOR", label: "Senior" },

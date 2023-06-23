@@ -23,6 +23,15 @@ const programming_Languages = [
   { value: "ERLANG", label: "Erlang" },
 ];
 
+//? OPTIONS VACANCY NAME
+const vacancy = [
+  { value: "FRONTEND", label: "Front-end Developer" },
+  { value: "BACKEND", label: "Back-end Developer" },
+  { value: "DATASCIENTIST", label: "Data Scientist" },
+  { value: "FULLSTACK", label: "Fullstack Developer" },
+  { value: "AI_ENGINEER", label: "AI Engineer" },
+];
+
 //? OPTIONS SELECT WORKDAY
 const workday = [
   { value: "FULLTIME", label: "Full-Time" },
@@ -34,7 +43,6 @@ const workday = [
 
 //? OPTIONS SELECT SENIORITY
 const seniority = [
-  { value: "TRAINEE", label: "Trainee" },
   { value: "JUNIOR", label: "Junior" },
   { value: "SEMISENIOR", label: "Semi-Senior" },
   { value: "SENIOR", label: "Senior" },
@@ -43,5 +51,6 @@ const seniority = [
 module.exports = {
   seniority,
   workday,
+  vacancy,
   programming_Languages,
 };

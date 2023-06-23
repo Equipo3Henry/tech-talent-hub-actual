@@ -13,6 +13,7 @@ import { validation } from "../../helpers/myposts-companies/validation";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   seniority,
+  vacancy,
   workday,
   programming_Languages,
 } from "../../helpers/myposts-companies/variables";
@@ -85,7 +86,8 @@ const FormMyPosts = ({ parsedData }) => {
     if (
       property === "Relevance" ||
       property === "workday" ||
-      property === "seniority"
+      property === "seniority" ||
+      property === "name_Vacancy"
     ) {
       value = value ? value.value : "";
     }
@@ -195,14 +197,36 @@ const FormMyPosts = ({ parsedData }) => {
                     <label className={styles.name_Vacancy}>
                       Vacancy Name <span className={styles.required}>*</span>
                     </label>
-                    <input
-                      type="text"
+                    <Select
+                      options={vacancy}
                       name="name_Vacancy"
-                      value={form.name_Vacancy}
                       required
-                      placeholder="Enter the name of the vacancy"
-                      className={styles.input_name_Vacancy}
-                      onChange={changeHandler}
+                      onChange={(selectedOption) =>
+                        changeHandler({
+                          target: {
+                            name: "name_Vacancy",
+                            value: selectedOption,
+                          },
+                        })
+                      }
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="Select the name of the vacancy"
+                      closeMenuOnSelect={true}
+                      styles={{
+                        container: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderStyle: "solid",
+                          borderColor: "black",
+                          borderWidth: "0.5px 0.5px 4px 0.5px",
+                          fontSize: 18,
+                          width: "93%",
+                        }),
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          height: 50,
+                        }),
+                      }}
                     />
                     {errors.name_Vacancy !== null && (
                       <span className={styles.error_span}>

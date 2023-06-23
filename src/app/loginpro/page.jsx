@@ -6,6 +6,8 @@ import {
   google,
   linkedin,
   github,
+  eyeclosed,
+  eyeopen,
   signinvector,
 } from "../public/assets/imagesCodes";
 import Link from "next/link";
@@ -54,6 +56,16 @@ const Login = () => {
   });
   const [error, setError] = useState("");
 
+  //? USE STATE PASSWORD
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordIcon, setShowPasswordIcon] = useState(eyeclosed);
+
+  //? TOGGLE PASSWORD
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+    setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
+  };
+
   const handleUser = (e) => {
     const property = e.target.name;
     const value = e.target.value;
@@ -98,19 +110,29 @@ const Login = () => {
                     type="text"
                     name="email"
                     id="email"
+                    placeholder="Enter your email"
                     className={styles.input}
                     onChange={handleUser}
                   />
                 </label>
                 <label htmlFor="Password">
                   <h2 className={styles.labelInput}>Password </h2>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className={styles.input}
-                    onChange={handleUser}
-                  />
+                  <div className={styles.password_toggle_container}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      placeholder="Enter your password"
+                      className={styles.input}
+                      onChange={handleUser}
+                    />
+                    <Image
+                      src={showPasswordIcon}
+                      alt={showPassword ? "Hide Password" : "Show Password"}
+                      className={styles.password_icon}
+                      onClick={togglePassword}
+                    />
+                  </div>
                 </label>
               </div>
             </div>
