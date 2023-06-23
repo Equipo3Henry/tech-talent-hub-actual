@@ -19,11 +19,11 @@ import {
 import styles from "./formMyPosts.module.css";
 import { parseISO } from "date-fns";
 
-const FormMyPosts = ({ companyId, companyPicture }) => {
+const FormMyPosts = ({ parsedData }) => {
   //? USE STATE FORM
   const [form, setForm] = useState({
     name_Vacancy: "",
-    logo_Company: companyPicture,
+    logo_Company: parsedData && parsedData.logo_Company,
     programming_Languages: [],
     seniority: "",
     description: "",
@@ -32,7 +32,7 @@ const FormMyPosts = ({ companyId, companyPicture }) => {
     date_Hire: "",
     isActive: true,
     Relevance: "GLOBAL",
-    companyId: companyId,
+    companyId: parsedData && parsedData.id,
   });
 
   //? USE STATE FORM
