@@ -1,41 +1,78 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import FormMyPosts from "../../components/myposts-companies/formMyPosts";
-import styles from "./myposts.module.css";
-import { myApplicationspicture } from "../../public/assets/imagesCodes";
-import Image from "next/image";
-import MyPostsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyPosts/myPosts";
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import JobsOfferCard from "../JobsOfferCardsComponents/JobsOffer Card/JobsOfferCard";
+import { GlobalContext } from "@/src/app/company/layout";
 
-function MyPosts(props) {
-  const [companyData, setCompanyData] = useState(null);
-  const [companyId, setCompanyId] = useState(null);
-  const [companyPicture, setCompanyPicture] = useState(null);
+const MyPostsCards = () => {
+  const [jobs, setJobs] = useState([]);
+  const { companies } = useContext(GlobalContext);
 
   useEffect(() => {
-    const localStorageData = localStorage.getItem("companyData");
-    console.log("localStorageData:", localStorageData);
-    const parsedData = localStorageData ? JSON.parse(localStorageData) : null;
-    console.log("parsedData:", parsedData);
+    // Obteniendo la compañía del localStorage si está disponible
+    const localStorageData =
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("companyData")
+        : null;
+    const companyData = localStorageData ? JSON.parse(localStorageData) : null;
+    const companyId = companyData ? companyData.id : null;
 
-    if (parsedData) {
-      setCompanyData(parsedData);
-      setCompanyId(parsedData.id);
-      setCompanyPicture(parsedData.logo_Company);
+    if (companyId) {
+      axios.get("/api/vacancies").then((response) => {
+        const jobsFromServer = response.data;
+        const filteredJobs = jobsFromServer.filter(
+          (job) => job.companyId === companyId
+        );
+        setJobs(filteredJobs);
+      });
     }
-  }, []);
+  }, [companies]);
+
+  const handleFinishProcess = (jobId) => {
+    const status = { isActive: false };
+    const url = `/api/vacancies/${jobId}`;
+
+    console.log(url);
+    axios
+      .put(`${url}`, status)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          setJobs(
+            jobs.map((job) =>
+              job.id === jobId ? { ...job, isActive: false } : job
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating job status", error);
+      });
+  };
 
   return (
-    <>
-      <div className={styles.page_container}>
-        <div className={styles.posts_container}>
-          <MyPostsCards companyId={companyId} />
-        </div>
-        <h1>My Posts</h1>
-
-        <FormMyPosts companyId={companyId} companyPicture={companyPicture} />
-      </div>
-    </>
+    <div>
+      {jobs.map((job, index) => {
+        const companyName = job.company && job.company.name;
+        return (
+          <JobsOfferCard
+            key={index}
+            id={job.id}
+            company={companyName}
+            name_Vacancy={job.name_Vacancy}
+            showButton={false}
+            showSpan={true}
+            start={job.start}
+            onJobSelected={() => {}}
+            applicants={`${job.applicants.length} candidates applied`}
+            status={job.status}
+            showFinishButton={true}
+            onFinishProcess={handleFinishProcess}
+          />
+        );
+      })}
+    </div>
   );
-}
+};
 
-export default MyPosts;
+export default MyPostsCards;
