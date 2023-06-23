@@ -21,7 +21,7 @@ const FileUploader = ({ userId }) => {
           );
 
           const response = await fetch(
-            `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/upload`,
+            `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/raw/upload`,
             {
               method: "POST",
               body: formData,
