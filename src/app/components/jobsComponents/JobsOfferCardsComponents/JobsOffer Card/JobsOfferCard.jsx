@@ -13,7 +13,15 @@ const JobsOfferCard = ({
   showSpan,
   onJobSelected,
   status,
+  isActive,
+  showFinishButton, // Nueva prop
+  onFinishProcess, // Manejador del evento Finish Process
 }) => {
+  const handleClick = () => {
+    if (isActive && onFinishProcess) {
+      onFinishProcess(id);
+    }
+  };
   return (
     <div
       className={styles.Container}
@@ -43,6 +51,12 @@ const JobsOfferCard = ({
         <span>{applicants}</span>
         <span> {status}</span>
       </div>
+      {showFinishButton && (
+        <button onClick={handleClick}>
+          {isActive ? "Finish Process" : "Finish Selection"}
+        </button>
+      )}{" "}
+      {/* Verifica si se debe mostrar el botón */}
     </div>
   );
 };
