@@ -27,12 +27,12 @@ const Barchar = () =>{
     const [chartOptions, setChartOptions] = useState({})
     useEffect(() =>{
         setChartData({
-            labels: ['Basic', 'Pro', 'Gold', 'Global'],
+            labels: ['Basic', 'remium'],
             datasets:[
                 {
                     label: 'Users',
                     // data: [10, 50, 1000], basicUsers.amount, proUsers.amount, goldUsers.amount, globalUsers.amount 
-                    data: [10, 3, 1, 0],
+                    data: [10, 3],
                     borderColor: '#262626',
                     backgroundColor: '#B682D9',
                 },
