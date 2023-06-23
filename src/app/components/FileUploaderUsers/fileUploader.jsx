@@ -26,8 +26,9 @@ const FileUploader = () => {
       <label className={styles.custum_file_upload} htmlFor="file">
         <div className={styles.icon}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
-            <g strokeWidth="0" id="SVGRepo_bgCarrier"></g> // Modificado para
-            usar "strokeWidth" en lugar de "stroke-width"
+            <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>{" "}
+            {/* Modificado para
+            usar strokeWidth en lugar de stroke-width */}
             <g
               strokeLinejoin="round"
               strokeLinecap="round"
