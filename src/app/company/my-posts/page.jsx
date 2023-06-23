@@ -16,6 +16,7 @@ function MyPosts(props) {
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
     const parsedData = localStorageData ? JSON.parse(localStorageData) : null;
+    console.log("parsedData", parsedData);
 
     if (parsedData) {
       setCompanyData(parsedData);
