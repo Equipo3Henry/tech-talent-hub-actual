@@ -32,12 +32,12 @@
 }
 
 .span {
-  width: 292px;
+  width: 300px;
   height: 38px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
@@ -46,7 +46,7 @@
 .CompanyNameContainer {
   display: flex;
   gap: 6px;
-  width: 75px;
+  width: 280px;
   margin-top: 2px;
 }
 
