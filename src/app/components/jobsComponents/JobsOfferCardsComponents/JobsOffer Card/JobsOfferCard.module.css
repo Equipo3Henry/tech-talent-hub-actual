@@ -24,7 +24,7 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 900;
-  font-size: 2em;
+  font-size: 1.4em;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
@@ -79,6 +79,13 @@
   color: #7155d9;
 }
 
+.button_finish{
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #7155d9;
+}
+
 .contenedorButton {
   display: flex;
   align-content: space-around;
@@ -100,4 +107,6 @@
 .contenedorMyApplications {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

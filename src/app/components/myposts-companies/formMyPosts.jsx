@@ -423,6 +423,7 @@ const FormMyPosts = ({ parsedData }) => {
                         onClick={() => {
                           toggleModal();
                           spanOff();
+                          window.location.reload();
                         }}
                       >
                         go back to your dashboard.

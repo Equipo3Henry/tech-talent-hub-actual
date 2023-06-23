@@ -52,7 +52,7 @@ const JobsOfferCard = ({
         <span> {status}</span>
       </div>
       {showFinishButton && (
-        <button onClick={handleClick}>
+        <button onClick={handleClick} className={styles.button_finish}>
           {isActive ? "Finish Process" : "Finish Selection"}
         </button>
       )}{" "}
