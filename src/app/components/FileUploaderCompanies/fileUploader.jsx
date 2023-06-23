@@ -3,18 +3,68 @@
 import React from "react";
 import styles from "./fileUploader.module.css";
 
-const FileUploader = () => {
-  const handleFileChange = (event) => {
+const FileUploader = ({ companyId }) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
       const allowedExtensions = /(\.png|\.jpeg|\.jpg)$/i;
       if (!allowedExtensions.exec(file.name)) {
         alert("Invalid file format. Please select a .png, .jpg or .jpeg file.");
-        // Restablecer el valor del input de archivo para borrar la selección no válida
         event.target.value = "";
       } else {
-        // Aquí puedes hacer lo que necesites con el archivo válido
-        console.log("Archivo válido:", file);
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append(
+            "upload_preset",
+            process.env.CLOUDINARY_UPLOAD_PRESET
+          );
+
+          const uploadResponse = await fetch(
+            `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (uploadResponse.ok) {
+            const jsonResponse = await uploadResponse.json();
+            console.log("Archivo subido con éxito:", jsonResponse.url);
+
+            const logo_Company = jsonResponse.url;
+
+            // Once the file is uploaded to Cloudinary, then update the company with the new logo url
+            const apiResponse = await fetch(`/api/companies/${companyId}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                logo_Company,
+              }),
+            });
+
+            if (apiResponse.ok) {
+              const jsonResponse = await apiResponse.json();
+              console.log("Company logo updated successfully:", jsonResponse);
+            } else {
+              console.error(
+                "Error updating company logo:",
+                apiResponse.status,
+                apiResponse.statusText
+              );
+            }
+          } else {
+            console.error(
+              "Error al subir el archivo:",
+              uploadResponse.status,
+              uploadResponse.statusText
+            );
+          }
+        } catch (error) {
+          console.error("Error al subir el archivo:", error);
+        }
       }
     }
   };

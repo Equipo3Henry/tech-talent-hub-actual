@@ -22,49 +22,45 @@ export default async function handler(req, res) {
       console.error("Error retrieving company:", error);
       return res.status(500).json({ error: error.message });
     }
-  } else if (req.method === "PUT") {
+  } else if (req.method === "PATCH") {
     const { id } = req.query;
 
     try {
-      const {
-        name,
-        logo_Company,
-        type,
-        email,
-        password, // remember to hash this before saving
-        country,
-        description,
-        employes,
-      } = req.body;
+      let updateData = { ...req.body };
 
-      const companyEmail = email;
-      const encryptPass = await encrypt(password);
+      // if password in body, hash it
+      if (updateData.password) {
+        updateData.password = await encrypt(updateData.password);
+      }
 
       const updatedCompany = await prisma.company.update({
         where: {
           id: id,
         },
-        data: {
-          name,
-          logo_Company,
-          type,
-          email,
-          password: encryptPass,
-          country,
-          description,
-          employes,
-        },
+        data: updateData,
       });
+
+      // If logo_Company has been updated in the company, reflect it in all related vacancies
+      if (updateData.logo_Company) {
+        await prisma.vacancy.updateMany({
+          where: {
+            companyId: id,
+          },
+          data: {
+            logo_Company: updateData.logo_Company,
+          },
+        });
+      }
 
       // Send the email confirmation after the update
       await transporter.verify();
       const mail = {
         from: "equipo3.37a@gmail.com",
-        to: companyEmail,
+        to: updatedCompany.email,
         subject: "Registro actualizado",
         html: `
         <p style="color: black">
-        Su registro ha sido actualizado ${email}
+        Su registro ha sido actualizado ${updatedCompany.email}
         </p>
         `,
       };
