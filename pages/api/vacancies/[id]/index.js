@@ -24,6 +24,7 @@ export default async function handler(req, res) {
         },
         data: {
           isActive: isActive,
+          status: "ProccesCompleted", // Update status to ProccesCompleted
         },
       });
       return res.status(200).json(updatedVacancy);

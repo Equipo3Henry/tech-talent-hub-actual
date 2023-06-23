@@ -34,13 +34,15 @@ const MyPostsCards = () => {
 
     console.log(url);
     axios
-      .put(`${url}`, status)
+      .put(`${url}`, { isActive: false })
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
           setJobs(
             jobs.map((job) =>
-              job.id === jobId ? { ...job, isActive: false } : job
+              job.id === jobId
+                ? { ...job, isActive: false, status: "ProccesCompleted" }
+                : job
             )
           );
         }
