@@ -166,7 +166,7 @@ function SignUp() {
   useEffect(() => {
     const submitButton = document.getElementById("submit-button");
     submitButton.disabled = !valid;
-  }, []);
+  }, [valid]);
 
   return (
     <>
