@@ -3,18 +3,37 @@
 import React, { useEffect, useState } from "react";
 import styles from "./myprofile.module.css";
 import FileUploader from "../../components/FileUploaderUsers/fileUploader";
-import id from "date-fns/esm/locale/id/index.js";
+import axios from "axios";
 import PutUsers from "../../components/profileUsersPutModal/putUsers";
 
 function MyProfileUsers() {
   const [userId, setUserId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const storedUserData = JSON.parse(window.localStorage.getItem("userData"));
     const userId = storedUserData?.id;
     setUserId(userId);
     console.log(`User ID from localStorage: ${userId}`);
-  });
+    console.log(localStorage.userData);
+
+    // Fetch user data
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`/api/users/${userId}`);
+        setUserData(response.data);
+        const data = response.data;
+
+        console.log("User data:", data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+    }
+  }, [userId]);
 
   return (
     <div className={styles.page_container}>
@@ -27,7 +46,7 @@ function MyProfileUsers() {
 
       <div className={styles.content_container}>
         <div className={styles.modifyInfo_container}>
-          <PutUsers />
+          <PutUsers setUserData={setUserData} />
         </div>
         <div className={styles.fileUploader_container}>
           <FileUploader userId={userId} />
