@@ -17,6 +17,7 @@ import {
   countries,
   softSkills,
   seniority,
+  degrees,
   working,
   languages,
   specialization,
@@ -101,20 +102,21 @@ const PutUsers = ({ userData }) => {
     let value = event.target.value;
 
     if (
-      property === "Relevance" ||
-      property === "workday" ||
-      property === "seniority"
+      property === "progLanguages" ||
+      property === "softSkills" ||
+      property === "languages"
+    ) {
+      value = Array.isArray(value) ? value.map((option) => option.value) : [];
+    } else if (
+      property === "country" ||
+      property === "seniority" ||
+      property === "working" ||
+      property === "specialization" ||
+      property === "degree"
     ) {
       value = value ? value.value : "";
     }
 
-    if (property === "programming_Languages") {
-      value = Array.isArray(value) ? value.map((option) => option.value) : [];
-    }
-
-    if (property === "salary") {
-      value = parseInt(value);
-    }
     setForm({
       ...form,
       [property]: value,
@@ -293,16 +295,34 @@ const PutUsers = ({ userData }) => {
                   {/* Degree */}
                   <div className={styles.degree_container}>
                     <label className={styles.degree}>Degree</label>
-                    <input
-                      type="text"
+                    <Select
+                      options={degrees}
                       name="degree"
+                      required
+                      onChange={(selectedOption) =>
+                        changeHandler({
+                          target: { name: "degree", value: selectedOption },
+                        })
+                      }
+                      isClearable={true}
+                      isSearchable={true}
                       placeholder="Select the last degree you have"
-                      className={styles.input_degree}
-                      onChange={changeHandler}
+                      closeMenuOnSelect={true}
+                      styles={{
+                        container: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderStyle: "solid",
+                          borderColor: "black",
+                          borderWidth: "0.5px 0.5px 4px 0.5px",
+                          fontSize: 18,
+                          width: "93%",
+                        }),
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          height: 50,
+                        }),
+                      }}
                     />
-                    {errors.degree !== null && (
-                      <span className={styles.error_span}>{errors.degree}</span>
-                    )}
                   </div>
                 </div>
                 <div className={styles.row1_container}>
