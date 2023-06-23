@@ -5,6 +5,8 @@ import styles from "./myposts.module.css";
 import { myApplicationspicture } from "../../public/assets/imagesCodes";
 import Image from "next/image";
 import MyPostsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyPosts/myPosts";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function MyPosts(props) {
   const [companyData, setCompanyData] = useState(null);
