@@ -26,6 +26,23 @@ const MyPostsCards = () => {
     });
   }, [companies]);
 
+  const handleFinishProcess = async (jobId) => {
+    try {
+      const response = await axios.put(`/api/vacancies/${jobId}`, {
+        isActive: false,
+      });
+      if (response.status === 200) {
+        setJobs(
+          jobs.map((job) =>
+            job.id === jobId ? { ...job, isActive: false } : job
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error updating job status", error);
+    }
+  };
+
   return (
     <div>
       {jobs.map((job, index) => {
@@ -42,6 +59,8 @@ const MyPostsCards = () => {
             onJobSelected={() => {}}
             applicants={`${job.applicants.length} candidates applied`}
             status={job.status}
+            showFinishButton={true}
+            onFinishProcess={handleFinishProcess} // Pasando la función de manejador de eventos
           />
         );
       })}
