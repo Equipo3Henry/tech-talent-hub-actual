@@ -84,7 +84,9 @@
   font-weight: 400;
   font-size: 18px;
   background-color: #7155d9;
+  cursor: pointer;
 }
+
 
 .contenedorButton {
   display: flex;
