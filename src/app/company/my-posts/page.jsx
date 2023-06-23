@@ -5,26 +5,29 @@ import styles from "./myposts.module.css";
 import { myApplicationspicture } from "../../public/assets/imagesCodes";
 import Image from "next/image";
 import MyPostsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyPosts/myPosts";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function MyPosts(props) {
   const [companyData, setCompanyData] = useState(null);
   const [companyId, setCompanyId] = useState(null);
   const [companyPicture, setCompanyPicture] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
-    console.log("localStorageData:", localStorageData);
     const parsedData = localStorageData ? JSON.parse(localStorageData) : null;
-    console.log("parsedData:", parsedData);
 
     if (parsedData) {
       setCompanyData(parsedData);
       setCompanyId(parsedData.id);
       setCompanyPicture(parsedData.logo_Company);
     }
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -34,7 +37,7 @@ function MyPosts(props) {
         </div>
         <h1>My Posts</h1>
 
-        <FormMyPosts companyId={companyId} companyPicture={companyPicture} />
+        <FormMyPosts parsedData={companyData} />
       </div>
     </>
   );
