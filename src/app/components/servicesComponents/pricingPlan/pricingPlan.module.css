@@ -86,3 +86,24 @@
   list-style-image: url("../../../public/images/pointbullet.png");
   margin: 15px 0;
 }
+
+.notification {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+
+  transition-duration: .3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 0;
+  color: white;
+}
+
+.notification :hover {
+  transform: rotate(-3deg) scale(1.1);
+}
