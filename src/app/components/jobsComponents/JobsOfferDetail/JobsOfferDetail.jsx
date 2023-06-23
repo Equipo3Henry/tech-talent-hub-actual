@@ -78,7 +78,16 @@ const JobsOfferDetail = ({
       <div className={styles.contenedorButton}>
         <button
           className={styles.button}
-          onClick={() => applyJob(userData.id, job.id)}
+          onClick={() => {
+            if (userData && job) {
+              applyJob(userData.id, job.id);
+            } else {
+              console.error("Either userData or job is null:", {
+                userData,
+                job,
+              });
+            }
+          }}
         >
           Apply
         </button>

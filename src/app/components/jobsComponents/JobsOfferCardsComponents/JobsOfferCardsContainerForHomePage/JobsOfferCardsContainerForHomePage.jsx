@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
 import axios from "axios";
-const JobsOfferCardsContainerForHome = ({ jobs, userData }) => {
+import { GlobalContext } from "../../../../profile/layout";
+
+const JobsOfferCardsContainerForHome = ({ jobs }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
+  const { user } = useContext(GlobalContext);
 
   const onJobSelected = (id) => {
     setSelectedJobId(id);
@@ -17,6 +20,8 @@ const JobsOfferCardsContainerForHome = ({ jobs, userData }) => {
     });
     console.log(mail);
   };
+
+  if (!user) return null;
 
   return (
     <div className={styles.forajido}>
@@ -55,7 +60,8 @@ const JobsOfferCardsContainerForHome = ({ jobs, userData }) => {
         </ul>
       </div>
       <JobsOfferDetail
-        userData={userData}
+        userData={user}
+        userId={user.id}
         selectedJobId={selectedJobId}
         jobs={jobs}
         setSelectedJobId={setSelectedJobId}
