@@ -6,7 +6,7 @@ import styles from "./signupcompanies.module.css";
 import Select from "react-select";
 import axios from "axios";
 import Link from "next/link";
-import { eyeopen, eyeclosed } from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, google } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
 
@@ -181,6 +181,18 @@ function SignUp() {
             Ready to find the best candidate for your company? We have the best
             IT talent pool of LatAm.
           </h3>
+        </div>
+        <div className={styles.cont_container}>
+          <div className={styles.auth_cont}>
+            <button className={styles.ButtonB}>
+              Join with Google
+              <Image
+                src={google}
+                alt="image"
+                className={styles.GoogleImage}
+              ></Image>{" "}
+            </button>
+          </div>
         </div>
         <div className={styles.form_container}>
           <form className={styles.form} onSubmit={submitHandler}>
