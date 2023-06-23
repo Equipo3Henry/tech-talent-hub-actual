@@ -16,6 +16,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "PUT") {
     const { isActive } = req.body;
+    console.log(isActive);
     try {
       const updatedVacancy = await prisma.Vacancy.update({
         where: {

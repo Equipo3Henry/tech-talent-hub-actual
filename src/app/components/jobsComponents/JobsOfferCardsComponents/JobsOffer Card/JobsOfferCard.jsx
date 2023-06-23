@@ -18,7 +18,7 @@ const JobsOfferCard = ({
   onFinishProcess, // Manejador del evento Finish Process
 }) => {
   const handleClick = () => {
-    if (isActive && onFinishProcess) {
+    if (id) {
       onFinishProcess(id);
     }
   };
