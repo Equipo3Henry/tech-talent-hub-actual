@@ -12,6 +12,7 @@ import home from "../images/home.svg";
 import search from "../images/search.svg";
 import notification from "../images/notifications.svg";
 import imagen_1 from "../images/imagen_1.png";
+import upload from "../images/upload.svg";
 import imagen_2 from "../images/imagen_2.png";
 import imagen_3 from "../images/imagen_3.png";
 import au1 from "../images/au1.png";
@@ -53,6 +54,7 @@ export {
   linkedin,
   github,
   signinvector,
+  upload,
   Vector,
   myprofile,
   home,
