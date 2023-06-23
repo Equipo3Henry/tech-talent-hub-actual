@@ -10,7 +10,7 @@
     border-left-width: 0px;
     border-right-width: 9px;
     width: 525px;
-    height: 480px;
+    height: 100%;
     border-color: #b682d9;
     overflow-y: auto;
 }

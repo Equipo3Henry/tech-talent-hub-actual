@@ -9,7 +9,7 @@ import Link from "next/link";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import { eyeopen, eyeclosed } from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, google } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -237,6 +237,18 @@ function SignUp() {
             Ready to find your dream job? Discover companies from all over
             Israel
           </h3>
+        </div>
+        <div className={styles.cont_container}>
+          <div className={styles.auth_cont}>
+            <button className={styles.ButtonB}>
+              Join with Google
+              <Image
+                src={google}
+                alt="image"
+                className={styles.GoogleImage}
+              ></Image>{" "}
+            </button>
+          </div>
         </div>
         <div className={styles.form_container}>
           <form className={styles.form} onSubmit={submitHandler}>
