@@ -6,7 +6,12 @@ import styles from "./signupcompanies.module.css";
 import Select from "react-select";
 import axios from "axios";
 import Link from "next/link";
-import { eyeopen, eyeclosed, google } from "../public/assets/imagesCodes";
+import {
+  eyeopen,
+  eyeclosed,
+  google,
+  upload,
+} from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
 
@@ -217,13 +222,16 @@ function SignUp() {
               {/* Logo Company */}
               <div className={styles.logo_Company_container}>
                 <label className={styles.logo_Company}>Logo</label>
-                <input
-                  type="text"
-                  name="logo_Company"
-                  placeholder="Enter a PNG image"
-                  className={styles.input_logo_Company}
-                  onChange={changeHandler}
-                />
+                <div className={styles.password_toggle_container}>
+                  <input
+                    type="text"
+                    name="logo_Company"
+                    placeholder="Upload a PNG image"
+                    className={styles.input_logo_Company}
+                    onChange={changeHandler}
+                  />
+                  <Image src={upload} className={styles.upload_icon} />
+                </div>
                 {errors.logo_Company !== null && (
                   <span className={styles.error_span}>
                     {errors.logo_Company}

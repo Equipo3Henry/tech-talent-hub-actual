@@ -9,7 +9,12 @@ import Link from "next/link";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import { eyeopen, eyeclosed, google } from "../public/assets/imagesCodes";
+import {
+  eyeopen,
+  eyeclosed,
+  google,
+  upload,
+} from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -381,13 +386,16 @@ function SignUp() {
               {/* CV */}
               <div className={styles.cv_container}>
                 <label className={styles.cv}>Curriculum Vitae</label>
-                <input
-                  type="text"
-                  name="cv"
-                  placeholder="Enter your CV in PDF format"
-                  className={styles.input_cv}
-                  onChange={changeHandler}
-                />
+                <div className={styles.password_toggle_container}>
+                  <input
+                    type="text"
+                    name="cv"
+                    placeholder="Upload a PDF file"
+                    className={styles.input_cv}
+                    onChange={changeHandler}
+                  />
+                  <Image src={upload} className={styles.password_icon} />
+                </div>
                 {errors.cv !== null && (
                   <span className={styles.error_span}>{errors.cv}</span>
                 )}
