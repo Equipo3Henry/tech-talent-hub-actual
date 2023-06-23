@@ -122,19 +122,6 @@ export const validation = async (
     }));
   }
 
-  //? DEGREE VALIDATION
-  if (form.degree.length > 50) {
-    setErrors((errors) => ({
-      ...errors,
-      degree: "Please enter a degree with less than 50 characters",
-    }));
-  } else {
-    setErrors((errors) => ({
-      ...errors,
-      degree: "",
-    }));
-  }
-
   //? CV VALIDATION
   const cvLinkRegex = /^https?:\/\/.*\.pdf$/;
   if (form.cv.trim() === "") {

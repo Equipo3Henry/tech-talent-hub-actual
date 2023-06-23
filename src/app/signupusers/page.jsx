@@ -19,6 +19,7 @@ import {
   working,
   languages,
   specialization,
+  degrees,
 } from "../helpers/signup-users/variables";
 
 function SignUp() {
@@ -104,7 +105,8 @@ function SignUp() {
       property === "country" ||
       property === "seniority" ||
       property === "working" ||
-      property === "specialization"
+      property === "specialization" ||
+      property === "degree"
     ) {
       value = value ? value.value : "";
     }
@@ -470,16 +472,34 @@ function SignUp() {
               {/* Degree */}
               <div className={styles.degree_container}>
                 <label className={styles.degree}>Degree</label>
-                <input
-                  type="text"
+                <Select
+                  options={degrees}
                   name="degree"
+                  required
+                  onChange={(selectedOption) =>
+                    changeHandler({
+                      target: { name: "degree", value: selectedOption },
+                    })
+                  }
+                  isClearable={true}
+                  isSearchable={true}
                   placeholder="Select the last degree you have"
-                  className={styles.input_degree}
-                  onChange={changeHandler}
+                  closeMenuOnSelect={true}
+                  styles={{
+                    container: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      borderWidth: "0.5px 0.5px 4px 0.5px",
+                      fontSize: 18,
+                      width: "93%",
+                    }),
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      height: 50,
+                    }),
+                  }}
                 />
-                {errors.degree !== null && (
-                  <span className={styles.error_span}>{errors.degree}</span>
-                )}
               </div>
 
               {/* Soft Skills */}
