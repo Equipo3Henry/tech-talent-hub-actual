@@ -22,10 +22,9 @@ function MyProfileUsers() {
       try {
         const response = await axios.get(`/api/users/${userId}`);
         setUserData(response.data);
-        const data = response.data;
-        console.log(userData);
 
-        console.log("User data:", data);
+        // Log the data
+        console.log("Fetched user data:", response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
