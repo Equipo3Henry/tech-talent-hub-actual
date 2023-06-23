@@ -26,21 +26,25 @@ const MyPostsCards = () => {
     });
   }, [companies]);
 
-  const handleFinishProcess = async (jobId) => {
-    try {
-      const response = await axios.put(`/api/vacancies/${jobId}`, {
-        isActive: false,
+  const handleFinishProcess = (jobId) => {
+    const status = {isActive: false};
+    const url = `/api/vacancies/${jobId}`;
+
+    console.log(url)
+    axios.put(`${url}`, status)
+      .then((res) => {
+        console.log(res)
+        if (res.status === 200) {
+          setJobs(
+            jobs.map((job) =>
+              job.id === jobId ? { ...job, isActive: false } : job
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating job status", error);
       });
-      if (response.status === 200) {
-        setJobs(
-          jobs.map((job) =>
-            job.id === jobId ? { ...job, isActive: false } : job
-          )
-        );
-      }
-    } catch (error) {
-      console.error("Error updating job status", error);
-    }
   };
 
   return (
