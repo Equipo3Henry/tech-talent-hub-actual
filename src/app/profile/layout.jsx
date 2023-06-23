@@ -86,6 +86,7 @@ export default function Layout({ children }) {
       value={{
         jobs,
         user,
+
         setSelectedProgLanguage,
         setSelectedSeniority,
         setSelectedSpec,

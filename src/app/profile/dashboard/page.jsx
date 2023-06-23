@@ -21,15 +21,13 @@ function HomePage() {
     setUser,
   } = useContext(GlobalContext);
 
-  const params = useSearchParams();
-  const userData = JSON.parse(params.get("userData"));
-
   useEffect(() => {
     const localStorageData = localStorage.getItem("userData");
     const userData = JSON.parse(localStorageData);
     setUser(userData);
   }, []); // Dependency a
 
+  //  console.log(`yo soy ${userData}`);
   console.log(user);
 
   return (
@@ -44,7 +42,7 @@ function HomePage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-          <JobsOfferCardsContainerForHome jobs={jobs} userData={userData} />
+          <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
 
           <div className={styles.jobsDetailContainer}></div>
         </div>
