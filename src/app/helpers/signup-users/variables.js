@@ -100,6 +100,14 @@ const seniority = [
   { value: "SENIOR", label: "Senior" },
 ];
 
+//? OPTIONS SELECT SENIORITY
+const degrees = [
+  { value: "Masters/PhD", label: "Masters/PhD" },
+  { value: "Universitary", label: "Universitary" },
+  { value: "High School", label: "High School" },
+  { value: "Elementary School", label: "Elementary School" },
+];
+
 //? OPTIONS SELECT SPECIALIZATION
 const specialization = [
   { value: "FRONTEND", label: "Front-end" },
@@ -123,4 +131,5 @@ module.exports = {
   softSkills,
   progLanguages,
   countries,
+  degrees,
 };
