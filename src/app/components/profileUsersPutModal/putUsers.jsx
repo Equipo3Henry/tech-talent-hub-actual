@@ -25,7 +25,7 @@ import styles from "./putUsers.module.css";
 
 const PutUsers = ({ userData }) => {
   const [form, setForm] = useState({
-    name: userData.name,
+    name: "",
     lastname: "",
     birth: "",
     aboutme: "",
@@ -40,6 +40,25 @@ const PutUsers = ({ userData }) => {
     recruiter: false,
   });
 
+  useEffect(() => {
+    if (userData) {
+      setForm({
+        name: userData.name || "",
+        lastname: userData.lastname || "",
+        birth: userData.birth || "",
+        aboutme: userData.aboutme || "",
+        working: userData.working || false,
+        country: userData.country || "",
+        degree: userData.degree || "",
+        languages: userData.languages || [],
+        progLanguages: userData.progLanguages || [],
+        seniority: userData.seniority || "",
+        softSkills: userData.softSkills || [],
+        specialization: userData.specialization || "",
+        recruiter: userData.recruiter || false,
+      });
+    }
+  }, [userData]);
   //? USE STATE ERRORS
   const [errors, setErrors] = useState({
     name: "",
@@ -156,6 +175,7 @@ const PutUsers = ({ userData }) => {
                       type="text"
                       name="name"
                       placeholder="Enter your first name"
+                      value={form.name}
                       className={styles.input_name}
                       onChange={changeHandler}
                     />
@@ -170,6 +190,7 @@ const PutUsers = ({ userData }) => {
                       type="text"
                       name="lastname"
                       placeholder="Enter your last name"
+                      value={form.lastname}
                       className={styles.input_lastname}
                       onChange={changeHandler}
                     />
@@ -190,6 +211,7 @@ const PutUsers = ({ userData }) => {
                       onChange={handleDateOfBirthChange}
                       placeholder="Enter your date of birth"
                       className={styles.input_dateOfBirth}
+                      value={form.birth}
                     />
                     {errors.birth !== null && (
                       <span className={styles.error_span}>{errors.birth}</span>
@@ -202,6 +224,7 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={countries}
                       name="country"
+                      value={form.country}
                       onChange={(selectedOption) =>
                         changeHandler({
                           target: { name: "country", value: selectedOption },
@@ -246,6 +269,7 @@ const PutUsers = ({ userData }) => {
                           },
                         })
                       }
+                      value={form.progLanguages}
                       isClearable={false}
                       placeholder="Select the programming languages you know"
                       isSearchable={true}
