@@ -16,6 +16,14 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
     }
   }, [selectedUserId, users]);
 
+  const handleDownload = () => {
+    if (user && user.cv) {
+      window.open(user.cv);
+    } else {
+      alert("No CV available for download");
+    }
+  };
+
   if (!user) {
     return <div>Aquí iría el id del detail [00]</div>;
   }
@@ -57,7 +65,9 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
           </ul>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.buttonDownload}>Download the Resume</button>
+          <button className={styles.buttonDownload} onClick={handleDownload}>
+            Download the Resume
+          </button>
         </div>
       </div>
     </div>
