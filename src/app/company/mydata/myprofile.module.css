@@ -1,0 +1,67 @@
+.page_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    width: 80%;
+    margin-top: 30px;
+}
+
+
+.p{
+    font-size:19px;
+}
+
+.button{
+    width: 100%;
+}
+
+.content_container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 80%;
+    margin-top: 60px;
+}
+
+.modifyInfo_container,
+.fileUploader_container {
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 96%;
+    height: 59px;
+    left: 265px;
+    top: 825px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: #7155d9;
+    box-shadow: 2px 2px 4px #00000040;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    transition: transform 0.5 ease;
+}
+
+.button:hover {
+    background: none;
+    border: solid;
+    border-color: #7155d9;
+    color: #7155d9;
+    transform: translateY(-3px);
+    cursor: pointer;
+}

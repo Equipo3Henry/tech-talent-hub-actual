@@ -4,6 +4,7 @@ import google from "../images/google.svg";
 import linkedin from "../images/linkedin.svg";
 import eyeopen from "../images/eyeopen.png";
 import eyeclosed from "../images/eyeclosed.png";
+import myprofile from "../images/myprofile.svg";
 import github from "../images/github.svg";
 import signinvector from "../images/signinvector.png";
 import Vector from "../images/Vector.png";
@@ -53,6 +54,7 @@ export {
   github,
   signinvector,
   Vector,
+  myprofile,
   home,
   eyeclosed,
   eyeopen,
