@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./myprofile.module.css";
 import FileUploader from "../../components/FileUploaderUsers/fileUploader";
+import PutUsers from "../../components/profileUsersPutModal/putUsers";
 
 function MyProfileUsers() {
   return (
@@ -14,7 +15,7 @@ function MyProfileUsers() {
 
       <div className={styles.content_container}>
         <div className={styles.modifyInfo_container}>
-          <button className={styles.button}>Modify Info</button>
+          <PutUsers />
         </div>
         <div className={styles.fileUploader_container}>
           <FileUploader />
