@@ -2,29 +2,7 @@ import React from "react";
 import PricingTable from "../components/servicesComponents/PricingTable/PricingTable";
 import styles from "./services.module.css";
 import Link from "next/link";
-
-const plans = [
-  {
-    title: "Option 1",
-    subtitles: "Lorem ipsum dolor sit amet",
-    price: "Free",
-    features: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ],
-  },
-  {
-    title: "Option 2",
-    subtitles: "Lorem ipsum dolor sit amet",
-    price: "$15",
-    features: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ],
-  },
-];
+import { plans } from "@/src/mock/plans";
 
 const Services = () => {
   return (
