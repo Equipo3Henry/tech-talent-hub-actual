@@ -9,9 +9,7 @@ const FileUploader = () => {
     if (file) {
       const allowedExtensions = /(\.png|\.jpeg|\.jpg)$/i;
       if (!allowedExtensions.exec(file.name)) {
-        alert(
-          "Formato de archivo no válido. Por favor, selecciona una imagen con formato .png, .jpg o .jpeg."
-        );
+        alert("Invalid file format. Please select a .png, .jpg or .jpeg file.");
         // Restablecer el valor del input de archivo para borrar la selección no válida
         event.target.value = "";
       } else {
@@ -44,7 +42,7 @@ const FileUploader = () => {
           </svg>
         </div>
         <div className={styles.text}>
-          <span>Click to upload your profile image</span>
+          <span>Click to upload your profile picture</span>
         </div>
         <input
           type="file"
