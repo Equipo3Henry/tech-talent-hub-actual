@@ -40,23 +40,25 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
           }}
         >
           {jobs &&
-            jobs.map((job, index) => {
-              const formatStart = formatDate(job.start);
-              const companyName = job.company && job.company.name;
+            jobs
+              .filter((job) => job.isActive)
+              .map((job, index) => {
+                const formatStart = formatDate(job.start);
+                const companyName = job.company && job.company.name;
 
-              return (
-                <JobsOfferCard
-                  key={index}
-                  id={job.id}
-                  company={companyName}
-                  name_Vacancy={job.name_Vacancy}
-                  seniority={job.seniority}
-                  start={formatStart}
-                  showSpan={true}
-                  onJobSelected={onJobSelected}
-                />
-              );
-            })}
+                return (
+                  <JobsOfferCard
+                    key={index}
+                    id={job.id}
+                    company={companyName}
+                    name_Vacancy={job.name_Vacancy}
+                    seniority={job.seniority}
+                    start={formatStart}
+                    showSpan={true}
+                    onJobSelected={onJobSelected}
+                  />
+                );
+              })}
         </ul>
       </div>
       <JobsOfferDetail
