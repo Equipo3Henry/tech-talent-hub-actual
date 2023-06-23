@@ -23,6 +23,7 @@ function MyProfileUsers() {
         const response = await axios.get(`/api/users/${userId}`);
         setUserData(response.data);
         const data = response.data;
+        console.log(userData);
 
         console.log("User data:", data);
       } catch (error) {
@@ -46,7 +47,7 @@ function MyProfileUsers() {
 
       <div className={styles.content_container}>
         <div className={styles.modifyInfo_container}>
-          <PutUsers setUserData={setUserData} />
+          <PutUsers userData={userData} />
         </div>
         <div className={styles.fileUploader_container}>
           <FileUploader userId={userId} />

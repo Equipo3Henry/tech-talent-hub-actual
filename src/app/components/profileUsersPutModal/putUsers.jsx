@@ -23,9 +23,9 @@ import {
 } from "../../helpers/signup-users/variables";
 import styles from "./putUsers.module.css";
 
-const PutUsers = ({ setUserData }) => {
+const PutUsers = ({ userData }) => {
   const [form, setForm] = useState({
-    name: "",
+    name: userData.name,
     lastname: "",
     birth: "",
     aboutme: "",
