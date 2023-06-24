@@ -13,14 +13,24 @@ const applyJob = async (userId, jobId) => {
       body: JSON.stringify({ userId, jobId }),
     });
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    const responseData = await response.json();
+
+    console.log(
+      `Free vacancies left: ${responseData.result.limitFreeVacancies}`
+    ); // Log remaining vacancies
+
+    if (response.ok) {
+      alert(responseData.message); // Alert success message
+    } else if (response.status === 403) {
+      alert(responseData.message); // Alert error message if limit is reached
+    } else {
+      throw new Error(responseData.message);
     }
   } catch (error) {
-    console.error("Error applying to job:", error);
+    alert("Error applying to job: " + error.message); // Alert error message
   }
 };
-
+n;
 const JobsOfferDetail = ({
   userData,
   selectedJobId,
