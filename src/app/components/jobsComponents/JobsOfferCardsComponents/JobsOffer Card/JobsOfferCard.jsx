@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./JobsOfferCard.module.css";
 import Link from "next/link";
-
 const JobsOfferCard = ({
   id,
   company,
@@ -16,6 +15,7 @@ const JobsOfferCard = ({
   isActive,
   showFinishButton, // Nueva prop
   onFinishProcess, // Manejador del evento Finish Process
+  onApplicantsClick, // Agregamos esto para tener acceso a la prop
 }) => {
   const handleClick = () => {
     if (id) {
@@ -48,7 +48,7 @@ const JobsOfferCard = ({
         </div>
       )}
       <div className={styles.contenedorMyApplications}>
-        <span>{applicants}</span>
+        <div onClick={onApplicantsClick}>{applicants}</div>
         <span> {status}</span>
       </div>
       {showFinishButton && (
