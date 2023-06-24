@@ -167,5 +167,4 @@ enum Status {
   Applied
   InProgress
   ProccesCompleted
-  WantToGetInTouch
 }
