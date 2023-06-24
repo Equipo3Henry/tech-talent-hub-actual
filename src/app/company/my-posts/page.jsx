@@ -33,10 +33,9 @@ function MyPosts(props) {
   return (
     <>
       <div className={styles.page_container}>
-        <div className={styles.posts_container}>
-          <MyPostsCards companyId={companyId} />
-        </div>
+        <div className={styles.posts_container}></div>
         <h1>My Posts</h1>
+        <MyPostsCards companyId={companyId} />
 
         <FormMyPosts parsedData={companyData} />
       </div>

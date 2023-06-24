@@ -54,22 +54,21 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
+    const { companyId } = req.query; // Get companyId from query parameters
     try {
+      const whereClause = companyId ? { companyId: Number(companyId) } : {}; // If companyId is provided, add it to where clause
       const vacancies = await prisma.vacancy.findMany({
+        where: whereClause, // Add where clause to findMany
         include: {
           company: true, // Include company details in the response
-          applicants: {
-            select: {
-              id: true, // Only select the id field from applicants
-            },
-          },
+          applicants: true, // Include applicants' details in the response
         },
       });
 
       return res.status(200).json(vacancies);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: error.message }); // Devuelve solo el mensaje de error
+      res.status(500).json({ error: error.message }); // Only return the error message
     }
   }
 }

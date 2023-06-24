@@ -5,9 +5,12 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const Vacancy = await prisma.Vacancy.findUnique({
+      const Vacancy = await prisma.vacancy.findUnique({
         where: {
           id: id,
+        },
+        include: {
+          applicants: true, // Include applicants' details in the response
         },
       });
       return res.status(200).json(Vacancy);
