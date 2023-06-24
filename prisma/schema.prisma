@@ -23,6 +23,10 @@ model Company {
   jobs            Int         @default(0)
   vacanciesCount  Int         @default(autoincrement())
   postedVacancies Vacancy[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt @default(now())
+  isActive        Boolean     @default(true)
+  isPremium       Boolean     @default(false)
 }
 
 model Review {
@@ -61,6 +65,7 @@ model User {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
   appliedVacancies Vacancy[] @relation("applications")
+  isActive         Boolean   @default(true)
 }
 
 model Vacancy {
