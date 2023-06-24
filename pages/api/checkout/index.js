@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const plan = req.body.plan;
 
     const URL =
-      "https://b1d4-2800-810-525-1d07-3195-a3c3-ee84-b483.ngrok-free.app";
+      "https://f61d-2800-810-525-1d07-a8bb-ee00-7a89-38cd.ngrok-free.app";
 
     try {
       const preference = {
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         notification_url: `${URL}/api/notify`,
       };
       const response = await mercadopago.preferences.create(preference);
-      
+
       res.status(200).send({ url: response.body.init_point });
     } catch (error) {
       console.log(error);
