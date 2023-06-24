@@ -157,6 +157,13 @@ body.active-modal {
     cursor: pointer;
 }
 
+.upload_icon{
+    position: absolute;
+        top: 32%;
+        right: 12%;
+        cursor: pointer;
+}
+
 
 /* divider */
 
