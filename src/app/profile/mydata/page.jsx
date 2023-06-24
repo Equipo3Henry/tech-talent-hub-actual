@@ -5,6 +5,7 @@ import styles from "./myprofile.module.css";
 import FileUploader from "../../components/FileUploaderUsers/fileUploader";
 import axios from "axios";
 import PutUsers from "../../components/profileUsersPutModal/putUsers";
+import Services from "../../services/page";
 
 function MyProfileUsers() {
   const [userId, setUserId] = useState(null);
@@ -52,6 +53,7 @@ function MyProfileUsers() {
           <FileUploader userId={userId} />
         </div>
       </div>
+      <Services />
     </div>
   );
 }
