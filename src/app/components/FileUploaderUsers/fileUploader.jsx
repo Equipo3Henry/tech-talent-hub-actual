@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./fileUploader.module.css";
+import { storage } from "../../../firebase/firebase.config"; // importa la referencia a storage que configuraste antes
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Importa las funciones necesarias de Firebase Storage
 
 const FileUploader = ({ userId }) => {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const allowedExtensions = /(\.pdf)$/i; // Modificado para aceptar solo archivos PDF
+      const allowedExtensions = /(\.pdf)$/i;
       if (!allowedExtensions.exec(file.name)) {
         alert(
           "Formato de archivo no válido. Por favor, selecciona un archivo PDF."
@@ -13,33 +15,18 @@ const FileUploader = ({ userId }) => {
         event.target.value = "";
       } else {
         try {
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append(
-            "upload_preset",
-            process.env.CLOUDINARY_UPLOAD_PRESET
-          );
+          const storageRef = ref(storage, file.name);
+          const uploadTask = uploadBytesResumable(storageRef, file);
 
-          const response = await fetch(
-            `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/raw/upload`,
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
-
-          if (response.ok) {
-            const jsonResponse = await response.json();
-            console.log("Archivo subido con éxito:", jsonResponse.url);
-
-            // Ahora se realiza la segunda petición a tu API
+          uploadTask.then(async () => {
+            const url = await getDownloadURL(storageRef);
             const patchResponse = await fetch(`/api/users/${userId}`, {
               method: "PATCH",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                cv: jsonResponse.url,
+                cv: url, // usa la URL de descarga de Firebase
               }),
             });
 
@@ -52,13 +39,7 @@ const FileUploader = ({ userId }) => {
                 patchResponse.statusText
               );
             }
-          } else {
-            console.error(
-              "Error al subir el archivo:",
-              response.status,
-              response.statusText
-            );
-          }
+          });
         } catch (error) {
           console.error("Error al subir el archivo:", error);
         }
@@ -76,7 +57,7 @@ const FileUploader = ({ userId }) => {
         <input
           type="file"
           id="file"
-          accept=".pdf" // Modificado para aceptar solo archivos PDF
+          accept=".pdf"
           onChange={handleFileChange}
         />
       </label>
