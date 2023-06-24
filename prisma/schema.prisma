@@ -80,6 +80,7 @@ model Vacancy {
   status                Status    @default(Applied)
   company               Company   @relation(fields: [companyId], references: [id])
   applicants            User[]    @relation("applications")
+  createdAt             DateTime  @default(now())
 }
 
 enum CompanyType {

@@ -8,7 +8,7 @@ const JobsOfferCard = ({
   seniority,
   applicants,
   showButton,
-  start,
+  createdAt,
   showSpan,
   onJobSelected,
   status,
@@ -44,7 +44,7 @@ const JobsOfferCard = ({
       )}
       {showSpan && (
         <div className={styles.contenedorSpan}>
-          <span>{start}</span>
+          <span>{createdAt}</span>
         </div>
       )}
       <div className={styles.contenedorMyApplications}>
