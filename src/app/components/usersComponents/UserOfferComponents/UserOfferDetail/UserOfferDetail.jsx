@@ -3,7 +3,12 @@ import styles from "./UserOfferDetail.module.css";
 
 import { useEffect, useState } from "react";
 
-function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
+function UserOfferDetail({
+  selectedUserId,
+  setSelectedUserId,
+  users,
+  companyData,
+}) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -24,6 +29,36 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
     }
   };
 
+  const handleConnect = async () => {
+    if (user) {
+      try {
+        const response = await fetch("/api/sendEmail/connection", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userEmail: user.email,
+            companyName: companyData.name,
+            companyEmail: companyData.email,
+          }),
+        });
+        console.log("userEmail", user.email);
+        console.log("companyName", companyData.name);
+        console.log("companyEmail", companyData.email);
+        console.log("Response:", response); // Log the response here
+
+        if (response.ok) {
+          alert("Connection request email sent successfully!");
+        } else {
+          throw new Error("Failed to send email");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+        alert("An error occurred. Please try again.");
+      }
+    }
+  };
   if (!user) {
     return <div>Aquí iría el id del detail [00]</div>;
   }
@@ -33,7 +68,9 @@ function UserOfferDetail({ selectedUserId, setSelectedUserId, users }) {
       {console.log(selectedUserId)}
       <div className={styles.ContainerDetail}>
         <div className={styles.botonera}>
-          <button className={styles.buttonConnect}>Connect</button>
+          <button className={styles.buttonConnect} onClick={handleConnect}>
+            Connect
+          </button>
           <button className={styles.buttonLike}>Favorite</button>
         </div>
         <div className={styles.InfoContainer}>
