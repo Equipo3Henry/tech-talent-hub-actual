@@ -89,24 +89,24 @@ export const validation = async (
     }));
   }
 
-  //? CV VALIDATION
-  const cvLinkRegex = /^https?:\/\/.*\.pdf$/;
-  if (form.cv.trim() === "") {
-    setErrors((errors) => ({
-      ...errors,
-      cv: "",
-    }));
-  } else if (!cvLinkRegex.test(form.cv)) {
-    setErrors((errors) => ({
-      ...errors,
-      cv: "Please enter a valid PDF link for the CV",
-    }));
-  } else {
-    setErrors((errors) => ({
-      ...errors,
-      cv: "",
-    }));
-  }
+  // //? CV VALIDATION
+  // const cvLinkRegex = /^https?:\/\/.*\.pdf$/;
+  // if (form.cv.trim() === "") {
+  //   setErrors((errors) => ({
+  //     ...errors,
+  //     cv: "",
+  //   }));
+  // } else if (!cvLinkRegex.test(form.cv)) {
+  //   setErrors((errors) => ({
+  //     ...errors,
+  //     cv: "Please enter a valid PDF link for the CV",
+  //   }));
+  // } else {
+  //   setErrors((errors) => ({
+  //     ...errors,
+  //     cv: "",
+  //   }));
+  // }
 
   //? ISVALID STATE
   const isValid = isFormCompleted();
