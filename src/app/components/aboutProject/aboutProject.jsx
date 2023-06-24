@@ -12,8 +12,7 @@ function AboutProject() {
         <div className={styles.aboutProject_Container}>
           <h1 className={styles.h1}>
             {" "}
-            Bringing Latin American IT Professionals and Israeli Businesses
-            together
+            Bringing Latin America and Israel Together
           </h1>
           <p className={styles.p}>
             With a vast pool of skilled IT professionals from Latin America and

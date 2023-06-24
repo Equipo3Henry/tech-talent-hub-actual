@@ -4,12 +4,12 @@
     flex-direction: row;
     justify-content: center;
     align-self: center;
-    gap: 15rem
+    gap: 10rem
 }
 
 .aboutProject_Container{
 display: flex;
-    width: 632px;
+    width: 682px;
     flex-direction: column;
     flex-shrink: 0;}
 
@@ -25,8 +25,9 @@ display: flex;
 
 
 .h1{
+    padding-top: 20px;
     color: #000;
-    font-size: 37px;
+    font-size:38px;
     font-family: "Merriweather";
     font-weight: 900;
     line-height: 139%;
