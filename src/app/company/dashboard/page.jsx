@@ -8,6 +8,7 @@ import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 function DashboardPage() {
   const {
@@ -19,17 +20,29 @@ function DashboardPage() {
     setSearchValue,
     setCompanies,
   } = useContext(GlobalContext);
+  const [companyData, setCompanyData] = useState(null);
 
-  const params = useSearchParams();
+  useEffect(() => {
+    const localStorageData = localStorage.getItem("companyData");
+    if (localStorageData) {
+      const companyDataFromStorage = JSON.parse(localStorageData);
+      console.log(companyDataFromStorage); // Log the data here
+      setCompanyData(companyDataFromStorage);
+    } else {
+      console.log("No data in localStorage");
+    }
+  }, []); // Dependency array
+
+  /*   const params = useSearchParams();
   const companyData = JSON.parse(params.get("companyData"));
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
     const companyData = JSON.parse(localStorageData);
+    console.log(companyData); // Log the data here
     setCompanies(companyData);
-  }, []); // Dependency array
+  }, []); // Dependency array */
 
-  console.log(compData);
   return (
     <div className={styles.globalContainer}>
       <SearchBar setSearchValue={setSearchValue} />
@@ -43,7 +56,10 @@ function DashboardPage() {
       <br />
       <div className={styles.forniculo}>
         <div className={styles.usersContainer}>
-          <UserOfferCardsContainerForDashboard users={users} />
+          <UserOfferCardsContainerForDashboard
+            users={users}
+            companyData={companyData}
+          />
           <div className={styles.usersDetailContainer}></div>
         </div>
       </div>

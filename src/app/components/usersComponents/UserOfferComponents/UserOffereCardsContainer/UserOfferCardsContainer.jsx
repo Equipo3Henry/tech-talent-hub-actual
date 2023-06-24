@@ -4,7 +4,7 @@ import formatDate from "../../../../helpers/formatDate";
 import UserOfferDetail from "../UserOfferDetail/UserOfferDetail";
 import styles from "./UserOfferCardsContainer.module.css";
 
-const UserOfferCardsContainerForDashboard = ({ users }) => {
+const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const onUserSelected = (id) => {
@@ -34,6 +34,7 @@ const UserOfferCardsContainerForDashboard = ({ users }) => {
         <UserOfferDetail
           selectedUserId={selectedUserId}
           users={users}
+          companyData={companyData}
           setSelectedUserId={setSelectedUserId}
         />
       </div>
