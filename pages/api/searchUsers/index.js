@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
+  console.log(req.query.q, '--------------------------------');    
   if (req.method === "GET") {
     const query = req.query.q;
-    
     const users = await prisma.user.findMany();
     
     const searchedUsers = [];
@@ -13,26 +13,26 @@ export default async function handler(req, res) {
       if (!user.seniority) user.seniority = "@"; // pongo un string cualquiera para que
       if (!user.degree) user.degree = "@"; // se pueda buscar por string y no se encuentre
         if (
-          user.username.includes(query.toUpperCase()) ||
-          user.username.includes(query.toLowerCase()) ||
-          user.name.includes(query.toUpperCase()) ||
-          user.name.includes(query.toLowerCase()) ||
-          user.lastname.includes(query.toUpperCase()) ||
+          user.username.toUpperCase().includes(query.toUpperCase()) ||
+          user.username.toLowerCase().includes(query.toLowerCase()) ||
+          user.name.toUpperCase().includes(query.toUpperCase()) ||
+          user.name.toLowerCase().includes(query.toLowerCase()) ||
+          user.lastname.toUpperCase().includes(query.toUpperCase()) ||
           user.lastname.includes(query.toLowerCase()) ||
-          user.country.includes(query.toUpperCase()) ||
-          user.country.includes(query.toLowerCase()) ||
-          user.degree.includes(query.toUpperCase()) ||
-          user.degree.includes(query.toLowerCase()) ||
+          user.country.toUpperCase().includes(query.toUpperCase()) ||
+          user.country.toLowerCase().includes(query.toLowerCase()) ||
+          user.degree.toUpperCase().includes(query.toUpperCase()) ||
+          user.degree.toLowerCase().includes(query.toLowerCase()) ||
           user.languages.includes(query.toUpperCase()) ||
           user.languages.includes(query.toLowerCase()) ||
           user.progLanguages.includes(query.toUpperCase()) ||
           user.progLanguages.includes(query.toLowerCase()) ||
-          user.seniority.includes(query.toUpperCase()) ||
-          user.seniority.includes(query.toLowerCase()) ||
+          user.seniority.toUpperCase().includes(query.toUpperCase()) ||
+          user.seniority.toLowerCase().includes(query.toLowerCase()) ||
           user.softSkills.includes(query.toUpperCase()) ||
           user.softSkills.includes(query.toLowerCase()) ||
-          user.specialization.includes(query.toUpperCase()) ||
-          user.specialization.includes(query.toLowerCase())
+          user.specialization.toUpperCase().includes(query.toUpperCase()) ||
+          user.specialization.toLowerCase().includes(query.toLowerCase())
           )
           searchedUsers.push(user)
         })
