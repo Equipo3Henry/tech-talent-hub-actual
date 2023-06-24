@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
@@ -9,6 +9,12 @@ import { GlobalContext } from "../../../../profile/layout";
 const JobsOfferCardsContainerForHome = ({ jobs }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
   const { user } = useContext(GlobalContext);
+
+  // Agrega un efecto para seleccionar el primer trabajo cuando 'jobs' cambia
+  useEffect(() => {
+    const firstActiveJob = jobs?.find((job) => job.isActive);
+    setSelectedJobId(firstActiveJob?.id);
+  }, [jobs]);
 
   const onJobSelected = (id) => {
     setSelectedJobId(id);
