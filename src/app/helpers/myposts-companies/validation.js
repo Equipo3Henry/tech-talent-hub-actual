@@ -22,10 +22,10 @@ export const validation = async (
   }
 
   //? ABOUT ME VALIDATION
-  if (form.description.length > 500) {
+  if (form.description.length > 2000) {
     setErrors((errors) => ({
       ...errors,
-      description: "Please enter a description with less than 500 characters",
+      description: "Please enter a description with less than 2000 characters",
     }));
   } else {
     setErrors((errors) => ({
