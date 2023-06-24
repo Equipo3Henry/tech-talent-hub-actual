@@ -128,6 +128,9 @@ const MyPostsCards = () => {
           />
         );
       })}
+      <button onClick={handleToggleOldPosts}>
+        {showOldPosts ? "View Active Posts" : "Show Old Posts"}
+      </button>
     </div>
   );
 };
