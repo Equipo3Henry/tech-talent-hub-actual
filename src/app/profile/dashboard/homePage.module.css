@@ -17,7 +17,8 @@
 .forniculo {
   display: flex;
   flex-direction: row;
-  margin: 0px;
+  margin: 0px 70px;
+  margin-left: 200px;
 }
 
 .jobsDetailContainer {

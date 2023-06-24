@@ -14,14 +14,15 @@
   border-radius: 41px 0px 0px 41px;
   border-style: none;
   display: flex;
-  padding: 10px;
+  padding: 10px 25px;
   color: black;
   font-family: "Roboto";
   font-style: normal;
+  font-size: 17px;
 }
 
 .button {
-  width: 36px;
+  width: 55px;
   height: 51px;
   background: #6850bf;
   border-radius: 0px 41px 41px 0px;

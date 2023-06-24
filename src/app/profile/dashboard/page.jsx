@@ -2,36 +2,54 @@
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
-import { jobsTemplate } from "../../helpers/provisionalDB";
-import JobsOfferDetail from "../../components/jobsComponents/JobsOfferDetail/JobsOfferDetail";
-import React, { useState } from "react";
-import SelectsContainer from "../../components/generalComponents/selectComponent/SelectContainer/SelectContainer";
+import React, { useContext } from "react";
+import { GlobalContext } from "../layout";
+import { getLayout } from "../layout";
+import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-const jobs = jobsTemplate;
-function homePage() {
-  const [selectedJob, setSelectedJob] = useState(null);
+function HomePage() {
+  const {
+    jobs,
+    user,
+    setSelectedProgLanguage,
+    setSelectedSeniority,
+    setSelectedSpec,
+    setSelectedWorkday,
+    setSearchValue,
+    setUser,
+  } = useContext(GlobalContext);
 
-  const handleJobSelect = (jobId) => {
-    const jobDetail = jobs.find((job) => job.id === jobId);
-    setSelectedJob(jobDetail);
-  };
+  useEffect(() => {
+    const localStorageData = localStorage.getItem("userData");
+    const userData = JSON.parse(localStorageData);
+    setUser(userData);
+  }, []); // Dependency a
+
+  //  console.log(`yo soy ${userData}`);
+  console.log(user);
 
   return (
     <div className={styles.globalContainer}>
-      <SearchBar />
-      <br />
-      <SelectsContainer />
+      <SearchBar setSearchValue={setSearchValue} /> <br />
+      <FiltersSelectorProfile
+        setSelectedProgLanguage={setSelectedProgLanguage}
+        setSelectedSeniority={setSelectedSeniority}
+        setSelectedSpec={setSelectedSpec}
+        setSelectedWorkday={setSelectedWorkday}
+      />
       <br />
       <div className={styles.forniculo}>
         <div className={styles.jobsContainer}>
-          <JobsOfferCardsContainerForHome
-            jobs={jobs}
-            onJobSelect={handleJobSelect}
-          />
+          <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+
           <div className={styles.jobsDetailContainer}></div>
         </div>
       </div>
     </div>
   );
 }
-export default homePage;
+HomePage.getLayout = getLayout;
+
+export default HomePage;

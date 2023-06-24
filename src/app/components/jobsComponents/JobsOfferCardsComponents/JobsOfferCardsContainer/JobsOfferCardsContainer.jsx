@@ -4,6 +4,7 @@ import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 
 const JobsOfferCardsContainer = ({ jobs }) => {
   const firstFiveJobs = jobs.slice(0, 4);
+  const companyName = jobs.company && jobs.company.name;
 
   return (
     <div className={styles.ContainerJobs}>
@@ -11,7 +12,7 @@ const JobsOfferCardsContainer = ({ jobs }) => {
         <JobsOfferCard
           key={index}
           id={job.id}
-          company={job.company}
+          company={companyName}
           /*           logo_Company={job.logo_Company}
            */ name_Vacancy={job.name_Vacancy}
           /*           seniority={job.seniority}

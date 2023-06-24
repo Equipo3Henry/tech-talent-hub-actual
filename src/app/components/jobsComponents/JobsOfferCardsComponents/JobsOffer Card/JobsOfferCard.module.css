@@ -24,7 +24,7 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 900;
-  font-size: 2em;
+  font-size: 1.4em;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
@@ -32,20 +32,21 @@
 }
 
 .span {
-  width: 292px;
+  width: 300px;
   height: 38px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 17px;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
+  margin-top: 10px;
 }
 .CompanyNameContainer {
   display: flex;
   gap: 6px;
-  width: 75px;
+  width: 280px;
   margin-top: 2px;
 }
 
@@ -78,6 +79,15 @@
   color: #7155d9;
 }
 
+.button_finish{
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #7155d9;
+  cursor: pointer;
+}
+
+
 .contenedorButton {
   display: flex;
   align-content: space-around;
@@ -90,4 +100,15 @@
   align-content: space-around;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+.spanSeniority {
+  margin-top: -15px;
+}
+
+.contenedorMyApplications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

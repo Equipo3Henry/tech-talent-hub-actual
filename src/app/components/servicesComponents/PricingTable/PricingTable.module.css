@@ -1,5 +1,5 @@
 .Container {
   display: flex;
   flex-direction: row;
-  gap: 46px;
+  gap: 100px;
 }
