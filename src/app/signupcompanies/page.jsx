@@ -45,6 +45,9 @@ function SignUp() {
     jobs: "",
   });
 
+  //? USE STATE IMAGE
+  const [imageURL, setImageURL] = useState(null);
+
   //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
   const [valid, setValid] = useState(false);
 
@@ -64,7 +67,27 @@ function SignUp() {
     setShowPassword(!showPassword);
     setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
   };
+  const changeHandlerb = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET); // reemplaza con tu preset de subida de Cloudinary
 
+    try {
+      const res = await axios.post(
+        `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
+        formData
+      );
+      console.log(res.data);
+      setImageURL(res.data.secure_url);
+      setForm((prevState) => ({
+        ...prevState,
+        logo_Company: res.data.secure_url,
+      }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
@@ -224,11 +247,11 @@ function SignUp() {
                 <label className={styles.logo_Company}>Logo</label>
                 <div className={styles.password_toggle_container}>
                   <input
-                    type="text"
+                    type="file"
                     name="logo_Company"
                     placeholder="Upload a PNG image"
                     className={styles.input_logo_Company}
-                    onChange={changeHandler}
+                    onChange={changeHandlerb}
                   />
                   <Image src={upload} className={styles.upload_icon} />
                 </div>
