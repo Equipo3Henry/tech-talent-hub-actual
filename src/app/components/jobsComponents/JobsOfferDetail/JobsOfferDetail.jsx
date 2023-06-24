@@ -30,7 +30,7 @@ const applyJob = async (userId, jobId) => {
     alert("Error applying to job: " + error.message); // Alert error message
   }
 };
-n;
+
 const JobsOfferDetail = ({
   userData,
   selectedJobId,
