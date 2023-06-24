@@ -61,6 +61,11 @@ const Login = () => {
       router.push(`/company/dashboard`);
     } else setError(response.response);
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
   return (
     <div>
       <div className={styles.LogInContainer}>
@@ -82,6 +87,7 @@ const Login = () => {
                     placeholder="Enter your email"
                     className={styles.input}
                     onChange={handleForm}
+                    onKeyDown={handleKeyDown}
                   />
                 </label>
                 <label htmlFor="Password">
@@ -94,6 +100,7 @@ const Login = () => {
                       placeholder="Enter your password"
                       className={styles.input}
                       onChange={handleForm}
+                      onKeyDown={handleKeyDown}
                     />
                     <Image
                       src={showPasswordIcon}
