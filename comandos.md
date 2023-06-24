@@ -1,5 +1,5 @@
 Para actualizar modelos en la BD borrar la carpeta 'migrations' y ejecutar:
-npx prisma migrate dev 
+npx prisma migrate dev
 
 Para importar los cambios realizados en la BD ejecutar:
 npx prisma db pull
@@ -10,7 +10,8 @@ npx prisma generate
 para ver todos los datos:
 npx prisma studio
 
-------------------------------------------------------------------
+---
+
 Si les pide iniciar sesión en ngrok tenemos este usuario:
 equipo3.37a@gmail.com
 equipo3.37a
