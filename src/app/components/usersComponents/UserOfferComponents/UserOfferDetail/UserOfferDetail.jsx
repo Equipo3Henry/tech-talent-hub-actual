@@ -60,7 +60,7 @@ function UserOfferDetail({
     }
   };
   if (!user) {
-    return <div>Aquí iría el id del detail [00]</div>;
+    return null;
   }
 
   return (

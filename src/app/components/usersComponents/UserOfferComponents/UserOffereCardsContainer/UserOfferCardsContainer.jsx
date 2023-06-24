@@ -3,9 +3,17 @@ import UserOfferCard from "../UserOfferCard/UserOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import UserOfferDetail from "../UserOfferDetail/UserOfferDetail";
 import styles from "./UserOfferCardsContainer.module.css";
+import { useEffect } from "react";
 
 const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
+
+  useEffect(() => {
+    // seleccionar automáticamente el primer usuario cuando se monte el componente
+    if (users && users.length > 0) {
+      setSelectedUserId(users[0].id);
+    }
+  }, [users]);
 
   const onUserSelected = (id) => {
     setSelectedUserId(id);
