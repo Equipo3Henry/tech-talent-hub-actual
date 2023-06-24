@@ -83,16 +83,29 @@ function SignUp() {
   };
 
   //? USE STATE DATE PICKER
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
 
   //? CHANGE HANDLER DATE PICKER
   const handleDateOfBirthChange = (date) => {
+    const currentDate = new Date(); // Obtener la fecha actual
     const formattedDate = format(date, "dd/MM/yyyy");
-    setStartDate(date);
-    setForm({
-      ...form,
-      birth: formattedDate,
-    });
+    if (date > currentDate) {
+      // Si la fecha seleccionada es posterior a la fecha actual
+      setErrors((errors) => ({
+        ...errors,
+        birth: "Please select a date earlier than today",
+      }));
+    } else {
+      setErrors((errors) => ({
+        ...errors,
+        birth: "",
+      }));
+      setStartDate(date);
+      setForm({
+        ...form,
+        birth: formattedDate,
+      });
+    }
   };
 
   //? ON CHANGE INPUT HANDLER
@@ -214,6 +227,18 @@ function SignUp() {
       setValid(false);
     });
   };
+
+  //? Custom input component for ReactDatePicker
+  const CustomDatePickerInput = ({ value, onClick }) => (
+    <input
+      type="text"
+      value={value}
+      onClick={onClick}
+      placeholder="Enter your date of birth"
+      className={styles.input_dateOfBirth}
+      readOnly
+    />
+  );
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
   useEffect(() => {
@@ -374,8 +399,7 @@ function SignUp() {
                 <ReactDatePicker
                   selected={startDate}
                   onChange={handleDateOfBirthChange}
-                  required
-                  placeholder="Enter your date of birth"
+                  customInput={<CustomDatePickerInput />}
                   className={styles.input_dateOfBirth}
                 />
                 {errors.birth !== null && (
