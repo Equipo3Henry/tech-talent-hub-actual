@@ -49,8 +49,8 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
             jobs
               .filter((job) => job.isActive)
               .map((job, index) => {
-                const formatStart = formatDate(job.start);
                 const companyName = job.company && job.company.name;
+                formatDate(job.createdAt);
 
                 return (
                   <JobsOfferCard
@@ -59,9 +59,9 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
                     company={companyName}
                     name_Vacancy={job.name_Vacancy}
                     seniority={job.seniority}
-                    start={formatStart}
                     showSpan={true}
                     onJobSelected={onJobSelected}
+                    createdAt={formatDate(job.createdAt)} // aquí es donde se usa formatDate
                   />
                 );
               })}
