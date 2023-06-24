@@ -12,8 +12,10 @@ import home from "../images/home.svg";
 import search from "../images/search.svg";
 import notification from "../images/notifications.svg";
 import imagen_1 from "../images/imagen_1.png";
+import about from "../images/about.svg";
 import upload from "../images/upload.svg";
 import imagen_2 from "../images/imagen_2.png";
+import aboutProject from "../images/aboutProject.png";
 import imagen_3 from "../images/imagen_3.png";
 import au1 from "../images/au1.png";
 import au2 from "../images/au2.png";
@@ -56,6 +58,8 @@ export {
   signinvector,
   upload,
   Vector,
+  about,
+  aboutProject,
   myprofile,
   home,
   eyeclosed,

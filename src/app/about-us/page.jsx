@@ -14,28 +14,16 @@ import UsContainer from "../components/aboutComponents/UsContainer/UsContainer";
 
 const us = [
   {
-    name: "Christian Villegas",
-    github: "https://github.com/Blessed0314",
-    linkedin: "",
-    image: au3,
-  },
-  {
-    name: "Jorge Acosta",
-    github: "https://github.com/jacosta1111",
-    linkedin: "",
-    image: au1,
-  },
-  {
-    name: "Natalia Malvicino",
-    github: "https://github.com/Aafterlife17",
-    linkedin: "https://www.linkedin.com/in/nataliamalvicino/",
-    image: au4,
-  },
-  {
     name: "Iair Kaplun",
     github: "https://github.com/iairkap",
     linkedin: "https://www.linkedin.com/in/iair-kaplun-97145a88",
     image: au8,
+  },
+  {
+    name: "Christian Villegas",
+    github: "https://github.com/Blessed0314",
+    linkedin: "https://www.linkedin.com",
+    image: au3,
   },
   {
     name: "Iván Scarsella",
@@ -44,9 +32,15 @@ const us = [
     image: au6,
   },
   {
+    name: "Natalia Malvicino",
+    github: "https://github.com/Aafterlife17",
+    linkedin: "https://www.linkedin.com/in/nataliamalvicino/",
+    image: au4,
+  },
+  {
     name: "Julián González",
     github: "https://github.com/Uruvsereg",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com",
     image: au7,
   },
 ];

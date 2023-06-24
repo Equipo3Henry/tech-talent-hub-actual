@@ -17,10 +17,11 @@
   margin-top: -10rem;
 }
 .IconsContainer {
-  margin-top: -10rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .NavbarCompanies {

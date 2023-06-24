@@ -17,6 +17,7 @@
   margin-left: 120px;
 }
 
+
 .subtitle {
   text-align: center;
   font-family: "Roboto";
@@ -24,7 +25,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 139%;
-
+  margin: 40px 0;
   text-align: center;
   letter-spacing: -0.011em;
 
