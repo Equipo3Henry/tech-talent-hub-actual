@@ -2,7 +2,7 @@ export const plans = [
   {
     title: "Option 1",
     subtitles: "Lorem ipsum dolor sit amet",
-    price: 0,
+    price: 1,
     priceString: "Free",
     features: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
