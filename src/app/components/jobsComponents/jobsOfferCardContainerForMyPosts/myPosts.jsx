@@ -1,41 +1,44 @@
-"use client";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import JobsOfferCard from "../JobsOfferCardsComponents/JobsOffer Card/JobsOfferCard";
 import { GlobalContext } from "@/src/app/company/layout";
-import Modal from "react-modal";
+import styles from "./myPosts.module.css";
+import UserOfferCardsContainerForDashboard from "../../usersComponents/UserOfferComponents/UserOffereCardsContainer/UserOfferCardsContainer";
 
 const MyPostsCards = () => {
   const [jobs, setJobs] = useState([]);
-  const [showOldPosts, setShowOldPosts] = useState(false); // Nuevo estado
+  const [showOldPosts, setShowOldPosts] = useState(false);
   const { companies } = useContext(GlobalContext);
+  const [selectedJobId, setSelectedJobId] = useState(null);
+  const [applicants, setApplicants] = useState([]);
+  const [showModal, setShowModal] = useState(false); // Añade esta línea
+  const [companyData, setCompanyData] = useState(null); // <--- Agrega esto
 
   useEffect(() => {
-    const localStorageData =
-      typeof localStorage !== "undefined"
-        ? localStorage.getItem("companyData")
-        : null;
+    // Obteniendo la compañía del localStorage si está disponible
+    const localStorageData = localStorage
+      ? localStorage.getItem("companyData")
+      : null;
     const companyData = localStorageData ? JSON.parse(localStorageData) : null;
+    setCompanyData(companyData); // <--- Agrega esto
     const companyId = companyData ? companyData.id : null;
 
     if (companyId) {
-      axios.get(`/api/vacancies?companyId=${companyId}`).then((response) => {
-        // Query by company ID
+      axios.get("/api/vacancies").then((response) => {
         const jobsFromServer = response.data;
-        setJobs(jobsFromServer);
+        const filteredJobs = jobsFromServer.filter(
+          (job) => job.companyId === companyId
+        );
+        setJobs(filteredJobs);
       });
     }
   }, [companies]);
 
   const handleFinishProcess = (jobId) => {
-    const status = { isActive: false };
     const url = `/api/vacancies/${jobId}`;
-
-    console.log(url);
     axios
       .put(`${url}`, { isActive: false })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           setJobs(
             jobs.map((job) =>
@@ -50,6 +53,7 @@ const MyPostsCards = () => {
         console.error("Error updating job status", error);
       });
   };
+
   const handleToggleOldPosts = () => {
     setShowOldPosts(!showOldPosts);
   };
@@ -58,20 +62,53 @@ const MyPostsCards = () => {
     ? jobs.filter((job) => !job.isActive)
     : jobs.filter((job) => job.isActive);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false); // Nuevo estado para controlar la apertura del modal
-  const [selectedJob, setSelectedJob] = useState(null); // Nuevo estado para guardar el trabajo seleccionado
+  // Toggle modal and handle selectedJobId
+  const toggleModal = (jobId) => {
+    setShowModal(!showModal);
+    setSelectedJobId(jobId);
 
-  const openModal = (job) => {
-    setSelectedJob(job);
-    setModalIsOpen(true);
+    if (!showModal) {
+      axios
+        .get(`/api/vacancies/${jobId}`)
+        .then((response) => {
+          setApplicants(response.data.applicants);
+        })
+        .catch((error) => {
+          console.error("Error fetching applicants", error);
+        });
+    }
   };
 
-  const closeModal = () => {
-    setSelectedJob(null);
-    setModalIsOpen(false);
-  };
+  useEffect(() => {
+    if (showModal && selectedJobId) {
+      axios
+        .get(`/api/vacancies/${selectedJobId}`)
+        .then((response) => {
+          setApplicants(response.data.applicants);
+        })
+        .catch((error) => {
+          console.error("Error fetching applicants", error);
+        });
+    } else {
+      setApplicants([]);
+    }
+  }, [showModal, selectedJobId]);
+
   return (
     <div>
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModal}></div>
+          <div className={styles.modal_content}>
+            <h2>Applicants</h2>
+            <UserOfferCardsContainerForDashboard
+              users={applicants}
+              companyData={companyData}
+            />
+            <button onClick={toggleModal}>Close</button>
+          </div>
+        </div>
+      )}
       {filteredJobs.map((job, index) => {
         const companyName = job.company && job.company.name;
         return (
@@ -84,32 +121,13 @@ const MyPostsCards = () => {
             showSpan={true}
             start={job.start}
             onJobSelected={() => {}}
-            applicants={
-              <span onClick={() => openModal(job)}>
-                {`${job.applicants.length} candidates applied`}
-              </span>
-            }
+            applicants={`${job.applicants.length} candidates applied`}
             showFinishButton={true}
             onFinishProcess={handleFinishProcess}
+            onApplicantsClick={() => toggleModal(job.id)} // Modifica esta línea
           />
         );
       })}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Applicants Modal"
-      >
-        <h2>Candidates for {selectedJob?.name_Vacancy}</h2>
-        {selectedJob?.applicants.map((applicant, index) => (
-          <p key={index}>
-            {applicant.name} {applicant.lastname}
-          </p> // Include the applicant's name and last name
-        ))}
-        <button onClick={closeModal}>Close</button>
-      </Modal>
-      <button onClick={handleToggleOldPosts}>
-        {showOldPosts ? "View Active Posts" : "Show Old Posts"}
-      </button>
     </div>
   );
 };
