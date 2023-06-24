@@ -26,9 +26,13 @@ import {
   specialization,
   degrees,
 } from "../helpers/signup-users/variables";
+import { storage } from "@/src/firebase/firebase.config";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function SignUp() {
   //? USE STATE FORM
+  const [cv, setCv] = useState("");
+
   const [form, setForm] = useState({
     username: "",
     name: "",
@@ -105,6 +109,28 @@ function SignUp() {
         ...form,
         birth: formattedDate,
       });
+    }
+  };
+  const handleCvChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const allowedExtensions = /(\.pdf)$/i;
+      if (!allowedExtensions.exec(file.name)) {
+        alert("Invalid file format. Please upload a PDF file.");
+        event.target.value = "";
+      } else {
+        try {
+          const storageRef = ref(storage, file.name);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+
+          uploadTask.then(async () => {
+            const url = await getDownloadURL(storageRef);
+            setForm((prevState) => ({ ...prevState, cv: url })); // Update the 'cv' field in the 'form' object with the download URL
+          });
+        } catch (error) {
+          console.error("Error uploading the file:", error);
+        }
+      }
     }
   };
 
@@ -412,14 +438,17 @@ function SignUp() {
                 <label className={styles.cv}>Curriculum Vitae</label>
                 <div className={styles.password_toggle_container}>
                   <input
-                    type="text"
-                    name="cv"
-                    placeholder="Upload a PDF file"
+                    type="file"
+                    accept=".pdf"
+                    id="file"
                     className={styles.input_cv}
-                    onChange={changeHandler}
+                    onChange={handleCvChange}
                   />
-                  <Image src={upload} className={styles.password_icon} />
+                  <label htmlFor="file">
+                    <Image src={upload} className={styles.password_icon} />
+                  </label>
                 </div>
+
                 {errors.cv !== null && (
                   <span className={styles.error_span}>{errors.cv}</span>
                 )}
