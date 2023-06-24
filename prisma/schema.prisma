@@ -66,6 +66,9 @@ model User {
   updatedAt        DateTime  @updatedAt
   appliedVacancies Vacancy[] @relation("applications")
   isActive         Boolean   @default(true)
+  isPremium        Boolean   @default(false)
+  limitFreeVacancies Int     @default(20)
+  resetLimitFreeVacancies DateTime @default(now())
 }
 
 model Vacancy {
