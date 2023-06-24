@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { landing } from "../../public/assets/page";
+import { landing } from "../../public/assets/imagesCodes";
 import styles from "./Landing.module.css";
 import Link from "next/link";
 
@@ -10,10 +10,10 @@ function LandingFirstPart(props) {
       <div className={styles.landingContainer}>
         <div className={styles.textContainer}>
           <h1 className={styles.title}>
-            We connect IT Talent with Israel’s Companies
+            We help connect IT Talent with Israel’s Companies
           </h1>
           <p className={styles.parrafo}>
-            Whether you're a company seeking exceptional talent or a skilled
+            Whether you are a company seeking exceptional talent or a skilled
             professional ready to make your mark, Tech Talent Hub is your
             gateway to unlimited possibilities.{" "}
           </p>

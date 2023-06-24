@@ -29,28 +29,41 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
-  margin: 0;
+  margin: 15px 0;
 }
 
 .labelInput {
   font-family: "Roboto";
   font-style: black;
-  font-size: 16px;
+  font-size: 18px;
 }
 .input {
   width: 500px;
   height: 53px;
   left: 122px;
   top: 212px;
+  font-size: 16px;
+  padding-left: 15px;
   background-color: #efefef;
   border-style: solid;
   border-width: 0.5px 0.5px 4px 0.5px;
   border-color: black;
   box-sizing: border-box;
+}
+
+.password_toggle_container {
+  position: relative;
+}
+
+.password_icon {
+  position: absolute;
+  top: 32%;
+  right: 5%;
+  cursor: pointer;
 }
 
 .inPutsContainer {
@@ -75,7 +88,6 @@
   cursor: pointer;
 }
 
-
 .ButtonB {
   background: #7155d9;
   box-shadow: 2px 2px 4px #00000040;
@@ -88,6 +100,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
+  cursor: pointer;
   line-height: 28px;
 }
 
@@ -144,11 +157,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5em;
 }
 
 .Vector {
-  width: 530px;
+  width: 700px;
   color: transparent;
-  height: 521px;
+  height: 670px;
 }

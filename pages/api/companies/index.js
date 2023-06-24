@@ -1,4 +1,7 @@
 import prisma from "@/prisma/client";
+import transporter from "../sendEmail/index";
+import { encrypt } from "../helpers/handleBcrypt";
+
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -8,28 +11,41 @@ export default async function handler(req, res) {
         logo_Company,
         type,
         email,
-        password,
+        password, // remember to hash this before saving
         country,
-        vacancies,
         description,
         employes,
-        jobs,
       } = req.body;
 
+      const companyEmail = email;
+      const encryptPass = await encrypt(password);
+      
       const newCompany = await prisma.company.create({
         data: {
           name,
           logo_Company,
           type,
           email,
-          password,
+          password: encryptPass,
           country,
-          vacancies,
           description,
           employes,
-          jobs,
         },
       });
+
+      await transporter.verify();
+        const mail = {
+          from: 'equipo3.37a@gmail.com',
+          to: companyEmail,
+          subject: "Registro exitoso",
+          html: `
+          <p style="color: black">
+          Mail de prueba a ${email}
+          </p>
+          `,
+        };
+        console.log(mail);
+        await transporter.sendMail(mail);
 
       return res.status(201).json(newCompany);
     } catch (error) {
