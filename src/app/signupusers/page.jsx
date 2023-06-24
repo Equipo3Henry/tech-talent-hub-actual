@@ -254,17 +254,17 @@ function SignUp() {
     });
   };
 
-  //? Custom input component for ReactDatePicker
-  const CustomDatePickerInput = ({ value, onClick }) => (
-    <input
-      type="text"
-      value={value}
-      onClick={onClick}
-      placeholder="Enter your date of birth"
-      className={styles.input_dateOfBirth}
-      readOnly
-    />
-  );
+  // //? Custom input component for ReactDatePicker
+  // const CustomDatePickerInput = ({ value, onClick }) => (
+  //   <input
+  //     type="text"
+  //     value={value}
+  //     onClick={onClick}
+  //     placeholder="Enter your date of birth"
+  //     className={styles.input_dateOfBirth}
+  //     readOnly
+  //   />
+  // );
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
   useEffect(() => {
@@ -425,8 +425,8 @@ function SignUp() {
                 <ReactDatePicker
                   selected={startDate}
                   onChange={handleDateOfBirthChange}
-                  customInput={<CustomDatePickerInput />}
                   className={styles.input_dateOfBirth}
+                  placeholderText="Select your date of birth"
                 />
                 {errors.birth !== null && (
                   <span className={styles.error_span}>{errors.birth}</span>
