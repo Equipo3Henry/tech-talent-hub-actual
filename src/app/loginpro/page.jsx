@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+
 /* const Login = () => {
   const router = useRouter();
 
@@ -92,6 +93,11 @@ const Login = () => {
       router.push("/profile/dashboard");
     } else setError(response.response);
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
   return (
     <div>
       <div className={styles.LogInContainer}>
@@ -113,6 +119,7 @@ const Login = () => {
                     placeholder="Enter your email"
                     className={styles.input}
                     onChange={handleUser}
+                    onKeyDown={handleKeyDown}
                   />
                 </label>
                 <label htmlFor="Password">
@@ -125,6 +132,7 @@ const Login = () => {
                       placeholder="Enter your password"
                       className={styles.input}
                       onChange={handleUser}
+                      onKeyDown={handleKeyDown}
                     />
                     <Image
                       src={showPasswordIcon}

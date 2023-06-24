@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useContext } from "react";
+import { subDays } from "date-fns";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
@@ -64,19 +65,18 @@ const FormMyPosts = ({ parsedData }) => {
   };
 
   //? USE STATE DATE PICKER
-  const initialDate = new Date();
-  const nextWeekDate = new Date(
-    initialDate.getTime() + 7 * 24 * 60 * 60 * 1000
-  );
-  const [startDate, setStartDate] = useState(nextWeekDate);
+  const startDateMin = subDays(new Date(), 1);
+  const [startDate, setStartDate] = useState(null);
 
   //? CHANGE HANDLER DATE PICKER
   const handledateHireChange = (date) => {
-    setStartDate(date);
-    setForm({
-      ...form,
-      date_Hire: date instanceof Date ? date : parseISO(date),
-    });
+    if (date > new Date()) {
+      setStartDate(date);
+      setForm({
+        ...form,
+        date_Hire: date instanceof Date ? date : parseISO(date),
+      });
+    }
   };
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
@@ -303,8 +303,9 @@ const FormMyPosts = ({ parsedData }) => {
                     <ReactDatePicker
                       selected={startDate}
                       onChange={handledateHireChange}
-                      required
                       className={styles.input_date_Hire}
+                      minDate={startDateMin}
+                      placeholderText="Select a hiring date"
                     />
                     {errors.date_Hire !== null && (
                       <span className={styles.error_span}>

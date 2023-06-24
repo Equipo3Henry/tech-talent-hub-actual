@@ -44,39 +44,6 @@ export const validation = async (
     }));
   }
 
-  // await axios
-  // .get("http://localhost:3000/api/users")
-  // .then((response) => {
-  //   const users = response.data;
-  //   console.log(users);
-
-  //   if (form.username.trim() === "") {
-  //     setErrors((errors) => ({
-  //       ...errors,
-  //       username: "",
-  //     }));
-  //   } else {
-  //     const existingUser = users.find(
-  //       (user) => user.username === form.username
-  //     );
-
-  //     if (existingUser) {
-  //       setErrors((errors) => ({
-  //         ...errors,
-  //         username: "This username already exists",
-  //       }));
-  //     } else {
-  //       setErrors((errors) => ({
-  //         ...errors,
-  //         username: "",
-  //       }));
-  //     }
-  //   }
-  // })
-  // .catch((error) => {
-  //   console.error(error);
-  // });
-
   //? PASSWORD VALIDATION
   if (form.password.length > 12) {
     setErrors((errors) => ({
