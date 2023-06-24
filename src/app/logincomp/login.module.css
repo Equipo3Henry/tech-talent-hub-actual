@@ -47,7 +47,7 @@
   left: 122px;
   top: 212px;
   font-size: 16px;
-    padding-left: 15px;
+  padding-left: 15px;
   background-color: #efefef;
   border-style: solid;
   border-width: 0.5px 0.5px 4px 0.5px;
@@ -87,7 +87,6 @@
   line-height: 28px;
   cursor: pointer;
 }
-
 
 .ButtonB {
   background: #7155d9;
@@ -162,6 +161,6 @@
 
 .Vector {
   width: 700px;
-    color: transparent;
-    height: 670px;
+  color: transparent;
+  height: 670px;
 }
