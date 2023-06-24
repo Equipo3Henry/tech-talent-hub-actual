@@ -1,0 +1,34 @@
+.container {
+    margin: 60px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    gap: 15rem
+}
+
+.aboutProject_Container{
+display: flex;
+    width: 632px;
+    flex-direction: column;
+    flex-shrink: 0;}
+
+.p{
+    color: #000;
+        text-align: justify;
+        font-size: 20px;
+        font-family: Roboto;
+        line-height: 139%;
+        letter-spacing: -0.22px;
+}
+
+
+
+.h1{
+    color: #000;
+    font-size: 37px;
+    font-family: "Merriweather";
+    font-weight: 900;
+    line-height: 139%;
+    letter-spacing: -0.407px;
+}
