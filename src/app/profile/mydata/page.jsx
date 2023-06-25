@@ -12,7 +12,7 @@ function MyProfileUsers() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const storedUserData = JSON.parse(window.localStorage.getItem("userData"));
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
     const userId = storedUserData?.id;
     setUserId(userId);
     console.log(`User ID from localStorage: ${userId}`);
