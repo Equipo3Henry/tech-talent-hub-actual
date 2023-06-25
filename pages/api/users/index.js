@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       const users = await dataUsers.map((user) => {
         user.password = encrypt(user.password);
         return user;
-      })
+      });
       try {
         await prisma.user.createMany({
           data: users,
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         name,
         lastname,
         birth,
-        aboutMe,
+        aboutme,
         working,
         country,
         email,
@@ -40,19 +40,18 @@ export default async function handler(req, res) {
         specialization,
         recruiter,
       } = req.body;
-      
+
       const userEmail = email;
       const encryptPass = await encrypt(password);
 
       try {
-        
         const newUser = await prisma.user.create({
           data: {
             username,
             name,
             lastname,
             birth,
-            aboutMe,
+            aboutme,
             working,
             country,
             email,
@@ -72,7 +71,7 @@ export default async function handler(req, res) {
 
         await transporter.verify();
         const mail = {
-          from: 'equipo3.37a@gmail.com',
+          from: "equipo3.37a@gmail.com",
           to: userEmail,
           subject: "Registro exitoso",
           html: `

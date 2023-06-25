@@ -7,6 +7,27 @@
 
 .forajido {
   display: flex;
+  position: relative;
+
+}
+
+.fixedBar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6850bf;
+  height: 50px;
+width:537px;
+margin-left: 39px;
+  /* Estilos adicionales de la barra fija */
+}
+
+.allCandidates{
+  text-transform: uppercase;
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
 }
 
 /* ACA TENGO UN BUUUUUUUUUUUUUUUUUUUUUG! */

@@ -1,40 +1,46 @@
 .ContainerDetail {
   display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     padding: 0 4rem;
     border: solid;
     border-top-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 0px;
     border-right-width: 9px;
-    width: 525px;
-    height: 100%;
-    border-color: #b682d9;
-    overflow-y: auto;
+    width: 520px;
+    height: 600px;
+    border-color: #6850bf;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .InfoContainer {
   display: flex;
-  margin-top: 20px;
-  flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    width: 520px;
+}
+
+.contenedorButton{
+  display: flex;
+    justify-content: space-around;
+    padding-bottom: 2rem;
 }
 
 .button{
-  background-color: #b682d9;
+  background-color: #6850bf;
     border-style: none;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-    width: 500px;
+    width: 100%;
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: white;
-    padding: 1rem;
     cursor: pointer;
-    margin: 40px 0;
+    padding: 1rem;
 }
 
 .image {
@@ -54,6 +60,8 @@
   font-size: 2em;
   color: #000000;
   text-align: left;
+  max-height: 50px;
+  margin-top: 4rem;
 }
 
 .botonera {
@@ -92,8 +100,48 @@
   padding: 1rem;
 }
 
-.contenedorSpan{
-  margin-top: 20px;
+.subtitleContainer{
+  display: flex;
+  margin: 40px 0 15px 0;
+  gap: 20px
+}
+
+.spanSubtitle{
+  border: 3px solid #b682d9;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedorDescription{
+  width: 520px;
+    text-align: justify;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.contenedorSalary{
+  margin: 30px 0 ;
+}
+
+.salaryTitle{
+  text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: -0.011em;
+    color: #6850bf;
+    margin-right: 15px;
 }
 
 .buttonLike {

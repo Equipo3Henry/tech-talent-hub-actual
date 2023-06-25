@@ -31,11 +31,15 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
 
   return (
     <div className={styles.forajido}>
+      <div className={styles.fixedBar}>
+        <span className={styles.allCandidates}>Vacancies</span>
+      </div>
       <div
         style={{
           maxHeight: "572px",
           overflowY: "auto",
           display: "flex",
+          marginTop: "30px",
         }}
       >
         <ul

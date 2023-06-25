@@ -64,8 +64,10 @@ const JobsOfferDetail = ({
             className={styles.image}
           />
         </div>
-        <span className={styles.span}>{job.name_Vacancy}</span>
-        <span className={styles.span}> {job.seniority} </span>
+        <div className={styles.subtitleContainer}>
+          <span className={styles.spanSubtitle}>{job.name_Vacancy}</span>
+          <span className={styles.spanSubtitle}> {job.seniority} </span>
+        </div>
       </div>
       <div className={styles.contenedorSpan}>
         <span>{job.start}</span>
@@ -73,10 +75,11 @@ const JobsOfferDetail = ({
       <div className={styles.contenedorSpan}>
         <span>{job.requires}</span>
       </div>
-      <div className={styles.contenedorSpan}>
+      <div className={styles.contenedorDescription}>
         <span>{job.description}</span>
       </div>
-      <div className={styles.contenedorSpan}>
+      <div className={styles.contenedorSalary}>
+        <span className={styles.salaryTitle}>Salary:</span>
         <span>{job.salary}</span>
       </div>
       <div className={styles.contenedorSpan}>
