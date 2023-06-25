@@ -10,7 +10,8 @@ function Landing(props) {
       <LandingFirstPart />
       <AboutProject />
       <JobsLanding />
-      <Services />
+      {/*       <Services />
+       */}{" "}
     </div>
   );
 }
