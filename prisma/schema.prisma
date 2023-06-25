@@ -22,11 +22,11 @@ model Company {
   employes        Int         @default(0)
   jobs            Int         @default(0)
   vacanciesCount  Int         @default(autoincrement())
-  postedVacancies Vacancy[]
   createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt @default(now())
   isActive        Boolean     @default(true)
   isPremium       Boolean     @default(false)
+  updatedAt       DateTime    @default(now()) @updatedAt
+  postedVacancies Vacancy[]
 }
 
 model Review {
@@ -43,32 +43,33 @@ model SoftSkills {
 }
 
 model User {
-  id               String    @id @default(uuid())
-  username         String
-  name             String    @db.VarChar(50)
-  lastname         String    @db.VarChar(50)
-  birth            String
-  aboutme          String?
-  working          Boolean   @default(false)
-  country          String    @db.VarChar(50)
-  email            String    @unique
-  password         String
-  degree           String?
-  languages        String[]
-  progLanguages    String[]
-  profile_pictures String?   @unique
-  seniority        String?
-  cv               String?
-  softSkills       String[]
-  specialization   Spec
-  recruiter        Boolean   @default(false)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  appliedVacancies Vacancy[] @relation("applications")
-  isActive         Boolean   @default(true)
-  isPremium        Boolean   @default(false)
-  limitFreeVacancies Int     @default(20)
-  resetLimitFreeVacancies DateTime @default(now())
+  id                      String    @id @default(uuid())
+  username                String
+  name                    String    @db.VarChar(50)
+  lastname                String    @db.VarChar(50)
+  birth                   String
+  aboutme                 String?
+  working                 Boolean   @default(false)
+  country                 String    @db.VarChar(50)
+  email                   String    @unique
+  password                String
+  degree                  String?
+  languages               String[]
+  progLanguages           String[]
+  profile_pictures        String?   @unique
+  seniority               String?
+  cv                      String?
+  softSkills              String[]
+  specialization          Spec
+  recruiter               Boolean   @default(false)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  isActive                Boolean   @default(true)
+  isPremium               Boolean   @default(false)
+  limitFreeVacancies      Int       @default(20)
+  resetLimitFreeVacancies DateTime  @default(now())
+  appliedVacancies        Vacancy[] @relation("applications")
+  compareResetLimitFreeVacancies DateTime @default(now())
 }
 
 model Vacancy {
@@ -86,9 +87,9 @@ model Vacancy {
   Relevance             Relevance @default(SMALL)
   companyId             String
   status                Status    @default(Applied)
+  createdAt             DateTime  @default(now())
   company               Company   @relation(fields: [companyId], references: [id])
   applicants            User[]    @relation("applications")
-  createdAt             DateTime  @default(now())
 }
 
 enum CompanyType {
