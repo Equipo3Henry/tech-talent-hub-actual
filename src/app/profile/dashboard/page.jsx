@@ -45,19 +45,18 @@ function HomePage() {
       />
       <br />
       <div className={styles.contenedorPadre}>
-        {isLoading ? (
-          <div className={styles.loaderContainer}>
-            <div className={styles.spinner}></div>
-          </div>
-        ) : (
-          <div className={styles.forniculo}>
-            <div className={styles.jobsContainer}>
+        <div className={styles.forniculo}>
+          <div className={styles.jobsContainer}>
+            {isLoading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.spinner}></div>
+              </div>
+            ) : (
               <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
-
-              <div className={styles.jobsDetailContainer}></div>
-            </div>
+            )}
+            <div className={styles.jobsDetailContainer}></div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
