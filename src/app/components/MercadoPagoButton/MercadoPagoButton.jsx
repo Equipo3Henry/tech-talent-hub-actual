@@ -20,7 +20,7 @@ export const MercadoPagoButton = ({ plan }) => {
       try {
         const { data } = await axios.post("/api/checkout", {
           plan,
-          userId: storedUserData.id
+          userId: storedUserData.id,
         });
 
         setUrl(data.url);
