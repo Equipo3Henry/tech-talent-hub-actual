@@ -11,7 +11,6 @@ function MyPosts(props) {
   const [companyData, setCompanyData] = useState(null);
   const [companyId, setCompanyId] = useState(null);
   const [companyPicture, setCompanyPicture] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
@@ -23,21 +22,17 @@ function MyPosts(props) {
       setCompanyId(parsedData.id);
       setCompanyPicture(parsedData.logo_Company);
     }
-    setIsLoading(false);
   }, []);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
       <div className={styles.page_container}>
-        <div className={styles.posts_container}></div>
-        <h1>My Posts</h1>
-        <MyPostsCards companyId={companyId} />
+        <div className={styles.posts_container}>
+          <h1>My Posts</h1>
+          <MyPostsCards companyId={companyId} />
 
-        <FormMyPosts parsedData={companyData} />
+          <FormMyPosts parsedData={companyData} />
+        </div>
       </div>
     </>
   );
