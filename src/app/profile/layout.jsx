@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   console.log(jobs); // Aquí se añade el console.log
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
-  const [selectedSpec, setSelectedSpec] = useState("");
+  const [selectedNameVacancy, setselectedNameVacancy] = useState("");
   const [selectedWorkday, setSelectedWorkday] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState(null);
@@ -47,8 +47,8 @@ export default function Layout({ children }) {
         params.seniority = selectedSeniority;
       }
 
-      if (selectedSpec) {
-        params.spec = selectedSpec;
+      if (selectedNameVacancy) {
+        params.name_Vacancy = selectedNameVacancy;
       }
 
       if (selectedWorkday) {
@@ -66,7 +66,7 @@ export default function Layout({ children }) {
     if (
       selectedProgLanguage ||
       selectedSeniority ||
-      selectedSpec ||
+      selectedNameVacancy ||
       selectedWorkday
     ) {
       fetchFilteredJobs();
@@ -76,7 +76,7 @@ export default function Layout({ children }) {
   }, [
     selectedProgLanguage,
     selectedSeniority,
-    selectedSpec,
+    selectedNameVacancy,
     selectedWorkday,
     dataJobs,
   ]);
@@ -89,7 +89,7 @@ export default function Layout({ children }) {
 
         setSelectedProgLanguage,
         setSelectedSeniority,
-        setSelectedSpec,
+        setselectedNameVacancy,
         setSelectedWorkday,
         setSearchValue,
         setUser,
