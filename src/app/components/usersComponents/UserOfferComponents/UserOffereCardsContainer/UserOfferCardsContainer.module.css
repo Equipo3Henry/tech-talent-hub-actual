@@ -6,14 +6,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 0 20px;
 }
 
 .containerAll {
   display: flex;
   flex-direction: row;
-  margin-left: 20rem;
-  margin-top: 1em;
+  margin-top: 60px;
 }
 
 

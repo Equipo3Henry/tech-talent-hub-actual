@@ -1,6 +1,7 @@
 .globalContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .jobsContainer {
@@ -11,12 +12,18 @@
   margin-top: 66px;
 }
 
-.forniculo {
+.contenedorPadre{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+/* .forniculo {
   display: flex;
   flex-direction: row;
   margin: 0px 70px;
   margin-left: 200px;
-}
+} */
 
 .jobsDetailContainer {
   display: flex;

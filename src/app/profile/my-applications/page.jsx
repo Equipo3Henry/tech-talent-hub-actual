@@ -13,6 +13,9 @@ function MyApplications(props) {
 
   return (
     <div className={styles.body}>
+      <div className={styles.applicationsTitle}>
+        <h1>My Applications</h1>
+      </div>
       <div className={styles.container}>
         <div className={styles.postContainer}>
           <MyApplicationsCards />
