@@ -44,19 +44,21 @@ function HomePage() {
         setSelectedWorkday={setSelectedWorkday}
       />
       <br />
-      {isLoading ? (
-        <div className={styles.loaderContainer}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-        <div className={styles.forniculo}>
-          <div className={styles.jobsContainer}>
-            <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
-
-            <div className={styles.jobsDetailContainer}></div>
+      <div className={styles.contenedorPadre}>
+        {isLoading ? (
+          <div className={styles.loaderContainer}>
+            <div className={styles.spinner}></div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className={styles.forniculo}>
+            <div className={styles.jobsContainer}>
+              <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+
+              <div className={styles.jobsDetailContainer}></div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

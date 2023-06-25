@@ -29,7 +29,8 @@ const MyApplicationsCards = () => {
   }, [user]); // Actualiza la llamada a la API cada vez que el user cambia
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h2 className={styles.text}>Latest Applications:</h2>
       {isLoading ? (
         <div className={styles.loaderContainer}>
           <div className={styles.spinner}></div>

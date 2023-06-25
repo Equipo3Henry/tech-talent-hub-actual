@@ -58,21 +58,23 @@ function DashboardPage() {
         setSelectedSoftSkill={setSelectedSoftSkill}
       />
       <br />
-      {isLoading ? (
-        <div className={styles.loaderContainer}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-        <div className={styles.forniculo}>
-          <div className={styles.usersContainer}>
-            <UserOfferCardsContainerForDashboard
-              users={users}
-              companyData={companyData}
-            />
-            <div className={styles.usersDetailContainer}></div>
+      <div className={styles.contenedorPadre}>
+        {isLoading ? (
+          <div className={styles.loaderContainer}>
+            <div className={styles.spinner}></div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className={styles.forniculo}>
+            <div className={styles.usersContainer}>
+              <UserOfferCardsContainerForDashboard
+                users={users}
+                companyData={companyData}
+              />
+              <div className={styles.usersDetailContainer}></div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
