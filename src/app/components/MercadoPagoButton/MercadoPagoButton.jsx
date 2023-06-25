@@ -15,7 +15,6 @@ export const MercadoPagoButton = ({ plan }) => {
   );
 
   const [loading, setLoading] = useState(true);
-  console.log("soy el", storedUserData);
 
   useEffect(() => {
     const generateLink = async () => {
