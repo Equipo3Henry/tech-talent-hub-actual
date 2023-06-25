@@ -427,6 +427,7 @@ function SignUp() {
                   onChange={handleDateOfBirthChange}
                   className={styles.input_dateOfBirth}
                   placeholderText="Select your date of birth"
+                  dateFormat="dd/MM/yyyy"
                 />
                 {errors.birth !== null && (
                   <span className={styles.error_span}>{errors.birth}</span>

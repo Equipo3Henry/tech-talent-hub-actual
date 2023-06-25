@@ -31,10 +31,10 @@ function DashboardPage() {
       const companyDataFromStorage = JSON.parse(localStorageData);
       console.log(companyDataFromStorage); // Log the data here
       setCompanyData(companyDataFromStorage);
+      setIsLoading(false);
     } else {
       console.log("No data in localStorage");
     }
-    setIsLoading(false);
   }, []); // Dependency array
 
   /*   const params = useSearchParams();
@@ -58,12 +58,12 @@ function DashboardPage() {
         setSelectedSoftSkill={setSelectedSoftSkill}
       />
       <br />
-      <div className={styles.contenedorPadre}>
-        {isLoading ? (
-          <div className={styles.loaderContainer}>
-            <div className={styles.spinner}></div>
-          </div>
-        ) : (
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div className={styles.contenedorPadre}>
           <div className={styles.forniculo}>
             <div className={styles.usersContainer}>
               <UserOfferCardsContainerForDashboard
@@ -73,8 +73,8 @@ function DashboardPage() {
               <div className={styles.usersDetailContainer}></div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
