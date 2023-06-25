@@ -7,7 +7,7 @@ import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
   const {
@@ -21,10 +21,14 @@ function HomePage() {
     setUser,
   } = useContext(GlobalContext);
 
+  //? USE STATE LOADER
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const localStorageData = localStorage.getItem("userData");
     const userData = JSON.parse(localStorageData);
     setUser(userData);
+    setIsLoading(false);
   }, []); // Dependency a
 
   //  console.log(`yo soy ${userData}`);
@@ -40,13 +44,19 @@ function HomePage() {
         setSelectedWorkday={setSelectedWorkday}
       />
       <br />
-      <div className={styles.forniculo}>
-        <div className={styles.jobsContainer}>
-          <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
-
-          <div className={styles.jobsDetailContainer}></div>
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.forniculo}>
+          <div className={styles.jobsContainer}>
+            <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+
+            <div className={styles.jobsDetailContainer}></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
