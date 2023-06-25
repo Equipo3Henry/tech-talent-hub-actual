@@ -1,4 +1,5 @@
 import mercadopago from "mercadopago";
+import prisma from "@/prisma/client";
 
 mercadopago.configure({
     access_token: process.env.NEXT_ACCESS_TOKEN
@@ -6,6 +7,8 @@ mercadopago.configure({
 
 export default async function handler(req, res) {
     const { query } = req;
+
+    console.log('NOTIFY', query);
 
     const topic = query.topic || query.type;
 
@@ -19,9 +22,8 @@ export default async function handler(req, res) {
 
             console.log([payment, paymentStatus]);
 
-            if(paymentStatus === "approved") {
-                //actualizar BD, crear booleano en los modelos para ver el estado de la cuenta
-            }
+            res.send({ paymentStatus: paymentStatus})
+
         }
     } catch (error) {
         res.send(error);

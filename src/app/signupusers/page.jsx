@@ -51,6 +51,7 @@ function SignUp() {
     softSkills: [],
     specialization: "",
     recruiter: false,
+    isPremium: false
   });
 
   //? USE STATE ERRORS
