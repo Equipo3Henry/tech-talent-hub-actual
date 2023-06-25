@@ -15,9 +15,9 @@ const applyJob = async (userId, jobId) => {
 
     const responseData = await response.json();
 
-    console.log(
-      `Free vacancies left: ${responseData.result.limitFreeVacancies}`
-    ); // Log remaining vacancies
+    //console.log(
+     // `Free vacancies left: ${responseData.result.limitFreeVacancies}`
+    //); // Log remaining vacancies
 
     if (response.ok) {
       alert(responseData.message); // Alert success message
