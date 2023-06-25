@@ -13,18 +13,18 @@ export default async function handler(req, res) {
       const timeDiff = Math.abs(
         currentDate - new Date(user.resetLimitFreeVacancies)
       );
-      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Get difference in days
+      const diffHours = Math.ceil(timeDiff / (1000 * 3600)); // Get difference in hours
 
       let newLimitFreeVacancies = user.limitFreeVacancies;
       let newResetLimitFreeVacancies = user.resetLimitFreeVacancies;
 
-      if (user.isPremium || newLimitFreeVacancies > 0 || diffDays >= 1) {
+      if (user.isPremium || newLimitFreeVacancies > 0) {
         if (!user.isPremium) {
-          if (diffDays >= 1) {
-            // Reset limit if 24 hours have passed
+          if (diffHours >= 24) {
+            // Reset limit if 24 hours have passed since the limit was last reset
             newLimitFreeVacancies = 20;
             newResetLimitFreeVacancies = currentDate; // reset time of first apply in the day
-          } else if (newLimitFreeVacancies > 0) {
+          } else {
             // Decrease limit if not
             newLimitFreeVacancies -= 1;
           }
@@ -47,18 +47,10 @@ export default async function handler(req, res) {
           result,
         });
       } else {
-        // Update compareResetLimitFreeVacancies date when maximum free applications reached
-        await prisma.user.update({
-          where: { id: userId },
-          data: {
-            compareResetLimitFreeVacancies: currentDate,
-          },
-        });
-
         res.status(403).json({
           success: false,
           message:
-            "You've reached the maximum number of free applications this day.",
+            "You've reached the maximum number of free applications this day. Please wait until tomorrow to apply again.",
         });
       }
     } catch (error) {

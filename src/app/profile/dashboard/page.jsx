@@ -27,20 +27,6 @@ function HomePage() {
     const userData = JSON.parse(localStorageData);
     setUser(userData);
   }, []); // Dependency a
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      if (user) {
-        // Make sure user is not null or undefined
-        const res = await axios.put(`/api/resetLimit/${user.id}`);
-        console.log(res);
-        console.log("reset limit");
-      }
-    }, 50000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [user]); // Add user as a dependency
 
   //  console.log(`yo soy ${userData}`);
   console.log(user);
