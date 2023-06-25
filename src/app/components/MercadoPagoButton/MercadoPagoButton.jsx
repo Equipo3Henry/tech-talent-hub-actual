@@ -10,7 +10,7 @@ import { GlobalContext } from "../../profile/layout";
 export const MercadoPagoButton = ({ plan }) => {
   const [url, setUrl] = useState("");
 
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  const storedUserData = JSON.parse(window && localStorage.getItem("userData"));
 
   const [loading, setLoading] = useState(true);
   console.log("soy el", storedUserData);
