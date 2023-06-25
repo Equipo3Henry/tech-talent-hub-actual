@@ -69,7 +69,7 @@ function UserOfferDetail({
       <div className={styles.ContainerDetail}>
         <div className={styles.botonera}>
           <button className={styles.buttonConnect} onClick={handleConnect}>
-            Connect
+            Connect with Candidate
           </button>
           <button className={styles.buttonLike}>Favorite</button>
         </div>
@@ -79,27 +79,38 @@ function UserOfferDetail({
               className={styles.username_name}
             >{`${user.name} ${user.lastname}`}</h1>
             <div className={styles.specializationContainer}>
-              <h1 className={styles.subtitle}>{user.specialization}</h1>
-              <h4 className={styles.subtitleProgramming}>{user.seniority}</h4>
+              <h1 className={styles.country}>{user.specialization}</h1>
+              <h4 className={styles.country}>{user.seniority}</h4>
+              <h1 className={styles.country}>{user.country}</h1>
             </div>
-            <h1 className={styles.subtitle}>
-              {" "}
-              Hello! I am from {user.country}
-            </h1>
           </div>
+          <span className={styles.aboutme}>{user.aboutme}</span>
         </div>
-        <span className={styles.aboutme}>{user.aboutme}</span>
         <div className={styles.listados}>
-          <ul>
-            {user.progLanguages.map((lang, index) => (
-              <li key={index}>{lang}</li>
-            ))}
-          </ul>
-          <ul>
-            {user.softSkills.map((soft, index) => (
-              <li key={index}>{soft}</li>
-            ))}
-          </ul>
+          <div className={styles.programming_container}>
+            <span className={styles.span_programming}>Hard Skills:</span>
+            <ul className={styles.ul_programming}>
+              {user.progLanguages.map((lang, index) => (
+                <li key={index}>{lang}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.programming_container}>
+            <span className={styles.span_softskills}>Soft Skills:</span>
+            <ul className={styles.ul_softskills}>
+              {user.softSkills.map((soft, index) => (
+                <li key={index}>{soft}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.programming_container}>
+            <span className={styles.span_softskills}>Languages:</span>
+            <ul className={styles.ul_softskills}>
+              {user.languages.map((langu, index) => (
+                <li key={index}>{langu}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className={styles.buttonContainer}>
           <button className={styles.buttonDownload} onClick={handleDownload}>

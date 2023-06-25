@@ -2,31 +2,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 .ContainerDetail {
-  border: solid;
-  border-top-width: 3px;
-  border-bottom-width: 3px;
-  border-left-width: 0px;
-  border-right-width: 9px;
-  width: 525px;
-  height: 545px; /* Ajusta la altura para que sea igual a la altura de 5 tarjetas */
   display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  margin-top: 16px;
-  border-color: #b682d9;
-  overflow: auto;
+    flex-direction: column;
+    padding: 0 4rem;
+    border: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 9px;
+    width: 520px;
+    height: 560px;
+    border-color: #b682d9;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Cambiar color de la barra de desplazamiento */
+.ContainerDetail::-webkit-scrollbar {
+  width: 20px;
+  /* Ancho de la barra de desplazamiento */
+}
+
+/* Cambiar color del pulgador (thumb) */
+.ContainerDetail::-webkit-scrollbar-thumb {
+  background-color: #d9d9da;
 }
 
 
 .InfoContainer {
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  width: 520px;
 }
 
 .botonera {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding-top: 2rem;
+justify-content: left;
+gap: 20px;
+padding: 2rem 0;
+  width: 500px;
 }
 
 .buttonConnect {
@@ -34,7 +51,7 @@
   border-style: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  width: 40%;
+  width: 100%;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -43,12 +60,13 @@
   padding: 1rem;
   cursor: pointer;
 }
+
 .buttonDownload {
   background-color: #b682d9;
   border-style: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  width: 85%;
+  width: 100%;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -73,18 +91,35 @@
   cursor: pointer;
 }
 
+.specializationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 25px;
+}
+
+.country{
+  border: 3px solid #6850bf;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .subtitle {
-  margin-top: -1rem;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
-  line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
-  text-align: left;
+
 }
+
 .subtitleProgramming {
-  margin-top: -1rem;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
@@ -96,17 +131,19 @@
 .UserNameCompanyContainer {
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding-bottom: 20px;
   font-family: "Marriweather";
+  width: 520px;
 }
 
 .username_name{
-      font-family: "Merriweather";
-      font-style: normal;
-      font-weight: 900;
-      font-size: 2em;
-      color: #000000;
-      text-align: left;
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2.3em;
+  color: #000000;
+  text-align: left;
+  margin: 5px 0;
 }
 
 
@@ -116,23 +153,41 @@
   padding-bottom: 2rem;
 }
 
-/* .aboutme {
-  padding: 1em;
-} */
+.aboutme {
+    width: 520px;
+    text-align: justify;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 .listados {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  gap: 90px;
-  margin-bottom: 20px;
-  margin-left: 20px;
+  justify-content: left;
+  gap: 60px;
+  margin: 40px 0;
+}
+
+.programming_container{
+  display: flex;
+  flex-direction: column;
   
 }
 
-.specializationContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 40px;
+.span_programming, .span_softskills{
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: -0.011em;
+    color: #6850bf;
+  }
+  
+  .ul_softskills, .ul_programming{
+    text-align: left;
+  padding: 0 0 0 10px;
+  width: 80px;
 }
