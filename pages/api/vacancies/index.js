@@ -56,6 +56,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { companyId, orderBySalary, orderDirection } = req.query;
     try {
+      const whereClause = companyId ? { companyId: Number(companyId) } : {}; // If companyId is provided, add it to where clause
       const vacancies = await prisma.vacancy.findMany({
         where: whereClause,
         orderBy:
