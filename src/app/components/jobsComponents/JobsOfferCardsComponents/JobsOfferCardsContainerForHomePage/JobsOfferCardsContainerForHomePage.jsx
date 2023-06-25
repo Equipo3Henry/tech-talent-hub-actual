@@ -34,7 +34,10 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
     <div className={styles.forajido}>
       <div className={styles.fixedBar}>
         <span className={styles.allCandidates}>Vacancies</span>
-        <button onClick={() => setOrderDirection(!orderDirection)}>
+        <button
+          className={styles.botonOrden}
+          onClick={() => setOrderDirection(!orderDirection)}
+        >
           Order by Salary
         </button>
       </div>
