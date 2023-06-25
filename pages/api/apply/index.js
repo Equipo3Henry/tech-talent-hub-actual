@@ -9,18 +9,35 @@ export default async function handler(req, res) {
         where: { id: userId },
       });
 
-      // Check if user is premium or still has free vacancies left
-      if (user.isPremium || user.limitFreeVacancies > 0) {
+      const currentDate = new Date();
+      const timeDiff = Math.abs(
+        currentDate - new Date(user.resetLimitFreeVacancies)
+      );
+      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Get difference in days
+
+      let newLimitFreeVacancies = user.limitFreeVacancies;
+      let newResetLimitFreeVacancies = user.resetLimitFreeVacancies;
+
+      if (user.isPremium || newLimitFreeVacancies > 0 || diffDays >= 1) {
+        if (!user.isPremium) {
+          if (diffDays >= 1) {
+            // Reset limit if 24 hours have passed
+            newLimitFreeVacancies = 20;
+            newResetLimitFreeVacancies = currentDate; // reset time of first apply in the day
+          } else if (newLimitFreeVacancies > 0) {
+            // Decrease limit if not
+            newLimitFreeVacancies -= 1;
+          }
+        }
+
         const result = await prisma.user.update({
           where: { id: userId },
           data: {
             appliedVacancies: {
               connect: { id: jobId },
             },
-            // If the user is not premium, decrease their limitFreeVacancies by 1
-            limitFreeVacancies: user.isPremium
-              ? user.limitFreeVacancies
-              : user.limitFreeVacancies - 1,
+            limitFreeVacancies: newLimitFreeVacancies,
+            resetLimitFreeVacancies: newResetLimitFreeVacancies,
           },
         });
 
@@ -30,10 +47,18 @@ export default async function handler(req, res) {
           result,
         });
       } else {
+        // Update compareResetLimitFreeVacancies date when maximum free applications reached
+        await prisma.user.update({
+          where: { id: userId },
+          data: {
+            compareResetLimitFreeVacancies: currentDate,
+          },
+        });
+
         res.status(403).json({
           success: false,
           message:
-            "You've reached the maximum number of free applications this month.",
+            "You've reached the maximum number of free applications this day.",
         });
       }
     } catch (error) {
