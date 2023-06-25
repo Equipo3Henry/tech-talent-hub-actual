@@ -22,6 +22,9 @@ function DashboardPage() {
   } = useContext(GlobalContext);
   const [companyData, setCompanyData] = useState(null);
 
+  //? USE STATE LOADER
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
     if (localStorageData) {
@@ -31,6 +34,7 @@ function DashboardPage() {
     } else {
       console.log("No data in localStorage");
     }
+    setIsLoading(false);
   }, []); // Dependency array
 
   /*   const params = useSearchParams();
@@ -54,15 +58,21 @@ function DashboardPage() {
         setSelectedSoftSkill={setSelectedSoftSkill}
       />
       <br />
-      <div className={styles.forniculo}>
-        <div className={styles.usersContainer}>
-          <UserOfferCardsContainerForDashboard
-            users={users}
-            companyData={companyData}
-          />
-          <div className={styles.usersDetailContainer}></div>
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.forniculo}>
+          <div className={styles.usersContainer}>
+            <UserOfferCardsContainerForDashboard
+              users={users}
+              companyData={companyData}
+            />
+            <div className={styles.usersDetailContainer}></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

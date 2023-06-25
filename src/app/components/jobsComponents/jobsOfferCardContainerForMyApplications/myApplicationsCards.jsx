@@ -2,10 +2,12 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import JobsOfferCard from "../JobsOfferCardsComponents/JobsOffer Card/JobsOfferCard";
 import { GlobalContext } from "../../../profile/layout"; // Asegúrate de que esta ruta es correcta
+import styles from "./myApplications.module.css";
 
 const MyApplicationsCards = () => {
   const [jobs, setJobs] = useState([]);
   const { user } = useContext(GlobalContext); // Accede al user del contexto global
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (user && user.id) {
@@ -18,6 +20,7 @@ const MyApplicationsCards = () => {
           );
           setJobs(filteredJobs);
           console.log(jobs); // Agrega esta línea
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching jobs:", error);
@@ -27,23 +30,31 @@ const MyApplicationsCards = () => {
 
   return (
     <div>
-      {jobs.map((job, index) => {
-        const companyName = job.company && job.company.name;
-        return (
-          <JobsOfferCard
-            key={index}
-            id={job.id}
-            company={companyName}
-            name_Vacancy={job.name_Vacancy}
-            showButton={false}
-            showSpan={true}
-            start={job.start}
-            onJobSelected={() => {}}
-            applicants={`${job.applicants.length} candidates applied`}
-            status={job.status}
-          />
-        );
-      })}
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div>
+          {jobs.map((job, index) => {
+            const companyName = job.company && job.company.name;
+            return (
+              <JobsOfferCard
+                key={index}
+                id={job.id}
+                company={companyName}
+                name_Vacancy={job.name_Vacancy}
+                showButton={false}
+                showSpan={true}
+                start={job.start}
+                onJobSelected={() => {}}
+                applicants={`${job.applicants.length} candidates applied`}
+                status={job.status}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

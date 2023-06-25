@@ -13,6 +13,7 @@ const MyPostsCards = () => {
   const [applicants, setApplicants] = useState([]);
   const [showModal, setShowModal] = useState(false); // Añade esta línea
   const [companyData, setCompanyData] = useState(null); // <--- Agrega esto
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Obteniendo la compañía del localStorage si está disponible
@@ -30,6 +31,7 @@ const MyPostsCards = () => {
           (job) => job.companyId === companyId
         );
         setJobs(filteredJobs);
+        setIsLoading(false);
       });
     }
   }, [companies]);
@@ -109,25 +111,33 @@ const MyPostsCards = () => {
           </div>
         </div>
       )}
-      {filteredJobs.map((job, index) => {
-        const companyName = job.company && job.company.name;
-        return (
-          <JobsOfferCard
-            key={index}
-            id={job.id}
-            company={companyName}
-            name_Vacancy={job.name_Vacancy}
-            showButton={false}
-            showSpan={true}
-            start={job.start}
-            onJobSelected={() => {}}
-            applicants={`${job.applicants.length} candidates applied`}
-            showFinishButton={true}
-            onFinishProcess={handleFinishProcess}
-            onApplicantsClick={() => toggleModal(job.id)} // Modifica esta línea
-          />
-        );
-      })}
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div>
+          {filteredJobs.map((job, index) => {
+            const companyName = job.company && job.company.name;
+            return (
+              <JobsOfferCard
+                key={index}
+                id={job.id}
+                company={companyName}
+                name_Vacancy={job.name_Vacancy}
+                showButton={false}
+                showSpan={true}
+                start={job.start}
+                onJobSelected={() => {}}
+                applicants={`${job.applicants.length} candidates applied`}
+                showFinishButton={true}
+                onFinishProcess={handleFinishProcess}
+                onApplicantsClick={() => toggleModal(job.id)} // Modifica esta línea
+              />
+            );
+          })}
+        </div>
+      )}
       <button onClick={handleToggleOldPosts}>
         {showOldPosts ? "View Active Posts" : "Show Old Posts"}
       </button>
