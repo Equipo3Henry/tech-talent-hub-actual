@@ -17,7 +17,7 @@ const applyJob = async (userId, jobId) => {
     const responseData = await response.json();
 
     //console.log(
-     // `Free vacancies left: ${responseData.result.limitFreeVacancies}`
+    // `Free vacancies left: ${responseData.result.limitFreeVacancies}`
     //); // Log remaining vacancies
 
     if (response.ok) {
@@ -106,9 +106,7 @@ const JobsOfferDetail = ({
         >
           Apply
         </button>
-        {showModal && (
-          <VacancySendModal toggleModal={toggleModal} />
-        )}
+        {showModal && <VacancySendModal toggleModal={toggleModal} />}
       </div>
     </div>
   );
