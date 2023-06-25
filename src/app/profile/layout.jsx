@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   const [dataJobs, setDataJobs] = useState([]);
   const [jobs, setJobs] = useState([]);
 
-  console.log(jobs); // Aquí se añade el console.log
+  // console.log(jobs); // Aquí se añade el console.log
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
   const [selectedNameVacancy, setselectedNameVacancy] = useState("");
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
-      console.log(response.data); // Aquí se añade el console.log
+      // console.log(response.data); // Aquí se añade el console.log
       setDataJobs(response.data);
       setJobs(response.data);
     };

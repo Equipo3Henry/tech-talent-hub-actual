@@ -39,6 +39,7 @@ export default async function handler(req, res) {
         softSkills,
         specialization,
         recruiter,
+        isPremium,
       } = req.body;
 
       const userEmail = email;
@@ -65,9 +66,9 @@ export default async function handler(req, res) {
             softSkills,
             specialization,
             recruiter,
+            isPremium,
           },
         });
-        console.log(userEmail);
 
         await transporter.verify();
         const mail = {
