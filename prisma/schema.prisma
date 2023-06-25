@@ -69,7 +69,6 @@ model User {
   limitFreeVacancies      Int       @default(20)
   resetLimitFreeVacancies DateTime  @default(now())
   appliedVacancies        Vacancy[] @relation("applications")
-  compareResetLimitFreeVacancies DateTime @default(now())
 }
 
 model Vacancy {
