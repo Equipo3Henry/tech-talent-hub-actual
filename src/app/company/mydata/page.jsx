@@ -9,9 +9,7 @@ function MyProfileCompanies() {
   const [companyId, setCompanyId] = useState(null);
 
   useEffect(() => {
-    const storedCompanyData = JSON.parse(
-      window.localStorage.getItem("companyData")
-    );
+    const storedCompanyData = JSON.parse(localStorage.getItem("companyData"));
     const companyId = storedCompanyData?.id; // Cambio aquí de userId a id
     setCompanyId(companyId);
     console.log(`Company ID from localStorage: ${companyId}`);
