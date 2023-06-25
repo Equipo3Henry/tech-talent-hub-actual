@@ -37,7 +37,7 @@ export const MercadoPagoButton = ({ plan }) => {
         </button>
       ) : (
         <Link href={url} className={styles.button}>
-          Buy now
+          Join Now!{" "}
         </Link>
       )}
     </div>

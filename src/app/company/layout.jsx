@@ -17,8 +17,13 @@ export default function Layout({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/users");
-      setDataUsers(response.data);
-      setUsers(response.data);
+
+      const sortedData = response.data.sort(
+        (a, b) => b.isPremium - a.isPremium
+      );
+
+      setDataUsers(sortedData);
+      setUsers(sortedData);
     };
     fetchData();
   }, []);
