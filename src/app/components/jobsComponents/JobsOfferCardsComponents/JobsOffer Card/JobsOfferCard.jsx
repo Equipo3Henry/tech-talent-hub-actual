@@ -11,6 +11,7 @@ const JobsOfferCard = ({
   createdAt,
   showSpan,
   onJobSelected,
+  salary,
   status,
   isActive,
   showFinishButton, // Nueva prop
