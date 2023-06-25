@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         name,
         lastname,
         birth,
-        aboutMe,
+        aboutme,
         working,
         country,
         email,
@@ -39,20 +39,21 @@ export default async function handler(req, res) {
         softSkills,
         specialization,
         recruiter,
+        isPremium
       } = req.body;
       
       const userEmail = email;
       const encryptPass = await encrypt(password);
-
+      
       try {
-        
+        console.log('hola');
         const newUser = await prisma.user.create({
           data: {
             username,
             name,
             lastname,
             birth,
-            aboutMe,
+            aboutme,
             working,
             country,
             email,
@@ -66,10 +67,11 @@ export default async function handler(req, res) {
             softSkills,
             specialization,
             recruiter,
+            isPremium
           },
         });
-        console.log(userEmail);
-
+        
+        
         await transporter.verify();
         const mail = {
           from: 'equipo3.37a@gmail.com',

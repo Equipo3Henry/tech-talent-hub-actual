@@ -5,9 +5,12 @@ import styles from "../MercadoPagoButton/MercadoPagoButton.module.css";
 import { Loader } from "../Loader/Loader";
 import Link from "next/link";
 import axios from "axios";
+import { GlobalContext } from "../../profile/layout";
 
 export const MercadoPagoButton = ({ plan }) => {
   const [url, setUrl] = useState("");
+
+  const storedUserData = JSON.parse(window.localStorage.getItem("userData"));
 
   const [loading, setLoading] = useState(true);
 
@@ -17,6 +20,7 @@ export const MercadoPagoButton = ({ plan }) => {
       try {
         const { data } = await axios.post("/api/checkout", {
           plan,
+          userId: storedUserData.id
         });
 
         setUrl(data.url);
