@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./JobsOfferDetail.module.css";
 import { useEffect, useState } from "react";
+import VacancySendModal from "./vacancySendModal";
 
 const applyJob = async (userId, jobId) => {
   try {
@@ -38,6 +39,7 @@ const JobsOfferDetail = ({
   jobs,
 }) => {
   const [job, setJob] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (selectedJobId) {
@@ -53,6 +55,9 @@ const JobsOfferDetail = ({
     return null; // Return null instead of an empty div when there's no job
   }
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <div className={styles.ContainerDetail}>
       <div className={styles.InfoContainer}>
@@ -101,6 +106,9 @@ const JobsOfferDetail = ({
         >
           Apply
         </button>
+        {showModal && (
+          <VacancySendModal toggleModal={toggleModal} />
+        )}
       </div>
     </div>
   );
