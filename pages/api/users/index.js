@@ -94,7 +94,12 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const allUsers = await prisma.user.findMany();
+    const allUsers = await prisma.user.findMany({
+      orderBy: [
+        { isPremium: "desc" },
+        // other fields to order by (if any)
+      ],
+    });
 
     return res.status(200).json(allUsers);
   }
