@@ -15,7 +15,7 @@ function HomePage() {
     user,
     setSelectedProgLanguage,
     setSelectedSeniority,
-    setSelectedSpec,
+    setselectedNameVacancy,
     setSelectedWorkday,
     setSearchValue,
     setUser,
@@ -40,7 +40,7 @@ function HomePage() {
       <FiltersSelectorProfile
         setSelectedProgLanguage={setSelectedProgLanguage}
         setSelectedSeniority={setSelectedSeniority}
-        setSelectedSpec={setSelectedSpec}
+        setselectedNameVacancy={setselectedNameVacancy}
         setSelectedWorkday={setSelectedWorkday}
       />
       <br />

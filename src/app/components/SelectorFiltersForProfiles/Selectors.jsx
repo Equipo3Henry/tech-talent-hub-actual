@@ -4,7 +4,7 @@ const FiltersSelectorProfile = ({
   setSelectedProgLanguage,
   setSelectedSeniority,
   /*   setSelectedCompanyType,
-   */ setSelectedSpec,
+   */ setselectedNameVacancy,
   setSelectedWorkday,
 }) => {
   const programming_Languages = [
@@ -88,7 +88,7 @@ const FiltersSelectorProfile = ({
           ))}
         </select> */}
         <select
-          onChange={(e) => setSelectedSpec(e.target.value)}
+          onChange={(e) => setselectedNameVacancy(e.target.value)}
           className={styles.selectors}
         >
           <option value="">-- select a specialization --</option>
