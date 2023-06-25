@@ -36,7 +36,7 @@ const FormMyPosts = ({ parsedData }) => {
     Relevance: "GLOBAL",
     companyId: parsedData && parsedData.id,
   });
-
+  console.log("hola", parsedData);
   //? USE STATE FORM
   const [errors, setErrors] = useState({
     name_Vacancy: "",
@@ -46,7 +46,15 @@ const FormMyPosts = ({ parsedData }) => {
     salary: "",
     date_Hire: "",
   });
-
+  useEffect(() => {
+    if (parsedData) {
+      setForm((form) => ({
+        ...form,
+        logo_Company: parsedData.logo_Company,
+        companyId: parsedData.id,
+      }));
+    }
+  }, [parsedData]);
   //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
   const [valid, setValid] = useState(false);
 

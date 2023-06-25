@@ -24,6 +24,8 @@ function MyPosts(props) {
     }
   }, []);
 
+  console.log("companyData", companyData);
+
   return (
     <>
       <div className={styles.page_container}>
