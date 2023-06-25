@@ -10,9 +10,12 @@ import { GlobalContext } from "../../profile/layout";
 export const MercadoPagoButton = ({ plan }) => {
   const [url, setUrl] = useState("");
 
-  const storedUserData = JSON.parse(
-    window ? localStorage.getItem("userData") : null
-  );
+  // Check for window
+  const isBrowser = typeof window !== "undefined";
+
+  const storedUserData = isBrowser
+    ? JSON.parse(localStorage.getItem("userData"))
+    : null;
 
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +25,7 @@ export const MercadoPagoButton = ({ plan }) => {
       try {
         const { data } = await axios.post("/api/checkout", {
           plan,
-          userId: storedUserData.id,
+          userId: storedUserData ? storedUserData.id : null,
         });
 
         setUrl(data.url);
