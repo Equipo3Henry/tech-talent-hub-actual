@@ -11,6 +11,10 @@ export default async function handler(req, res) {
 
     const userVacancies = user.appliedVacancies;
 
+    console.log(
+      `User ${userId} has ${user.limitFreeVacancies} free vacancies left`
+    );
+
     if (userVacancies.some((vacancy) => vacancy.id === jobId)) {
       return res.status(403).json({
         success: false,
@@ -44,6 +48,10 @@ export default async function handler(req, res) {
           },
         });
 
+        console.log(
+          `User ${userId} now has ${result.limitFreeVacancies} free vacancies left`
+        );
+
         return res.json({
           success: true,
           message: "Applied to the job successfully",
@@ -52,6 +60,9 @@ export default async function handler(req, res) {
       }
     }
   } catch (error) {
+    console.error(
+      `Error occurred while processing job application: ${error.message}`
+    );
     return res.status(500).json({
       success: false,
       message: "Something went wrong",
