@@ -11,7 +11,7 @@
   margin-top: 66px;
 }
 
-.contenedorPadre{
+.contenedorPadre {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -67,6 +67,41 @@
 
 .spinner::after {
   margin: 8.9px;
+}
+.contenedorBoton {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-end;
+  align-items: center;
+}
+.superAdminButton {
+  width: 20%;
+  height: 59px;
+  left: 265px;
+  top: 825px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: #b682d9;
+  box-shadow: 2px 2px 4px #00000040;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  transition: transform 0.5 ease;
+}
+
+.superAdminButton:hover {
+  background: none;
+  border: solid;
+  border-color: #7155d9;
+  color: #7155d9;
+  transform: translateY(-3px);
+  cursor: pointer;
 }
 
 @keyframes spinner-e04l1k {
