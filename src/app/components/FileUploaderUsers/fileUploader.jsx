@@ -82,9 +82,7 @@ const FileUploader = ({ userId }) => {
           <div className={styles.overlay} onClick={toggleModalError}></div>
           <div className={styles.modal_content}>
             <h2>Error</h2>
-            <p>
-              We couldn't update your CV. Please try again in a few minutes.
-            </p>
+            <p>We couldnt update your CV. Please try again in a few minutes.</p>
             <button className={styles.btn_modal} onClick={toggleModalError}>
               Close
             </button>
