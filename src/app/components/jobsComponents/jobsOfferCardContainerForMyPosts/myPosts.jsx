@@ -87,6 +87,7 @@ const MyPostsCards = () => {
         .get(`/api/vacancies/${selectedJobId}`)
         .then((response) => {
           setApplicants(response.data.applicants);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching applicants", error);
@@ -103,10 +104,16 @@ const MyPostsCards = () => {
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
             <h2>Applicants</h2>
-            <UserOfferCardsContainerForDashboard
-              users={applicants}
-              companyData={companyData}
-            />
+            {isLoading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.spinner}></div>
+              </div>
+            ) : (
+              <UserOfferCardsContainerForDashboard
+                users={applicants}
+                companyData={companyData}
+              />
+            )}
             <button className={styles.toggleClose} onClick={toggleModal}>
               Close
             </button>
