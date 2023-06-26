@@ -1,0 +1,17 @@
+.container{
+    width: 20%;
+    grid-column-start: span 1;
+    position: relative;
+    height: 50vh;
+    overflow: auto;
+    scroll-behavior: smooth;
+  
+    @media (min-width: 1024px) {
+      height: 70vh;
+    }
+  
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #000000;
+    border-radius: 0.5rem;
+}
