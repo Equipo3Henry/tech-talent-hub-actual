@@ -16,8 +16,7 @@ function MyApplications(props) {
       <div className={styles.title_container}>
         <h1 className={styles.title}>My Posts</h1>
         <p className={styles.p}>
-          Here you can add new vacancies and edit the status of the ones you
-          currently have.
+          Here you can see the status of the vacancies you applied to.
         </p>
       </div>
       <div className={styles.container}>
