@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { GlobalContext } from "../layout";
+import { getLayout } from "../layout";
+import Header from "./DashSuperadmin/Elementos/Header";
+import InfoCard from "./DashSuperadmin/Elementos/InfoCards";
+import BarcharCompany from "./DashSuperadmin/Graficos/Companies/Barchar";
+import Piechar from "./DashSuperadmin/Graficos/Vacancies/Piechar";
 
 function SuperDashboardAdmin() {
   const router = useRouter();
@@ -23,7 +29,18 @@ function SuperDashboardAdmin() {
     return null;
   }
 
-  return <div>Contenido del SuperDashboardAdmin</div>;
+  return(
+    <div>
+      <Header/>
+      <InfoCard/>
+      <div className={style.stats}>
+        <Lines/>
+        <BarcharCompany className={style.elemento}/>
+        <Piechar className={style.elemento}/>
+        <Orders/>
+      </div>
+    </div>
+  );
 }
 
 export default SuperDashboardAdmin;
