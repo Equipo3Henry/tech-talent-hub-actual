@@ -107,7 +107,9 @@ const MyPostsCards = () => {
               users={applicants}
               companyData={companyData}
             />
-            <button onClick={toggleModal}>Close</button>
+            <button className={styles.toggleClose} onClick={toggleModal}>
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -138,7 +140,7 @@ const MyPostsCards = () => {
           })}
         </div>
       )}
-      <button onClick={handleToggleOldPosts}>
+      <button className={styles.buttonChange} onClick={handleToggleOldPosts}>
         {showOldPosts ? "View Active Posts" : "Show Old Posts"}
       </button>
     </div>
