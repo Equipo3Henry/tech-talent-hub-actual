@@ -48,7 +48,9 @@ const JobsOfferCard = ({
         </div>
       )}
       <div className={styles.contenedorMyApplications}>
-        <div onClick={onApplicantsClick}>{applicants}</div>
+        <div className={styles.myapps} onClick={onApplicantsClick}>
+          {applicants}
+        </div>
         <span> {status}</span>
       </div>
       {showFinishButton && (
