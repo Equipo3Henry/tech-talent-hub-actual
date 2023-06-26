@@ -32,7 +32,7 @@ function HomePage() {
   }, []); // Dependency a
 
   //  console.log(`yo soy ${userData}`);
-  console.log(user);
+  //console.log(user);
 
   return (
     <div className={styles.globalContainer}>

@@ -38,9 +38,9 @@ export default function Layout({ children }) {
     const fetchFilteredJobs = async () => {
       const url = "/api/vacanciesFilters";
       const params = {};
-
+      
       if (selectedProgLanguage) {
-        params.programming_Languajes = selectedProgLanguage;
+        params.languajes = selectedProgLanguage;
       }
 
       if (selectedSeniority) {
@@ -48,7 +48,7 @@ export default function Layout({ children }) {
       }
 
       if (selectedNameVacancy) {
-        params.name_Vacancy = selectedNameVacancy;
+        params.nameVacancy = selectedNameVacancy;
       }
 
       if (selectedWorkday) {
@@ -69,6 +69,8 @@ export default function Layout({ children }) {
       selectedNameVacancy ||
       selectedWorkday
     ) {
+      console.log(selectedProgLanguage, selectedSeniority, selectedNameVacancy, selectedWorkday);
+      //console.log(jobs)
       fetchFilteredJobs();
     } else if (jobs !== dataJobs) {
       setJobs(dataJobs);
@@ -78,7 +80,6 @@ export default function Layout({ children }) {
     selectedSeniority,
     selectedNameVacancy,
     selectedWorkday,
-    dataJobs,
   ]);
 
   return (
@@ -86,7 +87,6 @@ export default function Layout({ children }) {
       value={{
         jobs,
         user,
-
         setSelectedProgLanguage,
         setSelectedSeniority,
         setselectedNameVacancy,

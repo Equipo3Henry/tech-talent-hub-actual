@@ -7,6 +7,7 @@ mercadopago.configure({
 });
 
 export default async function handler(req, res) {
+  console.log("aqui va el debug")
   if (req.method === "POST") {
     const plan = req.body.plan;
     const userId = req.body.userId;
