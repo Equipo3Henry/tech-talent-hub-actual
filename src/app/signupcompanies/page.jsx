@@ -9,13 +9,15 @@ import Link from "next/link";
 import {
   eyeopen,
   eyeclosed,
-  google,
   upload,
 } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
+import { usePathname } from "next/navigation";
 
 function SignUp() {
+  const pathname = usePathname();
   //? USE STATE FORM
   const [form, setForm] = useState({
     name: "",
@@ -212,14 +214,7 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <button className={styles.ButtonB}>
-              Join with Google
-              <Image
-                src={google}
-                alt="image"
-                className={styles.GoogleImage}
-              ></Image>{" "}
-            </button>
+            <GoogleLoginButton pathname={pathname} />
           </div>
         </div>
         <div className={styles.form_container}>
