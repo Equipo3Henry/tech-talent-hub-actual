@@ -8,6 +8,7 @@ import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function HomePage() {
   const {
@@ -29,14 +30,23 @@ function HomePage() {
     const userData = JSON.parse(localStorageData);
     setUser(userData);
     setIsLoading(false);
-  }, []); // Dependency a
+    console.log(userData); // <== Agrega esta línea
+  }, []); // Dependency array
 
-  //  console.log(`yo soy ${userData}`);
-  //console.log(user);
+  console.log(`mi nombre es ${user}`);
 
   return (
     <div className={styles.globalContainer}>
       <SearchBar setSearchValue={setSearchValue} /> <br />
+      {user && user.superAdmin && (
+        <div className={styles.contenedorBoton}>
+          <Link href={"./superAdmin"}>
+            <button className={styles.superAdminButton}>
+              Admin Dashboard{" "}
+            </button>
+          </Link>
+        </div>
+      )}
       <FiltersSelectorProfile
         setSelectedProgLanguage={setSelectedProgLanguage}
         setSelectedSeniority={setSelectedSeniority}
