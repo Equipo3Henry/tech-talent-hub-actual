@@ -31,3 +31,5 @@ abrir la aplicación y en el momento de concretar el pago se va a abrir una pág
 Esta página de advertencia va a salir solo la primera vez que accedemos, parece que hay una configuración para omitirla si queremos.
 
 Parece que el link tiene un tiempo de expiración, así que hay que hacer este proceso varias veces
+
+Si entrás a http://localhost:4040/ en status/command_line/URL se puede obtener el link de acceso
