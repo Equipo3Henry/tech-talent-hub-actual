@@ -37,10 +37,12 @@ export default SearchBar;
 import styles from "./searchBar.module.css";
 import search from "../../../public/images/search.svg";
 import Image from "next/image";
-
+import { useRef } from "react";
 function SearchBar({ setSearchValue }) {
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
+
+  const inputSearch = useRef(null);
+  const handleButtonSearch = () => {
+    setSearchValue(inputSearch.current.value);
   }
   
   return (
@@ -49,11 +51,11 @@ function SearchBar({ setSearchValue }) {
         <input
           type="search"
           placeholder="Search for job titles, companies or keywords"
-          onChange={handleInputChange}
+          ref={inputSearch}
           className={styles.input}
         />
-        <button className={styles.button}>
-          <Image src={search} alt="image" className={styles.Icons} />
+        <button className={styles.button} type="submit" onClick={()=>handleButtonSearch()}>
+          <Image src={search} alt="image" className={styles.Icons}  />
         </button>
       </div>
     </div>

@@ -6,26 +6,22 @@ export default async function handler(req, res) {
     try {
 
       const query = req.query.q;
+      const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$/;
+      const vacancies = await prisma.vacancy.findMany({where:{isActive:true}});
+      
 
-      const vacancies = await prisma.vacancy.findMany();
+      if(!query) return res.status(200).json(vacancies);
 
-      const searchedVacancies = [];
+      if(uuidRegex.test(query)) {
+        const companyById = vacancies.find((vacancy) => vacancy.id === query);  
+        return res.status(200).json(companyById);
+      }
 
-      let companyById = await prisma.company.findUnique({
-        where: {
-          id: query
-        }
-      })
-
-      vacancies.forEach(vacancy => {
-        if (vacancy.isActive === true) {
-
-
-          if (
+      else{
+        const searchedVacancies = vacancies.filter((vacancy) => {
+          return (
             vacancy.name_Vacancy.toUpperCase().includes(query.toUpperCase()) ||
             vacancy.name_Vacancy.toLowerCase().includes(query.toLowerCase()) ||
-            companyById && companyById.name.toUpperCase().includes(query.toUpperCase()) ||
-            companyById && companyById.name.toLowerCase().includes(query.toLowerCase()) ||
             vacancy.programming_Languages.includes(query.toUpperCase()) ||
             vacancy.programming_Languages.includes(query.toLowerCase()) ||
             vacancy.seniority.toUpperCase().includes(query.toUpperCase()) ||
@@ -34,14 +30,10 @@ export default async function handler(req, res) {
             vacancy.workday.toUpperCase().includes(query.toUpperCase()) ||
             vacancy.workday.toLowerCase().includes(query.toLowerCase()) ||
             vacancy.salary.toString().includes(query)
-          )
-            searchedVacancies.push(vacancy)
-        }
-      })
-
-      console.log(searchedVacancies);
-
-      res.status(200).json(searchedVacancies);
+          );
+        });
+        return res.status(200).json(searchedVacancies);
+      } 
     } catch (error) {
       res.status(400).json({ error: error.message })
     }
