@@ -107,7 +107,7 @@ const FileUploader = ({ companyId }) => {
           <div className={styles.modal_content}>
             <h2>Error</h2>
             <p>
-              We couldn't update your profile picture. Please try again in a few
+              We couldnt update your profile picture. Please try again in a few
               minutes.
             </p>
             <button className={styles.btn_modal} onClick={toggleModalError}>
