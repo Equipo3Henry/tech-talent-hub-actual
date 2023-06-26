@@ -31,10 +31,10 @@ function DashboardPage() {
       const companyDataFromStorage = JSON.parse(localStorageData);
       console.log(companyDataFromStorage); // Log the data here
       setCompanyData(companyDataFromStorage);
+      setIsLoading(false);
     } else {
       console.log("No data in localStorage");
     }
-    setIsLoading(false);
   }, []); // Dependency array
 
   /*   const params = useSearchParams();
@@ -63,13 +63,15 @@ function DashboardPage() {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-        <div className={styles.forniculo}>
-          <div className={styles.usersContainer}>
-            <UserOfferCardsContainerForDashboard
-              users={users}
-              companyData={companyData}
-            />
-            <div className={styles.usersDetailContainer}></div>
+        <div className={styles.contenedorPadre}>
+          <div className={styles.forniculo}>
+            <div className={styles.usersContainer}>
+              <UserOfferCardsContainerForDashboard
+                users={users}
+                companyData={companyData}
+              />
+              <div className={styles.usersDetailContainer}></div>
+            </div>
           </div>
         </div>
       )}
