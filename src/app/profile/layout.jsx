@@ -15,6 +15,7 @@ export default function Layout({ children }) {
   const [selectedWorkday, setSelectedWorkday] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState(null);
+  const [companies, setCompanies] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +23,14 @@ export default function Layout({ children }) {
       // console.log(response.data); // Aquí se añade el console.log
       setDataJobs(response.data);
       setJobs(response.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/companies");
+      setCompanies(response.data);
     };
     fetchData();
   }, []);
@@ -38,7 +47,7 @@ export default function Layout({ children }) {
     const fetchFilteredJobs = async () => {
       const url = "/api/vacanciesFilters";
       const params = {};
-      
+
       if (selectedProgLanguage) {
         params.languajes = selectedProgLanguage;
       }
@@ -69,7 +78,12 @@ export default function Layout({ children }) {
       selectedNameVacancy ||
       selectedWorkday
     ) {
-      console.log(selectedProgLanguage, selectedSeniority, selectedNameVacancy, selectedWorkday);
+      console.log(
+        selectedProgLanguage,
+        selectedSeniority,
+        selectedNameVacancy,
+        selectedWorkday
+      );
       //console.log(jobs)
       fetchFilteredJobs();
     } else if (jobs !== dataJobs) {
@@ -93,6 +107,8 @@ export default function Layout({ children }) {
         setSelectedWorkday,
         setSearchValue,
         setUser,
+        companies,
+        setCompanies,
       }}
     >
       {children}
