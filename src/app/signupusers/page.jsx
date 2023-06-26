@@ -12,7 +12,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import {
   eyeopen,
   eyeclosed,
-  google,
   upload,
 } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
@@ -28,10 +27,14 @@ import {
 } from "../helpers/signup-users/variables";
 import { storage } from "@/src/firebase/firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
+import { usePathname } from "next/navigation";
 
 function SignUp() {
   //? USE STATE FORM
   const [cv, setCv] = useState("");
+
+  const pathname = usePathname();
 
   const [form, setForm] = useState({
     username: "",
@@ -302,14 +305,7 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <button className={styles.ButtonB}>
-              Join with Google
-              <Image
-                src={google}
-                alt="image"
-                className={styles.GoogleImage}
-              ></Image>{" "}
-            </button>
+            <GoogleLoginButton pathname={pathname} />
           </div>
         </div>
         <div className={styles.form_container}>

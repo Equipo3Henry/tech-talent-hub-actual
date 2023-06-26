@@ -14,10 +14,13 @@ import {
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
+import { usePathname } from "next/navigation";
+
 
 const Login = () => {
   const router = useRouter();
-
+  const pathname = usePathname();
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -126,15 +129,7 @@ const Login = () => {
             <div className={styles.line}> </div>
           </div>
           <div className={styles.ButtonAuthenticationOptions}>
-            <button className={styles.ButtonAuth}>
-              <Image src={google} alt="image"></Image>{" "}
-            </button>
-            <button className={styles.ButtonAuth}>
-              <Image src={linkedin} alt="image"></Image>{" "}
-            </button>
-            <button className={styles.ButtonAuth}>
-              <Image src={github} alt="image"></Image>{" "}
-            </button>
+            <GoogleLoginButton pathname={pathname}/>
           </div>
           <div>
             <br />
