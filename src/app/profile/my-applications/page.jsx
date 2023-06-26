@@ -13,8 +13,12 @@ function MyApplications(props) {
 
   return (
     <div className={styles.body}>
-      <div className={styles.applicationsTitle}>
-        <h1>My Applications</h1>
+      <div className={styles.title_container}>
+        <h1 className={styles.title}>My Posts</h1>
+        <p className={styles.p}>
+          Here you can add new vacancies and edit the status of the ones you
+          currently have.
+        </p>
       </div>
       <div className={styles.container}>
         <div className={styles.postContainer}>
