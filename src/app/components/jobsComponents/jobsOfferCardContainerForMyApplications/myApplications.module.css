@@ -18,6 +18,18 @@
     animation: spinner-e04l1k 1s infinite linear;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 10rem;
+}
+
+.text{
+    margin-bottom: 60px;
+    font-size: 29px;
+}
+
 .spinner::before,
 .spinner::after {
     content: "";

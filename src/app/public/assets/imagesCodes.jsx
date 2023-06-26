@@ -28,6 +28,7 @@ import au8 from "../images/au8.png";
 import wix from "../images/wix.png";
 import GoogleBlack from "../images/GoogleBlack.svg";
 import meta from "../images/meta.svg";
+import myposts from "../images/my-posts.png";
 import windows from "../images/windows.svg";
 import samplepost from "../images/SamplePosts.png";
 import dashboard from "../images/dashboard-companys.svg";
@@ -63,6 +64,7 @@ export {
   myprofile,
   home,
   eyeclosed,
+  myposts,
   eyeopen,
   search,
   notification,

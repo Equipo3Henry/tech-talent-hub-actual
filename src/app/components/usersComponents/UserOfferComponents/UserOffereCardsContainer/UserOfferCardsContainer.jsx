@@ -7,12 +7,15 @@ import { useEffect } from "react";
 
 const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
+  //? USE STATE LOADER
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // seleccionar automáticamente el primer usuario cuando se monte el componente
     if (users && users.length > 0) {
       setSelectedUserId(users[0].id);
     }
+    setIsLoading(false);
   }, [users]);
 
   const onUserSelected = (id) => {
@@ -20,36 +23,44 @@ const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
   };
 
   return (
-    <div className={styles.contains}>
-      <div className={styles.containerAll}>
-        <div className={styles.scrollableList}>
-          <div className={styles.fixedBar}>
-            <span className={styles.allCandidates}>Candidates</span>
-          </div>
-          <ul className={styles.list}>
-            {users.map((user, index) => {
-              const formatStart = formatDate(user.start);
-              return (
-                <UserOfferCard
-                  key={index}
-                  id={user.id}
-                  name={user.name}
-                  lastname={user.lastname}
-                  progLanguages={user.progLanguages}
-                  onUserSelected={onUserSelected}
-                />
-              );
-            })}
-          </ul>
+    <>
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
         </div>
-        <UserOfferDetail
-          selectedUserId={selectedUserId}
-          users={users}
-          companyData={companyData}
-          setSelectedUserId={setSelectedUserId}
-        />
-      </div>
-    </div>
+      ) : (
+        <div className={styles.contains}>
+          <div className={styles.containerAll}>
+            <div className={styles.scrollableList}>
+              <div className={styles.fixedBar}>
+                <span className={styles.allCandidates}>Candidates</span>
+              </div>
+              <ul className={styles.list}>
+                {users.map((user, index) => {
+                  const formatStart = formatDate(user.start);
+                  return (
+                    <UserOfferCard
+                      key={index}
+                      id={user.id}
+                      name={user.name}
+                      lastname={user.lastname}
+                      progLanguages={user.progLanguages}
+                      onUserSelected={onUserSelected}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
+            <UserOfferDetail
+              selectedUserId={selectedUserId}
+              users={users}
+              companyData={companyData}
+              setSelectedUserId={setSelectedUserId}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

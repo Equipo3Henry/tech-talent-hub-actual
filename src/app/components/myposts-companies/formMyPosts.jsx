@@ -314,6 +314,7 @@ const FormMyPosts = ({ parsedData }) => {
                       className={styles.input_date_Hire}
                       minDate={startDateMin}
                       placeholderText="Select a hiring date"
+                      dateFormat="dd/MM/yyyy"
                     />
                     {errors.date_Hire !== null && (
                       <span className={styles.error_span}>

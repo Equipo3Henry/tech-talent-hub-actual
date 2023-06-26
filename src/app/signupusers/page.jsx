@@ -93,8 +93,9 @@ function SignUp() {
   //? CHANGE HANDLER DATE PICKER
   const handleDateOfBirthChange = (date) => {
     const currentDate = new Date(); // Obtener la fecha actual
-    const formattedDate = format(date, "dd/MM/yyyy");
-    if (date > currentDate) {
+    const formattedDate = date ? format(date, "dd/MM/yyyy") : "";
+
+    if (date && date > currentDate) {
       // Si la fecha seleccionada es posterior a la fecha actual
       setErrors((errors) => ({
         ...errors,
@@ -105,6 +106,7 @@ function SignUp() {
         ...errors,
         birth: "",
       }));
+
       setStartDate(date);
       setForm({
         ...form,
@@ -112,6 +114,7 @@ function SignUp() {
       });
     }
   };
+
   const handleCvChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -428,6 +431,7 @@ function SignUp() {
                   onChange={handleDateOfBirthChange}
                   className={styles.input_dateOfBirth}
                   placeholderText="Select your date of birth"
+                  dateFormat="dd/MM/yyyy"
                 />
                 {errors.birth !== null && (
                   <span className={styles.error_span}>{errors.birth}</span>
