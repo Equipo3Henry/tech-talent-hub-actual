@@ -34,8 +34,7 @@ function SuperDashboardAdmin() {
       <Header/>
       <InfoCard/>
       <div className={style.stats}>
-        <Lines/>
-        <BarcharCompany className={style.elemento}/>
+        <BarcharCompany className={style.elemento} />
         <Piechar className={style.elemento}/>
         <Orders/>
       </div>
