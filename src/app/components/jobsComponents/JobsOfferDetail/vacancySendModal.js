@@ -3,7 +3,7 @@ import style from "./vacancySendModal.module.css";
 import { useState } from "react";
 
 //? TOGGLE MODAL
-const toggleModal = () => {
+const ToggleModal = () => {
   const [showModal, setShowModal] = useState(false);
   setShowModal(!showModal);
   return (
@@ -20,4 +20,4 @@ const toggleModal = () => {
     </>
   );
 };
-export default toggleModal;
+export default ToggleModal;

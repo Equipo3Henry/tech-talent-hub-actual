@@ -69,7 +69,7 @@ async function getValidate(email, password) {
             email: userFound.email,
             seniority: userFound.seniority,
             image: userFound.profile_pictures,
-            superAdmin: userFound.superAdmin, // <== Agrega esta línea
+            superAdmin: userFound.superAdmin,
           },
         }
       : { response: "Your email or password are incorrect" };

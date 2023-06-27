@@ -10,7 +10,8 @@
     height: 50vh;
   }
   padding: 1rem;
-  border: 1px solid #262626;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+  border-top-width: 9px;
+  border: solid #262626;
 }

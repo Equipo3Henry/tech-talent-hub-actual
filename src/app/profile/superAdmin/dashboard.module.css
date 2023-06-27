@@ -4,6 +4,5 @@
 
 .containerGraph {
   display: flex;
-  place-items: center;
-  gap: 0px;
+  justify-content: space-around;
 }
