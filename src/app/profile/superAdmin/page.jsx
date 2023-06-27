@@ -30,17 +30,13 @@ function SuperDashboardAdmin() {
     }
   }, []);
 
-  console.log(allUsers);
-  console.log(user);
-  console.log(companies);
-  console.log(jobs);
   // Renderizar null mientras se está cargando el usuario
   if (!user) {
     return null;
   }
 
   return (
-    <div className={styles.contenedor}>
+    <div className={styles.contenedorGeneral}>
       <Header />
       <InfoCard jobs={jobs} user={user} companies={companies} />
 

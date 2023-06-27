@@ -1,3 +1,9 @@
+.contenedorGeneral {
+  margin-left: 70px;
+}
+
 .containerGraph {
   display: flex;
+  place-items: center;
+  gap: 0px;
 }

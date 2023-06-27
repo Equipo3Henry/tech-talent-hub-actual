@@ -1,21 +1,21 @@
-.container{
+.container {
+  place-items: center;
+  width: 30%;
+  grid-column-start: span 1;
+  @media (min-width: 768px) {
+    grid-column-start: span 2;
+  }
+  position: relative;
+  height: 50vh;
+  @media (min-width: 120px) {
+    width: 80%;
+  }
+  @media (min-width: 1000px) {
     width: 30%;
-    grid-column-start: span 1;
-    @media (min-width: 768px) {
-        grid-column-start: span 2;
-    }
-    position: relative;
     height: 50vh;
-    @media (min-width: 120px){
-        width: 80%;
-    }
-    @media (min-width: 1000px) {
-        width: 30%;
-        height: 50vh;
-    }
-    margin: auto;
-    padding: 1rem;
-    border: 1px solid #262626;
-    border-radius: 0.5rem;
-    background-color: #ffffff;
+  }
+  padding: 1rem;
+  border: 1px solid #262626;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
 }
