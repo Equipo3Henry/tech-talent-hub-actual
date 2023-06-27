@@ -8,18 +8,22 @@ import Header from "./DashSuperadmin/Elementos/Header";
 import InfoCard from "./DashSuperadmin/Elementos/InfoCards";
 import BarcharCompany from "./DashSuperadmin/Graficos/Companies/Barchar";
 import Piechar from "./DashSuperadmin/Graficos/Vacancies/Piechar";
+import * as color from "@kurkle/color";
+import { useContext } from "react";
 
 function SuperDashboardAdmin() {
+  const { jobs, user, companies } = useContext(GlobalContext);
+
   const router = useRouter();
-  const [user, setUser] = useState(null);
+  const [userb, setUser] = useState(null);
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
-    const user = userData ? JSON.parse(userData) : null;
+    const userb = userData ? JSON.parse(userData) : null;
 
-    setUser(user);
+    setUser(userb);
 
-    if (!user || !user.superAdmin) {
+    if (!userb || !user.superAdmin) {
       router.push("/access-denied");
     }
   }, []);
@@ -29,14 +33,15 @@ function SuperDashboardAdmin() {
     return null;
   }
 
-  return(
+  return (
     <div>
-      <Header/>
-      <InfoCard/>
+      <Header />
+      <InfoCard />
       <div className={style.stats}>
         <BarcharCompany className={style.elemento} />
-        <Piechar className={style.elemento}/>
-        <Orders/>
+        <Piechar className={style.elemento} />
+        {/*         <Orders />
+         */}{" "}
       </div>
     </div>
   );
