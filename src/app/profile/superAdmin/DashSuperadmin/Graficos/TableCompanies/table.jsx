@@ -5,18 +5,17 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "./table.module.css";
 
-function TableUsers({ allUsers }) {
+function TableCompanies({ companies }) {
   const [sortConfig, setSortConfig] = useState({
-    key: "username",
+    key: "name",
     direction: "ascending",
   });
-
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
 
-  async function toggleActive(userId, currentStatus) {
+  async function toggleActive(companiesId, currentStatus) {
     try {
-      const response = await axios.patch(`/api/users/${userId}`, {
+      const response = await axios.patch(`/api/companies/${companiesId}`, {
         isActive: !currentStatus, // invertir el estado actual
       });
       console.log(response.data);
@@ -25,7 +24,7 @@ function TableUsers({ allUsers }) {
     }
   }
 
-  const sortedUsers = Object.values(allUsers).sort((a, b) => {
+  const sortedCompanies = Object.values(companies).sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === "ascending" ? -1 : 1;
     }
@@ -35,10 +34,12 @@ function TableUsers({ allUsers }) {
     return 0;
   });
 
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
-
+  const indexOfLastCompany = currentPage * usersPerPage;
+  const indexOfFirstCompany = indexOfLastCompany - usersPerPage;
+  const currentCompanies = sortedCompanies.slice(
+    indexOfFirstCompany,
+    indexOfLastCompany
+  );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const requestSort = (key) => {
@@ -50,7 +51,7 @@ function TableUsers({ allUsers }) {
   };
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(sortedUsers.length / usersPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(sortedCompanies.length / usersPerPage); i++) {
     pageNumbers.push(i);
   }
   return (
@@ -58,14 +59,8 @@ function TableUsers({ allUsers }) {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th className={styles.th} onClick={() => requestSort("username")}>
-              Username
-            </th>
             <th className={styles.th} onClick={() => requestSort("name")}>
               Name
-            </th>
-            <th className={styles.th} onClick={() => requestSort("lastname")}>
-              Lastname
             </th>
             <th className={styles.th} onClick={() => requestSort("email")}>
               Email
@@ -73,41 +68,29 @@ function TableUsers({ allUsers }) {
             <th className={styles.th} onClick={() => requestSort("country")}>
               Country
             </th>
-            <th className={styles.th} onClick={() => requestSort("cv")}>
-              cv
-            </th>
-            <th className={styles.th} onClick={() => requestSort("seniority")}>
-              seniority
+            <th className={styles.th} onClick={() => requestSort("type")}>
+              Company Type
             </th>
             <th className={styles.th} onClick={() => requestSort("isPremium")}>
               Is Premium
             </th>
-            <th>Delete User</th>
+            <th>Activate/Deactivate Company</th>
           </tr>
         </thead>
         <tbody>
-          {currentUsers.map((user) => (
-            <tr key={user.id} className={styles.tr}>
-              <td className={styles.td}>{user.username}</td>
-              <td className={styles.td}>{user.name}</td>
-              <td className={styles.td}>{user.lastname}</td>
-              <td className={styles.td}>{user.email}</td>
-              <td className={styles.td}>{user.country}</td>
-              <td className={styles.td}>
-                <a href={user.cv} target="_blank" rel="noopener noreferrer">
-                  Link
-                </a>
-              </td>
-              <td className={styles.td}>{user.seniority}</td>
-              {/*             <td>{user.softSkills.join(", ")}</td>
-               */}{" "}
-              <td className={styles.td}>{user.isPremium ? "Yes" : "No"}</td>
+          {currentCompanies.map((company) => (
+            <tr key={company.id} className={styles.tr}>
+              <td className={styles.td}>{company.name}</td>
+              <td className={styles.td}>{company.email}</td>
+              <td className={styles.td}>{company.country}</td>
+              <td className={styles.td}>{company.type}</td>
+              <td className={styles.td}>{company.isPremium ? "Yes" : "No"}</td>
               <td className={styles.td}>
                 <button
-                  onClick={() => toggleActive(user.id, user.isActive)}
+                  onClick={() => toggleActive(company.id, company.isActive)}
                   className={styles.buttonActivation}
                 >
-                  {user.isActive ? "Deactivate" : "Activate"}
+                  {company.isActive ? "Deactivate" : "Activate"}
                 </button>
               </td>{" "}
             </tr>
@@ -129,4 +112,4 @@ function TableUsers({ allUsers }) {
   );
 }
 
-export default TableUsers;
+export default TableCompanies;
