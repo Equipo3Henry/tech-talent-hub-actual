@@ -16,40 +16,6 @@ import { useRouter } from "next/navigation";
 import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
 
-/* const Login = () => {
-  const router = useRouter();
-
-  const [formLogin, setFormLogin] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-
-  const handleUser = (e) => {
-    const property = e.target.name;
-    const value = e.target.value;
-    setFormLogin({ ...formLogin, [property]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let response = null;
-
-    await axios
-      .post("/api/loginUsers", formLogin)
-      .then((res) => {
-        response = res.data;
-      })
-      .catch((err) => {
-        alert("There was an error in the login, please try again");
-      });
-
-    console.log(response);
-    if (response.response === "Access granted") {
-      const params = JSON.stringify(response.userData);
-      router.push(`/profile/dashboard?userData=${params}`);
-    } else setError(response.response);
-  }; */
 const Login = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -160,7 +126,7 @@ const Login = () => {
             <div className={styles.line}> </div>
           </div>
           <div className={styles.ButtonAuthenticationOptions}>
-            <GoogleLoginButton pathname={pathname}/>
+            <GoogleLoginButton pathname={pathname} />
           </div>
           <div>
             <br />

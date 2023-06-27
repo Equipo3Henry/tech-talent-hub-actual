@@ -55,6 +55,9 @@ async function getValidate(email, password) {
             : userFound.limitFreeVacancies,
       },
     });
+    if (!userFound.isActive) {
+      return { response: "User account is not active" };
+    }
   }
 
   if (!userFound) return { response: "User not found" };
