@@ -15,6 +15,7 @@ import TableUsers from "./DashSuperadmin/Graficos/Table/table";
 import TableCompanies from "./DashSuperadmin/Graficos/TableCompanies/table";
 import TableVacancies from "./DashSuperadmin/Graficos/TableVacancies/table";
 import MercadoPagoData from "./DashSuperadmin/Graficos/mercadoPago/mercadoPago";
+import RevenueChart from "./DashSuperadmin/Graficos/mercadoPago/mercadoPagoGraph";
 
 function SuperDashboardAdmin() {
   const { jobs, user, companies, allUsers, setAllUsers } =
@@ -44,7 +45,8 @@ function SuperDashboardAdmin() {
     <div className={styles.contenedorGeneral}>
       <Header />
       <InfoCard jobs={jobs} user={user} companies={companies} />
-      <MercadoPagoData user={user} />
+      <MercadoPagoData allUsers={allUsers} />
+      <RevenueChart allUsers={allUsers} />
       <div className={styles.containerGraph}>
         <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
         <Piechar jobs={jobs} user={user} companies={companies} />
