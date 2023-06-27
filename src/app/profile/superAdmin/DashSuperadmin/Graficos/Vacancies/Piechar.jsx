@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import style from "./Piechar.module.css";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
-import * as color from "@kurkle/color";
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 

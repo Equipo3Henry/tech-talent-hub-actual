@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./InfoCards.module.css";
-import * as color from "@kurkle/color";
 
 //import {dataUsers} from
 
