@@ -303,7 +303,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="name"
-                  required
                   placeholder="Enter your first name"
                   className={styles.input_name}
                   onChange={changeHandler}
@@ -320,7 +319,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="lastname"
-                  required
                   placeholder="Enter your last name"
                   className={styles.input_lastname}
                   onChange={changeHandler}
@@ -338,7 +336,6 @@ function SignUp() {
               <input
                 type="email"
                 name="email"
-                required
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
@@ -357,7 +354,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="username"
-                  required
                   placeholder="Enter the username you want to use on the site"
                   className={styles.input_username}
                   onChange={changeHandler}
@@ -376,7 +372,6 @@ function SignUp() {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    required
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
@@ -449,7 +444,6 @@ function SignUp() {
                 <Select
                   options={countries}
                   name="country"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "country", value: selectedOption },
@@ -486,7 +480,6 @@ function SignUp() {
                   isMulti
                   options={progLanguages}
                   name="progLanguages"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "progLanguages", value: selectedOptions },
@@ -521,7 +514,6 @@ function SignUp() {
                 <Select
                   options={degrees}
                   name="degree"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "degree", value: selectedOption },
@@ -557,7 +549,6 @@ function SignUp() {
                   isMulti
                   options={softSkills}
                   name="softSkills"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "softSkills", value: selectedOptions },
@@ -605,7 +596,6 @@ function SignUp() {
                   }
                   isClearable={false}
                   isSearchable={true}
-                  required
                   placeholder="Select the languages you know"
                   closeMenuOnSelect={false}
                   styles={{
@@ -675,7 +665,6 @@ function SignUp() {
                   isClearable={true}
                   placeholder="What do you specialize in?"
                   isSearchable={true}
-                  required
                   closeMenuOnSelect={true}
                   styles={{
                     container: (baseStyles, state) => ({
