@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { countries, type } from "../../helpers/signup-companies/variables";
 import styles from "./putCompanies.module.css";
 
-const PutCompanies = ({}) => {
+const PutCompanies = ({ companyData }) => {
   //? USE STATE FORM
   const [form, setForm] = useState({
     type: "",
@@ -22,6 +22,19 @@ const PutCompanies = ({}) => {
     employes: 0,
     jobs: 0,
   });
+
+  useEffect(() => {
+    if (companyData) {
+      setForm({
+        type: companyData.type || "",
+        country: companyData.country || "",
+        description: companyData.description || "",
+        vacancies: companyData.vacancies || 0,
+        employes: companyData.employes || 0,
+        jobs: companyData.jobs || 0,
+      });
+    }
+  }, [companyData]);
 
   //? USE STATE ERRORS
   const [errors, setErrors] = useState({
@@ -52,18 +65,10 @@ const PutCompanies = ({}) => {
     let value = event.target.value;
 
     if (
-      property === "Relevance" ||
-      property === "workday" ||
-      property === "seniority"
+      property === "jobs" ||
+      property === "vacancies" ||
+      property === "employes"
     ) {
-      value = value ? value.value : "";
-    }
-
-    if (property === "programming_Languages") {
-      value = Array.isArray(value) ? value.map((option) => option.value) : [];
-    }
-
-    if (property === "salary") {
       value = parseInt(value);
     }
     setForm({
@@ -91,17 +96,14 @@ const PutCompanies = ({}) => {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
-    setSpan(true);
 
-    // axios
-    //   .post("/api/vacancies", form)
-    //   .then((response) => {
-    //     setSpan(true);
-    //     setValid(false);
-    //   })
-    //   .catch((err) => ({ error: err.message }));
+    axios
+      .patch(`/api/companies/${companyData.id}`, form)
+      .then((response) => {
+        setSpan(true);
+        setValid(false);
+      })
+      .catch((err) => ({ error: err.message }));
   };
 
   return (
@@ -125,9 +127,15 @@ const PutCompanies = ({}) => {
                     <Select
                       options={countries}
                       name="country"
+                      value={countries.find(
+                        (option) => option.value === form.country
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "country", value: selectedOption },
+                          target: {
+                            name: "country",
+                            value: selectedOption.value,
+                          },
                         })
                       }
                       isClearable={true}
@@ -156,6 +164,7 @@ const PutCompanies = ({}) => {
                     <input
                       type="number"
                       name="employes"
+                      value={form.employes}
                       placeholder="How many employees do you have?"
                       className={styles.input_employes}
                       onChange={changeHandler}
@@ -176,9 +185,10 @@ const PutCompanies = ({}) => {
                     <Select
                       options={type}
                       name="type"
+                      value={type.find((option) => option.value === form.type)}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "type", value: selectedOption },
+                          target: { name: "type", value: selectedOption.value },
                         })
                       }
                       isClearable={true}
@@ -211,6 +221,7 @@ const PutCompanies = ({}) => {
                     <input
                       type="number"
                       name="jobs"
+                      value={form.jobs}
                       placeholder="How many areas does your company have?"
                       className={styles.input_jobs}
                       onChange={changeHandler}
@@ -227,6 +238,7 @@ const PutCompanies = ({}) => {
                     <input
                       type="number"
                       name="vacancies"
+                      value={form.vacancies}
                       placeholder="How many vacancies are available?"
                       className={styles.input_vacancies}
                       onChange={changeHandler}
@@ -243,6 +255,7 @@ const PutCompanies = ({}) => {
                     <textarea
                       type="text"
                       name="description"
+                      value={form.description}
                       placeholder="Write a short summary about your company"
                       className={styles.textarea_description}
                       onChange={changeHandler}

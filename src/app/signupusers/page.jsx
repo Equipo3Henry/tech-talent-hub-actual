@@ -9,11 +9,7 @@ import Link from "next/link";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  eyeopen,
-  eyeclosed,
-  upload,
-} from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, upload } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -27,7 +23,7 @@ import {
 } from "../helpers/signup-users/variables";
 import { storage } from "@/src/firebase/firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
 
 function SignUp() {
@@ -54,7 +50,7 @@ function SignUp() {
     softSkills: [],
     specialization: "",
     recruiter: false,
-    isPremium: false
+    isPremium: false,
   });
 
   //? USE STATE ERRORS
@@ -261,18 +257,6 @@ function SignUp() {
     });
   };
 
-  // //? Custom input component for ReactDatePicker
-  // const CustomDatePickerInput = ({ value, onClick }) => (
-  //   <input
-  //     type="text"
-  //     value={value}
-  //     onClick={onClick}
-  //     placeholder="Enter your date of birth"
-  //     className={styles.input_dateOfBirth}
-  //     readOnly
-  //   />
-  // );
-
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
   useEffect(() => {
     const submitButton = document.getElementById("submit-button");
@@ -319,7 +303,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="name"
-                  required
                   placeholder="Enter your first name"
                   className={styles.input_name}
                   onChange={changeHandler}
@@ -336,7 +319,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="lastname"
-                  required
                   placeholder="Enter your last name"
                   className={styles.input_lastname}
                   onChange={changeHandler}
@@ -354,7 +336,6 @@ function SignUp() {
               <input
                 type="email"
                 name="email"
-                required
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
@@ -373,7 +354,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="username"
-                  required
                   placeholder="Enter the username you want to use on the site"
                   className={styles.input_username}
                   onChange={changeHandler}
@@ -392,7 +372,6 @@ function SignUp() {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    required
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
@@ -465,7 +444,6 @@ function SignUp() {
                 <Select
                   options={countries}
                   name="country"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "country", value: selectedOption },
@@ -502,7 +480,6 @@ function SignUp() {
                   isMulti
                   options={progLanguages}
                   name="progLanguages"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "progLanguages", value: selectedOptions },
@@ -537,7 +514,6 @@ function SignUp() {
                 <Select
                   options={degrees}
                   name="degree"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "degree", value: selectedOption },
@@ -573,7 +549,6 @@ function SignUp() {
                   isMulti
                   options={softSkills}
                   name="softSkills"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "softSkills", value: selectedOptions },
@@ -621,7 +596,6 @@ function SignUp() {
                   }
                   isClearable={false}
                   isSearchable={true}
-                  required
                   placeholder="Select the languages you know"
                   closeMenuOnSelect={false}
                   styles={{
@@ -691,7 +665,6 @@ function SignUp() {
                   isClearable={true}
                   placeholder="What do you specialize in?"
                   isSearchable={true}
-                  required
                   closeMenuOnSelect={true}
                   styles={{
                     container: (baseStyles, state) => ({
