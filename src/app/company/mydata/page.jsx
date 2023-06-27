@@ -3,16 +3,38 @@
 import React, { useEffect, useState } from "react";
 import styles from "./myprofile.module.css";
 import FileUploader from "../../components/FileUploaderCompanies/fileUploader";
+import axios from "axios";
 import PutCompanies from "../../components/profileCompaniesPutModal/putCompanies";
 
 function MyProfileCompanies() {
   const [companyId, setCompanyId] = useState(null);
+  const [companyData, setCompanyData] = useState(null);
 
   useEffect(() => {
     const storedCompanyData = JSON.parse(localStorage.getItem("companyData"));
     const companyId = storedCompanyData?.id; // Cambio aquí de userId a id
     setCompanyId(companyId);
     console.log(`Company ID from localStorage: ${companyId}`);
+  }, []);
+
+  useEffect(() => {
+    const storedCompanyData = JSON.parse(localStorage.getItem("companyData"));
+    const companyId = storedCompanyData?.id;
+    setCompanyId(companyId);
+    console.log(`Company ID from localStorage: ${companyId}`);
+
+    const fetchCompanyData = async () => {
+      try {
+        const response = await axios.get(`/api/companies/${companyId}`);
+        setCompanyData(response.data);
+      } catch (error) {
+        console.error("Error fetching company data:", error);
+      }
+    };
+
+    if (companyId) {
+      fetchCompanyData();
+    }
   }, []);
 
   return (
@@ -27,7 +49,7 @@ function MyProfileCompanies() {
 
       <div className={styles.content_container}>
         <div className={styles.modifyInfo_container}>
-          <PutCompanies />
+          <PutCompanies companyData={companyData} />
         </div>
         <div className={styles.fileUploader_container}>
           <FileUploader companyId={companyId} />
