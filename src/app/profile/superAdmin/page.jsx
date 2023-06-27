@@ -12,6 +12,8 @@ import { useContext } from "react";
 import styles from "./dashboard.module.css";
 import CountryPieChart from "./DashSuperadmin/Graficos/countries/Countris";
 import TableUsers from "./DashSuperadmin/Graficos/Table/table";
+import TableCompanies from "./DashSuperadmin/Graficos/TableCompanies/table";
+import TableVacancies from "./DashSuperadmin/Graficos/TableVacancies/table";
 
 function SuperDashboardAdmin() {
   const { jobs, user, companies, allUsers, setAllUsers } =
@@ -41,7 +43,6 @@ function SuperDashboardAdmin() {
     <div className={styles.contenedorGeneral}>
       <Header />
       <InfoCard jobs={jobs} user={user} companies={companies} />
-
       <div className={styles.containerGraph}>
         <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
         <Piechar jobs={jobs} user={user} companies={companies} />
@@ -50,6 +51,12 @@ function SuperDashboardAdmin() {
          */}{" "}
       </div>
       <TableUsers allUsers={allUsers} />
+      <br />
+      <br />
+      <TableCompanies companies={companies} />
+      <br />
+      <br />
+      <TableVacancies jobs={jobs} />
     </div>
   );
 }
