@@ -11,7 +11,8 @@ import Piechar from "./DashSuperadmin/Graficos/Vacancies/Piechar";
 import { useContext } from "react";
 
 function SuperDashboardAdmin() {
-  const { jobs, user, companies } = useContext(GlobalContext);
+  const { jobs, user, companies, allUsers, setAllUsers } =
+    useContext(GlobalContext);
 
   const router = useRouter();
   const [userb, setUser] = useState(null);
@@ -28,6 +29,10 @@ function SuperDashboardAdmin() {
     }
   }, []);
 
+  console.log(allUsers);
+  console.log(user);
+  console.log(companies);
+  console.log(jobs);
   // Renderizar null mientras se está cargando el usuario
   if (!user) {
     return null;
@@ -36,11 +41,11 @@ function SuperDashboardAdmin() {
   return (
     <div>
       <Header />
-      <InfoCard />
+      <InfoCard jobs={jobs} user={user} companies={companies} />
 
-      <div className={style.stats}>
-        <BarcharCompany className={style.elemento} />
-        <Piechar className={style.elemento} />
+      <div>
+        <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
+        <Piechar jobs={jobs} user={user} companies={companies} />
         {/*         <Orders />
          */}{" "}
       </div>

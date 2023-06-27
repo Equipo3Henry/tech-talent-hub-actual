@@ -21,25 +21,39 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const BarcharCompany = () => {
+const BarcharCompany = ({ allUsers }) => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
+
   useEffect(() => {
+    // Initialize counters
+    let basicCount = 0;
+    let premiumCount = 0;
+
+    // Iterate over all users and increment the appropriate counter
+    allUsers.forEach((user) => {
+      if (user.isPremium) {
+        premiumCount++;
+      } else {
+        basicCount++;
+      }
+    });
+
+    // Set the chart data state
     setChartData({
-      labels: ["Basic", "remium"],
+      labels: ["Basic", "Premium"],
       datasets: [
         {
           label: "Users",
-          // data: [10, 50, 1000], basicUsers.amount, proUsers.amount, goldUsers.amount, globalUsers.amount
-          data: [10, 3],
+          data: [basicCount, premiumCount],
           borderColor: "#262626",
           backgroundColor: "#B682D9",
         },
       ],
     });
+
     setChartOptions({
       plugins: {
         legend: {
@@ -47,19 +61,19 @@ const BarcharCompany = () => {
         },
         title: {
           display: true,
-          text: "Users suscription",
+          text: "Users subscription",
         },
       },
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, []);
+  }, [allUsers]); // Here, we have added allUsers as a dependency. useEffect will run whenever allUsers changes
+
   return (
-    <>
-      <div className={style.container}>
-        <Bar data={chartData} options={chartOptions} />
-      </div>
-    </>
+    <div className={style.container}>
+      <Bar data={chartData} options={chartOptions} />
+    </div>
   );
 };
+
 export default BarcharCompany;
