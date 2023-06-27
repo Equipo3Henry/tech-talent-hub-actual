@@ -39,7 +39,7 @@ const Piechar = ({ jobs }) => {
         {
           label: "Vacancies",
           data: [juniorCount, semiSeniorCount, seniorCount],
-          backgroundColor: ["#25b601", "#c4c700", "#B682D9"],
+          backgroundColor: ["#6850BF", "#262626", "#7155D9"],
           borderColor: ["#262626"],
           borderWidth: 1,
         },
