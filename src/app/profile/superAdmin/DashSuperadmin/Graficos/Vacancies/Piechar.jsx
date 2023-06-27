@@ -4,25 +4,48 @@ import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
-
-const Piechar = () => {
+const Piechar = ({ jobs }) => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
+
   useEffect(() => {
+    // Initialize counters
+    let juniorCount = 0;
+    let semiSeniorCount = 0;
+    let seniorCount = 0;
+
+    jobs.forEach((job) => {
+      switch (job.seniority) {
+        case "JUNIOR":
+          juniorCount++;
+          break;
+        case "SEMISENIOR":
+          semiSeniorCount++;
+          break;
+        case "SENIOR":
+          seniorCount++;
+          break;
+        default:
+          break;
+      }
+    });
+
+    // Set the chart data state
     setChartData({
       labels: ["Junior", "Semi-Senior", "Senior"],
       datasets: [
         {
           label: "Vacancies",
-          data: [6, 2, 1],
+          data: [juniorCount, semiSeniorCount, seniorCount],
           backgroundColor: ["#25b601", "#c4c700", "#B682D9"],
           borderColor: ["#262626"],
           borderWidth: 1,
         },
       ],
     });
+
     setChartOptions({
       plugins: {
         legend: {
@@ -30,22 +53,19 @@ const Piechar = () => {
         },
         title: {
           display: true,
-          text: "Total vacancies = " + "x",
-          // text: 'Total vacancies = '+`${vacancies.length}`
+          text: `Total vacancies = ${jobs.length}`,
         },
-        responsive: true,
-        maintainAspectRatio: true,
       },
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, []);
+  }, [jobs]); // Here, we have added jobs as a dependency. useEffect will run whenever jobs changes.
+
   return (
-    <>
-      <div className={style.container}>
-        <Pie data={chartData} options={chartOptions} />
-      </div>
-    </>
+    <div className={style.container}>
+      <Pie data={chartData} options={chartOptions} />
+    </div>
   );
 };
+
 export default Piechar;
