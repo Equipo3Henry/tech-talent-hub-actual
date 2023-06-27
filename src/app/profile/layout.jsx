@@ -16,6 +16,7 @@ export default function Layout({ children }) {
   const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState(null);
   const [companies, setCompanies] = useState(null);
+  const [allUsers, setAllUsers] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +32,14 @@ export default function Layout({ children }) {
     const fetchData = async () => {
       const response = await axios.get("/api/companies");
       setCompanies(response.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/users");
+      setAllUsers(response.data);
     };
     fetchData();
   }, []);
@@ -109,6 +118,8 @@ export default function Layout({ children }) {
         setUser,
         companies,
         setCompanies,
+        setAllUsers,
+        allUsers,
       }}
     >
       {children}
