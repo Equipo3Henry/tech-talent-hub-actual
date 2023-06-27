@@ -9,11 +9,7 @@ import Link from "next/link";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  eyeopen,
-  eyeclosed,
-  upload,
-} from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, upload } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -27,7 +23,7 @@ import {
 } from "../helpers/signup-users/variables";
 import { storage } from "@/src/firebase/firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
 
 function SignUp() {
@@ -54,7 +50,7 @@ function SignUp() {
     softSkills: [],
     specialization: "",
     recruiter: false,
-    isPremium: false
+    isPremium: false,
   });
 
   //? USE STATE ERRORS
@@ -260,18 +256,6 @@ function SignUp() {
       setValid(false);
     });
   };
-
-  // //? Custom input component for ReactDatePicker
-  // const CustomDatePickerInput = ({ value, onClick }) => (
-  //   <input
-  //     type="text"
-  //     value={value}
-  //     onClick={onClick}
-  //     placeholder="Enter your date of birth"
-  //     className={styles.input_dateOfBirth}
-  //     readOnly
-  //   />
-  // );
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
   useEffect(() => {

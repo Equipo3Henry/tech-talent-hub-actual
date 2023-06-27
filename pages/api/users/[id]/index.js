@@ -16,10 +16,38 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "PATCH") {
     try {
-      const { cv } = req.body;
+      const {
+        cv,
+        name,
+        lastname,
+        birth,
+        aboutme,
+        working,
+        country,
+        degree,
+        languages,
+        progLanguages,
+        seniority,
+        softSkills,
+        specialization,
+      } = req.body;
       const user = await prisma.user.update({
         where: { id: id },
-        data: { cv: cv },
+        data: {
+          cv: cv,
+          name: name,
+          lastname: lastname,
+          birth: birth,
+          aboutme: aboutme,
+          working: working,
+          country: country,
+          degree: degree,
+          languages: languages,
+          progLanguages: progLanguages,
+          seniority: seniority,
+          softSkills: softSkills,
+          specialization: specialization,
+        },
       });
       res.status(200).json(user);
     } catch (error) {
