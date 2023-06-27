@@ -8,7 +8,6 @@ import Header from "./DashSuperadmin/Elementos/Header";
 import InfoCard from "./DashSuperadmin/Elementos/InfoCards";
 import BarcharCompany from "./DashSuperadmin/Graficos/Companies/Barchar";
 import Piechar from "./DashSuperadmin/Graficos/Vacancies/Piechar";
-import * as color from "@kurkle/color";
 import { useContext } from "react";
 
 function SuperDashboardAdmin() {
@@ -20,10 +19,11 @@ function SuperDashboardAdmin() {
   useEffect(() => {
     const userData = localStorage.getItem("userData");
     const userb = userData ? JSON.parse(userData) : null;
-
     setUser(userb);
+    console.log(userb);
+    console.log("hola");
 
-    if (!userb || !user.superAdmin) {
+    if (!userb || !userb.superAdmin) {
       router.push("/access-denied");
     }
   }, []);
@@ -37,6 +37,7 @@ function SuperDashboardAdmin() {
     <div>
       <Header />
       <InfoCard />
+
       <div className={style.stats}>
         <BarcharCompany className={style.elemento} />
         <Piechar className={style.elemento} />

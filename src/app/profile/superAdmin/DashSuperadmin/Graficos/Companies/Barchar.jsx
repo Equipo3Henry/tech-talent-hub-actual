@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import style from "./Barchar.module.css";
 import { Bar } from "react-chartjs-2";
 import Layout from "@/src/app/company/layout";
-import * as color from "@kurkle/color";
 
 import {
   Chart as ChartJS,

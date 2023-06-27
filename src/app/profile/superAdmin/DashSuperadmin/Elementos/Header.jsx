@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./Header.module.css";
-import * as color from "@kurkle/color";
 
 const Header = () => {
   return (
