@@ -27,6 +27,7 @@ model Company {
   isPremium       Boolean     @default(false)
   updatedAt       DateTime    @default(now()) @updatedAt
   postedVacancies Vacancy[]
+  googleAuth            Boolean @default(false)
 }
 
 model Review {
@@ -72,6 +73,7 @@ model User {
   remainingPremiumDays    Int       @default(0)
   premiumUpdateDate       DateTime  @default(dbgenerated("'1970-01-01 00:00:00'::timestamp without time zone"))
   appliedVacancies        Vacancy[] @relation("applications")
+  googleAuth            Boolean @default(false)
 }
 
 model Vacancy {
