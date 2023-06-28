@@ -9,6 +9,7 @@ import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Hi from "../../components/hi/hi";
 
 function HomePage() {
   const {
@@ -38,6 +39,7 @@ function HomePage() {
   return (
     <div className={styles.globalContainer}>
       <div className={styles.botonContenedor}>
+        <Hi user={user} />
         <SearchBar setSearchValue={setSearchValue} /> <br />
         {user && user.superAdmin && (
           <div className={styles.contenedorBoton}>
