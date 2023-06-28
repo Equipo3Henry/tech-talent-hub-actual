@@ -12,62 +12,62 @@ export default async function upgradePremium(userId) {
     })
 
     console.log('UPGRADEPREMIUM:', user);
-
+    const userPreviousRemainingDays = user.remainingPremiumDays + 30;
     if (user.isPremium === false) {
-
-        await prisma.user.update({
+        //HASTA ACA LLEGO TODO OK
+        const updatedUser = await prisma.user.update({
             where: {
                 id: userId
             },
             data: {
                 isPremium: true,
                 premiumUpdateDate: new Date(),
-                remainingPremiumDays: remainingPremiumDays + 30
+                remainingPremiumDays: userPreviousRemainingDays
             },
         })
-        console.log(user);
+        console.log('UPDATED USER 1:', updatedUser);
 
         await transporter.verify();
 
         const mail = {
             from: 'equipo3.37a@gmail.com',
-            to: user.email,
+            to: updatedUser.email,
             subject: "Successfull upgrade premium",
             html: `
       <p style="color: black">
-      Congratulations ${user.name}! You are now a premium user of TechTalentHub. You can enjoy the benefits of our premium plan for the next 30 days! 
+      Congratulations ${updatedUser.name}! You are now a premium user of TechTalentHub. You can enjoy the benefits of our premium plan for the next 30 days! 
       </p>
       `,
         };
         await transporter.sendMail(mail);
 
-        console.log(`${user.name} it's now a user Premium!`);
+        console.log(`${updatedUser.name} it's now a user Premium!`);
     } else {
-        await prisma.user.update({
+        const updatedUser = await prisma.user.update({
             where: {
                 id: userId
             },
             data: {
                 premiumUpdateDate: new Date(),
-                remainingPremiumDays: remainingPremiumDays + 30
+                remainingPremiumDays: userPreviousRemainingDays
             },
         })
-        console.log(user);
+        console.log('UPDATED USER 2:', updatedUser);
 
         await transporter.verify();
 
         const mail = {
             from: 'equipo3.37a@gmail.com',
-            to: user.email,
+            to: updatedUser.email,
             subject: "Successfull update premium",
             html: `
           <p style="color: black">
-          Thank you ${user.name} for renewing your subscription! Now you can enjoy your premium plan for another 30 days! 
+          Thank you ${updatedUser.name} for renewing your subscription! Now you can enjoy your premium plan for another 30 days! 
           </p>
           `,
         };
         await transporter.sendMail(mail);
 
-        console.log(`${user.name} upgraded his premium plan`);
+        console.log(`${updatedUser.name} upgraded his premium plan`);
     }
 }
