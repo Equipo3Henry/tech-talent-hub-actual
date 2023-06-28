@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import styles from "./mercadoPago.module.css";
 
 function MercadoPagoData({ allUsers }) {
   const [calcType, setCalcType] = useState("daily");
@@ -45,17 +46,43 @@ function MercadoPagoData({ allUsers }) {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Body>
-        <Card.Title>Income Overview</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {calcType.charAt(0).toUpperCase() + calcType.slice(1)} Income
-        </Card.Subtitle>
-        <Card.Text>${getIncome()}</Card.Text>
-        <button onClick={() => setCalcType("daily")}>Daily</button>
-        <button onClick={() => setCalcType("weekly")}>Weekly</button>
-        <button onClick={() => setCalcType("monthly")}>Monthly</button>
-        <button onClick={() => setCalcType("annual")}>Annual</button>
+    <Card className={styles.contenedor}>
+      <Card.Body className={styles.bod}>
+        <div className={styles.textContenedor}>
+          <div className={styles.tituloContenedor}>
+            <Card.Title className={styles.Title}>Income Overview</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {calcType.charAt(0).toUpperCase() + calcType.slice(1)} Income
+            </Card.Subtitle>
+          </div>
+          <Card.Text className={styles.Number}>${getIncome()}</Card.Text>
+        </div>
+        <div className={styles.botonera}>
+          <button
+            onClick={() => setCalcType("daily")}
+            className={styles.Button}
+          >
+            Daily
+          </button>
+          <button
+            onClick={() => setCalcType("weekly")}
+            className={styles.Button}
+          >
+            Weekly
+          </button>
+          <button
+            onClick={() => setCalcType("monthly")}
+            className={styles.Button}
+          >
+            Monthly
+          </button>
+          <button
+            onClick={() => setCalcType("annual")}
+            className={styles.Button}
+          >
+            Annual
+          </button>
+        </div>
       </Card.Body>
     </Card>
   );
