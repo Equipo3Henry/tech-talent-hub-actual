@@ -40,9 +40,14 @@ export default async function handler(req, res) {
         specialization,
         recruiter,
         isPremium,
+        googleAuth
       } = req.body;
 
       const userEmail = email;
+
+      const exist = await prisma.user.findUnique({where: {email: userEmail}});
+      if(exist) return res.status(400).json({ error: "User already exists" });
+
       const encryptPass = await encrypt(password);
 
       try {
@@ -67,6 +72,7 @@ export default async function handler(req, res) {
             specialization,
             recruiter,
             isPremium,
+            googleAuth
           },
         });
 
