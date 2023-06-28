@@ -43,12 +43,26 @@ function TableUsers({ allUsers }) {
     setSearchTerm(event.target.value);
   };
 
+  //? UPDATE USER STATUS
+  const updateUserStatus = (userId, isActive) => {
+    setFilteredUsers((prevUsers) => {
+      const updatedUsers = prevUsers.map((user) => {
+        if (user.id === userId) {
+          return { ...user, isActive };
+        }
+        return user;
+      });
+      return updatedUsers;
+    });
+  };
+
   async function toggleActive(userId, currentStatus) {
     try {
       const response = await axios.patch(`/api/users/${userId}`, {
         isActive: !currentStatus, // invertir el estado actual
       });
       console.log(response.data);
+      updateUserStatus(userId, !currentStatus);
     } catch (error) {
       console.error(error);
     }
