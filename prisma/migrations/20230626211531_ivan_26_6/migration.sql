@@ -22,6 +22,9 @@ CREATE TYPE "Workday" AS ENUM ('FULLTIME', 'PARTTIME', 'INTERMEDIATE', 'TEMPORAL
 -- CreateEnum
 CREATE TYPE "Spec" AS ENUM ('FRONTEND', 'BACKEND', 'DATASCIENTIST', 'FULLSTACK', 'AI_ENGINEER');
 
+-- CreateEnum
+CREATE TYPE "Status" AS ENUM ('Applied', 'InProgress', 'ProccesCompleted');
+
 -- CreateTable
 CREATE TABLE "Company" (
     "id" TEXT NOT NULL,
@@ -36,6 +39,10 @@ CREATE TABLE "Company" (
     "employes" INTEGER NOT NULL DEFAULT 0,
     "jobs" INTEGER NOT NULL DEFAULT 0,
     "vacanciesCount" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isPremium" BOOLEAN NOT NULL DEFAULT false,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
 );
@@ -82,6 +89,11 @@ CREATE TABLE "User" (
     "recruiter" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isPremium" BOOLEAN NOT NULL DEFAULT false,
+    "limitFreeVacancies" INTEGER NOT NULL DEFAULT 20,
+    "resetLimitFreeVacancies" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "superAdmin" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -101,6 +113,8 @@ CREATE TABLE "Vacancy" (
     "isActive" BOOLEAN NOT NULL DEFAULT false,
     "Relevance" "Relevance" NOT NULL DEFAULT 'SMALL',
     "companyId" TEXT NOT NULL,
+    "status" "Status" NOT NULL DEFAULT 'Applied',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Vacancy_pkey" PRIMARY KEY ("id")
 );
