@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./table.module.css";
 
@@ -11,32 +10,49 @@ function TableCompanies({ companies }) {
     direction: "ascending",
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredCompanies, setFilteredCompanies] = useState(companies);
   const [usersPerPage] = useState(8);
 
-  async function toggleActive(companiesId, currentStatus) {
+  useEffect(() => {
+    const sortedCompanies = Object.values(companies).sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+    setFilteredCompanies(sortedCompanies);
+  }, [companies, sortConfig]);
+
+  const updateCompanyStatus = (companyId, isActive) => {
+    setFilteredCompanies((prevCompanies) => {
+      const updatedCompanies = prevCompanies.map((company) => {
+        if (company.id === companyId) {
+          return { ...company, isActive };
+        }
+        return company;
+      });
+      return updatedCompanies;
+    });
+  };
+
+  async function toggleActive(companyId, currentStatus) {
     try {
-      const response = await axios.patch(`/api/companies/${companiesId}`, {
-        isActive: !currentStatus, // invertir el estado actual
+      const response = await axios.patch(`/api/companies/${companyId}`, {
+        isActive: !currentStatus,
       });
       console.log(response.data);
+      updateCompanyStatus(companyId, !currentStatus);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const sortedCompanies = Object.values(companies).sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? 1 : -1;
-    }
-    return 0;
-  });
-
   const indexOfLastCompany = currentPage * usersPerPage;
   const indexOfFirstCompany = indexOfLastCompany - usersPerPage;
-  const currentCompanies = sortedCompanies.slice(
+  const currentCompanies = filteredCompanies.slice(
     indexOfFirstCompany,
     indexOfLastCompany
   );
@@ -51,9 +67,14 @@ function TableCompanies({ companies }) {
   };
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(sortedCompanies.length / usersPerPage); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(filteredCompanies.length / usersPerPage);
+    i++
+  ) {
     pageNumbers.push(i);
   }
+
   return (
     <div>
       <table className={styles.table}>
