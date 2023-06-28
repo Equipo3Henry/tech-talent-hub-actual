@@ -72,6 +72,7 @@ model User {
   superAdmin              Boolean   @default(false)
   remainingPremiumDays    Int       @default(0)
   premiumUpdateDate       DateTime  @default(dbgenerated("'1970-01-01 00:00:00'::timestamp without time zone"))
+  googleAuth              Boolean   @default(false)
   appliedVacancies        Vacancy[] @relation("applications")
 }
 
