@@ -23,7 +23,8 @@ export const MercadoPagoButton = ({ plan }) => {
     const generateLink = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.post("/api/checkout", {
+        const userId = storedUserData.id
+        const { data } = await axios.post(`/api/checkout/?id=${userId}`, {
           plan,
           userId: storedUserData ? storedUserData.id : null,
         });
