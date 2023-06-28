@@ -1,5 +1,5 @@
-Para actualizar modelos en la BD borrar la carpeta 'migrations' y ejecutar:
-npx prisma migrate dev
+Para actualizar modelos en la BD, modificar el archivo schema.prisma y ejecutar:
+npx prisma db push
 
 Para importar los cambios realizados en la BD ejecutar:
 npx prisma db pull

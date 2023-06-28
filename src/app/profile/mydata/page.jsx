@@ -53,6 +53,12 @@ function MyProfileUsers() {
           <FileUploader userId={userId} />
         </div>
       </div>
+      {userData && userData.remainingPremiumDays !== 0 ?
+        <span>Remaining premium days: {userData.remainingPremiumDays}</span>
+        : null}
+        {userData && userData.remainingPremiumDays < 7 && userData.remainingPremiumDays !== 0 ?
+      <h3>Your subscription is about to expire, please upgrade your plan to continue enjoying the premium benefits!</h3>
+       : null }
       <Services />
     </div>
   );
