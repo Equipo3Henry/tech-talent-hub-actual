@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./table.module.css";
 
@@ -13,6 +13,35 @@ function TableUsers({ allUsers }) {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(allUsers);
+
+  useEffect(() => {
+    let results = allUsers;
+
+    if (searchTerm) {
+      results = allUsers.filter((user) =>
+        user.username.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setCurrentPage(1); // reset the page number
+    }
+
+    results.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+
+    setFilteredUsers(results);
+  }, [searchTerm, allUsers, sortConfig]);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   async function toggleActive(userId, currentStatus) {
     try {
@@ -25,19 +54,9 @@ function TableUsers({ allUsers }) {
     }
   }
 
-  const sortedUsers = Object.values(allUsers).sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === "ascending" ? 1 : -1;
-    }
-    return 0;
-  });
-
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -50,11 +69,19 @@ function TableUsers({ allUsers }) {
   };
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(sortedUsers.length / usersPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(filteredUsers.length / usersPerPage); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <div>
+      <input
+        type="text"
+        placeholder="Search by username..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+        style={{ width: "200px", height: "20px", background: "red" }} // Add this line
+      />
       <table className={styles.table}>
         <thead>
           <tr>
@@ -99,8 +126,6 @@ function TableUsers({ allUsers }) {
                 </a>
               </td>
               <td className={styles.td}>{user.seniority}</td>
-              {/*             <td>{user.softSkills.join(", ")}</td>
-               */}{" "}
               <td className={styles.td}>{user.isPremium ? "Yes" : "No"}</td>
               <td className={styles.td}>
                 <button
@@ -109,7 +134,7 @@ function TableUsers({ allUsers }) {
                 >
                   {user.isActive ? "Deactivate" : "Activate"}
                 </button>
-              </td>{" "}
+              </td>
             </tr>
           ))}
         </tbody>
