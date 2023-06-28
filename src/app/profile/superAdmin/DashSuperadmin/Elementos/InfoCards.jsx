@@ -75,19 +75,31 @@ const InfoCard = ({ allUsers, companies }) => {
     <div className={style.container}>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>Total Users</p>
-          <div>
-            <button onClick={() => setUserTimeframe(timeframes.DAY)}>
-              Day
+          <p className={style.grade}>Users</p>
+          <div className={style.botonera}>
+            <button
+              onClick={() => setUserTimeframe(timeframes.DAY)}
+              className={style.Button}
+            >
+              D
             </button>
-            <button onClick={() => setUserTimeframe(timeframes.MONTH)}>
-              Month
+            <button
+              onClick={() => setUserTimeframe(timeframes.MONTH)}
+              className={style.Button}
+            >
+              M
             </button>
-            <button onClick={() => setUserTimeframe(timeframes.YEAR)}>
-              Year
+            <button
+              onClick={() => setUserTimeframe(timeframes.YEAR)}
+              className={style.Button}
+            >
+              Y
             </button>
-            <button onClick={() => setUserTimeframe(timeframes.TOTAL)}>
-              Total
+            <button
+              onClick={() => setUserTimeframe(timeframes.TOTAL)}
+              className={style.Button}
+            >
+              T
             </button>
           </div>
         </div>
@@ -105,19 +117,31 @@ const InfoCard = ({ allUsers, companies }) => {
       </div>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>Total Companies</p>
-          <div>
-            <button onClick={() => setCompanyTimeframe(timeframes.DAY)}>
-              Day
+          <p className={style.grade}>Companies</p>
+          <div className={style.botonera}>
+            <button
+              onClick={() => setCompanyTimeframe(timeframes.DAY)}
+              className={style.Button}
+            >
+              D
             </button>
-            <button onClick={() => setCompanyTimeframe(timeframes.MONTH)}>
-              Month
+            <button
+              onClick={() => setCompanyTimeframe(timeframes.MONTH)}
+              className={style.Button}
+            >
+              M
             </button>
-            <button onClick={() => setCompanyTimeframe(timeframes.YEAR)}>
-              Year
+            <button
+              onClick={() => setCompanyTimeframe(timeframes.YEAR)}
+              className={style.Button}
+            >
+              Y
             </button>
-            <button onClick={() => setCompanyTimeframe(timeframes.TOTAL)}>
-              Total
+            <button
+              onClick={() => setCompanyTimeframe(timeframes.TOTAL)}
+              className={style.Button}
+            >
+              T
             </button>
           </div>
         </div>
@@ -135,33 +159,46 @@ const InfoCard = ({ allUsers, companies }) => {
       </div>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>Total Entities</p>
-          <div>
-            <button onClick={() => setEntityTimeframe(timeframes.DAY)}>
-              Day
+          <p className={style.grade}>All Members</p>
+          <p className={style.containerlot}>
+            <span className={style.lot}>
+              {getCount(
+                newEntitiesToday,
+                newEntitiesThisMonth,
+                newEntitiesThisYear,
+                totalEntities,
+                entityTimeframe
+              )}
+            </span>
+          </p>
+          <div className={style.botonera}>
+            {" "}
+            <button
+              onClick={() => setEntityTimeframe(timeframes.DAY)}
+              className={style.Button}
+            >
+              D
             </button>
-            <button onClick={() => setEntityTimeframe(timeframes.MONTH)}>
-              Month
+            <button
+              onClick={() => setEntityTimeframe(timeframes.MONTH)}
+              className={style.Button}
+            >
+              M
             </button>
-            <button onClick={() => setEntityTimeframe(timeframes.YEAR)}>
-              Year
+            <button
+              onClick={() => setEntityTimeframe(timeframes.YEAR)}
+              className={style.Button}
+            >
+              Y
             </button>
-            <button onClick={() => setEntityTimeframe(timeframes.TOTAL)}>
-              Total
+            <button
+              onClick={() => setEntityTimeframe(timeframes.TOTAL)}
+              className={style.Button}
+            >
+              T
             </button>
           </div>
         </div>
-        <p className={style.containerlot}>
-          <span className={style.lot}>
-            {getCount(
-              newEntitiesToday,
-              newEntitiesThisMonth,
-              newEntitiesThisYear,
-              totalEntities,
-              entityTimeframe
-            )}
-          </span>
-        </p>
       </div>
       <MercadoPagoData allUsers={allUsers} />
     </div>
