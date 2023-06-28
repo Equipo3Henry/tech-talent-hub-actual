@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
+import styles from "./countries.module.css";
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
@@ -72,7 +73,7 @@ const CountryPieChart = ({ allUsers }) => {
   }, [allUsers]); // Here, we have added users as a dependency. useEffect will run whenever users changes.
 
   return (
-    <div>
+    <div className={styles.piechart}>
       <Pie data={chartData} options={chartOptions} />
     </div>
   );

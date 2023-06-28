@@ -24,7 +24,7 @@ function SuperDashboardAdmin() {
 
   //? ACORDEON
   const [accordionState, setAccordionState] = useState({
-    ac1: false,
+    ac1: true,
     ac2: false,
     ac3: false,
   });
@@ -44,7 +44,7 @@ function SuperDashboardAdmin() {
   const handleAccordionChange = (id) => {
     setAccordionState((prevState) => ({
       ...prevState,
-      [id]: !prevState[id],
+      [id]: prevState[id] ? false : true,
     }));
   };
 
@@ -57,66 +57,72 @@ function SuperDashboardAdmin() {
     <div className={styles.contenedorGeneral}>
       <Header />
       <InfoCard jobs={jobs} user={user} companies={companies} />
-      <div className={styles.containerGraph}>
-        <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
-        <Piechar jobs={jobs} user={user} companies={companies} />
-        <CountryPieChart allUsers={allUsers} />
-        {/*         <Orders />
-         */}{" "}
+      <div className={styles.containerGraphAcc}>
+        <div className={styles.containerGraph}>
+          <BarcharCompany
+            jobs={jobs}
+            allUsers={allUsers}
+            companies={companies}
+          />
+          <Piechar jobs={jobs} user={user} companies={companies} />
+          <CountryPieChart allUsers={allUsers} />
+          {/*         <Orders />
+           */}{" "}
+        </div>
+        <section className={styles.ac_container}>
+          <div>
+            <input
+              id="ac-1"
+              name="accordion-1"
+              type="radio"
+              checked={accordionState.ac1}
+              onChange={() => handleAccordionChange("ac1")}
+            />
+            <label htmlFor="ac-1">Users Table</label>
+            <article
+              className={`${styles.ac_small} ${
+                accordionState.ac1 ? styles.active : ""
+              }`}
+            >
+              <TableUsers allUsers={allUsers} />
+            </article>
+          </div>
+          <div>
+            <input
+              id="ac-2"
+              name="accordion-1"
+              type="radio"
+              checked={accordionState.ac2}
+              onChange={() => handleAccordionChange("ac2")}
+            />
+            <label htmlFor="ac-2">Companies Table</label>
+            <article
+              className={`${styles.ac_medium} ${
+                accordionState.ac2 ? styles.active : ""
+              }`}
+            >
+              <TableCompanies companies={companies} />
+            </article>
+          </div>
+          <div>
+            <input
+              id="ac-3"
+              name="accordion-1"
+              type="radio"
+              checked={accordionState.ac3}
+              onChange={() => handleAccordionChange("ac3")}
+            />
+            <label htmlFor="ac-3">Vacancies Table</label>
+            <article
+              className={`${styles.ac_large} ${
+                accordionState.ac3 ? styles.active : ""
+              }`}
+            >
+              <TableVacancies jobs={jobs} />
+            </article>
+          </div>
+        </section>
       </div>
-      <section className={styles.ac_container}>
-        <div>
-          <input
-            id="ac-1"
-            name="accordion-1"
-            type="radio"
-            checked={accordionState.ac1}
-            onChange={() => handleAccordionChange("ac1")}
-          />
-          <label htmlFor="ac-1">Users Table</label>
-          <article
-            className={`${styles.ac_small} ${
-              accordionState.ac1 ? styles.active : ""
-            }`}
-          >
-            <TableUsers allUsers={allUsers} />
-          </article>
-        </div>
-        <div>
-          <input
-            id="ac-2"
-            name="accordion-1"
-            type="radio"
-            checked={accordionState.ac2}
-            onChange={() => handleAccordionChange("ac2")}
-          />
-          <label htmlFor="ac-2">Companies Table</label>
-          <article
-            className={`${styles.ac_medium} ${
-              accordionState.ac2 ? styles.active : ""
-            }`}
-          >
-            <TableCompanies companies={companies} />
-          </article>
-        </div>
-        <div>
-          <input
-            id="ac-3"
-            name="accordion-1"
-            type="radio"
-            checked={accordionState.ac3}
-            onChange={() => handleAccordionChange("ac3")}
-          />
-          <label htmlFor="ac-3">Vacancies Table</label>
-          <article
-            className={`${styles.ac_large} ${
-              accordionState.ac3 ? styles.active : ""
-            }`}
-          >
-            <TableVacancies jobs={jobs} />
-          </article>
-        </div>
-      </section>
       ;
     </div>
   );
