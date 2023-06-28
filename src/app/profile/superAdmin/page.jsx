@@ -56,7 +56,6 @@ function SuperDashboardAdmin() {
   }
 
   return (
-    
     <div className={styles.contenedorGeneral}>
       <Header />
       <div className={styles.dataContainer}>
@@ -65,13 +64,7 @@ function SuperDashboardAdmin() {
         </div>
         <RevenueChart allUsers={allUsers} className={styles.mercadopagoChart} />
       </div>
-      <div className={styles.containerGraph}>
-        <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
-        <Piechar jobs={jobs} user={user} companies={companies} />
-        <CountryPieChart allUsers={allUsers} />
-        {/*         <Orders />
-         */}{" "}
-      <InfoCard jobs={jobs} user={user} companies={companies} />
+
       <div className={styles.containerGraphAcc}>
         <div className={styles.containerGraph}>
           <BarcharCompany
@@ -138,7 +131,6 @@ function SuperDashboardAdmin() {
           </div>
         </section>
       </div>
-      ;
     </div>
   );
 }
