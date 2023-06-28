@@ -9,6 +9,7 @@ import { getLayout } from "../layout";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Hi from "../../components/hi/hiCompanies";
 
 function DashboardPage() {
   const {
@@ -34,6 +35,7 @@ function DashboardPage() {
       setIsLoading(false);
     } else {
       console.log("No data in localStorage");
+      console.log(companyData);
     }
   }, []); // Dependency array
 
@@ -49,8 +51,10 @@ function DashboardPage() {
 
   return (
     <div className={styles.globalContainer}>
-      <SearchBar setSearchValue={setSearchValue} />
-
+      <div className={styles.tituloContenedor}>
+        {companyData && <Hi companyData={companyData} />}
+        <SearchBar setSearchValue={setSearchValue} />
+      </div>
       <br />
       <FiltersSelector
         setSelectedProgLanguage={setSelectedProgLanguage}
