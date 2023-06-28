@@ -75,7 +75,20 @@ const InfoCard = ({ allUsers, companies }) => {
     <div className={style.container}>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>Users</p>
+          <div className={style.textContainer}>
+            <p className={style.grade}>Users</p>
+            <p className={style.containerlot}>
+              <span className={style.lot}>
+                {getCount(
+                  newUsersToday,
+                  newUsersThisMonth,
+                  newUsersThisYear,
+                  totalUsers,
+                  userTimeframe
+                )}
+              </span>
+            </p>
+          </div>
           <div className={style.botonera}>
             <button
               onClick={() => setUserTimeframe(timeframes.DAY)}
@@ -103,21 +116,23 @@ const InfoCard = ({ allUsers, companies }) => {
             </button>
           </div>
         </div>
-        <p className={style.containerlot}>
-          <span className={style.lot}>
-            {getCount(
-              newUsersToday,
-              newUsersThisMonth,
-              newUsersThisYear,
-              totalUsers,
-              userTimeframe
-            )}
-          </span>
-        </p>
       </div>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>Companies</p>
+          <div className={style.textContainer}>
+            <p className={style.grade}>Companies</p>
+            <p className={style.containerlot}>
+              <span className={style.lot}>
+                {getCount(
+                  newCompaniesToday,
+                  newCompaniesThisMonth,
+                  newCompaniesThisYear,
+                  totalCompanies,
+                  companyTimeframe
+                )}
+              </span>
+            </p>
+          </div>
           <div className={style.botonera}>
             <button
               onClick={() => setCompanyTimeframe(timeframes.DAY)}
@@ -145,32 +160,23 @@ const InfoCard = ({ allUsers, companies }) => {
             </button>
           </div>
         </div>
-        <p className={style.containerlot}>
-          <span className={style.lot}>
-            {getCount(
-              newCompaniesToday,
-              newCompaniesThisMonth,
-              newCompaniesThisYear,
-              totalCompanies,
-              companyTimeframe
-            )}
-          </span>
-        </p>
       </div>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <p className={style.grade}>All Members</p>
-          <p className={style.containerlot}>
-            <span className={style.lot}>
-              {getCount(
-                newEntitiesToday,
-                newEntitiesThisMonth,
-                newEntitiesThisYear,
-                totalEntities,
-                entityTimeframe
-              )}
-            </span>
-          </p>
+          <div className={style.textContainer}>
+            <p className={style.grade}>All Members</p>
+            <p className={style.containerlot}>
+              <span className={style.lot}>
+                {getCount(
+                  newEntitiesToday,
+                  newEntitiesThisMonth,
+                  newEntitiesThisYear,
+                  totalEntities,
+                  entityTimeframe
+                )}
+              </span>
+            </p>
+          </div>
           <div className={style.botonera}>
             {" "}
             <button

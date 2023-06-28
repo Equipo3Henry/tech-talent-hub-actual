@@ -62,7 +62,7 @@ function SuperDashboardAdmin() {
         <div className={styles.infoContainer}>
           <InfoCard jobs={jobs} allUsers={allUsers} companies={companies} />
         </div>
-        <RevenueChart allUsers={allUsers} />
+        <RevenueChart allUsers={allUsers} className={styles.mercadopagoChart} />
       </div>
       <div className={styles.containerGraph}>
         <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
