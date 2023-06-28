@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     const customId = req.query;
     console.log('CUSTOM ID 2', req.query.customId);
     console.log('REQUEST URL 2', req.url);
+    console.log('REQUEST METHOD 2', req.method);
 
     // QUERY 2 {
     //     'data.id': '1316071395',
