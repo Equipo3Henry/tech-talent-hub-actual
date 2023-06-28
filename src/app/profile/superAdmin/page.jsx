@@ -44,9 +44,12 @@ function SuperDashboardAdmin() {
   return (
     <div className={styles.contenedorGeneral}>
       <Header />
-      <InfoCard jobs={jobs} user={user} companies={companies} />
-      <MercadoPagoData allUsers={allUsers} />
-      <RevenueChart allUsers={allUsers} />
+      <div className={styles.dataContainer}>
+        <div className={styles.infoContainer}>
+          <InfoCard jobs={jobs} allUsers={allUsers} companies={companies} />
+        </div>
+        <RevenueChart allUsers={allUsers} />
+      </div>
       <div className={styles.containerGraph}>
         <BarcharCompany jobs={jobs} allUsers={allUsers} companies={companies} />
         <Piechar jobs={jobs} user={user} companies={companies} />
