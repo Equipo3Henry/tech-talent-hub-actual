@@ -6,15 +6,19 @@ import { app } from "@/src/firebase/firebase.config";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider(); 
+provider.setCustomParameters({
+    prompt: 'select_account'
+  });
 
 const auth = getAuth(app);
-export async function loggingGoogle() {
+export async function loggingGoogle( setGoogleData ) {
     try {
         const result = await signInWithPopup(auth, provider);
 	    const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user)
+        setGoogleData(user);
+        
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -26,10 +30,10 @@ export async function loggingGoogle() {
     }
 }
 
-export function GoogleLoginButton({pathname}) {
+export function GoogleLoginButton({ pathname,setGoogleData }) {
     const textButton = pathname.includes("signupusers")||pathname.includes("signupcompanies") ? "Join with Google" : "Login with Google";
     return (
-        <button className={styles.ButtonB} onClick={()=>loggingGoogle()}>
+        <button className={styles.ButtonB} onClick={()=>loggingGoogle( setGoogleData )}>
             {textButton}
             <Image
                 src={google}
