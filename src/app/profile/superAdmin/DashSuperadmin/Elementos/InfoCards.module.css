@@ -9,16 +9,15 @@
 .card {
   grid-column-start: span 1;
   grid-column-end: span 2;
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+  background-color: #262626;
+  display: block;
+  padding: 1em;
   border: solid #6850bf;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 9px;
-  padding: 1rem;
-  min-height: 179px;
-  max-width: 287px;
+  border-bottom: solid 1px #6850bf;
+  border-left: solid 9px #6850bf;
+  border-right: solid 1px #6850bf;
+  height: 179px;
+  width: 287px;
 }
 
 .cardtotal {
@@ -43,6 +42,7 @@
 .grade {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #d9d9d9;
 }
 .containerlot {
   width: 5rem;
@@ -53,7 +53,37 @@
   padding: 0.5rem;
 }
 .lot {
-  color: #262626;
+  color: #d9d9d9;
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.botonera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.Button {
+  margin-top: 20px;
+  background: #b682d9;
+  box-shadow: 2px 2px 4px #00000040;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  transition: transform 0.5 ease;
+}
+
+.Button:hover {
+  background: none;
+  border: solid;
+  border-color: #7155d9;
+  color: #7155d9;
+  transform: translateY(-3px);
+  cursor: pointer;
 }
