@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -8,23 +8,26 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { startOfWeek, endOfWeek, format } from "date-fns"; // importando funciones de date-fns
+import { startOfWeek, startOfMonth, startOfYear, format } from "date-fns";
 
 function RevenueChart({ allUsers }) {
-  const [timeInterval, setTimeInterval] = useState("day"); // añade un estado para el intervalo de tiempo
+  const [timeInterval, setTimeInterval] = useState("day");
+  const [data, setData] = useState([]);
 
-  // Un handler para cambiar el intervalo de tiempo
   const handleTimeIntervalChange = (event) => {
     setTimeInterval(event.target.value);
   };
 
-  // Añade una función para generar datos de ingresos en función del intervalo de tiempo
-  function generateRevenueData(allUsers) {
+  useEffect(() => {
     const revenueByDate = {};
     const formatter =
-      timeInterval === "week"
+      timeInterval === "day"
+        ? (date) => date
+        : timeInterval === "week"
         ? (date) => format(startOfWeek(new Date(date)), "yyyy-MM-dd")
-        : (date) => date;
+        : timeInterval === "month"
+        ? (date) => format(startOfMonth(new Date(date)), "yyyy-MM")
+        : (date) => format(startOfYear(new Date(date)), "yyyy");
 
     allUsers.forEach((user) => {
       if (user.isPremium) {
@@ -38,13 +41,15 @@ function RevenueChart({ allUsers }) {
       }
     });
 
-    return Object.keys(revenueByDate).map((date) => ({
-      date,
-      revenue: revenueByDate[date],
-    }));
-  }
+    const newData = Object.keys(revenueByDate)
+      .map((date) => ({
+        date,
+        revenue: revenueByDate[date],
+      }))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  const data = generateRevenueData(allUsers);
+    setData(newData);
+  }, [timeInterval, allUsers]);
 
   return (
     <div>
