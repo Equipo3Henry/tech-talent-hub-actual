@@ -98,6 +98,7 @@ export default async function handler(req, res) {
     const allUsers = await prisma.user.findMany({
       where: {
         superAdmin: false, // solo obtener usuarios que no sean superAdmin
+        isActive: true, // solo obtener usuarios que estén activos
       },
       orderBy: [
         { isPremium: "desc" },
