@@ -108,3 +108,10 @@
     transform: rotate(1turn);
   }
 }
+
+.botonContenedor {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}

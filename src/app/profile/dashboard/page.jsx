@@ -37,16 +37,18 @@ function HomePage() {
 
   return (
     <div className={styles.globalContainer}>
-      <SearchBar setSearchValue={setSearchValue} /> <br />
-      {user && user.superAdmin && (
-        <div className={styles.contenedorBoton}>
-          <Link href={"./superAdmin"}>
-            <button className={styles.superAdminButton}>
-              Admin Dashboard{" "}
-            </button>
-          </Link>
-        </div>
-      )}
+      <div className={styles.botonContenedor}>
+        <SearchBar setSearchValue={setSearchValue} /> <br />
+        {user && user.superAdmin && (
+          <div className={styles.contenedorBoton}>
+            <Link href={"./superAdmin"}>
+              <button className={styles.superAdminButton}>
+                Admin Dashboard{" "}
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
       <FiltersSelectorProfile
         setSelectedProgLanguage={setSelectedProgLanguage}
         setSelectedSeniority={setSelectedSeniority}
