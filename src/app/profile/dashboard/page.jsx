@@ -9,7 +9,7 @@ import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Hi from "../../components/hi/hi";
+import Hi from "../../components/hi/hiUsers";
 
 function HomePage() {
   const {
