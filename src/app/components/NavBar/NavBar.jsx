@@ -91,15 +91,6 @@ const NavBar = () => {
             />
           </Link>
 
-          <Link href="/profile/favorites">
-            <Image
-              src={favorites}
-              alt="image"
-              className={styles.Icons}
-              data-tooltip-id="favorites-users"
-              data-tooltip-content=" My Favorites"
-            />
-          </Link>
           <button onClick={logOut} className={styles.logOutButton}>
             <Link href="/landing">
               <Image
@@ -151,15 +142,6 @@ const NavBar = () => {
             />
           </Link>
 
-          <Link href="/company/favorites">
-            <Image
-              src={favorites}
-              alt="image"
-              className={styles.Icons}
-              data-tooltip-id="favorites-companies"
-              data-tooltip-content=" My Favorites"
-            />{" "}
-          </Link>
           <button onClick={logOutCompanies} className={styles.logOutButton}>
             <Link href="/landing">
               <Image

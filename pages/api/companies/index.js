@@ -53,33 +53,40 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: error.message });
     }
   }
-
   if (req.method === "GET") {
     const { country } = req.query;
     if (country) {
-      try {
-        const companies = await prisma.company.findMany({
-          where: {
-            country: {
-              equals: country,
-            },
-          },
-        });
+        try {
+            const companies = await prisma.company.findMany({
+                where: {
+                    country: {
+                        equals: country,
+                    },
+                    isActive: {
+                        equals: true,
+                    },
+                },
+            });
 
-        return res.status(200).json(companies);
-      } catch (error) {
-        console.error("Error retrieving companies:", error);
-        return res.status(500).json({ error: error.message });
-      }
+            return res.status(200).json(companies);
+        } catch (error) {
+            console.error("Error retrieving companies:", error);
+            return res.status(500).json({ error: error.message });
+        }
     } else {
-      try {
-        const allCompanies = await prisma.company.findMany();
-        return res.status(200).json(allCompanies);
-      } catch (error) {
-        console.error("Error retrieving companies:", error);
-        return res.status(500).json({ error: error.message });
-      }
+        try {
+            const allCompanies = await prisma.company.findMany({
+                where: {
+                    isActive: {
+                        equals: true,
+                    },
+                },
+            });
+            return res.status(200).json(allCompanies);
+        } catch (error) {
+            console.error("Error retrieving companies:", error);
+            return res.status(500).json({ error: error.message });
+        }
     }
-  }
-  return res.status(405).json({ error: "Method Not Allowed" });
 }
+return res.status(405).json({ error: "Method Not Allowed" });
