@@ -1,9 +1,9 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 1rem;
   gap: 1rem;
-  padding: 5rem;
-  padding-top: 3rem;
+  padding: 0rem;
   place-items: center;
 }
 .card {
@@ -18,10 +18,9 @@
   border-left-width: 9px;
   padding: 1rem;
   min-height: 179px;
+  max-width: 287px;
 }
-.card:hover {
-  transform: scale(1.05);
-}
+
 .cardtotal {
   background-color: #b682d9;
   display: flex;

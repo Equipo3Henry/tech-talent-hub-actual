@@ -62,25 +62,25 @@ function MercadoPagoData({ allUsers }) {
             onClick={() => setCalcType("daily")}
             className={styles.Button}
           >
-            Daily
+            D{" "}
           </button>
           <button
             onClick={() => setCalcType("weekly")}
             className={styles.Button}
           >
-            Weekly
+            W
           </button>
           <button
             onClick={() => setCalcType("monthly")}
             className={styles.Button}
           >
-            Monthly
+            M
           </button>
           <button
             onClick={() => setCalcType("annual")}
             className={styles.Button}
           >
-            Annual
+            A
           </button>
         </div>
       </Card.Body>
