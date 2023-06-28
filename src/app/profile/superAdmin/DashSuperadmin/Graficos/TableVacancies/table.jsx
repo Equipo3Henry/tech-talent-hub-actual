@@ -13,18 +13,33 @@ function TableVacancies({ jobs }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
 
+  const [jobsData, setJobsData] = useState(jobs);
+
+  const updateJobStatus = (jobId, isActive) => {
+    setJobsData((prevJobs) => {
+      const updatedJobs = prevJobs.map((job) => {
+        if (job.id === jobId) {
+          return { ...job, isActive };
+        }
+        return job;
+      });
+      return updatedJobs;
+    });
+  };
+
   async function toggleActive(vacancyId, currentStatus) {
     try {
       const response = await axios.patch(`/api/vacancies/${vacancyId}`, {
-        isActive: !currentStatus, // invertir el estado actual
+        isActive: !currentStatus,
       });
       console.log(response.data);
+      updateJobStatus(vacancyId, !currentStatus);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const sortedJobs = Object.values(jobs).sort((a, b) => {
+  const sortedJobs = Object.values(jobsData).sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === "ascending" ? -1 : 1;
     }
@@ -51,6 +66,7 @@ function TableVacancies({ jobs }) {
   for (let i = 1; i <= Math.ceil(sortedJobs.length / usersPerPage); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <div>
       <table className={styles.table}>
@@ -100,7 +116,7 @@ function TableVacancies({ jobs }) {
                 >
                   {job.isActive ? "Deactivate" : "Activate"}
                 </button>
-              </td>{" "}
+              </td>
             </tr>
           ))}
         </tbody>

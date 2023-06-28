@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       res.status(500).json({ error: "Error updating the vacancy." });
     }
   } else if (req.method === "PATCH") {
-    const { logo_Company } = req.body;
+    const { logo_Company, isActive } = req.body;
     console.log(logo_Company);
     try {
       const updatedVacancy = await prisma.Vacancy.update({
@@ -44,6 +44,7 @@ export default async function handler(req, res) {
         },
         data: {
           logo_Company: logo_Company,
+          isActive: isActive,
         },
       });
       return res.status(200).json(updatedVacancy);
