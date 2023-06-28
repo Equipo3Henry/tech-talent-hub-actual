@@ -51,8 +51,7 @@ export default async function handler(req, res) {
       console.error("Error creating company:", error);
       return res.status(500).json({ error: error.message });
     }
-  }
-  if (req.method === "GET") {
+  } else if (req.method === "GET") {
     const { country } = req.query;
     if (country) {
       try {
@@ -87,6 +86,7 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: error.message });
       }
     }
+  } else {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
-  return res.status(405).json({ error: "Method Not Allowed" });
 }
