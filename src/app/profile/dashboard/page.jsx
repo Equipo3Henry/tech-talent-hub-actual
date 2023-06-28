@@ -39,7 +39,7 @@ function HomePage() {
   return (
     <div className={styles.globalContainer}>
       <div className={styles.botonContenedor}>
-        <Hi user={user} />
+        {user && <Hi user={user} />}
         <SearchBar setSearchValue={setSearchValue} /> <br />
         {user && user.superAdmin && (
           <div className={styles.contenedorBoton}>
@@ -66,7 +66,7 @@ function HomePage() {
                 <div className={styles.spinner}></div>
               </div>
             ) : (
-              <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+              jobs && <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
             )}
             <div className={styles.jobsDetailContainer}></div>
           </div>

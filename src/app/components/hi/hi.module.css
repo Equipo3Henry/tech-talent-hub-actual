@@ -1,0 +1,9 @@
+.nstyle {
+  text-decoration: none;
+  color: inherit;
+  /* Otros estilos personalizados si es necesario */
+}
+
+.h1 {
+  font-size: larger;
+}

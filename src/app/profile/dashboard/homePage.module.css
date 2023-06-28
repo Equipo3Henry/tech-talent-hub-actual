@@ -114,4 +114,5 @@
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+  align-items: flex-end;
 }
