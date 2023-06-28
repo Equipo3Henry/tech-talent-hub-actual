@@ -2,9 +2,7 @@
 
 import mercadopago from "mercadopago";
 import prisma from "@/prisma/client";
-import { GlobalContext } from "../../../src/app/profile/layout";
-import { actualUser } from "../checkout";
-import upgradePremium from "../upgradePremium";
+import upgradePremium from "../../upgradePremium";
 
 mercadopago.configure({
     access_token: process.env.NEXT_ACCESS_TOKEN
@@ -13,11 +11,16 @@ mercadopago.configure({
 export default async function handler(req, res) {
     const { query } = req;
     const customId = req.query;
-    console.log('CUSTOM ID', req.query.customId);
-    console.log('REQUEST URL', req.url);
-    console.log('REQUEST METHOD', req.method);
-    // 472b6e1e-051c-433f-bb17-eb69b93fd4c6
-    // /api/notify?customId=472b6e1e-051c-433f-bb17-eb69b93fd4c6
+    console.log('CUSTOM ID 2', req.query.customId);
+    console.log('REQUEST URL 2', req.url);
+
+    // QUERY 2 {
+    //     'data.id': '1316071395',
+    //     type: 'payment',
+    //     id: '472b6e1e-051c-433f-bb17-eb69b93fd4c6'
+    //   }
+
+
     const topic = query.topic || query.type;
 
     try {
@@ -33,7 +36,7 @@ export default async function handler(req, res) {
             if (paymentStatus === "approved") {
                await upgradePremium(customId.customId)
             }
-            res.status(200).send('UPGRADE SUCCESSFULL!')
+            // res.status(200).json(actualUser)
         }
     } catch (error) {
         res.send(error);

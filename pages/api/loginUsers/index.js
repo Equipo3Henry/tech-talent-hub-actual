@@ -4,7 +4,6 @@ import { compare } from "bcryptjs";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-    
     const { email, password } = req.body;
     console.log("Incoming body parameters: ", req.body);
     try {
@@ -26,6 +25,20 @@ async function getValidate( email,password ) {
     });
 
     const today = new Date();
+
+    function calculatePremiumRemainingDays(a, b) {
+      // Convertir las fechas a objetos Date
+      const today = new Date(a);
+      const premium = new Date(b);
+    
+      // Calcular la diferencia en milisegundos
+      const calculate = today - premium
+    
+      // Convertir la diferencia a días redondeando hacia abajo
+      const remainingDays = Math.floor(calculate / (1000 * 60 * 60 * 24));
+    console.log(remainingDays);
+      return remainingDays;
+    }
     
     if(userFound){
       console.log("aqui va el debug")
@@ -39,9 +52,19 @@ async function getValidate( email,password ) {
               : userFound.resetLimitFreeVacancies,
             limitFreeVacancies: today > userFound.resetLimitFreeVacancies
               ? 20
-              : userFound.limitFreeVacancies,
+              : userFound.limitFreeVacancies
           },
       });
+      if (updateUser.isPremium === true){
+        const remainingDays = calculatePremiumRemainingDays(today, userFound.premiumUpdateDate)
+        console.log(updateUser);
+        const updatePremiumUser = await prisma.user.update({
+          where: {id: userFound.id},
+          data: {
+            remainingPremiumDays: remainingDays
+          }
+        })
+      }
     }
      
     if (!userFound) return {response: "User not found"};
