@@ -15,3 +15,89 @@
 .dataContainer {
   display: flex;
 }
+/* ACORDEÓN */
+
+.ac_container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 100px auto 30px auto;
+  text-align: left;
+}
+
+.ac_container label {
+  height: 80px;
+  font-size: 22px;
+  font-family: "Roboto";
+  font-weight: 600;
+  padding: 20px;
+  position: relative;
+  z-index: 20;
+  display: block;
+  cursor: pointer;
+  color: black;
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(1%, #fff),
+    color-stop(100%, #eaeaea)
+  );
+  background: -webkit-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -o-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -ms-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: linear-gradient(top, #fff 1%, #eaeaea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#eaeaea', GradientType=0);
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3),
+    1px 0 0 rgba(255, 255, 255, 0.9) inset, 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ac_container label:hover {
+  background: #fff;
+}
+
+.ac_container input {
+  display: none;
+}
+
+.ac_container input:checked + label,
+.ac_container input:checked + label:hover {
+  background: #f1f2f3;
+  color: black;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3), 0 2px 2px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  font-size: 22px;
+}
+
+.ac_container article {
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: -1px;
+  overflow: hidden;
+  height: 0;
+  position: relative;
+  z-index: 10;
+  transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
+}
+
+.ac_container input:checked ~ article {
+  transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
+}
+
+.ac_container input:checked ~ article.ac_small {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.ac_container input:checked ~ article.ac_medium {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.ac_container input:checked ~ article.ac_large {
+  height: auto;
+  padding-bottom: 50px;
+}
