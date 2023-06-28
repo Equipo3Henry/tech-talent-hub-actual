@@ -24,7 +24,9 @@ async function getValidate(email, password) {
   });
 
   if (!companyFound) return { response: "Company not found" };
-  else
+  else if (!companyFound.isActive) {
+    return { response: "Company account is not active" };
+  } else
     return (await compare(password, companyFound.password))
       ? {
           response: "Access granted",

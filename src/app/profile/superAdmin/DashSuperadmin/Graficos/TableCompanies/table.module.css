@@ -37,6 +37,7 @@
   font-size: 20px;
   line-height: 28px;
   transition: transform 0.5 ease;
+cursor: pointer;
 }
 
 .numberPaginationContainer {

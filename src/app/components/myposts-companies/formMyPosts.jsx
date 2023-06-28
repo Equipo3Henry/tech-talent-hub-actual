@@ -245,7 +245,7 @@ const FormMyPosts = ({ parsedData }) => {
                   {/* Salary */}
                   <div className={styles.salary_container}>
                     <label className={styles.salary}>
-                      Salary <span className={styles.required}>*</span>
+                      Salary (USD) <span className={styles.required}>*</span>
                     </label>
                     <input
                       type="number"
