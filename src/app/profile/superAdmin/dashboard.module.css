@@ -2,17 +2,27 @@
   margin-left: 70px;
 }
 
+.containerGraphAcc{
+ display: flex;
+ flex-direction: row-reverse;
+ gap: 20px;
+ padding: 20px ;
+}
+
 .containerGraph {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  gap: 20px;
+  width: 500px;
+  height: 20%;
+  padding-right: 30px;
 }
 
 /* ACORDEÓN */
 
 .ac_container {
-  max-width: 1200px;
+
   width: 100%;
-  margin: 100px auto 30px auto;
   text-align: left;
 }
 
