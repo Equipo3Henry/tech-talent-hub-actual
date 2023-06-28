@@ -24,6 +24,20 @@ async function getValidate(email, password) {
 
   const today = new Date();
 
+  function calculatePremiumRemainingDays(a, b) {
+    // Convertir las fechas a objetos Date
+    const today = new Date(a);
+    const premium = new Date(b);
+
+    // Calcular la diferencia en milisegundos
+    const calculate = today - premium;
+
+    // Convertir la diferencia a días redondeando hacia abajo
+    const remainingDays = Math.floor(calculate / (1000 * 60 * 60 * 24));
+    console.log(remainingDays);
+    return remainingDays;
+  }
+
   if (userFound) {
     console.log("aqui va el debug");
     const updateUser = await prisma.user.update({
@@ -55,8 +69,29 @@ async function getValidate(email, password) {
             : userFound.limitFreeVacancies,
       },
     });
-    if (!userFound.isActive) {
-      return { response: "User account is not active" };
+
+    if (updateUser.isPremium === true) {
+      const remainingDays = calculatePremiumRemainingDays(
+        today,
+        userFound.premiumUpdateDate
+      );
+
+      if (remainingDays > updateUser.remainingPremiumDays) {
+        const updatePremiumUser = await prisma.user.update({
+          where: { id: userFound.id },
+          data: {
+            isPremium: false,
+            remainingPremiumDays: 0,
+          },
+        });
+      } else {
+        const updatePremiumUser = await prisma.user.update({
+          where: { id: userFound.id },
+          data: {
+            remainingPremiumDays: remainingDays,
+          },
+        });
+      }
     }
   }
 
@@ -72,7 +107,6 @@ async function getValidate(email, password) {
             email: userFound.email,
             seniority: userFound.seniority,
             image: userFound.profile_pictures,
-            superAdmin: userFound.superAdmin,
           },
         }
       : { response: "Your email or password are incorrect" };
