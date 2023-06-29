@@ -6,8 +6,6 @@ import styles from "./dashboard.module.css";
 import FiltersSelector from "../../components/SelectorFiltersForCompanyDashboard/filtrosCombinados";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import Hi from "../../components/hi/hiCompanies";
 
@@ -18,9 +16,9 @@ function DashboardPage() {
     setSelectedProgLanguage,
     setSelectedSeniority,
     setSelectedSoftSkill,
+    setSelectedSpecialization,
     setSearchValue,
     setCompanies,
-    setSelectedSpecialization,
   } = useContext(GlobalContext);
   const [companyData, setCompanyData] = useState(null);
 

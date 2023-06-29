@@ -1,13 +1,14 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { specialization } from "../helpers/signup-users/variables";
+
 
 export const GlobalContext = createContext();
 
 export default function Layout({ children }) {
   const [dataUsers, setDataUsers] = useState([]);
   const [dataCompanies, setDataCompanies] = useState([]);
+
   const [users, setUsers] = useState([]);
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
@@ -98,11 +99,11 @@ export default function Layout({ children }) {
         setSelectedProgLanguage,
         setSelectedSeniority,
         setSelectedSoftSkill,
+        setSelectedSpecialization,
         setSearchValue,
         setCompanies,
         companies,
-        selectedSpecialization,
-        setSelectedSpecialization,
+        selectedSpecialization,  
       }}
     >
       {children}
