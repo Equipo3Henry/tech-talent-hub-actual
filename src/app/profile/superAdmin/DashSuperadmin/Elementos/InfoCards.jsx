@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import style from "./InfoCards.module.css";
 import MercadoPagoData from "../Graficos/mercadoPago/mercadoPago";
@@ -6,7 +8,7 @@ import MercadoPagoData from "../Graficos/mercadoPago/mercadoPago";
 
 //import {dataCompanies} from
 //import {dataVacancies} from
-const InfoCard = ({ allUsers, companies }) => {
+const InfoCard = ({ users, companies }) => {
   // Define timeframes
   const timeframes = {
     DAY: "Day",
@@ -15,6 +17,9 @@ const InfoCard = ({ allUsers, companies }) => {
     TOTAL: "Total",
   };
 
+  if (!users || !companies) {
+    return null; // o tu componente de carga
+  }
   // Initialize state
   const [userTimeframe, setUserTimeframe] = useState(timeframes.DAY);
   const [companyTimeframe, setCompanyTimeframe] = useState(timeframes.DAY);
@@ -28,16 +33,16 @@ const InfoCard = ({ allUsers, companies }) => {
     todaysDate.setFullYear(todaysDate.getFullYear() - 1)
   );
 
-  const newUsersToday = allUsers.filter(
+  const newUsersToday = users.filter(
     (user) => new Date(user.createdAt) > oneDayAgo
   ).length;
-  const newUsersThisMonth = allUsers.filter(
+  const newUsersThisMonth = users.filter(
     (user) => new Date(user.createdAt) > oneMonthAgo
   ).length;
-  const newUsersThisYear = allUsers.filter(
+  const newUsersThisYear = users.filter(
     (user) => new Date(user.createdAt) > oneYearAgo
   ).length;
-  const totalUsers = allUsers.length;
+  const totalUsers = users.length;
 
   const newCompaniesToday = companies.filter(
     (company) => new Date(company.createdAt) > oneDayAgo
@@ -75,7 +80,7 @@ const InfoCard = ({ allUsers, companies }) => {
     <div className={style.container}>
       <div className={style.card}>
         <div className={style.cardinfo}>
-          <div className={style.textContainer}>
+          <div>
             <p className={style.grade}>Users</p>
             <p className={style.containerlot}>
               <span className={style.lot}>
@@ -206,7 +211,7 @@ const InfoCard = ({ allUsers, companies }) => {
           </div>
         </div>
       </div>
-      <MercadoPagoData allUsers={allUsers} />
+      <MercadoPagoData users={users} />
     </div>
   );
 };

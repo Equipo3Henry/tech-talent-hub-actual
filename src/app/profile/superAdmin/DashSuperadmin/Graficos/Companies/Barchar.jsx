@@ -21,7 +21,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const BarcharCompany = ({ allUsers }) => {
+const BarcharCompany = ({ users }) => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -33,7 +33,7 @@ const BarcharCompany = ({ allUsers }) => {
     let premiumCount = 0;
 
     // Iterate over all users and increment the appropriate counter
-    allUsers.forEach((user) => {
+    (users || []).forEach((user) => {
       if (user.isPremium) {
         premiumCount++;
       } else {
@@ -67,7 +67,7 @@ const BarcharCompany = ({ allUsers }) => {
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, [allUsers]); // Here, we have added allUsers as a dependency. useEffect will run whenever allUsers changes
+  }, [users]); // Here, we have added allUsers as a dependency. useEffect will run whenever allUsers changes
 
   return (
     <div className={style.container}>

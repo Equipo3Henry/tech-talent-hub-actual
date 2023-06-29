@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { startOfWeek, startOfMonth, startOfYear, format } from "date-fns";
 import styles from "./mercadoPagoGraph.module.css";
-function RevenueChart({ allUsers }) {
+function RevenueChart({ users }) {
   const [timeInterval, setTimeInterval] = useState("day");
   const [data, setData] = useState([]);
 
@@ -29,7 +29,7 @@ function RevenueChart({ allUsers }) {
         ? (date) => format(startOfMonth(new Date(date)), "yyyy-MM")
         : (date) => format(startOfYear(new Date(date)), "yyyy");
 
-    allUsers.forEach((user) => {
+    (users || []).forEach((user) => {
       if (user.isPremium) {
         const premiumDate = formatter(user.premiumUpdateDate.split("T")[0]);
 
@@ -49,7 +49,7 @@ function RevenueChart({ allUsers }) {
       .sort((a, b) => new Date(a.date) - new Date(b.date));
 
     setData(newData);
-  }, [timeInterval, allUsers]);
+  }, [timeInterval, users]);
 
   return (
     <div className={styles.contenedorGeneral}>

@@ -14,21 +14,45 @@ import TableVacancies from "./DashSuperadmin/Graficos/TableVacancies/table";
 import MercadoPagoData from "./DashSuperadmin/Graficos/mercadoPago/mercadoPago";
 import RevenueChart from "./DashSuperadmin/Graficos/mercadoPago/mercadoPagoGraph";
 import { useState } from "react";
+import axios from "axios";
 
 function SuperDashboardAdmin() {
-  const { jobs, user, companies, allUsers, setAllUsers } =
-    useContext(GlobalContext);
+  const { jobs } = useContext(GlobalContext);
 
   const router = useRouter();
-  const [userb, setUser] = useState(null);
+  const [userb, setUserb] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [companies, setCompanies] = useState(null);
+  const [users, setUsers] = useState(null);
+
+  const fetchAllCompanies = async () => {
+    const response = await axios.get("/api/companies?includeInactive=true");
+    setCompanies(response.data);
+  };
+  useEffect(() => {
+    fetchAllCompanies();
+  }, []);
+
+  const fetchAllUsers = async () => {
+    try {
+      const response = await axios.get("/api/users?includeInactive=true");
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching users: ", error);
+      // You can set users to null or an empty array in case of error if it makes sense for your application
+      setUsers(null);
+    }
+  };
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredUsers = allUsers
-    ? allUsers.filter((user) =>
+  const filteredUsers = users
+    ? users.filter((user) =>
         user.username.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : [];
@@ -48,7 +72,7 @@ function SuperDashboardAdmin() {
   useEffect(() => {
     const userData = localStorage.getItem("userData");
     const userb = userData ? JSON.parse(userData) : null;
-    setUser(userb);
+    setUserb(userb);
 
     if (!userb || !userb.superAdmin) {
       router.push("/access-denied");
@@ -62,30 +86,23 @@ function SuperDashboardAdmin() {
     }));
   };
 
-  // Renderizar null mientras se está cargando el usuario
-  if (!user) {
-    return null;
-  }
+  console.log(users);
 
   return (
     <div className={styles.contenedorGeneral}>
       <Header />
       <div className={styles.dataContainer}>
         <div className={styles.infoContainer}>
-          <InfoCard jobs={jobs} allUsers={allUsers} companies={companies} />
+          <InfoCard jobs={jobs} users={users} companies={companies} />
         </div>
-        <RevenueChart allUsers={allUsers} className={styles.mercadopagoChart} />
+        <RevenueChart users={users} className={styles.mercadopagoChart} />
       </div>
 
       <div className={styles.containerGraphAcc}>
         <div className={styles.containerGraph}>
-          <BarcharCompany
-            jobs={jobs}
-            allUsers={allUsers}
-            companies={companies}
-          />
-          <Piechar jobs={jobs} user={user} companies={companies} />
-          <CountryPieChart allUsers={allUsers} />
+          <BarcharCompany jobs={jobs} users={users} companies={companies} />
+          <Piechar jobs={jobs} users={users} companies={companies} />
+          <CountryPieChart users={users} />
         </div>
         <div>
           <input
@@ -110,7 +127,7 @@ function SuperDashboardAdmin() {
                   accordionState.ac1 ? styles.active : ""
                 }`}
               >
-                <TableUsers allUsers={filteredUsers} />
+                <TableUsers users={filteredUsers} />
               </article>
             </div>
             <div>

@@ -17,30 +17,34 @@ export default function Layout({ children }) {
   const [user, setUser] = useState(null);
   const [companies, setCompanies] = useState(null);
   const [allUsers, setAllUsers] = useState(null);
-  const [allCompanies, setAllCompanies] = useState (null); 
-  const [fullUsers, setFullUsers] = useState (null);
+  const [allCompanies, setAllCompanies] = useState(null);
+  const [fullUsers, setFullUsers] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
-      // console.log(response.data); // Aquí se añade el console.log
       setDataJobs(response.data);
       setJobs(response.data);
     };
     fetchData();
   }, []);
 
+  const fetchActiveCompanies = async () => {
+    const response = await axios.get("/api/companies");
+    setCompanies(response.data);
+  };
+
+  const fetchAllCompanies = async () => {
+    const response = await axios.get("/api/companies?includeInactive=true");
+    setCompanies(response.data);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get("/api/companies");
-      setCompanies(response.data);
-    };
-    fetchData();
+    fetchAllCompanies();
   }, []);
 
-  useEffect (()=>{
-    const fe
-  })
+  useEffect(() => {
+    fetchActiveCompanies();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,6 +130,8 @@ export default function Layout({ children }) {
         setCompanies,
         setAllUsers,
         allUsers,
+        allCompanies,
+        setAllCompanies,
       }}
     >
       {children}

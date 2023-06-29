@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./table.module.css";
 
-function TableUsers({ allUsers }) {
+function TableUsers({ users }) {
   const [sortConfig, setSortConfig] = useState({
     key: "username",
     direction: "ascending",
@@ -14,13 +14,13 @@ function TableUsers({ allUsers }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState(allUsers);
+  const [filteredUsers, setFilteredUsers] = useState(users || []);
 
   useEffect(() => {
-    let results = allUsers;
+    let results = users || [];
 
     if (searchTerm) {
-      results = allUsers.filter((user) =>
+      results = users.filter((user) =>
         user.username.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setCurrentPage(1); // reset the page number
@@ -37,7 +37,7 @@ function TableUsers({ allUsers }) {
     });
 
     setFilteredUsers(results);
-  }, [searchTerm, allUsers, sortConfig]);
+  }, [searchTerm, users, sortConfig]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -70,7 +70,9 @@ function TableUsers({ allUsers }) {
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = filteredUsers
+    ? filteredUsers.slice(indexOfFirstUser, indexOfLastUser)
+    : [];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
