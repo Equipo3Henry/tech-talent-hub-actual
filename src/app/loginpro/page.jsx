@@ -157,7 +157,7 @@ const Login = () => {
             <br />
             <br />
             <Link href="/signupusers">
-              <button className={styles.ButtonB} disabled={isDisabled}>
+              <button className={isDisabled ? styles.ButtonD : styles.ButtonB} disabled={isDisabled}>
                 New to HighTech Fusion? Join now
               </button>
             </Link>
