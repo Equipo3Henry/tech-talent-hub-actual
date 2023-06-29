@@ -95,17 +95,34 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const allUsers = await prisma.user.findMany({
-      where: {
-        superAdmin: false, // solo obtener usuarios que no sean superAdmin
-        isActive: true, // solo obtener usuarios que estén activos
-      },
-      orderBy: [
-        { isPremium: "desc" },
-        // other fields to order by (if any)
-      ],
-    });
+    const { includeInactive } = req.query;
 
-    return res.status(200).json(allUsers);
+    const includeInactiveBool = includeInactive
+      ? includeInactive.toLowerCase() === "true"
+      : false;
+
+    try {
+      const allUsers = await prisma.user.findMany({
+        where: {
+          superAdmin: false, // solo obtener usuarios que no sean superAdmin
+          ...(includeInactiveBool
+            ? {}
+            : {
+                isActive: {
+                  equals: true,
+                },
+              }),
+        },
+        orderBy: [
+          { isPremium: "desc" },
+          // otros campos para ordenar (si los hay)
+        ],
+      });
+
+      return res.status(200).json(allUsers);
+    } catch (error) {
+      console.error("Error retrieving users:", error);
+      return res.status(500).json({ error: error.message });
+    }
   }
 }

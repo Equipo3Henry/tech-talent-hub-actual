@@ -26,8 +26,15 @@ export default async function handler(req, res) {
     const { id } = req.query;
 
     try {
-      const { type, country, vacancies, description, employes, jobs } =
-        req.body;
+      const {
+        type,
+        country,
+        vacancies,
+        description,
+        employes,
+        jobs,
+        isActive,
+      } = req.body;
 
       const updatedCompany = await prisma.company.update({
         where: {
@@ -40,6 +47,7 @@ export default async function handler(req, res) {
           description: description,
           employes: employes,
           jobs: jobs,
+          isActive: isActive,
         },
       });
 

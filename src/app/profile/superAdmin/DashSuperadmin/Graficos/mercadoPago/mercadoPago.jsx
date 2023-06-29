@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import styles from "./mercadoPago.module.css";
 
-function MercadoPagoData({ allUsers }) {
+function MercadoPagoData({ users }) {
   const [calcType, setCalcType] = useState("daily");
 
   const getIncome = () => {
@@ -11,7 +11,7 @@ function MercadoPagoData({ allUsers }) {
 
     const currentDate = new Date();
 
-    allUsers.forEach((user) => {
+    users.forEach((user) => {
       if (user.isPremium) {
         const premiumDate = new Date(user.premiumUpdateDate);
         const timeDiff = Math.abs(currentDate - premiumDate);

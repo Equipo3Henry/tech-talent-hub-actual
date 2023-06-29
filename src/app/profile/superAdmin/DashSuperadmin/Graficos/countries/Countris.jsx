@@ -5,7 +5,7 @@ import styles from "./countries.module.css";
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
-const CountryPieChart = ({ allUsers }) => {
+const CountryPieChart = ({ users }) => {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -15,7 +15,7 @@ const CountryPieChart = ({ allUsers }) => {
     // Initialize the country counters
     let countryCounts = {};
 
-    allUsers.forEach((user) => {
+    (users || []).forEach((user) => {
       // Increase the counter for the user's country or set it to 1 if it does not exist yet
       countryCounts[user.country] = countryCounts[user.country]
         ? countryCounts[user.country] + 1
@@ -64,13 +64,13 @@ const CountryPieChart = ({ allUsers }) => {
         },
         title: {
           display: true,
-          text: `Total users = ${allUsers.length}`,
+          text: `Total users = ${users?.length || 0}`,
         },
       },
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, [allUsers]); // Here, we have added users as a dependency. useEffect will run whenever users changes.
+  }, [users]); // Here, we have added users as a dependency. useEffect will run whenever users changes.
 
   return (
     <div className={styles.piechart}>
