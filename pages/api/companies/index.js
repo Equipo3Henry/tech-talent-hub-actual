@@ -52,7 +52,12 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: error.message });
     }
   } else if (req.method === "GET") {
-    const { country } = req.query;
+    const { country, includeInactive } = req.query;
+
+    const includeInactiveBool = includeInactive
+      ? includeInactive.toLowerCase() === "true"
+      : false;
+
     if (country) {
       try {
         const companies = await prisma.company.findMany({
@@ -60,9 +65,13 @@ export default async function handler(req, res) {
             country: {
               equals: country,
             },
-            isActive: {
-              equals: true,
-            },
+            ...(includeInactiveBool
+              ? {}
+              : {
+                  isActive: {
+                    equals: true,
+                  },
+                }),
           },
         });
 
@@ -75,11 +84,16 @@ export default async function handler(req, res) {
       try {
         const allCompanies = await prisma.company.findMany({
           where: {
-            isActive: {
-              equals: true,
-            },
+            ...(includeInactiveBool
+              ? {}
+              : {
+                  isActive: {
+                    equals: true,
+                  },
+                }),
           },
         });
+
         return res.status(200).json(allCompanies);
       } catch (error) {
         console.error("Error retrieving companies:", error);
