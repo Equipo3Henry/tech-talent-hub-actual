@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function getUsers(progLanguage, seniority, softSkill) {
+async function getUsers(progLanguage, seniority, softSkill, specialization) {
   let where = {};
 
   if (progLanguage) {
@@ -31,6 +31,12 @@ async function getUsers(progLanguage, seniority, softSkill) {
   if (softSkill) {
     where.softSkills = {
       has: softSkill,
+    };
+  }
+
+  if (specialization) {
+    where.specialization = {
+      has: specialization,
     };
   }
 

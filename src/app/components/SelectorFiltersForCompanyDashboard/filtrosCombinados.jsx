@@ -4,6 +4,7 @@ const FiltersSelector = ({
   setSelectedProgLanguage,
   setSelectedSeniority,
   setSelectedSoftSkill,
+  setSelectedSpecialization,
 }) => {
   const progLanguages = [
     "C",
@@ -95,6 +96,17 @@ const FiltersSelector = ({
         {softSkills.map((softSkill, index) => (
           <option key={index} value={softSkill}>
             {softSkill}
+          </option>
+        ))}
+      </select>
+      <select
+        onChange={(e) => setSelectedSpecialization(e.target.value)}
+        className={styles.selectors}
+      >
+        <option value="">-- select a specialization --</option>
+        {specialization.map((specialization, index) => (
+          <option key={index} value={specialization}>
+            {specialization}
           </option>
         ))}
       </select>

@@ -20,11 +20,14 @@ function DashboardPage() {
     setSelectedSoftSkill,
     setSearchValue,
     setCompanies,
+    setSelectedSpecialization,
   } = useContext(GlobalContext);
   const [companyData, setCompanyData] = useState(null);
 
   //? USE STATE LOADER
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log(users);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
@@ -37,18 +40,7 @@ function DashboardPage() {
       console.log("No data in localStorage");
       console.log(companyData);
     }
-  }, []); // Dependency array
-
-  /*   const params = useSearchParams();
-  const companyData = JSON.parse(params.get("companyData"));
-
-  useEffect(() => {
-    const localStorageData = localStorage.getItem("companyData");
-    const companyData = JSON.parse(localStorageData);
-    console.log(companyData); // Log the data here
-    setCompanies(companyData);
-  }, []); // Dependency array */
-
+  }, []);
   return (
     <div className={styles.globalContainer}>
       <div className={styles.tituloContenedor}>
@@ -60,6 +52,7 @@ function DashboardPage() {
         setSelectedProgLanguage={setSelectedProgLanguage}
         setSelectedSeniority={setSelectedSeniority}
         setSelectedSoftSkill={setSelectedSoftSkill}
+        setSelectedSpecialization={setSelectedSpecialization}
       />
       <br />
       {isLoading ? (
