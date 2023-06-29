@@ -69,6 +69,9 @@ function HomePage() {
             <div className={styles.jobsDetailContainer}></div>
           </div>
         </div>
+        {jobs.length === 0 ?
+          <h3>There are no vacancies matching the search</h3> : null
+        }
       </div>
     </div>
   );
