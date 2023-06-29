@@ -67,6 +67,9 @@ export default async function handler(req, res) {
           company: true,
           applicants: true,
         },
+        select: {
+          isActive: true
+        }
       });
 
       return res.status(200).json(vacancies);
