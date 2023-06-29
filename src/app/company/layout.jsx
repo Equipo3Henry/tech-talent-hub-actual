@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { specialization } from "../helpers/signup-users/variables";
 
 export const GlobalContext = createContext();
 
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
   const [selectedSoftSkill, setSelectedSoftSkill] = useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [companies, setCompanies] = useState([]);
 
@@ -62,18 +64,32 @@ export default function Layout({ children }) {
         params.softSkill = selectedSoftSkill;
       }
 
+      if (selectedSpecialization) {
+        params.specialization = selectedSpecialization;
+      }
+
       try {
+        console.log(selectedSpecialization);
         const response = await axios.get(url, { params });
         setUsers(response.data);
+        console.log(response.data);
       } catch (err) {
         console.error(err);
       }
     };
 
-    selectedProgLanguage || selectedSeniority || selectedSoftSkill
+    selectedProgLanguage ||
+    selectedSeniority ||
+    selectedSoftSkill ||
+    selectedSpecialization
       ? fetchFilteredUsers()
       : setUsers(dataUsers);
-  }, [selectedProgLanguage, selectedSeniority, selectedSoftSkill]);
+  }, [
+    selectedProgLanguage,
+    selectedSeniority,
+    selectedSoftSkill,
+    selectedSpecialization,
+  ]);
 
   return (
     <GlobalContext.Provider
@@ -85,6 +101,8 @@ export default function Layout({ children }) {
         setSearchValue,
         setCompanies,
         companies,
+        selectedSpecialization,
+        setSelectedSpecialization,
       }}
     >
       {children}
