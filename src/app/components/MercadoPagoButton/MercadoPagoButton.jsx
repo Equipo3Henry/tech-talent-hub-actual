@@ -8,7 +8,7 @@ import axios from "axios";
 import { GlobalContext } from "../../profile/layout";
 
 export const MercadoPagoButton = ({ plan }) => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("/loginpro");
 
   // Check for window
   const isBrowser = typeof window !== "undefined";
@@ -20,28 +20,30 @@ export const MercadoPagoButton = ({ plan }) => {
   const [loading, setLoading] = useState(true);
 //hola
   useEffect(() => {
-    const generateLink = async () => {
-      setLoading(true);
-      try {
-        const userId = storedUserData.id
-        const { data } = await axios.post(`/api/checkout/?id=${userId}`, {
-          plan,
-          userId: storedUserData ? storedUserData.id : null,
-        });
-
-        setUrl(data.url);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    };
-
-    generateLink();
+    if(storedUserData){
+      const generateLink = async () => {
+        setLoading(true);
+        try {
+          const userId = storedUserData.id
+          const { data } = await axios.post(`/api/checkout/?id=${userId}`, {
+            plan,
+            userId: storedUserData ? storedUserData.id : null,
+          });
+          
+          setUrl(data.url);
+        } catch (error) {
+          console.log(error);
+        }
+        setLoading(false);
+      };
+      
+      generateLink();
+    }
   }, [plan]);
 
   return (
     <div>
-      {loading ? (
+      {loading && storedUserData ? (
         <button className={styles.button} disabled>
           <Loader />
         </button>
