@@ -29,17 +29,17 @@ function RevenueChart({ allUsers }) {
         ? (date) => format(startOfMonth(new Date(date)), "yyyy-MM")
         : (date) => format(startOfYear(new Date(date)), "yyyy");
 
-    allUsers.forEach((user) => {
-      if (user.isPremium) {
-        const premiumDate = formatter(user.premiumUpdateDate.split("T")[0]);
+    // allUsers.forEach((user) => {
+    //   if (user.isPremium) {
+    //     const premiumDate = formatter(user.premiumUpdateDate.split("T")[0]);
 
-        if (revenueByDate[premiumDate]) {
-          revenueByDate[premiumDate] += 15;
-        } else {
-          revenueByDate[premiumDate] = 15;
-        }
-      }
-    });
+    //     if (revenueByDate[premiumDate]) {
+    //       revenueByDate[premiumDate] += 15;
+    //     } else {
+    //       revenueByDate[premiumDate] = 15;
+    //     }
+    //   }
+    // });
 
     const newData = Object.keys(revenueByDate)
       .map((date) => ({

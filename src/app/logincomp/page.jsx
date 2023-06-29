@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
 
-
 const Login = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -128,12 +127,10 @@ const Login = () => {
             <span className={styles.or}>Or</span>
             <div className={styles.line}> </div>
           </div>
-          <div className={styles.ButtonAuthenticationOptions}>
-            <GoogleLoginButton pathname={pathname}/>
+          <div>
+            <GoogleLoginButton pathname={pathname} className={styles.ButtonA} />
           </div>
           <div>
-            <br />
-            <br />
             <Link href="/signupcompanies">
               <button className={styles.ButtonB}>
                 New to HighTech Fusion? Join now

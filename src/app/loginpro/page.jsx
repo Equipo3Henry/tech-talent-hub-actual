@@ -126,11 +126,10 @@ const Login = () => {
             <div className={styles.line}> </div>
           </div>
           <div className={styles.ButtonAuthenticationOptions}>
-            <GoogleLoginButton pathname={pathname} />
+            <GoogleLoginButton pathname={pathname} className={styles.ButtonA} />
           </div>
+          <br />
           <div>
-            <br />
-            <br />
             <Link href="/signupusers">
               <button className={styles.ButtonB}>
                 New to HighTech Fusion? Join now

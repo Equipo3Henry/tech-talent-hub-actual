@@ -133,7 +133,6 @@
   font-weight: 900;
   font-size: 16px;
   line-height: 139%;
-
   letter-spacing: -0.011em;
 }
 
@@ -141,7 +140,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
 }
 
 .ButtonAuth {
