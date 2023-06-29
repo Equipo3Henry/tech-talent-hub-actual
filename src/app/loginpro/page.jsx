@@ -1,11 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
 import {
-  google,
-  linkedin,
-  github,
   eyeclosed,
   eyeopen,
   signinvector,
@@ -18,12 +15,34 @@ import { usePathname } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
+
+  //? USE STATE LOGIN GOOGLE
   const pathname = usePathname();
+  const [googleData, setGoogleData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    const loginGoogle = async () => {
+      if(googleData){
+        const formGoogle = {
+          email: googleData.email,
+          password: "",
+        }
+        setIsDisabled(true);
+        setIsLoading(true);
+        await fetchLogin(formGoogle);   
+      }
+    }
+    loginGoogle();
+  },[googleData]);
+
+  //? USE STATE FORM
+  const [error, setError] = useState("");
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
-  });
-  const [error, setError] = useState("");
+  }); 
 
   //? USE STATE PASSWORD
   const [showPassword, setShowPassword] = useState(false);
@@ -43,24 +62,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let response = null;
+    setIsDisabled(true);
+    setIsLoading(true);
+    await fetchLogin(formLogin);
+  };
 
-    await axios
-      .post("/api/loginUsers", formLogin)
-      .then((res) => {
-        response = res.data;
-      })
-      .catch((err) => {
-        alert("There was an error in the login, please try again");
-      });
-
-    console.log(response);
+  const fetchLogin = async (form) => {
+    const response = (await axios.post("/api/loginUsers", form)).data;
     if (response.response === "Access granted") {
       localStorage.setItem("userData", JSON.stringify(response.userData));
-      console.log("Local Storage Data: ", localStorage.getItem("userData"));
-      router.push("/profile/dashboard");
-    } else setError(response.response);
-  };
+      router.push(`/profile/dashboard`);
+    } else {
+      setIsLoading(false);
+      setIsDisabled(false);
+      setError(response.response);
+    }
+  }
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSubmit(e);
@@ -74,50 +91,58 @@ const Login = () => {
             <h1 className={styles.title}>Unlock your potential in tech</h1>
             <h4 className={styles.subtitle}>Create an account or Sign in</h4>
           </div>
-          <form onSubmit={handleSubmit}>
-            <span className={styles.error}>{error}</span>
-            <div className={styles.inPutsContainer}>
-              <div className={styles.email}>
-                <label htmlFor="email">
-                  <h2 className={styles.labelInput}>Email </h2>
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    className={styles.input}
-                    onChange={handleUser}
-                    onKeyDown={handleKeyDown}
-                  />
-                </label>
-                <label htmlFor="Password">
-                  <h2 className={styles.labelInput}>Password </h2>
-                  <div className={styles.password_toggle_container}>
+          {isLoading ? (
+            <div className={styles.loaderContainer}>
+              <div className={styles.spinner}></div>
+              <div><h4>Please wait while we log you in</h4></div>
+            </div>
+            ) : (
+            <form onSubmit={handleSubmit}>
+              <span className={styles.error}>{error}</span>
+              <div className={styles.inPutsContainer}>
+                <div className={styles.email}>
+                  <label htmlFor="email">
+                    <h2 className={styles.labelInput}>Email </h2>
                     <input
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      id="password"
-                      placeholder="Enter your password"
+                      type="text"
+                      name="email"
+                      id="email"
+                      placeholder="Enter your email"
                       className={styles.input}
                       onChange={handleUser}
                       onKeyDown={handleKeyDown}
+                      required
                     />
-                    <Image
-                      src={showPasswordIcon}
-                      alt={showPassword ? "Hide Password" : "Show Password"}
-                      className={styles.password_icon}
-                      onClick={togglePassword}
-                    />
-                  </div>
-                </label>
+                  </label>
+                  <label htmlFor="Password">
+                    <h2 className={styles.labelInput}>Password </h2>
+                    <div className={styles.password_toggle_container}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        className={styles.input}
+                        onChange={handleUser}
+                        onKeyDown={handleKeyDown}
+                        required
+                      />
+                      <Image
+                        src={showPasswordIcon}
+                        alt={showPassword ? "Hide Password" : "Show Password"}
+                        className={styles.password_icon}
+                        onClick={togglePassword}
+                      />
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
-            <br />
-            <br />
-            <button className={styles.ButtonSignIn} type="submit">
-              Log In
-            </button>
-          </form>
+              <br />
+              <br />
+              <button className={styles.ButtonSignIn} type="submit">
+                Log In
+              </button>
+            </form>)}
           <br />
           <br />
           <div className={styles.Separator}>
@@ -126,13 +151,13 @@ const Login = () => {
             <div className={styles.line}> </div>
           </div>
           <div className={styles.ButtonAuthenticationOptions}>
-            <GoogleLoginButton pathname={pathname} />
+            <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData} isDisabled={isDisabled}/>
           </div>
           <div>
             <br />
             <br />
             <Link href="/signupusers">
-              <button className={styles.ButtonB}>
+              <button className={styles.ButtonB} disabled={isDisabled}>
                 New to HighTech Fusion? Join now
               </button>
             </Link>

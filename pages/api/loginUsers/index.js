@@ -25,7 +25,6 @@ async function getValidate(email, password) {
   const today = new Date();
 
   if (userFound) {
-    console.log("aqui va el debug");
     const updateUser = await prisma.user.update({
       where: { id: userFound.id },
       data: {
@@ -60,9 +59,10 @@ async function getValidate(email, password) {
     }
   }
 
-  if (!userFound) return { response: "User not found" };
-  else
-    return (await compare(password, userFound.password))
+  if (!userFound) return { response: "Your email or google account is not registered" };
+  else{
+    if(password){
+      return (await compare(password, userFound.password))
       ? {
           response: "Access granted",
           userData: {
@@ -76,4 +76,21 @@ async function getValidate(email, password) {
           },
         }
       : { response: "Your email or password are incorrect" };
+    }else{
+      return (userFound.googleAuth === true)
+        ? {
+          response: "Access granted",
+          userData: {
+            id: userFound.id,
+            name: `${userFound.name} ${userFound.lastname}`,
+            user: userFound.username,
+            email: userFound.email,
+            seniority: userFound.seniority,
+            image: userFound.profile_pictures,
+            superAdmin: userFound.superAdmin,
+          },
+        }
+      : { response: "Your google account is not registered" };
+    }
+  }    
 }
