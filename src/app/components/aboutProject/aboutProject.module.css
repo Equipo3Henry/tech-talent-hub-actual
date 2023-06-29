@@ -1,10 +1,10 @@
 .container {
-    margin: 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-self: center;
-    gap: 15rem
+    gap: 15rem;
+    margin-top: 4rem;
 }
 
 .aboutProject_Container{
@@ -26,9 +26,10 @@ display: flex;
 
 .h1{
     color: #000;
-    font-size: 37px;
+    font-size: 42px;
     font-family: "Merriweather";
     font-weight: 900;
     line-height: 139%;
+    text-align: justify;
     letter-spacing: -0.407px;
 }
