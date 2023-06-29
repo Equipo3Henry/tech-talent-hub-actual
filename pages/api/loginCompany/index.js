@@ -23,10 +23,22 @@ async function getValidate(email, password) {
     where: { email: email },
   });
 
+  if(companyFound) {
+    const updateCompany = await prisma.company.update({
+      where: {
+        id: companyFound.id
+      },
+      data: {
+        isActive: true
+      }
+    })
+  }
+
   if (!companyFound) return { response: "Company not found" };
-  else if (!companyFound.isActive) {
-    return { response: "Company account is not active" };
-  } else
+  // else if (!companyFound.isActive) {
+  //   return { response: "Company account is not active" };
+  // }
+   else
     return (await compare(password, companyFound.password))
       ? {
           response: "Access granted",
