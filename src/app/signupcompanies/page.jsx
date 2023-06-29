@@ -32,7 +32,7 @@ function SignUp() {
       setForm({...form, email: googleData.email, password: "Google", googleAuth: true});
       passRef.current.value = "Login with Google";
       setIsDisabled(true);
-      setShowPassword(true);
+      setShowPassword(false);
     }
   },[googleData]);
 
@@ -43,7 +43,6 @@ function SignUp() {
       emailRef.current.value = "";
       passRef.current.value = "";
       setIsDisabled(false);
-      setShowPassword(false)
     }).catch((error) => {
       alert(error)
     });
@@ -112,7 +111,6 @@ function SignUp() {
         `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
         formData
       );
-      console.log(res.data);
       setImageURL(res.data.secure_url);
       setForm((prevState) => ({
         ...prevState,
@@ -154,7 +152,6 @@ function SignUp() {
       setValid,
       isFormComplete
     );
-    console.log(form);
   };
 
   //? ISFORMCOMPLETE FUNCTION
@@ -200,17 +197,16 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
     axios
       .post("/api/companies", form)
       .then((response) => {
-        console.log(form);
         setShowModal(true);
-
         setValid(false);
       })
-      .catch((err) => ({ error: err.message }));
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
+         
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE

@@ -37,11 +37,6 @@ const NavBar = () => {
     routerb.push("/landing");
   }
 
-  function logOutCompanies() {
-    localStorage.removeItem("companyData");
-    routerb.push("/landing");
-  }
-
   //? USE EFFECT ROUTER
   useEffect(() => {
     if (router.includes("profile")) {
@@ -160,7 +155,7 @@ const NavBar = () => {
               data-tooltip-content=" My Favorites"
             />{" "}
           </Link>
-          <button onClick={logOutCompanies} className={styles.logOutButton}>
+          <button onClick={logOut} className={styles.logOutButton}>
             <Link href="/landing">
               <Image
                 src={logoff}

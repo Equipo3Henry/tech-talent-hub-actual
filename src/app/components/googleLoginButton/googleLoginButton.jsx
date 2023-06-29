@@ -30,10 +30,10 @@ export async function loggingGoogle( setGoogleData ) {
     }
 }
 
-export function GoogleLoginButton({ pathname,setGoogleData }) {
+export function GoogleLoginButton({ pathname,setGoogleData,isDisabled }) {
     const textButton = pathname.includes("signupusers")||pathname.includes("signupcompanies") ? "Join with Google" : "Login with Google";
     return (
-        <button className={styles.ButtonB} onClick={()=>loggingGoogle( setGoogleData )}>
+        <button className={styles.ButtonB} onClick={()=>loggingGoogle( setGoogleData )} disabled={isDisabled}>
             {textButton}
             <Image
                 src={google}

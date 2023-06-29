@@ -49,7 +49,7 @@ function SignUp() {
       setForm({...form, email: googleData.email, name: name, lastname: lastname, password: "Google", googleAuth: true});
       passRef.current.value = "Login with Google";
       setIsDisabled(true);
-      setShowPassword(true);
+      setShowPassword(false);
     }
   },[googleData]);
 
@@ -62,7 +62,6 @@ function SignUp() {
       nameRef.current.value = "";
       passRef.current.value = "";
       setIsDisabled(false);
-      setShowPassword(false)
     }).catch((error) => {
       alert(error)
     });
@@ -212,7 +211,6 @@ function SignUp() {
       setValid,
       isFormCompleted
     );
-    console.log(form);
   };
   //? ISFORMCOMPLETE FUNCTION
   const isFormCompleted = () => {
@@ -267,36 +265,13 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
     axios.post("/api/users", form).then((response) => {
-      console.log(form);
       setShowModal(true);
-      setForm({
-        username: "",
-        name: "",
-        lastname: "",
-        birth: "",
-        aboutme: "",
-        working: false,
-        country: "",
-        email: "",
-        password: "",
-        degree: "",
-        languages: [],
-        progLanguages: [],
-        seniority: "",
-        cv: "",
-        softSkills: [],
-        specialization: "",
-        recruiter: false,
-        googleAuth: false,
-      });
       setValid(false);
     })
     .catch((error) => {
       alert(error.response.data.error)
-    })
+    });
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
