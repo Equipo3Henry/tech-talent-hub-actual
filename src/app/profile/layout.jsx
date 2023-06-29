@@ -17,6 +17,8 @@ export default function Layout({ children }) {
   const [user, setUser] = useState(null);
   const [companies, setCompanies] = useState(null);
   const [allUsers, setAllUsers] = useState(null);
+  const [allCompanies, setAllCompanies] = useState (null); 
+  const [fullUsers, setFullUsers] = useState (null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +37,10 @@ export default function Layout({ children }) {
     };
     fetchData();
   }, []);
+
+  useEffect (()=>{
+    const fe
+  })
 
   useEffect(() => {
     const fetchData = async () => {
