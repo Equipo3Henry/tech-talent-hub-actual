@@ -69,6 +69,10 @@ body.active-modal {
     justify-content: center;
 }
 
+.logOff {
+    margin-left: 15em;
+}
+
 .modal,
 .overlay {
     width: 100vw;

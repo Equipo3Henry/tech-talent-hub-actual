@@ -7,7 +7,13 @@ export default async function handler(req, res) {
 
       const query = req.query.q;
       const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$/;
-      const vacancies = await prisma.vacancy.findMany({where:{isActive:true}});
+      const vacancies = await prisma.vacancy.findMany({
+        where: {isActive: true},
+        include: {
+          company: true,
+          applicants: true,
+        },
+      });
       
 
       if(!query) return res.status(200).json(vacancies);

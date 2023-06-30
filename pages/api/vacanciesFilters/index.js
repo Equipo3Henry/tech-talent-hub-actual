@@ -50,6 +50,10 @@ async function getVacancies(paramsFilters) {
 
   const vacancies = await prisma.vacancy.findMany({
     where,
+    include: {
+      company: true,
+      applicants: true,
+    },
   });
 
   console.log("Query result: ", vacancies);

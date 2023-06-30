@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./signupcompanies.module.css";
 import Select from "react-select";
 import axios from "axios";
@@ -15,9 +15,39 @@ import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
 import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
 import { usePathname } from "next/navigation";
+import { getAuth, signOut } from "firebase/auth";
 
 function SignUp() {
+  //? USE STATE SIGNUP GOOGLE
+  const auth = getAuth();
+  const [googleData, setGoogleData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const emailRef = useRef(null);
+  const passRef = useRef(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if(googleData){
+      emailRef.current.value = googleData.email;
+      setForm({...form, email: googleData.email, password: "Google", googleAuth: true});
+      passRef.current.value = "Login with Google";
+      setIsDisabled(true);
+      setShowPassword(false);
+    }
+  },[googleData]);
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      setGoogleData(null)
+      setForm({...form, email: "", password:"", googleAuth: false});
+      emailRef.current.value = "";
+      passRef.current.value = "";
+      setIsDisabled(false);
+    }).catch((error) => {
+      alert(error)
+    });
+  }
+
   //? USE STATE FORM
   const [form, setForm] = useState({
     name: "",
@@ -32,6 +62,7 @@ function SignUp() {
     description: "",
     employes: 0,
     jobs: 0,
+    googleAuth: false
   });
 
   //? USE STATE ERRORS
@@ -80,7 +111,6 @@ function SignUp() {
         `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
         formData
       );
-      console.log(res.data);
       setImageURL(res.data.secure_url);
       setForm((prevState) => ({
         ...prevState,
@@ -122,7 +152,6 @@ function SignUp() {
       setValid,
       isFormComplete
     );
-    console.log(form);
   };
 
   //? ISFORMCOMPLETE FUNCTION
@@ -168,17 +197,16 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
     axios
       .post("/api/companies", form)
       .then((response) => {
-        console.log(form);
         setShowModal(true);
-
         setValid(false);
       })
-      .catch((err) => ({ error: err.message }));
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
+         
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
@@ -214,7 +242,12 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <GoogleLoginButton pathname={pathname} />
+          {!googleData 
+              ? <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData}/> 
+              : <div className={styles.logOff}>
+                  <span>Hello {googleData.displayName}, if you do not want to log in with google</span>
+                  <button onClick={()=>logout()}>click here</button>
+                </div>}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -269,6 +302,8 @@ function SignUp() {
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
+                disabled={isDisabled}
+                ref={emailRef}
               />
               {errors.email !== null && (
                 <span className={styles.error_span}>{errors.email}</span>
@@ -328,6 +363,8 @@ function SignUp() {
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
+                    disabled={isDisabled}
+                    ref={passRef}
                   />
                   <Image
                     src={showPasswordIcon}

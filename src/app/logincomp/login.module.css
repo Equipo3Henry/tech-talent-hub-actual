@@ -104,6 +104,23 @@
   line-height: 28px;
 }
 
+.ButtonD {
+  background: #7155d9;
+  box-shadow: 2px 2px 4px #00000040;
+  border-radius: 15px;
+  width: 500px;
+  height: 53px;
+  border: none;
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 28px;
+  opacity: 0.5;
+}
+
 .line {
   flex-grow: 1;
   border-top: 6px solid #262626;
@@ -164,4 +181,55 @@
   width: 700px;
   color: transparent;
   height: 670px;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+}
+
+/* LOADER */
+.loaderContainer{
+  margin-top: 7em;
+  margin-bottom: 7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
+  }
 }

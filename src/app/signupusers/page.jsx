@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./signup.module.css";
 import Select from "react-select";
 import axios from "axios";
@@ -25,13 +25,49 @@ import { storage } from "@/src/firebase/firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
+import { getAuth, signOut } from "firebase/auth";
 
 function SignUp() {
-  //? USE STATE FORM
-  const [cv, setCv] = useState("");
-
+  //? USE STATE SIGNUP GOOGLE
+  const auth = getAuth();
+  const [googleData, setGoogleData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const emailRef = useRef(null);
+  const nameRef = useRef(null);
+  const lastnameRef = useRef(null);
+  const passRef = useRef(null);
   const pathname = usePathname();
 
+  useEffect(() => {
+    if(googleData){
+      const allName = googleData.displayName.split(' ');
+      const name = allName.length >= 3 ? allName.slice(0,2).join(" ") : allName[0];
+      const lastname = allName.length >= 3 ? allName.slice(2,4).join(" ") : allName[1];
+      emailRef.current.value = googleData.email;
+      nameRef.current.value = name;
+      lastnameRef.current.value = lastname;
+      setForm({...form, email: googleData.email, name: name, lastname: lastname, password: "Google", googleAuth: true});
+      passRef.current.value = "Login with Google";
+      setIsDisabled(true);
+      setShowPassword(false);
+    }
+  },[googleData]);
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      setGoogleData(null)
+      setForm({...form, email: "", name:"", lastname:"", password:"", googleAuth: false});
+      emailRef.current.value = "";
+      lastnameRef.current.value = "";
+      nameRef.current.value = "";
+      passRef.current.value = "";
+      setIsDisabled(false);
+    }).catch((error) => {
+      alert(error)
+    });
+  }
+
+  //? USE STATE FORM
   const [form, setForm] = useState({
     username: "",
     name: "",
@@ -51,6 +87,7 @@ function SignUp() {
     specialization: "",
     recruiter: false,
     isPremium: false,
+    googleAuth: false,
   });
 
   //? USE STATE ERRORS
@@ -174,7 +211,6 @@ function SignUp() {
       setValid,
       isFormCompleted
     );
-    console.log(form);
   };
   //? ISFORMCOMPLETE FUNCTION
   const isFormCompleted = () => {
@@ -229,31 +265,12 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
     axios.post("/api/users", form).then((response) => {
-      console.log(form);
       setShowModal(true);
-      setForm({
-        username: "",
-        name: "",
-        lastname: "",
-        birth: "",
-        aboutme: "",
-        working: false,
-        country: "",
-        email: "",
-        password: "",
-        degree: "",
-        languages: [],
-        progLanguages: [],
-        seniority: "",
-        cv: "",
-        softSkills: [],
-        specialization: "",
-        recruiter: false,
-      });
       setValid(false);
+    })
+    .catch((error) => {
+      alert(error.response.data.error)
     });
   };
 
@@ -289,7 +306,12 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <GoogleLoginButton pathname={pathname} />
+            {!googleData 
+              ? <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData}/> 
+              : <div className={styles.logOff}>
+                  <span>Hello {googleData.displayName}, if you do not want to log in with google</span>
+                  <button onClick={()=>logout()}>click here</button>
+                </div>}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -303,9 +325,11 @@ function SignUp() {
                 <input
                   type="text"
                   name="name"
+                  required
                   placeholder="Enter your first name"
                   className={styles.input_name}
                   onChange={changeHandler}
+                  ref={nameRef}
                 />
                 {errors.name !== null && (
                   <span className={styles.error_span}>{errors.name}</span>
@@ -322,6 +346,7 @@ function SignUp() {
                   placeholder="Enter your last name"
                   className={styles.input_lastname}
                   onChange={changeHandler}
+                  ref={lastnameRef}
                 />
                 {errors.lastname !== null && (
                   <span className={styles.error_span}>{errors.lastname}</span>
@@ -339,6 +364,8 @@ function SignUp() {
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
+                disabled={isDisabled}
+                ref={emailRef}
               />
               {errors.email !== null && (
                 <span className={styles.error_span}>{errors.email}</span>
@@ -375,6 +402,8 @@ function SignUp() {
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
+                    disabled={isDisabled}
+                    ref={passRef}
                   />
                   <Image
                     src={showPasswordIcon}
