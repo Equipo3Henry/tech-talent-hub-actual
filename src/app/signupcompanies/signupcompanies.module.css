@@ -25,7 +25,7 @@ body.active-modal {
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -51,7 +51,7 @@ body.active-modal {
         height: 53px;
         border: none;
         color: white;
-        font-family: "Roboto";
+        font-family: "Roboto Regular";
         font-style: normal;
         font-weight: 500;
         font-size: 24px;
@@ -222,7 +222,7 @@ body.active-modal {
 .jobs {
     width: 400px;
     height: 22px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -282,7 +282,7 @@ body.active-modal {
     border-color: #000000;
     border-width: 0.5px 0.5px 4px 0.5px;
     font-size: 19px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
 }
 
@@ -311,7 +311,7 @@ body.active-modal {
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;

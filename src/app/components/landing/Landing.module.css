@@ -27,7 +27,7 @@
 .parrafo {
   width: 490px;
   overflow-wrap: break-word;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
@@ -60,7 +60,7 @@
   border-style: none;
   width: 210px;
   height: 59px;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -77,7 +77,7 @@
   width: 235px;
   height: 59px;
   cursor: pointer;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
