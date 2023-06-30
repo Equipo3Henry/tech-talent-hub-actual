@@ -3,6 +3,7 @@ import React from "react";
 import { MercadoPagoButton } from "../../MercadoPagoButton/MercadoPagoButton";
 import styles from "./pricingPlan.module.css";
 
+
 const PricingPlan = ({ plan, borderColor }) => {
   return (
     <div>
