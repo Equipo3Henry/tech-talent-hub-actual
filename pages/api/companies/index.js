@@ -14,13 +14,16 @@ export default async function handler(req, res) {
         country,
         description,
         employes,
-        googleAuth
+        googleAuth,
       } = req.body;
       console.log(googleAuth);
       const companyEmail = email;
 
-      const exist = await prisma.company.findUnique({where: {email: companyEmail}});
-      if(exist) return res.status(400).json({ error: "Company already exists" });
+      const exist = await prisma.company.findUnique({
+        where: { email: companyEmail },
+      });
+      if (exist)
+        return res.status(400).json({ error: "Company already exists" });
 
       const encryptPass = await encrypt(password);
 
@@ -34,7 +37,7 @@ export default async function handler(req, res) {
           country,
           description,
           employes,
-          googleAuth
+          googleAuth,
         },
       });
 

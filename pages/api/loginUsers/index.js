@@ -45,27 +45,24 @@ async function getValidate(email, password) {
         resetLimitFreeVacancies:
           today > userFound.resetLimitFreeVacancies
             ? today.getHours() >= 6
-              ? `${today.getFullYear()}-${
-                  today.getMonth() > 9
-                    ? today.getMonth() + 1
-                    : `0${today.getMonth() + 1}`
-                }-${
-                  today.getDate() + 1 > 9
-                    ? today.getDate() + 1
-                    : `0${today.getDate()}`
-                }T06:00:00.000Z`
-              : `${today.getFullYear()}-${
-                  today.getMonth() > 9
-                    ? today.getMonth() + 1
-                    : `0${today.getMonth() + 1}`
-                }-${
-                  today.getDate() > 9 ? today.getDate() : `0${today.getDate()}`
-                }T06:00:00.000Z`
+              ? `${today.getFullYear()}-${today.getMonth() > 9
+                ? today.getMonth() + 1
+                : `0${today.getMonth() + 1}`
+              }-${today.getDate() + 1 > 9
+                ? today.getDate() + 1
+                : `0${today.getDate()}`
+              }T06:00:00.000Z`
+              : `${today.getFullYear()}-${today.getMonth() > 9
+                ? today.getMonth() + 1
+                : `0${today.getMonth() + 1}`
+              }-${today.getDate() > 9 ? today.getDate() : `0${today.getDate()}`
+              }T06:00:00.000Z`
             : userFound.resetLimitFreeVacancies,
         limitFreeVacancies:
           today > userFound.resetLimitFreeVacancies
             ? 20
             : userFound.limitFreeVacancies,
+        isActive: true
       },
     });
 
@@ -99,17 +96,18 @@ async function getValidate(email, password) {
     if(password){
       return (await compare(password, userFound.password))
       ? {
-          response: "Access granted",
-          userData: {
-            id: userFound.id,
-            name: `${userFound.name} ${userFound.lastname}`,
-            user: userFound.username,
-            email: userFound.email,
-            seniority: userFound.seniority,
-            image: userFound.profile_pictures,
-            superAdmin: userFound.superAdmin,
-          },
-        }
+        response: "Access granted",
+        userData: {
+          id: userFound.id,
+          name: `${userFound.name} ${userFound.lastname}`,
+          user: userFound.username,
+          email: userFound.email,
+          seniority: userFound.seniority,
+          image: userFound.profile_pictures,
+          superAdmin: userFound.superAdmin,
+          isPremium: userFound.isPremium
+        },
+      }
       : { response: "Your email or password are incorrect" };
     }else{
       return (userFound.googleAuth === true)

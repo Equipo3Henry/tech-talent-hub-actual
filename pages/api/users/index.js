@@ -40,13 +40,15 @@ export default async function handler(req, res) {
         specialization,
         recruiter,
         isPremium,
-        googleAuth
+        googleAuth,
       } = req.body;
 
       const userEmail = email;
 
-      const exist = await prisma.user.findUnique({where: {email: userEmail}});
-      if(exist) return res.status(400).json({ error: "User already exists" });
+      const exist = await prisma.user.findUnique({
+        where: { email: userEmail },
+      });
+      if (exist) return res.status(400).json({ error: "User already exists" });
 
       const encryptPass = await encrypt(password);
 
@@ -72,7 +74,7 @@ export default async function handler(req, res) {
             specialization,
             recruiter,
             isPremium,
-            googleAuth
+            googleAuth,
           },
         });
 
@@ -102,6 +104,16 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const { includeInactive } = req.query;
+    const allUsers = await prisma.user.findMany({
+      where: {
+        isActive: true,
+        superAdmin: false, // solo obtener usuarios que no sean superAdmin
+      },
+      orderBy: [
+        { isPremium: "desc" },
+        // other fields to order by (if any)
+      ],
+    });
 
     const includeInactiveBool = includeInactive
       ? includeInactive.toLowerCase() === "true"
