@@ -26,9 +26,8 @@ function MyProfileUsers() {
     setShowModalOK(!showModalOK);
   };
 
-  const [deactivationError, setDeactivationError] = useState(false);
-
   //? USE STATE MODAL ERROR
+  const [deactivationError, setDeactivationError] = useState(false);
 
   const toggleModalError = () => {
     setDeactivationError(!deactivationError);
