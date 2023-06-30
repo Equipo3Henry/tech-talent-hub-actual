@@ -10,7 +10,7 @@ function Landing(props) {
       <LandingFirstPart />
       <AboutProject />
       <JobsLanding />
-      <Services />
+      <Services section="landing"/>
     </div>
   );
 }
