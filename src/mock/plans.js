@@ -2,6 +2,7 @@ export const plans = [
   {
     title: "Option 1",
     subtitles: "Basic plan for entry-level access",
+    type: 'basic',
     price: 1,
     priceString: "Free",
     features: [
@@ -13,6 +14,7 @@ export const plans = [
   {
     title: "Option 2",
     subtitles: "Premium plan for comprehensive services",
+    type: 'premium',
     price: 15,
     priceString: "$15",
     features: [

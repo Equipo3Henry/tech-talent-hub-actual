@@ -6,10 +6,12 @@ import FileUploader from "../../components/FileUploaderUsers/fileUploader";
 import axios from "axios";
 import PutUsers from "../../components/profileUsersPutModal/putUsers";
 import Services from "../../services/page";
+import { useRouter } from 'next/navigation';
 
 function MyProfileUsers() {
   const [userId, setUserId] = useState(null);
   const [userData, setUserData] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
@@ -36,6 +38,22 @@ function MyProfileUsers() {
     }
   }, [userId]);
 
+  const deactivateAccount = async () => {
+    try {
+      const { data } = await axios.post('/api/deactivateUser', {
+        userId: userId
+      })
+
+      if(data.success === true){
+        router.push('/landing')
+      } else {
+        alert('There was an error trying to deactivate the account')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={styles.page_container}>
       <div className={styles.title_container}>
@@ -56,10 +74,11 @@ function MyProfileUsers() {
       {userData && userData.remainingPremiumDays !== 0 ?
         <span>Remaining premium days: {userData.remainingPremiumDays}</span>
         : null}
-        {userData && userData.remainingPremiumDays < 7 && userData.remainingPremiumDays !== 0 ?
-      <h3>Your subscription is about to expire, please upgrade your plan to continue enjoying the premium benefits!</h3>
-       : null }
+      {userData && userData.remainingPremiumDays < 7 && userData.remainingPremiumDays !== 0 ?
+        <h3>Your subscription is about to expire, please upgrade your plan to continue enjoying the premium benefits!</h3>
+        : null}
       <Services />
+      <button onClick={deactivateAccount}>Deactivate account</button>
     </div>
   );
 }

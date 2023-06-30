@@ -34,9 +34,11 @@ const UserOfferCardsContainerForDashboard = ({
         <div className={styles.contains}>
           <div className={styles.containerAll}>
             <div className={styles.scrollableList}>
-              <div className={styles.fixedBar}>
-                <span className={styles.allCandidates}>Candidates</span>
-              </div>
+              {users.length > 0 ?
+                <div className={styles.fixedBar}>
+                  <span className={styles.allCandidates}>Candidates</span>
+                </div>
+                : null}
               <ul className={styles.list}>
                 {users.map((user, index) => {
                   const formatStart = formatDate(user.start);

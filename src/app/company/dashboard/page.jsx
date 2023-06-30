@@ -61,6 +61,9 @@ function DashboardPage() {
         <div className={styles.contenedorPadre}>
           <div className={styles.forniculo}>
             <div className={styles.usersContainer}>
+              {users.length === 0 ? (
+                <h3>There are no users matching the search</h3>
+              ) : null}
               <UserOfferCardsContainerForDashboard
                 users={users}
                 companyData={companyData}
