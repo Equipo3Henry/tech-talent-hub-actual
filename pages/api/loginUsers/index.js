@@ -105,6 +105,7 @@ async function getValidate(email, password) {
           seniority: userFound.seniority,
           image: userFound.profile_pictures,
           superAdmin: userFound.superAdmin,
+          isPremium: userFound.isPremium
         },
       }
       : { response: "Your email or password are incorrect" };

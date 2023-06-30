@@ -54,8 +54,8 @@ export default async function handler(req, res) {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${URL}/profile/mydata`,
-          failure: `${URL}/profile/mydata`,
+          success: `${URL}`,
+          failure: `${URL}`,
         },
         notification_url: `${URL}/api/notify?customId=${id}`,
         // notification_url: `${URL}/api/notify` + `/?customId=${id}`,
