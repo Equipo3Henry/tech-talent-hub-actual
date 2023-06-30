@@ -2,11 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./login.module.css";
 import Image from "next/image";
-import {
-  eyeclosed,
-  eyeopen,
-  signinvector,
-} from "../public/assets/imagesCodes";
+import { eyeclosed, eyeopen, signinvector } from "../public/assets/imagesCodes";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -24,25 +20,25 @@ const Login = () => {
 
   useEffect(() => {
     const loginGoogle = async () => {
-      if(googleData){
+      if (googleData) {
         const formGoogle = {
           email: googleData.email,
           password: "",
-        }
+        };
         setIsDisabled(true);
         setIsLoading(true);
-        await fetchLogin(formGoogle);   
+        await fetchLogin(formGoogle);
       }
-    }
+    };
     loginGoogle();
-  },[googleData]);
+  }, [googleData]);
 
   //? USE STATE FORM
   const [error, setError] = useState("");
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
-  }); 
+  });
 
   //? USE STATE PASSWORD
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +73,7 @@ const Login = () => {
       setIsDisabled(false);
       setError(response.response);
     }
-  }
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -95,9 +91,11 @@ const Login = () => {
           {isLoading ? (
             <div className={styles.loaderContainer}>
               <div className={styles.spinner}></div>
-              <div><h4>Please wait while we log you in</h4></div>
+              <div>
+                <h4>Please wait while we log you in</h4>
+              </div>
             </div>
-            ) : (
+          ) : (
             <form onSubmit={handleSubmit}>
               <span className={styles.error}>{error}</span>
               <div className={styles.inPutsContainer}>
@@ -145,7 +143,8 @@ const Login = () => {
               <button className={styles.ButtonSignIn} type="submit">
                 Log In
               </button>
-            </form>)}
+            </form>
+          )}
           <br />
           <br />
           <div className={styles.Separator}>
@@ -154,13 +153,18 @@ const Login = () => {
             <div className={styles.line}> </div>
           </div>
           <div className={styles.ButtonAuthenticationOptions}>
-            <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData} isDisabled={isDisabled}/>
+            <GoogleLoginButton
+              pathname={pathname}
+              setGoogleData={setGoogleData}
+              isDisabled={isDisabled}
+            />
           </div>
           <div>
-            <br />
-            <br />
             <Link href="/signupcompanies">
-              <button className={isDisabled ? styles.ButtonD : styles.ButtonB} disabled={isDisabled}>
+              <button
+                className={isDisabled ? styles.ButtonD : styles.ButtonB}
+                disabled={isDisabled}
+              >
                 New to HighTech Fusion? Join now
               </button>
             </Link>

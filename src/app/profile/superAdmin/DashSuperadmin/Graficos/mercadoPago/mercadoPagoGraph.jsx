@@ -33,11 +33,12 @@ function RevenueChart({ users }) {
       if (user.isPremium) {
         const premiumDate = formatter(user.premiumUpdateDate.split("T")[0]);
 
-        if (revenueByDate[premiumDate]) {
-          revenueByDate[premiumDate] += 15;
-        } else {
-          revenueByDate[premiumDate] = 15;
-        }
+        //     if (revenueByDate[premiumDate]) {
+        //       revenueByDate[premiumDate] += 15;
+        //     } else {
+        //       revenueByDate[premiumDate] = 15;
+        //     }
+        //   }
       }
     });
 
