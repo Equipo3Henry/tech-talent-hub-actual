@@ -9,7 +9,6 @@ import { GlobalContext } from "../../../../profile/layout";
 const JobsOfferCardsContainerForHome = ({ jobs }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
   const { user } = useContext(GlobalContext);
-  const [orderBySalary, setOrderBySalary] = useState(false);
   const [orderDirection, setOrderDirection] = useState(true);
 
   useEffect(() => {

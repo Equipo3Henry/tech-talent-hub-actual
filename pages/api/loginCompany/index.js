@@ -23,21 +23,37 @@ async function getValidate(email, password) {
     where: { email: email },
   });
 
-  if (!companyFound) return { response: "Company not found" };
-  else if (!companyFound.isActive) {
-    return { response: "Company account is not active" };
-  } else
-    return (await compare(password, companyFound.password))
-      ? {
-          response: "Access granted",
-          companyData: {
-            id: companyFound.id,
-            name: companyFound.name,
-            email: companyFound.email,
-            logo_Company: companyFound.logo_Company,
-            type: companyFound.type,
-            country: companyFound.country,
-          },
-        }
-      : { response: "Your email or password are incorrect" };
+  if (!companyFound)
+    return { response: "Your email or google account is not registered" };
+  else {
+    if (password) {
+      return (await compare(password, companyFound.password))
+        ? {
+            response: "Access granted",
+            companyData: {
+              id: companyFound.id,
+              name: companyFound.name,
+              email: companyFound.email,
+              logo_Company: companyFound.logo_Company,
+              type: companyFound.type,
+              country: companyFound.country,
+            },
+          }
+        : { response: "Your email or password are incorrect" };
+    } else {
+      return companyFound.googleAuth === true
+        ? {
+            response: "Access granted",
+            companyData: {
+              id: companyFound.id,
+              name: companyFound.name,
+              email: companyFound.email,
+              logo_Company: companyFound.logo_Company,
+              type: companyFound.type,
+              country: companyFound.country,
+            },
+          }
+        : { response: "Your google account is not registered" };
+    }
+  }
 }
