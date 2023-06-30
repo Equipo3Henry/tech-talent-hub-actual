@@ -34,6 +34,7 @@ export default async function handler(req, res) {
         employes,
         jobs,
         isActive,
+        logo_Company,
       } = req.body;
 
       const updatedCompany = await prisma.company.update({
@@ -48,6 +49,7 @@ export default async function handler(req, res) {
           employes: employes,
           jobs: jobs,
           isActive: isActive,
+          logo_Company: logo_Company,
         },
       });
 
