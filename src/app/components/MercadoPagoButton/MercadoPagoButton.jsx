@@ -18,12 +18,12 @@ export const MercadoPagoButton = ({ plan }) => {
     : null;
 
   const [loading, setLoading] = useState(true);
-//hola
+  //hola
   useEffect(() => {
     const generateLink = async () => {
       setLoading(true);
       try {
-        const userId = storedUserData.id
+        const userId = storedUserData.id;
         const { data } = await axios.post(`/api/checkout/?id=${userId}`, {
           plan,
           userId: storedUserData ? storedUserData.id : null,

@@ -5,17 +5,19 @@ import UserOfferDetail from "../UserOfferDetail/UserOfferDetail";
 import styles from "./UserOfferCardsContainer.module.css";
 import { useEffect } from "react";
 
-const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
+const UserOfferCardsContainerForDashboard = ({
+  users,
+  companyData,
+  isLoading,
+}) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   //? USE STATE LOADER
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // seleccionar automáticamente el primer usuario cuando se monte el componente
     if (users && users.length > 0) {
       setSelectedUserId(users[0].id);
     }
-    setIsLoading(false);
   }, [users]);
 
   const onUserSelected = (id) => {
@@ -24,7 +26,7 @@ const UserOfferCardsContainerForDashboard = ({ users, companyData }) => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading || !users || !selectedUserId ? (
         <div className={styles.loaderContainer}>
           <div className={styles.spinner}></div>
         </div>

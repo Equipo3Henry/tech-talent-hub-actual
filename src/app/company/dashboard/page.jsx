@@ -64,6 +64,7 @@ function DashboardPage() {
               <UserOfferCardsContainerForDashboard
                 users={users}
                 companyData={companyData}
+                isLoading={isLoading}
               />
               <div className={styles.usersDetailContainer}></div>
             </div>
