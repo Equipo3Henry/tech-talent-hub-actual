@@ -5,10 +5,12 @@ import styles from "./myprofile.module.css";
 import FileUploader from "../../components/FileUploaderCompanies/fileUploader";
 import axios from "axios";
 import PutCompanies from "../../components/profileCompaniesPutModal/putCompanies";
+import { useRouter } from 'next/navigation';
 
 function MyProfileCompanies() {
   const [companyId, setCompanyId] = useState(null);
   const [companyData, setCompanyData] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const storedCompanyData = JSON.parse(localStorage.getItem("companyData"));
@@ -37,6 +39,23 @@ function MyProfileCompanies() {
     }
   }, []);
 
+  const deactivateAccount = async () => {
+    try {
+      const { data } = await axios.post('/api/deactivateCompany', {
+        companyId: companyId
+      })
+
+      if(data.success === true){
+        router.push('/landing')
+      } else {
+        alert('There was an error trying to deactivate the account')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <div className={styles.page_container}>
       <div className={styles.title_container}>
@@ -55,6 +74,7 @@ function MyProfileCompanies() {
           <FileUploader companyId={companyId} />
         </div>
       </div>
+      <button onClick={deactivateAccount}>Deactivate account</button>
     </div>
   );
 }
