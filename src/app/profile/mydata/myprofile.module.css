@@ -16,6 +16,7 @@
 
 .title {
     font-size: 40px;
+        font-family: "Merriweather";
 }
 
 
@@ -79,6 +80,7 @@
 .deactivateTitle{
     padding-top: 20px;
     font-size: 35px;
+        font-family: "Merriweather";
 }
 
 .deactivateButton{

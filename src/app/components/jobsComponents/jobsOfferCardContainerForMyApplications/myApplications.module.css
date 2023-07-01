@@ -28,6 +28,7 @@
 .text{
     margin-bottom: 60px;
     font-size: 35px;
+        font-family: "Merriweather";
 }
 
 .spinner::before,
