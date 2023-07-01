@@ -134,13 +134,11 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  <<<<<<<HEAD
-  font-family: "Roboto";
+  <<<<<<<headfont-family: "Roboto";
   =======width: 210px;
   height: 59px;
   font-family: "Roboto Regular";
-  >>>>>>>origin/fix/front/nati-estilos-globales
-  font-style: normal;
+  >>>>>>>origin/fix/front/nati-estilos-globalesfont-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
