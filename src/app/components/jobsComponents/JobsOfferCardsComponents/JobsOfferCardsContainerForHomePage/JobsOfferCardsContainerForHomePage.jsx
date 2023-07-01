@@ -31,7 +31,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
 
   return (
     <div className={styles.forajido}>
-      {jobs.length < 0 ?
+      {jobs.length < 0 ? (
         <div className={styles.fixedBar}>
           <span className={styles.allCandidates}>Vacancies</span>
           <button
@@ -41,8 +41,7 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
             Order by Salary
           </button>
         </div>
-        : null
-      }
+      ) : null}
       <div
         style={{
           maxHeight: "572px",
