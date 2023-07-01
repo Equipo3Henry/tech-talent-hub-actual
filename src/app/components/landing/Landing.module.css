@@ -9,6 +9,19 @@
   margin: 50px 0;
 }
 
+@media (max-width: 800px) {
+  .landingContainer {
+    flex-direction: column;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .landingContainer {
+    padding: 1em;
+  }
+}
+
 .textContainer {
   display: flex;
   flex-direction: column;
@@ -16,12 +29,31 @@
   margin-left: 40px;
 }
 
-.title{
+@media (max-width: 800px) {
+  .textContainer {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.title {
   font-size: 46px;
   word-spacing: 10px;
   text-align: left;
   font-weight: 800;
-    font-family: "Merriweather";
+  font-family: "Merriweather";
+}
+
+@media (max-width: 800px) {
+  .title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
 }
 
 .parrafo {
@@ -32,14 +64,36 @@
   font-weight: 400;
   font-size: 21px;
   line-height: 139%;
-  /* or 28px */
-
   text-align: justify;
-  letter-spacing: -0.011em; /* Esto asegurará que las palabras largas no desborden el contenedor */
+  letter-spacing: -0.011em;
+}
+
+@media (max-width: 800px) {
+  .parrafo {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .parrafo {
+    font-size: 18px;
+  }
 }
 
 .imageContainer {
   width: 800px;
+}
+
+@media (max-width: 800px) {
+  .imageContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageContainer {
+    display: none;
+  }
 }
 
 .imagen {
@@ -48,18 +102,38 @@
   height: 95%;
 }
 
+@media (max-width: 800px) {
+  .imagen {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 .botonera {
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
 }
-.botonUsers {
-  background: #7155d9;
+
+@media (max-width: 800px) {
+  .botonera {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .botonera {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.botonUsers,
+.botonCompany {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  width: 210px;
-  height: 59px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
@@ -69,18 +143,30 @@
   cursor: pointer;
 }
 
+.botonUsers {
+  background: #7155d9;
+  width: 210px;
+  height: 59px;
+}
+
 .botonCompany {
   background: #b682d9;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  border-style: none;
   width: 235px;
   height: 59px;
-  cursor: pointer;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  color: #ffffff;
+}
+
+@media (max-width: 800px) {
+  .botonUsers,
+  .botonCompany {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .botonUsers,
+  .botonCompany {
+    height: 45px;
+    font-size: 18px;
+  }
 }

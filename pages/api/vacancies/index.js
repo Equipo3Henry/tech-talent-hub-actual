@@ -52,7 +52,6 @@ export default async function handler(req, res) {
       }
     }
   }
-
   if (req.method === "GET") {
     const { companyId, orderBySalary, orderDirection } = req.query;
     try {
@@ -65,11 +64,12 @@ export default async function handler(req, res) {
             : undefined,
         include: {
           company: true,
-          applicants: true,
+          applicants: {
+            where: {
+              isActive: true,
+            },
+          },
         },
-        select: {
-          isActive: true
-        }
       });
 
       return res.status(200).json(vacancies);

@@ -65,14 +65,20 @@ function HomePage() {
                 <div className={styles.spinner}></div>
               </div>
             ) : (
-              jobs && <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+              jobs && (
+                <JobsOfferCardsContainerForHome
+                  jobs={jobs}
+                  user={user}
+                  isLoading={isLoading}
+                />
+              )
             )}
             <div className={styles.jobsDetailContainer}></div>
           </div>
         </div>
-        {jobs.length === 0 ?
-          <h3>There are no vacancies matching the search</h3> : null
-        }
+        {jobs.length === 0 ? (
+          <h3>There are no vacancies matching the search</h3>
+        ) : null}
       </div>
     </div>
   );
