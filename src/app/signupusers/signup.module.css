@@ -15,7 +15,7 @@ body.active-modal {
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -41,7 +41,7 @@ body.active-modal {
     height: 53px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -59,14 +59,36 @@ body.active-modal {
 }
 
 .cont_container {
-    width: 1080px;
-    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
 }
+
+
+/* CV INPUT */
+.input_cv::file-selector-button {
+    margin-right: 20px;
+    margin-top: 5px;
+    border: none;
+    background: #7155d9;
+    border: 3px solid #7155d9;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.input_cv::file-selector-button:hover {
+    background: none;
+    color: #7155d9;
+}
+
 
 .auth_cont {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
 }
 
 .logOff {
@@ -104,12 +126,10 @@ body.active-modal {
 }
 /* PAGE CONTAINER */
 .page_container {
-    margin-left: 100px;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 2200px;
+        align-content: center;
+        justify-content: center;
 }
 
 /* title */
@@ -223,7 +243,7 @@ body.active-modal {
 .working {
     width: 250px;
     height: 22px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -293,7 +313,7 @@ body.active-modal {
     border-color: #000000;
     border-width: 0.5px 0.5px 4px 0.5px;
     font-size: 19px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
 }
 
@@ -322,7 +342,7 @@ body.active-modal {
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;

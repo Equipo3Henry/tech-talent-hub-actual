@@ -52,7 +52,7 @@ padding: 2rem 0;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -67,7 +67,7 @@ padding: 2rem 0;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -83,7 +83,7 @@ padding: 2rem 0;
   height: 59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -104,14 +104,14 @@ padding: 2rem 0;
   font-size: 14px;
   padding: 10px;
   text-transform: uppercase;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
 .subtitle {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
   letter-spacing: -0.011em;
@@ -120,7 +120,7 @@ padding: 2rem 0;
 }
 
 .subtitleProgramming {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
   line-height: 139%;
@@ -132,7 +132,7 @@ padding: 2rem 0;
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
-  font-family: "Marriweather";
+  font-family: "Merriweather";
   width: 520px;
 }
 
@@ -179,7 +179,7 @@ padding: 2rem 0;
 
 .span_programming, .span_softskills{
   text-transform: uppercase;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
     letter-spacing: -0.011em;

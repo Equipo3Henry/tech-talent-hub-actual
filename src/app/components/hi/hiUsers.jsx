@@ -13,7 +13,7 @@ function Hi({ user }) {
   return (
     <div>
       <a href="./mydata" className={styles.nstyle}>
-        <h1 className={styles.h1}>Hi! {name}</h1>
+        <h1 className={styles.h1}>Hi {name}!</h1>
       </a>
     </div>
   );

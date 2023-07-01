@@ -39,33 +39,51 @@ function SignUp() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if(googleData){
-      const allName = googleData.displayName.split(' ');
-      const name = allName.length >= 3 ? allName.slice(0,2).join(" ") : allName[0];
-      const lastname = allName.length >= 3 ? allName.slice(2,4).join(" ") : allName[1];
+    if (googleData) {
+      const allName = googleData.displayName.split(" ");
+      const name =
+        allName.length >= 3 ? allName.slice(0, 2).join(" ") : allName[0];
+      const lastname =
+        allName.length >= 3 ? allName.slice(2, 4).join(" ") : allName[1];
       emailRef.current.value = googleData.email;
       nameRef.current.value = name;
       lastnameRef.current.value = lastname;
-      setForm({...form, email: googleData.email, name: name, lastname: lastname, password: "Google", googleAuth: true});
+      setForm({
+        ...form,
+        email: googleData.email,
+        name: name,
+        lastname: lastname,
+        password: "Google",
+        googleAuth: true,
+      });
       passRef.current.value = "Login with Google";
       setIsDisabled(true);
       setShowPassword(false);
     }
-  },[googleData]);
+  }, [googleData]);
 
   const logout = () => {
-    signOut(auth).then(() => {
-      setGoogleData(null)
-      setForm({...form, email: "", name:"", lastname:"", password:"", googleAuth: false});
-      emailRef.current.value = "";
-      lastnameRef.current.value = "";
-      nameRef.current.value = "";
-      passRef.current.value = "";
-      setIsDisabled(false);
-    }).catch((error) => {
-      alert(error)
-    });
-  }
+    signOut(auth)
+      .then(() => {
+        setGoogleData(null);
+        setForm({
+          ...form,
+          email: "",
+          name: "",
+          lastname: "",
+          password: "",
+          googleAuth: false,
+        });
+        emailRef.current.value = "";
+        lastnameRef.current.value = "";
+        nameRef.current.value = "";
+        passRef.current.value = "";
+        setIsDisabled(false);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   //? USE STATE FORM
   const [form, setForm] = useState({
@@ -265,13 +283,15 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    axios.post("/api/users", form).then((response) => {
-      setShowModal(true);
-      setValid(false);
-    })
-    .catch((error) => {
-      alert(error.response.data.error)
-    });
+    axios
+      .post("/api/users", form)
+      .then((response) => {
+        setShowModal(true);
+        setValid(false);
+      })
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
@@ -306,12 +326,20 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            {!googleData 
-              ? <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData}/> 
-              : <div className={styles.logOff}>
-                  <span>Hello {googleData.displayName}, if you do not want to log in with google</span>
-                  <button onClick={()=>logout()}>click here</button>
-                </div>}
+            {!googleData ? (
+              <GoogleLoginButton
+                pathname={pathname}
+                setGoogleData={setGoogleData}
+              />
+            ) : (
+              <div className={styles.logOff}>
+                <span>
+                  Hello {googleData.displayName}, if you do not want to log in
+                  with google
+                </span>
+                <button onClick={() => logout()}>click here</button>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -453,9 +481,6 @@ function SignUp() {
                     className={styles.input_cv}
                     onChange={handleCvChange}
                   />
-                  <label htmlFor="file">
-                    <Image src={upload} className={styles.password_icon} />
-                  </label>
                 </div>
 
                 {errors.cv !== null && (
