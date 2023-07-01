@@ -114,6 +114,15 @@ body.active-modal {
     z-index: 2000;
 }
 
+.modal_content h2{
+    font-family: "Merriweather";
+    font-size: 27px;
+}
+
+.modal_content p {
+    font-family: "Roboto Regular";
+}
+
 .containerProfile{
     display: flex;
     flex-direction: column;
@@ -122,8 +131,8 @@ body.active-modal {
 }
 
 .containerProfile h3{
-    font-size: 17px;
-    font-family: "Merriweather";
+    font-size: 19px;
+    font-family: "Roboto Thin";
 }
 
 .existing_file {

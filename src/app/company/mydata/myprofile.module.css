@@ -43,6 +43,15 @@
   align-items: center;
 }
 
+.modal_content h2 {
+  font-family: "Merriweather";
+  font-size: 23px;
+}
+
+.modal_content p {
+  font-family: "Roboto Regular";
+}
+
 .button {
   width: 96%;
   height: 59px;

@@ -111,3 +111,12 @@ body.active-modal {
     min-width: 300px;
     z-index: 2000;
 }
+
+.modal_content h2 {
+    font-family: "Merriweather";
+    font-size: 27px;
+}
+
+.modal_content p {
+    font-family: "Roboto Regular";
+}
