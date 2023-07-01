@@ -29,19 +29,20 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
 
   if (!user) return null;
 
+  console.log("user", user);
+  console.log("jobs del jobsOfferCardContainer", jobs);
+
   return (
     <div className={styles.forajido}>
-      {jobs.length < 0 ? (
-        <div className={styles.fixedBar}>
-          <span className={styles.allCandidates}>Vacancies</span>
-          <button
-            className={styles.botonOrden}
-            onClick={() => setOrderDirection(!orderDirection)}
-          >
-            Order by Salary
-          </button>
-        </div>
-      ) : null}
+      <div className={styles.fixedBar}>
+        <span className={styles.allCandidates}>Vacancies</span>
+        <button
+          className={styles.botonOrden}
+          onClick={() => setOrderDirection(!orderDirection)}
+        >
+          Order by Salary
+        </button>
+      </div>
       <div
         style={{
           maxHeight: "572px",
@@ -96,4 +97,5 @@ const JobsOfferCardsContainerForHome = ({ jobs }) => {
     </div>
   );
 };
+
 export default JobsOfferCardsContainerForHome;

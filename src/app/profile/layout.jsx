@@ -18,12 +18,15 @@ export default function Layout({ children }) {
   const [allUsers, setAllUsers] = useState(null);
   const [allCompanies, setAllCompanies] = useState(null);
   const [fullUsers, setFullUsers] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // añadimos isLoading al estado
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
+      setIsLoading(true); // comenzamos la carga
       setDataJobs(response.data);
       setJobs(response.data);
+      setIsLoading(false); // terminamos la carga
     };
     fetchData();
   }, []);
@@ -90,8 +93,12 @@ export default function Layout({ children }) {
       }
     };
 
-    if (selectedProgLanguage || selectedSeniority ||
-        selectedNameVacancy  || selectedWorkday){
+    if (
+      selectedProgLanguage ||
+      selectedSeniority ||
+      selectedNameVacancy ||
+      selectedWorkday
+    ) {
       fetchFilteredJobs();
     } else if (jobs !== dataJobs) {
       setJobs(dataJobs);
@@ -108,6 +115,7 @@ export default function Layout({ children }) {
       value={{
         jobs,
         user,
+        isLoading,
         setSelectedProgLanguage,
         setSelectedSeniority,
         setselectedNameVacancy,

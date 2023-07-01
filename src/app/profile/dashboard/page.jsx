@@ -1,4 +1,5 @@
 "use client";
+
 import SearchBar from "../../components/generalComponents/SearchBar/searchBar";
 import JobsOfferCardsContainerForHome from "../../components/jobsComponents/JobsOfferCardsComponents/JobsOfferCardsContainerForHomePage/JobsOfferCardsContainerForHomePage";
 import styles from "./homePage.module.css";
@@ -6,13 +7,14 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Hi from "../../components/hi/hiUsers";
+import { useEffect } from "react";
 
 function HomePage() {
   const {
     jobs,
+    isLoading,
     user,
     setSelectedProgLanguage,
     setSelectedSeniority,
@@ -22,18 +24,15 @@ function HomePage() {
     setUser,
   } = useContext(GlobalContext);
 
-  //? USE STATE LOADER
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const localStorageData = localStorage.getItem("userData");
     const userData = JSON.parse(localStorageData);
     setUser(userData);
-    setIsLoading(false);
-    console.log(userData); // <== Agrega esta línea
-  }, []); // Dependency array
+    console.log(userData);
+  }, []);
 
-  console.log(`mi nombre es ${user}`);
+  console.log("user", user);
+  console.log("jobs", jobs);
 
   return (
     <div className={styles.globalContainer}>
@@ -64,21 +63,14 @@ function HomePage() {
               <div className={styles.loaderContainer}>
                 <div className={styles.spinner}></div>
               </div>
+            ) : jobs?.length ? (
+              <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
             ) : (
-              jobs && (
-                <JobsOfferCardsContainerForHome
-                  jobs={jobs}
-                  user={user}
-                  isLoading={isLoading}
-                />
-              )
+              <h3>There are no vacancies matching the search</h3>
             )}
             <div className={styles.jobsDetailContainer}></div>
           </div>
         </div>
-        {jobs.length === 0 ? (
-          <h3>There are no vacancies matching the search</h3>
-        ) : null}
       </div>
     </div>
   );
