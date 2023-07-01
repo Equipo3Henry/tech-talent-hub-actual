@@ -59,7 +59,7 @@
 .parrafo {
   width: 490px;
   overflow-wrap: break-word;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
@@ -134,7 +134,12 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
+  <<<<<<<HEAD
   font-family: "Roboto";
+  =======width: 210px;
+  height: 59px;
+  font-family: "Roboto Regular";
+  >>>>>>>origin/fix/front/nati-estilos-globales
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -153,6 +158,13 @@
   background: #b682d9;
   width: 235px;
   height: 59px;
+  cursor: pointer;
+  font-family: "Roboto Regular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
 }
 
 @media (max-width: 800px) {
