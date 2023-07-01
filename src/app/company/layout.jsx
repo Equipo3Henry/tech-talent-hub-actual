@@ -2,7 +2,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-
 export const GlobalContext = createContext();
 
 export default function Layout({ children }) {
@@ -16,9 +15,11 @@ export default function Layout({ children }) {
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [companies, setCompanies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await axios.get("/api/users");
 
       const sortedData = response.data.sort(
@@ -27,6 +28,7 @@ export default function Layout({ children }) {
 
       setDataUsers(sortedData);
       setUsers(sortedData);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -103,7 +105,9 @@ export default function Layout({ children }) {
         setSearchValue,
         setCompanies,
         companies,
-        selectedSpecialization,  
+        selectedSpecialization,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

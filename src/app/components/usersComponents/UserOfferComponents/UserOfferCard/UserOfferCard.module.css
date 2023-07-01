@@ -10,7 +10,8 @@
   display: flex;
 }
 
-.Container:hover, .Container:focus{
+.Container:hover,
+.Container:focus {
   border-color: #b682d9;
 }
 .InfoContainer {
@@ -41,4 +42,5 @@
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
+  line-height: 200%; /* Ajusta el valor según tu preferencia */
 }

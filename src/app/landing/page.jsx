@@ -16,7 +16,7 @@ function Landing(props) {
       <AboutProject />
       <Carrousel />
       <JobsLanding />
-      <Services section="landing"/>
+      <Services section="landing" />
     </div>
   );
 }

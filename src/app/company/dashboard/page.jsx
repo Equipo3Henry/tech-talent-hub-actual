@@ -19,26 +19,21 @@ function DashboardPage() {
     setSelectedSpecialization,
     setSearchValue,
     setCompanies,
+    isLoading,
   } = useContext(GlobalContext);
   const [companyData, setCompanyData] = useState(null);
-
-  //? USE STATE LOADER
-  const [isLoading, setIsLoading] = useState(true);
-
-  console.log(users);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
     if (localStorageData) {
       const companyDataFromStorage = JSON.parse(localStorageData);
-      console.log(companyDataFromStorage); // Log the data here
+      console.log(companyDataFromStorage);
       setCompanyData(companyDataFromStorage);
-      setIsLoading(false);
     } else {
       console.log("No data in localStorage");
-      console.log(companyData);
     }
   }, []);
+
   return (
     <div className={styles.globalContainer}>
       <div className={styles.tituloContenedor}>
@@ -63,12 +58,12 @@ function DashboardPage() {
             <div className={styles.usersContainer}>
               {users.length === 0 ? (
                 <h3>There are no users matching the search</h3>
-              ) : null}
-              <UserOfferCardsContainerForDashboard
-                users={users}
-                companyData={companyData}
-                isLoading={isLoading}
-              />
+              ) : (
+                <UserOfferCardsContainerForDashboard
+                  users={users}
+                  companyData={companyData}
+                />
+              )}
               <div className={styles.usersDetailContainer}></div>
             </div>
           </div>
@@ -79,4 +74,5 @@ function DashboardPage() {
 }
 
 DashboardPage.getLayout = getLayout;
+
 export default DashboardPage;
