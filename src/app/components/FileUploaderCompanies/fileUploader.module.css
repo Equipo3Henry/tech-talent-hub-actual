@@ -5,11 +5,11 @@
 }
 
 .custum_file_upload {
-    height: 200px;
+    display:none ;
+    /* height: 200px;
     width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
     gap: 20px;
     cursor: pointer;
     align-items: center;
@@ -18,13 +18,14 @@
     background-color: rgba(255, 255, 255, 1);
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1); */
 }
 
 .custum_file_upload .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:none ;
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
 }
 
 .custum_file_upload .icon svg {
@@ -34,6 +35,7 @@
 
 .custum_file_upload .text {
     display: flex;
+    font-size: 13px;
     align-items: center;
     justify-content: center;
 }
@@ -110,4 +112,33 @@ body.active-modal {
     max-width: 600px;
     min-width: 300px;
     z-index: 2000;
+}
+
+.containerProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerProfile h3{
+    font-size: 17px;
+    font-family: "Merriweather";
+}
+
+.existing_file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.existing_fileImg {
+    width: 80%;
+    object-fit: cover;
 }
