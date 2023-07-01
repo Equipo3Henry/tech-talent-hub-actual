@@ -22,8 +22,6 @@ async function getValidate(email, password) {
     where: { email: email },
   });
 
-  const today = new Date();
-
   function calculatePremiumRemainingDays(a, b) {
     // Convertir las fechas a objetos Date
     const today = new Date(a);
@@ -39,30 +37,29 @@ async function getValidate(email, password) {
   }
 
   if (userFound) {
+    const today = new Date();
+    const newDate = new Date();
+    if (newDate > userFound.resetLimitFreeVacancies) {
+      if (newDate.getHours() >= 6) {
+        newDate.setDate(newDate.getDate() + 1);
+        newDate.setHours(1, 0, 0, 0);
+      } else {
+        newDate.setHours(1, 0, 0, 0);
+      }
+    } else {
+      newDate.setDate(userFound.resetLimitFreeVacancies.getDate());
+      newDate.setHours(1, 0, 0, 0);
+    }
+
     const updateUser = await prisma.user.update({
       where: { id: userFound.id },
       data: {
-        resetLimitFreeVacancies:
-          today > userFound.resetLimitFreeVacancies
-            ? today.getHours() >= 6
-              ? `${today.getFullYear()}-${today.getMonth() > 9
-                ? today.getMonth() + 1
-                : `0${today.getMonth() + 1}`
-              }-${today.getDate() + 1 > 9
-                ? today.getDate() + 1
-                : `0${today.getDate()}`
-              }T06:00:00.000Z`
-              : `${today.getFullYear()}-${today.getMonth() > 9
-                ? today.getMonth() + 1
-                : `0${today.getMonth() + 1}`
-              }-${today.getDate() > 9 ? today.getDate() : `0${today.getDate()}`
-              }T06:00:00.000Z`
-            : userFound.resetLimitFreeVacancies,
+        resetLimitFreeVacancies: newDate,
         limitFreeVacancies:
           today > userFound.resetLimitFreeVacancies
             ? 20
             : userFound.limitFreeVacancies,
-        isActive: true
+        isActive: true,
       },
     });
 
@@ -91,39 +88,40 @@ async function getValidate(email, password) {
     }
   }
 
-  if (!userFound) return { response: "Your email or google account is not registered" };
-  else{
-    if(password){
+  if (!userFound)
+    return { response: "Your email or google account is not registered" };
+  else {
+    if (password) {
       return (await compare(password, userFound.password))
-      ? {
-        response: "Access granted",
-        userData: {
-          id: userFound.id,
-          name: `${userFound.name} ${userFound.lastname}`,
-          user: userFound.username,
-          email: userFound.email,
-          seniority: userFound.seniority,
-          image: userFound.profile_pictures,
-          superAdmin: userFound.superAdmin,
-          isPremium: userFound.isPremium
-        },
-      }
-      : { response: "Your email or password are incorrect" };
-    }else{
-      return (userFound.googleAuth === true)
         ? {
-          response: "Access granted",
-          userData: {
-            id: userFound.id,
-            name: `${userFound.name} ${userFound.lastname}`,
-            user: userFound.username,
-            email: userFound.email,
-            seniority: userFound.seniority,
-            image: userFound.profile_pictures,
-            superAdmin: userFound.superAdmin,
-          },
-        }
-      : { response: "Your google account is not registered" };
+            response: "Access granted",
+            userData: {
+              id: userFound.id,
+              name: `${userFound.name} ${userFound.lastname}`,
+              user: userFound.username,
+              email: userFound.email,
+              seniority: userFound.seniority,
+              image: userFound.profile_pictures,
+              superAdmin: userFound.superAdmin,
+              isPremium: userFound.isPremium,
+            },
+          }
+        : { response: "Your email or password are incorrect" };
+    } else {
+      return userFound.googleAuth === true
+        ? {
+            response: "Access granted",
+            userData: {
+              id: userFound.id,
+              name: `${userFound.name} ${userFound.lastname}`,
+              user: userFound.username,
+              email: userFound.email,
+              seniority: userFound.seniority,
+              image: userFound.profile_pictures,
+              superAdmin: userFound.superAdmin,
+            },
+          }
+        : { response: "Your google account is not registered" };
     }
-  }    
+  }
 }
