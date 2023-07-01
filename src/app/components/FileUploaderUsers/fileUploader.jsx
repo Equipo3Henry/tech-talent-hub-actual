@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./fileUploader.module.css";
 import { storage } from "../../../firebase/firebase.config"; // importa la referencia a storage que configuraste antes
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Importa las funciones necesarias de Firebase Storage
@@ -18,6 +20,10 @@ const FileUploader = ({ userId }) => {
   const toggleModalError = () => {
     setShowModalError(!showModalError);
   };
+
+  // Estado para almacenar el nombre del archivo
+  const [fileName, setFileName] = useState("");
+
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -62,6 +68,33 @@ const FileUploader = ({ userId }) => {
       }
     }
   };
+
+  useEffect(() => {
+    // Obtener el nombre del archivo desde la base de datos cuando se carga el componente
+    const fetchFileName = async () => {
+      try {
+        const response = await fetch(`/api/users/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setFileName(
+            data.cv
+              ? decodeURIComponent(data.cv).split("?")[0].split("/").pop()
+              : ""
+          );
+        } else {
+          console.error(
+            "Error al obtener el nombre del archivo:",
+            response.status,
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error al obtener el nombre del archivo:", error);
+      }
+    };
+
+    fetchFileName();
+  }, [userId]);
 
   return (
     <>
@@ -111,7 +144,12 @@ const FileUploader = ({ userId }) => {
             </svg>
           </div>
           <div className={styles.text}>
-            <span>Click to upload your CV</span>
+            {/* Mostrar el nombre del archivo si está disponible, de lo contrario mostrar el texto predeterminado */}
+            {fileName ? (
+              <p>{fileName}</p>
+            ) : (
+              <span>Click to upload your CV</span>
+            )}
           </div>
           <input
             type="file"
