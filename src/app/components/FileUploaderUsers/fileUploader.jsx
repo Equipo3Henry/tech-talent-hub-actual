@@ -12,7 +12,7 @@ const FileUploader = ({ userId }) => {
     setShowModalOK(!showModalOK);
   };
 
-  //? USE STATE MODAL OK
+  //? USE STATE MODAL ERROR
   const [showModalError, setShowModalError] = useState(false);
 
   const toggleModalError = () => {
