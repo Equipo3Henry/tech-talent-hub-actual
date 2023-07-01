@@ -1,11 +1,9 @@
 /* PAGE CONTAINER */
 .page_container {
-    margin-left: 100px;
-    padding: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 2200px;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
 }
 
 
@@ -69,8 +67,10 @@ body.active-modal {
 }
 
 .cont_container{
-    width: 1080px;
-    margin: 20px 0;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1200px;
 }
 
 .auth_cont{
@@ -81,6 +81,23 @@ body.active-modal {
 
 .logOff {
     margin-left: 15em;
+}
+/* LOGO UPLOADER INPUT */
+.input_logo_Company::file-selector-button {
+    margin-right: 20px;
+    margin-top: 5px;
+    border: none;
+    background: #7155d9;
+    border: 3px solid #7155d9;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.input_logo_Company::file-selector-button:hover {
+    background: none;
+    color: #7155d9;
 }
 
 .modal,

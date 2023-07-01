@@ -6,14 +6,10 @@ import styles from "./signupcompanies.module.css";
 import Select from "react-select";
 import axios from "axios";
 import Link from "next/link";
-import {
-  eyeopen,
-  eyeclosed,
-  upload,
-} from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, upload } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
-import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton"
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
 import { usePathname } from "next/navigation";
 import { getAuth, signOut } from "firebase/auth";
 
@@ -27,26 +23,33 @@ function SignUp() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if(googleData){
+    if (googleData) {
       emailRef.current.value = googleData.email;
-      setForm({...form, email: googleData.email, password: "Google", googleAuth: true});
+      setForm({
+        ...form,
+        email: googleData.email,
+        password: "Google",
+        googleAuth: true,
+      });
       passRef.current.value = "Login with Google";
       setIsDisabled(true);
       setShowPassword(false);
     }
-  },[googleData]);
+  }, [googleData]);
 
   const logout = () => {
-    signOut(auth).then(() => {
-      setGoogleData(null)
-      setForm({...form, email: "", password:"", googleAuth: false});
-      emailRef.current.value = "";
-      passRef.current.value = "";
-      setIsDisabled(false);
-    }).catch((error) => {
-      alert(error)
-    });
-  }
+    signOut(auth)
+      .then(() => {
+        setGoogleData(null);
+        setForm({ ...form, email: "", password: "", googleAuth: false });
+        emailRef.current.value = "";
+        passRef.current.value = "";
+        setIsDisabled(false);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   //? USE STATE FORM
   const [form, setForm] = useState({
@@ -62,7 +65,7 @@ function SignUp() {
     description: "",
     employes: 0,
     jobs: 0,
-    googleAuth: false
+    googleAuth: false,
   });
 
   //? USE STATE ERRORS
@@ -206,7 +209,6 @@ function SignUp() {
       .catch((error) => {
         alert(error.response.data.error);
       });
-         
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
@@ -242,12 +244,20 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-          {!googleData 
-              ? <GoogleLoginButton pathname={pathname} setGoogleData={setGoogleData}/> 
-              : <div className={styles.logOff}>
-                  <span>Hello {googleData.displayName}, if you do not want to log in with google</span>
-                  <button onClick={()=>logout()}>click here</button>
-                </div>}
+            {!googleData ? (
+              <GoogleLoginButton
+                pathname={pathname}
+                setGoogleData={setGoogleData}
+              />
+            ) : (
+              <div className={styles.logOff}>
+                <span>
+                  Hello {googleData.displayName}, if you do not want to log in
+                  with google
+                </span>
+                <button onClick={() => logout()}>click here</button>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -276,6 +286,7 @@ function SignUp() {
                 <div className={styles.password_toggle_container}>
                   <input
                     type="file"
+                    accept=".png"
                     name="logo_Company"
                     placeholder="Upload a PNG image"
                     className={styles.input_logo_Company}
