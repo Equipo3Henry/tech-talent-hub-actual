@@ -21,20 +21,25 @@ export const MercadoPagoButton = ({ plan, section }) => {
     ? JSON.parse(localStorage.getItem("userData"))
     : null;
 
-  // useEffect(() => {
-  //   if (storedUserData) {
-  //     setIsPremium(storedUserData.isPremium);
-  //     // if (storedUserData && storedUserData.isPremium === true) {
-  //     //   actualPlan = storedUserData.isPremium
-  //     // } else if (storedUserData && storedUserData.isPremium === false) {
-  //     //   actualPlan = storedUserData.isPremium
-  //     // }
-  //     // if (storedUserData){
-  //     actualPlan = storedUserData.isPremium
-  //     // }
-  //     console.log('actual plan:', actualPlan);
-  //   }
-  // }, [storedUserData]);
+  //? MODAL STATE
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+  //? USE STATE MODAL OK
+  const [showModalOK, setShowModalOK] = useState(false);
+
+  const toggleModalOK = () => {
+    setShowModalOK(!showModalOK);
+  };
+
+  //? USE STATE MODAL ERROR
+  const [deactivationError, setDeactivationError] = useState(false);
+
+  const toggleModalError = () => {
+    setDeactivationError(!deactivationError);
+  };
 
   useEffect(() => {
     if (!storedUserData) {
@@ -112,7 +117,7 @@ export const MercadoPagoButton = ({ plan, section }) => {
           return (
             <button
               id="mercadoPagoButton"
-              className={styles.mercadoPagoButton}
+              className={styles.mercadoPagoButtonDisabled}
               disabled
             >
               Already subscribed to {plan.type}
@@ -121,13 +126,15 @@ export const MercadoPagoButton = ({ plan, section }) => {
         } else {
           return (
             // <Link href='/landing' >
-            <button
-              id="mercadoPagoButton"
-              className={styles.mercadoPagoButton}
-              onClick={downgradeAccount}
-            >
-              Subscribe to {plan.type}
-            </button>
+            <div onClick={toggleModal}>
+              <button
+                id="mercadoPagoButton"
+                className={styles.mercadoPagoButton}
+                // onClick={downgradeAccount}
+              >
+                Subscribe to {plan.type}
+              </button>
+            </div>
             // </Link>
           );
         }
@@ -147,7 +154,7 @@ export const MercadoPagoButton = ({ plan, section }) => {
           return (
             <button
               id="mercadoPagoButton"
-              className={styles.mercadoPagoButton}
+              className={styles.mercadoPagoButtonDisabled}
               disabled
             >
               Already Subscribed to {plan.type}
@@ -161,6 +168,22 @@ export const MercadoPagoButton = ({ plan, section }) => {
 
   return (
     <>
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModal}></div>
+          <div className={styles.modal_content}>
+            <h2>Are you sure you want to downgrade your account to basic plan?</h2>
+            <div className={styles.modal_buttons}>
+              <button className={styles.btn_modal1} onClick={downgradeAccount}>
+                Confirm
+              </button>
+              <button className={styles.btn_modal2} onClick={toggleModal}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* <div>{landing && loading ? <Loader /> : <Link href='/loginpro'>
         <button id="mercadoPagoButton" className={styles.mercadoPagoButton} >
           Join Now!
