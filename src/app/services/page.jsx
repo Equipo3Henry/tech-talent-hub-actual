@@ -4,7 +4,7 @@ import styles from "./services.module.css";
 import Link from "next/link";
 import { plans } from "@/src/mock/plans";
 
-const Services = () => {
+const Services = ({ section }) => {
   return (
     <div>
       <div className={styles.ServicesContainer}>
@@ -15,7 +15,7 @@ const Services = () => {
           </p>
         </div>
         <div className={styles.plansContainer}>
-          <PricingTable plan={plans} />
+          <PricingTable plan={plans} section={section} />
         </div>
       </div>
     </div>

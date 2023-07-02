@@ -5,16 +5,15 @@ body.active-modal {
 .btn_modal {
     width: 96%;
     height: 59px;
-    left: 265px;
     top: 825px;
     margin-top: 20px;
     margin-bottom: 10px;
-    background: #7155d9;
+    background: #b682d9;
     box-shadow: 2px 2px 4px #00000040;
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -25,8 +24,8 @@ body.active-modal {
 .btn_modal:hover {
     background: none;
     border: solid;
-    border-color: #7155d9;
-    color: #7155d9;
+    border-color: #b682d9;
+    color: #b682d9;
     transform: translateY(-3px);
     cursor: pointer;
 }
@@ -49,6 +48,14 @@ body.active-modal {
     background: rgba(49, 49, 49, 0.8);
 }
 
+.close_button {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
 .modal_content {
     position: absolute;
     top: 40%;
@@ -63,14 +70,19 @@ body.active-modal {
     z-index: 2000;
 }
 
+.modal_content h2{
+    font-size: 25px;
+    font-family: "Merriweather";
+}
+
 /* PAGE CONTAINER */
 .page_container {
-    margin-left: 100px;
+    /* margin-left: 100px; */
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 2200px;
+    justify-content: left;
+    max-width: 2000px;
 }
 
 /* FORM */
@@ -115,7 +127,7 @@ body.active-modal {
 .jobs {
     width: 400px;
     height: 22px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -192,12 +204,12 @@ body.active-modal {
     height: 59px;
     margin-top: 20px;
     margin-bottom: 10px;
-    background: #7155d9;
+    background: #b682d9;
     box-shadow: 2px 2px 4px #00000040;
     border-radius: 15px;
     border: none;
     color: white;
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -209,8 +221,8 @@ body.active-modal {
 .btn_toForm:hover {
     background: none;
     border: solid;
-    border-color: #7155d9;
-    color: #7155d9;
+    border-color: #b682d9;
+    color: #b682d9;
     transform: translateY(-3px);
     cursor: pointer;
 }
@@ -242,7 +254,7 @@ body.active-modal {
 .description {
     width: 400px;
     height: 22px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
@@ -298,7 +310,7 @@ body.active-modal {
     border-color: #000000;
     border-width: 0.5px 0.5px 4px 0.5px;
     font-size: 19px;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     font-style: normal;
 }
 

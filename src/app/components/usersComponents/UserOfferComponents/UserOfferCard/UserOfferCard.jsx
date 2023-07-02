@@ -8,6 +8,7 @@ const UserOfferCard = ({
   lastname,
   progLanguages,
   onUserSelected,
+  specialization,
 }) => {
   const formattedLanguages = progLanguages
     .map((lang) => lang.charAt(0).toUpperCase() + lang.slice(1))

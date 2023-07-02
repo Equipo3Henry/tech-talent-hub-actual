@@ -22,6 +22,11 @@ model Company {
   employes        Int         @default(0)
   jobs            Int         @default(0)
   vacanciesCount  Int         @default(autoincrement())
+  createdAt       DateTime    @default(now())
+  isActive        Boolean     @default(true)
+  isPremium       Boolean     @default(false)
+  updatedAt       DateTime    @default(now()) @updatedAt
+  googleAuth      Boolean     @default(false)
   postedVacancies Vacancy[]
 }
 
@@ -39,28 +44,36 @@ model SoftSkills {
 }
 
 model User {
-  id               String    @id @default(uuid())
-  username         String
-  name             String    @db.VarChar(50)
-  lastname         String    @db.VarChar(50)
-  birth            String
-  aboutme          String?
-  working          Boolean   @default(false)
-  country          String    @db.VarChar(50)
-  email            String    @unique
-  password         String
-  degree           String?
-  languages        String[]
-  progLanguages    String[]
-  profile_pictures String?   @unique
-  seniority        String?
-  cv               String?
-  softSkills       String[]
-  specialization   Spec
-  recruiter        Boolean   @default(false)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  appliedVacancies Vacancy[] @relation("applications")
+  id                      String    @id @default(uuid())
+  username                String
+  name                    String    @db.VarChar(50)
+  lastname                String    @db.VarChar(50)
+  birth                   String
+  aboutme                 String?
+  working                 Boolean   @default(false)
+  country                 String    @db.VarChar(50)
+  email                   String    @unique
+  password                String
+  degree                  String?
+  languages               String[]
+  progLanguages           String[]
+  profile_pictures        String?   @unique
+  seniority               String?
+  cv                      String?
+  softSkills              String[]
+  specialization          Spec
+  recruiter               Boolean   @default(false)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  isActive                Boolean   @default(true)
+  isPremium               Boolean   @default(false)
+  limitFreeVacancies      Int       @default(20)
+  resetLimitFreeVacancies DateTime  @default(now())
+  superAdmin              Boolean   @default(false)
+  remainingPremiumDays    Int       @default(0)
+  premiumUpdateDate       DateTime  @default(dbgenerated("'1970-01-01 00:00:00'::timestamp without time zone"))
+  googleAuth              Boolean   @default(false)
+  appliedVacancies        Vacancy[] @relation("applications")
 }
 
 model Vacancy {
@@ -78,9 +91,9 @@ model Vacancy {
   Relevance             Relevance @default(SMALL)
   companyId             String
   status                Status    @default(Applied)
+  createdAt             DateTime  @default(now())
   company               Company   @relation(fields: [companyId], references: [id])
   applicants            User[]    @relation("applications")
-  createdAt             DateTime  @default(now())
 }
 
 enum CompanyType {

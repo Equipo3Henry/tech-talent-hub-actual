@@ -37,7 +37,7 @@
 }
 
 .labelInput {
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: black;
   font-size: 16px;
 }
@@ -67,7 +67,7 @@
   height: 53px;
   border: none;
   color: white;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -82,7 +82,7 @@
   height: 53px;
   border: none;
   color: white;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -109,7 +109,7 @@
 }
 
 .or {
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -132,7 +132,7 @@
   height: 53px;
   border: none;
   color: white;
-  font-family: "Roboto";
+  font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;

@@ -1,17 +1,15 @@
 .globalContainer {
   display: flex;
   flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .jobsContainer {
   display: flex;
   flex-direction: row;
   gap: 0px;
-  margin-left: 167px;
-  margin-top: 66px;
-}
-
-.detailContainer {
 }
 
 .forniculo {
@@ -23,4 +21,65 @@
 .usersContainer {
   display: flex;
   flex-direction: row;
+}
+
+.contenedorPadre {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+/* LOADER */
+
+.loaderContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh; 
+  width: 100vw; 
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.tituloContenedor {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  align-items: flex-end;
 }

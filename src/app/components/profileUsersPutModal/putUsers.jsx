@@ -88,12 +88,27 @@ const PutUsers = ({ userData }) => {
 
   //? CHANGE HANDLER DATE PICKER
   const handleDateOfBirthChange = (date) => {
-    const formattedDate = format(date, "dd/MM/yyyy");
-    setStartDate(date);
-    setForm({
-      ...form,
-      birth: formattedDate,
-    });
+    const currentDate = new Date(); // Obtener la fecha actual
+    const formattedDate = date ? format(date, "dd/MM/yyyy") : "";
+
+    if (date && date > currentDate) {
+      // Si la fecha seleccionada es posterior a la fecha actual
+      setErrors((errors) => ({
+        ...errors,
+        birth: "Please select a date earlier than today",
+      }));
+    } else {
+      setErrors((errors) => ({
+        ...errors,
+        birth: "",
+      }));
+
+      setStartDate(date);
+      setForm({
+        ...form,
+        birth: formattedDate,
+      });
+    }
   };
 
   //? ON CHANGE INPUT HANDLER
@@ -142,17 +157,14 @@ const PutUsers = ({ userData }) => {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
-    setSpan(true);
 
-    // axios
-    //   .post("/api/vacancies", form)
-    //   .then((response) => {
-    //     setSpan(true);
-    //     setValid(false);
-    //   })
-    //   .catch((err) => ({ error: err.message }));
+    axios
+      .patch(`/api/users/${userData.id}`, form)
+      .then((response) => {
+        setSpan(true);
+        setValid(false);
+      })
+      .catch((err) => ({ error: err.message }));
   };
 
   return (
@@ -161,6 +173,9 @@ const PutUsers = ({ userData }) => {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModal}>
+              X
+            </span>
             <h2>Edit your personal info</h2>
 
             <div className={styles.form_container}>
@@ -211,9 +226,9 @@ const PutUsers = ({ userData }) => {
                     <ReactDatePicker
                       selected={startDate}
                       onChange={handleDateOfBirthChange}
-                      placeholder="Enter your date of birth"
+                      placeholder="Select your date of birth"
                       className={styles.input_dateOfBirth}
-                      value={form.birth}
+                      dateFormat="dd/MM/yyyy"
                     />
                     {errors.birth !== null && (
                       <span className={styles.error_span}>{errors.birth}</span>
@@ -226,10 +241,15 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={countries}
                       name="country"
-                      value={form.country}
+                      value={countries.find(
+                        (option) => option.value === form.country
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "country", value: selectedOption },
+                          target: {
+                            name: "country",
+                            value: selectedOption,
+                          },
                         })
                       }
                       isClearable={true}
@@ -271,7 +291,6 @@ const PutUsers = ({ userData }) => {
                           },
                         })
                       }
-                      value={form.progLanguages}
                       isClearable={false}
                       placeholder="Select the programming languages you know"
                       isSearchable={true}
@@ -298,10 +317,15 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={degrees}
                       name="degree"
-                      required
+                      value={degrees.find(
+                        (option) => option.value === form.degree
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "degree", value: selectedOption },
+                          target: {
+                            name: "degree",
+                            value: selectedOption,
+                          },
                         })
                       }
                       isClearable={true}
@@ -407,9 +431,15 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={seniority}
                       name="seniority"
+                      value={seniority.find(
+                        (option) => option.value === form.seniority
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "seniority", value: selectedOption },
+                          target: {
+                            name: "seniority",
+                            value: selectedOption,
+                          },
                         })
                       }
                       isClearable={true}
@@ -440,6 +470,9 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={specialization}
                       name="specialization"
+                      value={specialization.find(
+                        (option) => option.value === form.specialization
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
                           target: {
@@ -477,9 +510,15 @@ const PutUsers = ({ userData }) => {
                     <Select
                       options={working}
                       name="working"
+                      value={working.find(
+                        (option) => option.value === form.working
+                      )}
                       onChange={(selectedOption) =>
                         changeHandler({
-                          target: { name: "working", value: selectedOption },
+                          target: {
+                            name: "working",
+                            value: selectedOption,
+                          },
                         })
                       }
                       isClearable={true}
@@ -503,13 +542,14 @@ const PutUsers = ({ userData }) => {
                     />
                   </div>
                   {/* About Me */}
-                  <div className={styles.working_container}>
-                    <label className={styles.working}>About you</label>
+                  <div className={styles.aboutme_container}>
+                    <label className={styles.aboutme}>About you</label>
                     <textarea
                       type="text"
                       name="aboutme"
+                      value={form.aboutme}
                       placeholder="Write a short summary about yourself"
-                      className={styles.textarea_aboutMe}
+                      className={styles.textarea_aboutme}
                       onChange={changeHandler}
                     />
                     {errors.aboutme !== null && (

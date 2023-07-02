@@ -6,9 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   home,
-  Vector,
-  notification,
-  favorites,
   logoff,
   dashboard,
   about,
@@ -34,11 +31,6 @@ const NavBar = () => {
   //? FUNCTION LOGOUT
   function logOut() {
     localStorage.removeItem("userData");
-    routerb.push("/landing");
-  }
-
-  function logOutCompanies() {
-    localStorage.removeItem("companyData");
     routerb.push("/landing");
   }
 
@@ -91,15 +83,6 @@ const NavBar = () => {
             />
           </Link>
 
-          <Link href="/profile/favorites">
-            <Image
-              src={favorites}
-              alt="image"
-              className={styles.Icons}
-              data-tooltip-id="favorites-users"
-              data-tooltip-content=" My Favorites"
-            />
-          </Link>
           <button onClick={logOut} className={styles.logOutButton}>
             <Link href="/landing">
               <Image
@@ -151,16 +134,7 @@ const NavBar = () => {
             />
           </Link>
 
-          <Link href="/company/favorites">
-            <Image
-              src={favorites}
-              alt="image"
-              className={styles.Icons}
-              data-tooltip-id="favorites-companies"
-              data-tooltip-content=" My Favorites"
-            />{" "}
-          </Link>
-          <button onClick={logOutCompanies} className={styles.logOutButton}>
+          <button onClick={logOut} className={styles.logOutButton}>
             <Link href="/landing">
               <Image
                 src={logoff}

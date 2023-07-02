@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       const users = await dataUsers.map((user) => {
         user.password = encrypt(user.password);
         return user;
-      })
+      });
       try {
         await prisma.user.createMany({
           data: users,
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         name,
         lastname,
         birth,
-        aboutMe,
+        aboutme,
         working,
         country,
         email,
@@ -39,20 +39,27 @@ export default async function handler(req, res) {
         softSkills,
         specialization,
         recruiter,
+        isPremium,
+        googleAuth,
       } = req.body;
-      
+
       const userEmail = email;
+
+      const exist = await prisma.user.findUnique({
+        where: { email: userEmail },
+      });
+      if (exist) return res.status(400).json({ error: "User already exists" });
+
       const encryptPass = await encrypt(password);
 
       try {
-        
         const newUser = await prisma.user.create({
           data: {
             username,
             name,
             lastname,
             birth,
-            aboutMe,
+            aboutme,
             working,
             country,
             email,
@@ -66,13 +73,14 @@ export default async function handler(req, res) {
             softSkills,
             specialization,
             recruiter,
+            isPremium,
+            googleAuth,
           },
         });
-        console.log(userEmail);
 
         await transporter.verify();
         const mail = {
-          from: 'equipo3.37a@gmail.com',
+          from: "equipo3.37a@gmail.com",
           to: userEmail,
           subject: "Registro exitoso",
           html: `
@@ -95,8 +103,44 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const allUsers = await prisma.user.findMany();
+    const { includeInactive } = req.query;
+    const allUsers = await prisma.user.findMany({
+      where: {
+        isActive: true,
+        superAdmin: false, // solo obtener usuarios que no sean superAdmin
+      },
+      orderBy: [
+        { isPremium: "desc" },
+        // other fields to order by (if any)
+      ],
+    });
 
-    return res.status(200).json(allUsers);
+    const includeInactiveBool = includeInactive
+      ? includeInactive.toLowerCase() === "true"
+      : false;
+
+    try {
+      const allUsers = await prisma.user.findMany({
+        where: {
+          superAdmin: false, // solo obtener usuarios que no sean superAdmin
+          ...(includeInactiveBool
+            ? {}
+            : {
+                isActive: {
+                  equals: true,
+                },
+              }),
+        },
+        orderBy: [
+          { isPremium: "desc" },
+          // otros campos para ordenar (si los hay)
+        ],
+      });
+
+      return res.status(200).json(allUsers);
+    } catch (error) {
+      console.error("Error retrieving users:", error);
+      return res.status(500).json({ error: error.message });
+    }
   }
 }
