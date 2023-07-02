@@ -49,9 +49,17 @@ body.active-modal {
     background: rgba(49, 49, 49, 0.8);
 }
 
+.close_button {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
 .modal_content {
     position: absolute;
-    top: 40%;
+    top: 41%;
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
@@ -61,6 +69,11 @@ body.active-modal {
     max-width: 1000px;
     min-width: 500px;
     z-index: 2000;
+}
+
+.modal_content h2{
+    font-size: 27px;
+    font-family: "Merriweather";
 }
 
 /* PAGE CONTAINER */

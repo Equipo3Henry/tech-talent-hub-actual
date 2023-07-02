@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./fileUploader.module.css";
 
 const FileUploader = ({ companyId }) => {
@@ -18,6 +18,9 @@ const FileUploader = ({ companyId }) => {
   const toggleModalError = () => {
     setShowModalError(!showModalError);
   };
+
+  const [existingFileUrl, setExistingFileUrl] = useState("");
+
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -87,15 +90,47 @@ const FileUploader = ({ companyId }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      try {
+        const response = await fetch(`/api/companies/${companyId}`);
+        const companyData = await response.json();
+
+        if (companyData.logo_Company) {
+          setExistingFileUrl(companyData.logo_Company);
+        }
+      } catch (error) {
+        console.error("Error retrieving company data:", error);
+      }
+    };
+
+    fetchCompanyData();
+  }, [companyId]);
+
   return (
     <>
       {showModalOK && (
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalOK}></div>
           <div className={styles.modal_content}>
+            <span
+              className={styles.close_button}
+              onClick={() => {
+                toggleModalOK();
+                window.location.reload();
+              }}
+            >
+              X
+            </span>
             <h2>Success!</h2>
             <p>Profile picture updated successfully.</p>
-            <button className={styles.btn_modal} onClick={toggleModalOK}>
+            <button
+              className={styles.btn_modal}
+              onClick={() => {
+                toggleModalOK();
+                window.location.reload();
+              }}
+            >
               Close
             </button>
           </div>
@@ -105,6 +140,9 @@ const FileUploader = ({ companyId }) => {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalError}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModalError}>
+              X
+            </span>
             <h2>Error</h2>
             <p>
               We couldnt update your profile picture. Please try again in a few
@@ -117,6 +155,23 @@ const FileUploader = ({ companyId }) => {
         </div>
       )}
       <div className={styles.container}>
+        {existingFileUrl && (
+          <div className={styles.containerProfile}>
+            <div
+              className={styles.existing_file}
+              onClick={() => {
+                document.getElementById("file").click();
+              }}
+            >
+              <img
+                src={existingFileUrl}
+                className={styles.existing_fileImg}
+                alt="Existing File"
+              />
+            </div>
+            <h3>Click on the image to update</h3>
+          </div>
+        )}
         <label className={styles.custum_file_upload} for="file">
           <div className={styles.icon}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
@@ -138,7 +193,7 @@ const FileUploader = ({ companyId }) => {
             </svg>
           </div>
           <div className={styles.text}>
-            <span>Click to upload your profile picture</span>
+            <span>Click to update your picture</span>
           </div>
           <input
             type="file"
