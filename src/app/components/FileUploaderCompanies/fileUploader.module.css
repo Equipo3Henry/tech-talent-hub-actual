@@ -114,6 +114,14 @@ body.active-modal {
     z-index: 2000;
 }
 
+.close_button {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
 .modal_content h2{
     font-family: "Merriweather";
     font-size: 27px;

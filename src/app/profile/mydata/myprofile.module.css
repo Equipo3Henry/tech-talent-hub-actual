@@ -14,6 +14,8 @@
     margin-top: 30px;
 }
 
+
+
 .title {
     font-size: 40px;
         font-family: "Merriweather";
@@ -87,6 +89,16 @@
     font-family: "Merriweather";
     font-size: 23px;
 }
+
+.close_button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+
 
 .modal_content p {
     font-family: "Roboto Regular";
