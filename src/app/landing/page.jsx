@@ -6,15 +6,32 @@ import styles from "./landing.module.css";
 import Carrousel from "../components/carrouselCompanies/carrousel";
 import AboutProject from "../components/aboutProject/aboutProject";
 import Chatbot from "../chatBot/chatbot";
-
+import { useEffect, useState } from "react";
 function Landing(props) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 600);
+
+    if (typeof window !== "undefined") {
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", checkMobile);
+      }
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <LandingFirstPart />
-      {/*       <Chatbot />
-       */}
+      {/*<Chatbot />*/}
       <AboutProject />
-      <Carrousel />
+      <div className={`${isMobile ? styles.hideOnMobile : ""}`}>
+        <Carrousel className={styles.logos} />
+      </div>
       <JobsLanding />
       <Services section="landing" />
     </div>
@@ -22,5 +39,3 @@ function Landing(props) {
 }
 
 export default Landing;
-
-//
