@@ -34,7 +34,6 @@ function DashboardPage() {
       setCompanyData(companyDataFromStorage);
     } else {
       console.log("No data in localStorage");
-      console.log(companyData);
     }
   }, []);
 
