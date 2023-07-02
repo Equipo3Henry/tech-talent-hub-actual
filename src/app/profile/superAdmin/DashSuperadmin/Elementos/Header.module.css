@@ -1,0 +1,16 @@
+.container {
+  width: 100wh;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.texts {
+  font-size: 46px;
+  word-spacing: 10px;
+  text-align: left;
+  font-weight: 800;
+  color: #262626;
+}

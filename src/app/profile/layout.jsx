@@ -8,28 +8,59 @@ export default function Layout({ children }) {
   const [dataJobs, setDataJobs] = useState([]);
   const [jobs, setJobs] = useState([]);
 
-  console.log(jobs); // Aquí se añade el console.log
   const [selectedProgLanguage, setSelectedProgLanguage] = useState("");
   const [selectedSeniority, setSelectedSeniority] = useState("");
-  const [selectedSpec, setSelectedSpec] = useState("");
+  const [selectedNameVacancy, setselectedNameVacancy] = useState("");
   const [selectedWorkday, setSelectedWorkday] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState(null);
+  const [companies, setCompanies] = useState(null);
+  const [allUsers, setAllUsers] = useState(null);
+  const [allCompanies, setAllCompanies] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
-      console.log(response.data); // Aquí se añade el console.log
+      setIsLoading(true); // comenzamos la carga
       setDataJobs(response.data);
       setJobs(response.data);
+      setIsLoading(false); // terminamos la carga
+    };
+    fetchData();
+  }, []);
+
+  const fetchActiveCompanies = async () => {
+    const response = await axios.get("/api/companies");
+    setCompanies(response.data);
+  };
+
+  const fetchAllCompanies = async () => {
+    const response = await axios.get("/api/companies?includeInactive=true");
+    setCompanies(response.data);
+  };
+  useEffect(() => {
+    fetchAllCompanies();
+  }, []);
+
+  useEffect(() => {
+    fetchActiveCompanies();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/users");
+      setAllUsers(response.data);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchSearchVacancies = async () => {
       const response = await axios.get(`/api/searchVacancies?q=${searchValue}`);
       setJobs(response.data);
+      setIsLoading(false);
     };
     fetchSearchVacancies();
   }, [searchValue]);
@@ -38,17 +69,18 @@ export default function Layout({ children }) {
     const fetchFilteredJobs = async () => {
       const url = "/api/vacanciesFilters";
       const params = {};
+      setIsLoading(true);
 
       if (selectedProgLanguage) {
-        params.programming_Languajes = selectedProgLanguage;
+        params.languajes = selectedProgLanguage;
       }
 
       if (selectedSeniority) {
         params.seniority = selectedSeniority;
       }
 
-      if (selectedSpec) {
-        params.spec = selectedSpec;
+      if (selectedNameVacancy) {
+        params.nameVacancy = selectedNameVacancy;
       }
 
       if (selectedWorkday) {
@@ -58,6 +90,7 @@ export default function Layout({ children }) {
       try {
         const response = await axios.get(url, { params });
         setJobs(response.data);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -66,7 +99,7 @@ export default function Layout({ children }) {
     if (
       selectedProgLanguage ||
       selectedSeniority ||
-      selectedSpec ||
+      selectedNameVacancy ||
       selectedWorkday
     ) {
       fetchFilteredJobs();
@@ -76,9 +109,8 @@ export default function Layout({ children }) {
   }, [
     selectedProgLanguage,
     selectedSeniority,
-    selectedSpec,
+    selectedNameVacancy,
     selectedWorkday,
-    dataJobs,
   ]);
 
   return (
@@ -86,13 +118,20 @@ export default function Layout({ children }) {
       value={{
         jobs,
         user,
-
+        companies,
+        allUsers,
+        allCompanies,
+        isLoading,
         setSelectedProgLanguage,
         setSelectedSeniority,
-        setSelectedSpec,
+        setselectedNameVacancy,
         setSelectedWorkday,
         setSearchValue,
         setUser,
+        setCompanies,
+        setAllUsers,
+        setIsLoading,
+        setAllCompanies,
       }}
     >
       {children}

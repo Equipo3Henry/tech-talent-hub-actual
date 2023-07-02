@@ -36,7 +36,7 @@ const FormMyPosts = ({ parsedData }) => {
     Relevance: "GLOBAL",
     companyId: parsedData && parsedData.id,
   });
-
+  console.log("hola", parsedData);
   //? USE STATE FORM
   const [errors, setErrors] = useState({
     name_Vacancy: "",
@@ -46,7 +46,15 @@ const FormMyPosts = ({ parsedData }) => {
     salary: "",
     date_Hire: "",
   });
-
+  useEffect(() => {
+    if (parsedData) {
+      setForm((form) => ({
+        ...form,
+        logo_Company: parsedData.logo_Company,
+        companyId: parsedData.id,
+      }));
+    }
+  }, [parsedData]);
   //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
   const [valid, setValid] = useState(false);
 
@@ -237,7 +245,7 @@ const FormMyPosts = ({ parsedData }) => {
                   {/* Salary */}
                   <div className={styles.salary_container}>
                     <label className={styles.salary}>
-                      Salary <span className={styles.required}>*</span>
+                      Salary (USD) <span className={styles.required}>*</span>
                     </label>
                     <input
                       type="number"
@@ -306,6 +314,7 @@ const FormMyPosts = ({ parsedData }) => {
                       className={styles.input_date_Hire}
                       minDate={startDateMin}
                       placeholderText="Select a hiring date"
+                      dateFormat="dd/MM/yyyy"
                     />
                     {errors.date_Hire !== null && (
                       <span className={styles.error_span}>

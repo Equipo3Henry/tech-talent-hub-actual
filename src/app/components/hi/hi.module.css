@@ -1,0 +1,10 @@
+.nstyle {
+  text-decoration: none;
+  color: inherit;
+  /* Otros estilos personalizados si es necesario */
+}
+
+.h1 {
+  font-size: 1.5em;
+  font-family: "Roboto Regular";
+}

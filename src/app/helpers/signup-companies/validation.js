@@ -65,10 +65,10 @@ export const validation = async (
   }
 
   //? VACANCIES VALIDATION
-  if (isNaN(form.vacancies)) {
+  if (isNaN(form.vacancies) || form.vacancies < 0) {
     setErrors((errors) => ({
       ...errors,
-      vacancies: "Please enter a numeric value",
+      vacancies: "Please enter a numeric value higher than 0",
     }));
   } else {
     setErrors((errors) => ({
@@ -97,10 +97,10 @@ export const validation = async (
   }
 
   //? EMPLOYEES VALIDATION
-  if (isNaN(form.employes)) {
+  if (isNaN(form.employes) || form.employes < 0) {
     setErrors((errors) => ({
       ...errors,
-      employes: "Please enter a numeric value",
+      employes: "Please enter a numeric value higher than 0",
     }));
   } else {
     setErrors((errors) => ({
@@ -110,10 +110,10 @@ export const validation = async (
   }
 
   //? JOBS VALIDATION
-  if (isNaN(form.jobs)) {
+  if (isNaN(form.jobs) || form.jobs < 0) {
     setErrors((errors) => ({
       ...errors,
-      jobs: "Please enter a numeric value",
+      jobs: "Please enter a numeric value higher than 0",
     }));
   } else {
     setErrors((errors) => ({

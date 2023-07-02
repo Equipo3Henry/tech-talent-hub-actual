@@ -1,0 +1,75 @@
+.textsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleCarrousel {
+    font-size: 48px;
+    font-family: "Merriweather";
+    font-weight: 800;
+    margin: 5px 0 5px 15px;
+}
+
+.pCarrousel {
+    font-size: 20px;
+    margin-bottom: 70px;
+}
+
+
+.slider {
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 1500px;
+    margin-bottom: 3rem;
+}
+
+.slider::before,
+.slider::after {
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+
+.slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+.slider::before {
+    left: 0;
+    top: 0;
+}
+
+.slide_track {
+    animation: scroll 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+    gap: 40px
+}
+
+.img {
+    height: 100px;
+    padding-right: 20px;
+    width: 250px
+}
+
+.slide {
+    height: 100px;
+    width: 250px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px * 7));
+    }
+}

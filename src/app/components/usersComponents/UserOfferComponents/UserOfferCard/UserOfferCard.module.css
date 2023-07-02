@@ -10,7 +10,8 @@
   display: flex;
 }
 
-.Container:hover, .Container:focus{
+.Container:hover,
+.Container:focus {
   border-color: #b682d9;
 }
 .InfoContainer {
@@ -33,12 +34,13 @@
 }
 
 .progLanguages {
-  width: 292px;
+  width: auto;
   height: 38px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
   font-weight: 300;
   font-size: 0.5rem;
   line-height: 139%;
   letter-spacing: -0.011em;
   color: #000000;
+  line-height: 200%; /* Ajusta el valor según tu preferencia */
 }

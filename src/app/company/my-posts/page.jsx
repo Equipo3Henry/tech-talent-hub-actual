@@ -2,16 +2,19 @@
 import React from "react";
 import FormMyPosts from "../../components/myposts-companies/formMyPosts";
 import styles from "./myposts.module.css";
-import { myApplicationspicture } from "../../public/assets/imagesCodes";
+import {
+  myApplicationspicture,
+  myposts,
+} from "../../public/assets/imagesCodes";
 import Image from "next/image";
 import MyPostsCards from "../../components/jobsComponents/jobsOfferCardContainerForMyPosts/myPosts";
 import { useState, useEffect } from "react";
+import { StyleRegistry } from "styled-jsx";
 
 function MyPosts(props) {
   const [companyData, setCompanyData] = useState(null);
   const [companyId, setCompanyId] = useState(null);
   const [companyPicture, setCompanyPicture] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("companyData");
@@ -23,21 +26,32 @@ function MyPosts(props) {
       setCompanyId(parsedData.id);
       setCompanyPicture(parsedData.logo_Company);
     }
-    setIsLoading(false);
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  console.log("companyData", companyData);
 
   return (
     <>
       <div className={styles.page_container}>
-        <div className={styles.posts_container}></div>
-        <h1>My Posts</h1>
-        <MyPostsCards companyId={companyId} />
+        <div className={styles.posts_container}>
+          <div className={styles.title_container}>
+            <h1 className={styles.title}>My Posts</h1>
+            <p className={styles.p}>
+              Here you can add new vacancies and edit the status of the ones you
+              currently have.
+            </p>
+          </div>
+          <div className={styles.content}>
+            <div>
+              <MyPostsCards companyId={companyId} />
+              <FormMyPosts parsedData={companyData} />
+            </div>
 
-        <FormMyPosts parsedData={companyData} />
+            <div className={styles.pictureContainer}>
+              <Image src={myposts} alt="myApplicationspicture" />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

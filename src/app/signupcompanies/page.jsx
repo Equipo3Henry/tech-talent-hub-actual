@@ -1,21 +1,56 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./signupcompanies.module.css";
 import Select from "react-select";
 import axios from "axios";
 import Link from "next/link";
-import {
-  eyeopen,
-  eyeclosed,
-  google,
-  upload,
-} from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, upload } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-companies/validation";
 import { countries, type } from "../helpers/signup-companies/variables";
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
+import { usePathname } from "next/navigation";
+import { getAuth, signOut } from "firebase/auth";
 
 function SignUp() {
+  //? USE STATE SIGNUP GOOGLE
+  const auth = getAuth();
+  const [googleData, setGoogleData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const emailRef = useRef(null);
+  const passRef = useRef(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (googleData) {
+      emailRef.current.value = googleData.email;
+      setForm({
+        ...form,
+        email: googleData.email,
+        password: "Google",
+        googleAuth: true,
+      });
+      passRef.current.value = "Login with Google";
+      setIsDisabled(true);
+      setShowPassword(false);
+    }
+  }, [googleData]);
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        setGoogleData(null);
+        setForm({ ...form, email: "", password: "", googleAuth: false });
+        emailRef.current.value = "";
+        passRef.current.value = "";
+        setIsDisabled(false);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   //? USE STATE FORM
   const [form, setForm] = useState({
     name: "",
@@ -30,6 +65,7 @@ function SignUp() {
     description: "",
     employes: 0,
     jobs: 0,
+    googleAuth: false,
   });
 
   //? USE STATE ERRORS
@@ -44,6 +80,9 @@ function SignUp() {
     employes: "",
     jobs: "",
   });
+
+  //? USE STATE IMAGE
+  const [imageURL, setImageURL] = useState(null);
 
   //? USE STATE IS VALID (BOTÓN SUBMIT DESHABILITADO)
   const [valid, setValid] = useState(false);
@@ -64,7 +103,26 @@ function SignUp() {
     setShowPassword(!showPassword);
     setShowPasswordIcon(showPassword ? eyeclosed : eyeopen);
   };
+  const changeHandlerb = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET); // reemplaza con tu preset de subida de Cloudinary
 
+    try {
+      const res = await axios.post(
+        `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
+        formData
+      );
+      setImageURL(res.data.secure_url);
+      setForm((prevState) => ({
+        ...prevState,
+        logo_Company: res.data.secure_url,
+      }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
   //? ON CHANGE INPUT HANDLER
   const changeHandler = (event) => {
     let property = event.target.name;
@@ -97,7 +155,6 @@ function SignUp() {
       setValid,
       isFormComplete
     );
-    console.log(form);
   };
 
   //? ISFORMCOMPLETE FUNCTION
@@ -143,17 +200,15 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
     axios
       .post("/api/companies", form)
       .then((response) => {
-        console.log(form);
         setShowModal(true);
-
         setValid(false);
       })
-      .catch((err) => ({ error: err.message }));
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
   };
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
@@ -189,14 +244,20 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <button className={styles.ButtonB}>
-              Join with Google
-              <Image
-                src={google}
-                alt="image"
-                className={styles.GoogleImage}
-              ></Image>{" "}
-            </button>
+            {!googleData ? (
+              <GoogleLoginButton
+                pathname={pathname}
+                setGoogleData={setGoogleData}
+              />
+            ) : (
+              <div className={styles.logOff}>
+                <span>
+                  Hello {googleData.displayName}, if you do not want to log in
+                  with google
+                </span>
+                <button onClick={() => logout()}>click here</button>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -224,11 +285,12 @@ function SignUp() {
                 <label className={styles.logo_Company}>Logo</label>
                 <div className={styles.password_toggle_container}>
                   <input
-                    type="text"
+                    type="file"
+                    accept=".png"
                     name="logo_Company"
                     placeholder="Upload a PNG image"
                     className={styles.input_logo_Company}
-                    onChange={changeHandler}
+                    onChange={changeHandlerb}
                   />
                   <Image src={upload} className={styles.upload_icon} />
                 </div>
@@ -251,6 +313,8 @@ function SignUp() {
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
+                disabled={isDisabled}
+                ref={emailRef}
               />
               {errors.email !== null && (
                 <span className={styles.error_span}>{errors.email}</span>
@@ -310,6 +374,8 @@ function SignUp() {
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
+                    disabled={isDisabled}
+                    ref={passRef}
                   />
                   <Image
                     src={showPasswordIcon}

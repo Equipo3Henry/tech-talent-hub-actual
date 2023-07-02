@@ -2,18 +2,12 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const { programming_Languajes, seniority, specialization, workday } =
-    req.query;
-  console.log("Incoming query parameters: ", req.query);
+  const paramsFilters = req.query;
+  console.log("Incoming query parameters: ", paramsFilters);
   if (req.method === "GET") {
     try {
-      const vacancies = await getVacancies(
-        programming_Languajes,
-        seniority,
-        specialization,
-        workday
-      );
-      console.log("Vacancies found: ", vacancies);
+      const vacancies = await getVacancies(paramsFilters);
+      console.log("Vacancies found: ", vacancies.length);
       res.status(200).json(vacancies);
     } catch (error) {
       console.error("Error while retrieving vacancies: ", error);
@@ -24,17 +18,14 @@ export default async function handler(req, res) {
   }
 }
 
-async function getVacancies(
-  programming_Languajes,
-  seniority,
-  specialization,
-  workday
-) {
-  let where = {};
+async function getVacancies(paramsFilters) {
+  
+  const { languajes, seniority, nameVacancy, workday } = paramsFilters;
 
-  if (programming_Languajes) {
+  let where = {};
+  if (languajes) {
     where.programming_Languages = {
-      hasSome: programming_Languajes.split(","),
+      hasSome: languajes.split(","),
     };
   }
   if (seniority) {
@@ -43,9 +34,9 @@ async function getVacancies(
     };
   }
 
-  if (specialization) {
-    where.specialization = {
-      equals: specialization,
+  if (nameVacancy) {
+    where.name_Vacancy = {
+      equals: nameVacancy,
     };
   }
 
@@ -59,9 +50,12 @@ async function getVacancies(
 
   const vacancies = await prisma.vacancy.findMany({
     where,
+    include: {
+      company: true,
+      applicants: true,
+    },
   });
 
-  console.log(programming_Languajes, seniority, specialization, workday);
   console.log("Query result: ", vacancies);
 
   return vacancies;

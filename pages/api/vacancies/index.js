@@ -52,16 +52,23 @@ export default async function handler(req, res) {
       }
     }
   }
-
   if (req.method === "GET") {
-    const { companyId } = req.query; // Get companyId from query parameters
+    const { companyId, orderBySalary, orderDirection } = req.query;
     try {
       const whereClause = companyId ? { companyId: Number(companyId) } : {}; // If companyId is provided, add it to where clause
       const vacancies = await prisma.vacancy.findMany({
-        where: whereClause, // Add where clause to findMany
+        where: whereClause,
+        orderBy:
+          orderBySalary === "true"
+            ? { salary: orderDirection === "asc" ? "asc" : "desc" }
+            : undefined,
         include: {
-          company: true, // Include company details in the response
-          applicants: true, // Include applicants' details in the response
+          company: true,
+          applicants: {
+            where: {
+              isActive: true,
+            },
+          },
         },
       });
 

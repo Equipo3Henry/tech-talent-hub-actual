@@ -1,0 +1,173 @@
+.contenedorGeneral {
+  margin-left: 70px;
+}
+
+.containerGraphAcc {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  padding: 20px;
+}
+
+.containerGraph {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 500px;
+  height: 20%;
+  padding-right: 30px;
+}
+
+.infoContainer {
+  display: flex;
+  margin-left: 20px;
+  gap: 5rem;
+}
+
+.dataContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10em;
+}
+/* ACORDEÓN */
+
+.ac_container {
+  width: 100%;
+  text-align: left;
+}
+
+.ac_container label {
+  height: 80px;
+  font-size: 22px;
+  font-family: "Roboto Regular";
+  font-weight: 600;
+  padding: 20px;
+  position: relative;
+  z-index: 20;
+  display: block;
+  cursor: pointer;
+  color: black;
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(1%, #fff),
+    color-stop(100%, #eaeaea)
+  );
+  background: -webkit-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -o-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: -ms-linear-gradient(top, #fff 1%, #eaeaea 100%);
+  background: linear-gradient(top, #fff 1%, #eaeaea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#eaeaea', GradientType=0);
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3),
+    1px 0 0 rgba(255, 255, 255, 0.9) inset, 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ac_container label:hover {
+  background: #fff;
+}
+
+.ac_container input {
+  display: none;
+}
+
+.ac_container input:checked + label,
+.ac_container input:checked + label:hover {
+  background: #f1f2f3;
+  color: black;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3), 0 2px 2px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  font-size: 22px;
+}
+
+.ac_container article {
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: -1px;
+  overflow: hidden;
+  height: 0;
+  position: relative;
+  z-index: 10;
+  transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
+}
+
+.ac_container input:checked ~ article {
+  transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+  box-shadow: 0 0 0 1px rgba(155, 155, 155, 0.3);
+}
+
+.ac_container input:checked ~ article.ac_small {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.ac_container input:checked ~ article.ac_medium {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.ac_container input:checked ~ article.ac_large {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.styles.mercadopagoChart {
+  display: flex;
+}
+
+.buscador {
+  width: 1052.6px;
+  height: 50px;
+  padding-left: 10px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0.5px 0.5px 4px 0.5px;
+  font-size: 18px;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.loaderContainer {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}

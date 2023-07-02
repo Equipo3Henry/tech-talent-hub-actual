@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./signup.module.css";
 import Select from "react-select";
 import axios from "axios";
@@ -9,12 +9,7 @@ import Link from "next/link";
 import ReactDatePicker from "react-datepicker";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  eyeopen,
-  eyeclosed,
-  google,
-  upload,
-} from "../public/assets/imagesCodes";
+import { eyeopen, eyeclosed, upload } from "../public/assets/imagesCodes";
 import { validation } from "../helpers/signup-users/validation";
 import {
   progLanguages,
@@ -28,11 +23,69 @@ import {
 } from "../helpers/signup-users/variables";
 import { storage } from "@/src/firebase/firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { GoogleLoginButton } from "../components/googleLoginButton/googleLoginButton";
+import { usePathname } from "next/navigation";
+import { getAuth, signOut } from "firebase/auth";
 
 function SignUp() {
-  //? USE STATE FORM
-  const [cv, setCv] = useState("");
+  //? USE STATE SIGNUP GOOGLE
+  const auth = getAuth();
+  const [googleData, setGoogleData] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const emailRef = useRef(null);
+  const nameRef = useRef(null);
+  const lastnameRef = useRef(null);
+  const passRef = useRef(null);
+  const pathname = usePathname();
 
+  useEffect(() => {
+    if (googleData) {
+      const allName = googleData.displayName.split(" ");
+      const name =
+        allName.length >= 3 ? allName.slice(0, 2).join(" ") : allName[0];
+      const lastname =
+        allName.length >= 3 ? allName.slice(2, 4).join(" ") : allName[1];
+      emailRef.current.value = googleData.email;
+      nameRef.current.value = name;
+      lastnameRef.current.value = lastname;
+      setForm({
+        ...form,
+        email: googleData.email,
+        name: name,
+        lastname: lastname,
+        password: "Google",
+        googleAuth: true,
+      });
+      passRef.current.value = "Login with Google";
+      setIsDisabled(true);
+      setShowPassword(false);
+    }
+  }, [googleData]);
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        setGoogleData(null);
+        setForm({
+          ...form,
+          email: "",
+          name: "",
+          lastname: "",
+          password: "",
+          googleAuth: false,
+        });
+        emailRef.current.value = "";
+        lastnameRef.current.value = "";
+        nameRef.current.value = "";
+        passRef.current.value = "";
+        setIsDisabled(false);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  //? USE STATE FORM
   const [form, setForm] = useState({
     username: "",
     name: "",
@@ -51,6 +104,8 @@ function SignUp() {
     softSkills: [],
     specialization: "",
     recruiter: false,
+    isPremium: false,
+    googleAuth: false,
   });
 
   //? USE STATE ERRORS
@@ -92,8 +147,9 @@ function SignUp() {
   //? CHANGE HANDLER DATE PICKER
   const handleDateOfBirthChange = (date) => {
     const currentDate = new Date(); // Obtener la fecha actual
-    const formattedDate = format(date, "dd/MM/yyyy");
-    if (date > currentDate) {
+    const formattedDate = date ? format(date, "dd/MM/yyyy") : "";
+
+    if (date && date > currentDate) {
       // Si la fecha seleccionada es posterior a la fecha actual
       setErrors((errors) => ({
         ...errors,
@@ -104,6 +160,7 @@ function SignUp() {
         ...errors,
         birth: "",
       }));
+
       setStartDate(date);
       setForm({
         ...form,
@@ -111,6 +168,7 @@ function SignUp() {
       });
     }
   };
+
   const handleCvChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -171,7 +229,6 @@ function SignUp() {
       setValid,
       isFormCompleted
     );
-    console.log(form);
   };
   //? ISFORMCOMPLETE FUNCTION
   const isFormCompleted = () => {
@@ -226,45 +283,16 @@ function SignUp() {
   //? SUBMIT BUTTON HANDLER
   const submitHandler = (event) => {
     event.preventDefault();
-    // setForm(form);
-    console.log(form);
-    axios.post("/api/users", form).then((response) => {
-      console.log(form);
-      setShowModal(true);
-      setForm({
-        username: "",
-        name: "",
-        lastname: "",
-        birth: "",
-        aboutme: "",
-        working: false,
-        country: "",
-        email: "",
-        password: "",
-        degree: "",
-        languages: [],
-        progLanguages: [],
-        seniority: "",
-        cv: "",
-        softSkills: [],
-        specialization: "",
-        recruiter: false,
+    axios
+      .post("/api/users", form)
+      .then((response) => {
+        setShowModal(true);
+        setValid(false);
+      })
+      .catch((error) => {
+        alert(error.response.data.error);
       });
-      setValid(false);
-    });
   };
-
-  //? Custom input component for ReactDatePicker
-  const CustomDatePickerInput = ({ value, onClick }) => (
-    <input
-      type="text"
-      value={value}
-      onClick={onClick}
-      placeholder="Enter your date of birth"
-      className={styles.input_dateOfBirth}
-      readOnly
-    />
-  );
 
   //? DISABLE SUBMIT BUTTON WHEN VALID IS FALSE
   useEffect(() => {
@@ -298,14 +326,20 @@ function SignUp() {
         </div>
         <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
-            <button className={styles.ButtonB}>
-              Join with Google
-              <Image
-                src={google}
-                alt="image"
-                className={styles.GoogleImage}
-              ></Image>{" "}
-            </button>
+            {!googleData ? (
+              <GoogleLoginButton
+                pathname={pathname}
+                setGoogleData={setGoogleData}
+              />
+            ) : (
+              <div className={styles.logOff}>
+                <span>
+                  Hello {googleData.displayName}, if you do not want to log in
+                  with google
+                </span>
+                <button onClick={() => logout()}>click here</button>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.form_container}>
@@ -323,6 +357,7 @@ function SignUp() {
                   placeholder="Enter your first name"
                   className={styles.input_name}
                   onChange={changeHandler}
+                  ref={nameRef}
                 />
                 {errors.name !== null && (
                   <span className={styles.error_span}>{errors.name}</span>
@@ -336,10 +371,10 @@ function SignUp() {
                 <input
                   type="text"
                   name="lastname"
-                  required
                   placeholder="Enter your last name"
                   className={styles.input_lastname}
                   onChange={changeHandler}
+                  ref={lastnameRef}
                 />
                 {errors.lastname !== null && (
                   <span className={styles.error_span}>{errors.lastname}</span>
@@ -354,10 +389,11 @@ function SignUp() {
               <input
                 type="email"
                 name="email"
-                required
                 placeholder="Enter your email"
                 className={styles.input_email}
                 onChange={changeHandler}
+                disabled={isDisabled}
+                ref={emailRef}
               />
               {errors.email !== null && (
                 <span className={styles.error_span}>{errors.email}</span>
@@ -373,7 +409,6 @@ function SignUp() {
                 <input
                   type="text"
                   name="username"
-                  required
                   placeholder="Enter the username you want to use on the site"
                   className={styles.input_username}
                   onChange={changeHandler}
@@ -392,10 +427,11 @@ function SignUp() {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    required
                     placeholder="Enter a password"
                     className={styles.input_password}
                     onChange={changeHandler}
+                    disabled={isDisabled}
+                    ref={passRef}
                   />
                   <Image
                     src={showPasswordIcon}
@@ -425,8 +461,9 @@ function SignUp() {
                 <ReactDatePicker
                   selected={startDate}
                   onChange={handleDateOfBirthChange}
-                  customInput={<CustomDatePickerInput />}
                   className={styles.input_dateOfBirth}
+                  placeholderText="Select your date of birth"
+                  dateFormat="dd/MM/yyyy"
                 />
                 {errors.birth !== null && (
                   <span className={styles.error_span}>{errors.birth}</span>
@@ -444,9 +481,6 @@ function SignUp() {
                     className={styles.input_cv}
                     onChange={handleCvChange}
                   />
-                  <label htmlFor="file">
-                    <Image src={upload} className={styles.password_icon} />
-                  </label>
                 </div>
 
                 {errors.cv !== null && (
@@ -464,7 +498,6 @@ function SignUp() {
                 <Select
                   options={countries}
                   name="country"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "country", value: selectedOption },
@@ -501,7 +534,6 @@ function SignUp() {
                   isMulti
                   options={progLanguages}
                   name="progLanguages"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "progLanguages", value: selectedOptions },
@@ -536,7 +568,6 @@ function SignUp() {
                 <Select
                   options={degrees}
                   name="degree"
-                  required
                   onChange={(selectedOption) =>
                     changeHandler({
                       target: { name: "degree", value: selectedOption },
@@ -572,7 +603,6 @@ function SignUp() {
                   isMulti
                   options={softSkills}
                   name="softSkills"
-                  required
                   onChange={(selectedOptions) =>
                     changeHandler({
                       target: { name: "softSkills", value: selectedOptions },
@@ -620,7 +650,6 @@ function SignUp() {
                   }
                   isClearable={false}
                   isSearchable={true}
-                  required
                   placeholder="Select the languages you know"
                   closeMenuOnSelect={false}
                   styles={{
@@ -690,7 +719,6 @@ function SignUp() {
                   isClearable={true}
                   placeholder="What do you specialize in?"
                   isSearchable={true}
-                  required
                   closeMenuOnSelect={true}
                   styles={{
                     container: (baseStyles, state) => ({

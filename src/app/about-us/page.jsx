@@ -37,12 +37,6 @@ const us = [
     linkedin: "https://www.linkedin.com/in/nataliamalvicino/",
     image: au4,
   },
-  {
-    name: "Julián González",
-    github: "https://github.com/Uruvsereg",
-    linkedin: "https://www.linkedin.com",
-    image: au7,
-  },
 ];
 
 const aboutUs = () => {

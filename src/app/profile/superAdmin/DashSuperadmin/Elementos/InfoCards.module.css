@@ -1,0 +1,93 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 1rem;
+  gap: 1rem;
+  padding: 0rem;
+  place-items: center;
+}
+.card {
+  grid-column-start: span 1;
+  grid-column-end: span 2;
+  background-color: #262626;
+  display: block;
+  padding: 1em;
+  border: solid #6850bf;
+  border-bottom: solid 1px #6850bf;
+  border-left: solid 9px #6850bf;
+  border-right: solid 1px #6850bf;
+  height: 179px;
+  width: 287px;
+}
+
+.cardtotal {
+  background-color: #b682d9;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #262626;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.3rem 1rem #961ee6;
+}
+.cardtotal:hover {
+  transform: scale(1.05);
+}
+.cardinfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+.grade {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d9d9d9;
+}
+.containerlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lot {
+  color: #d9d9d9;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.botonera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.Button {
+  margin-top: 20px;
+  background: #b682d9;
+  box-shadow: 2px 2px 4px #00000040;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: "Roboto Regular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  transition: transform 0.5 ease;
+}
+
+.Button:hover {
+  background: none;
+  border: solid;
+  border-color: #7155d9;
+  color: #7155d9;
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}

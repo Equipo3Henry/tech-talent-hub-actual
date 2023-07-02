@@ -26,19 +26,39 @@ export default async function handler(req, res) {
     const { id } = req.query;
 
     try {
+      const {
+        type,
+        country,
+        vacancies,
+        description,
+        employes,
+        jobs,
+        isActive,
+        logo_Company,
+      } = req.body;
+
+      const updatedCompany = await prisma.company.update({
+        where: {
+          id: id,
+        },
+        data: {
+          type: type,
+          country: country,
+          vacancies: vacancies,
+          description: description,
+          employes: employes,
+          jobs: jobs,
+          isActive: isActive,
+          logo_Company: logo_Company,
+        },
+      });
+
       let updateData = { ...req.body };
 
       // if password in body, hash it
       if (updateData.password) {
         updateData.password = await encrypt(updateData.password);
       }
-
-      const updatedCompany = await prisma.company.update({
-        where: {
-          id: id,
-        },
-        data: updateData,
-      });
 
       // If logo_Company has been updated in the company, reflect it in all related vacancies
       if (updateData.logo_Company) {

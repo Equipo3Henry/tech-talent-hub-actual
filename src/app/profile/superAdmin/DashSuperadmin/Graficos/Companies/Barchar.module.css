@@ -1,0 +1,26 @@
+.container {
+  max-width: 80%;
+    border: 2px solid black;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+/* 
+  @media (min-width: 768px) {
+    grid-column-start: span 2;
+    position: relative;
+    height: 50vh;
+    @media (min-width: 120px) {
+      width: 80%;
+    }
+    @media (min-width: 1000px) {
+      width: 30%;
+      height: 50vh;
+    }
+    padding: 1rem;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 9px;
+    border: solid #262626;
+  } */
+

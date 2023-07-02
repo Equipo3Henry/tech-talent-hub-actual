@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+}
+.rev{
+    position: fixed;
+    width: 5rem;
+    height: 100vh;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.children{
+    margin-left: 2.25rem;
+    width: 100%;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

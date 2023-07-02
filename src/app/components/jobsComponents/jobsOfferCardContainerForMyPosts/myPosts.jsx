@@ -13,6 +13,7 @@ const MyPostsCards = () => {
   const [applicants, setApplicants] = useState([]);
   const [showModal, setShowModal] = useState(false); // Añade esta línea
   const [companyData, setCompanyData] = useState(null); // <--- Agrega esto
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Obteniendo la compañía del localStorage si está disponible
@@ -30,6 +31,7 @@ const MyPostsCards = () => {
           (job) => job.companyId === companyId
         );
         setJobs(filteredJobs);
+        setIsLoading(false);
       });
     }
   }, [companies]);
@@ -85,6 +87,7 @@ const MyPostsCards = () => {
         .get(`/api/vacancies/${selectedJobId}`)
         .then((response) => {
           setApplicants(response.data.applicants);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching applicants", error);
@@ -101,34 +104,50 @@ const MyPostsCards = () => {
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
             <h2>Applicants</h2>
-            <UserOfferCardsContainerForDashboard
-              users={applicants}
-              companyData={companyData}
-            />
-            <button onClick={toggleModal}>Close</button>
+            {isLoading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.spinner}></div>
+              </div>
+            ) : (
+              <UserOfferCardsContainerForDashboard
+                users={applicants}
+                companyData={companyData}
+              />
+            )}
+            <button className={styles.toggleClose} onClick={toggleModal}>
+              Close
+            </button>
           </div>
         </div>
       )}
-      {filteredJobs.map((job, index) => {
-        const companyName = job.company && job.company.name;
-        return (
-          <JobsOfferCard
-            key={index}
-            id={job.id}
-            company={companyName}
-            name_Vacancy={job.name_Vacancy}
-            showButton={false}
-            showSpan={true}
-            start={job.start}
-            onJobSelected={() => {}}
-            applicants={`${job.applicants.length} candidates applied`}
-            showFinishButton={true}
-            onFinishProcess={handleFinishProcess}
-            onApplicantsClick={() => toggleModal(job.id)} // Modifica esta línea
-          />
-        );
-      })}
-      <button onClick={handleToggleOldPosts}>
+      {isLoading ? (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div>
+          {filteredJobs.map((job, index) => {
+            const companyName = job.company && job.company.name;
+            return (
+              <JobsOfferCard
+                key={index}
+                id={job.id}
+                company={companyName}
+                name_Vacancy={job.name_Vacancy}
+                showButton={false}
+                showSpan={true}
+                start={job.start}
+                onJobSelected={() => {}}
+                applicants={`${job.applicants.length} candidates applied`}
+                showFinishButton={true}
+                onFinishProcess={handleFinishProcess}
+                onApplicantsClick={() => toggleModal(job.id)} // Modifica esta línea
+              />
+            );
+          })}
+        </div>
+      )}
+      <button className={styles.buttonChange} onClick={handleToggleOldPosts}>
         {showOldPosts ? "View Active Posts" : "Show Old Posts"}
       </button>
     </div>

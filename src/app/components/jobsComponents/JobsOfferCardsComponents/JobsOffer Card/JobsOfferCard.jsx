@@ -11,6 +11,7 @@ const JobsOfferCard = ({
   createdAt,
   showSpan,
   onJobSelected,
+  salary,
   status,
   isActive,
   showFinishButton, // Nueva prop
@@ -37,7 +38,7 @@ const JobsOfferCard = ({
       </div>
       {showButton && (
         <div className={styles.contenedorButton}>
-          <Link href={`/profile/login`}>
+          <Link href={`/loginpro`}>
             <button className={styles.button}>Apply</button>
           </Link>
         </div>
@@ -48,7 +49,9 @@ const JobsOfferCard = ({
         </div>
       )}
       <div className={styles.contenedorMyApplications}>
-        <div onClick={onApplicantsClick}>{applicants}</div>
+        <div className={styles.myapps} onClick={onApplicantsClick}>
+          {applicants}
+        </div>
         <span> {status}</span>
       </div>
       {showFinishButton && (

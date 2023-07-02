@@ -7,7 +7,7 @@ export default async function handler(req, res) {
       name,
       lastName,
       birth,
-      aboutMe,
+      aboutme,
       working,
       country,
       email,
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         name,
         lastName,
         birth,
-        aboutMe,
+        aboutme,
         working,
         country,
         email,
@@ -50,6 +50,8 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const allUsers = await prisma.user.findMany();
 
-    return res.status(200).json(allUsers)
+    return res.status(200).json(allUsers);
   }
 }
+
+//

@@ -1,11 +1,10 @@
 import prisma from "@/prisma/client";
 
 export default async function handler(req, res) {
-  const { progLanguage, seniority, softSkill } = req.query;
-
+  const { progLanguage, seniority, softSkill, specialization } = req.query;
   if (req.method === "GET") {
     try {
-      const users = await getUsers(progLanguage, seniority, softSkill);
+      const users = await getUsers(progLanguage, seniority, softSkill, specialization);
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ error: "Error retrieving user." });
@@ -15,9 +14,8 @@ export default async function handler(req, res) {
   }
 }
 
-async function getUsers(progLanguage, seniority, softSkill) {
+async function getUsers(progLanguage, seniority, softSkill, specialization) {
   let where = {};
-
   if (progLanguage) {
     where.progLanguages = {
       has: progLanguage,
@@ -31,6 +29,12 @@ async function getUsers(progLanguage, seniority, softSkill) {
   if (softSkill) {
     where.softSkills = {
       has: softSkill,
+    };
+  }
+
+  if (specialization) {
+    where.specialization = {
+      equals: specialization,
     };
   }
 
