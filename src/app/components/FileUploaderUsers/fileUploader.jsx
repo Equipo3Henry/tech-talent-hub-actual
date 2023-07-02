@@ -102,9 +102,24 @@ const FileUploader = ({ userId }) => {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalOK}></div>
           <div className={styles.modal_content}>
+            <span
+              className={styles.close_button}
+              onClick={() => {
+                toggleModalOK();
+                window.location.reload();
+              }}
+            >
+              X
+            </span>
             <h2>Success!</h2>
             <p>CV updated successfully.</p>
-            <button className={styles.btn_modal} onClick={toggleModalOK}>
+            <button
+              className={styles.btn_modal}
+              onClick={() => {
+                toggleModalOK();
+                window.location.reload();
+              }}
+            >
               Close
             </button>
           </div>
@@ -114,6 +129,9 @@ const FileUploader = ({ userId }) => {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalError}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModalError}>
+              X
+            </span>
             <h2>Error</h2>
             <p>We couldnt update your CV. Please try again in a few minutes.</p>
             <button className={styles.btn_modal} onClick={toggleModalError}>
