@@ -159,6 +159,7 @@ const Login = () => {
               isDisabled={isDisabled}
             />
           </div>
+          <br/>
           <div>
             <Link href="/signupcompanies">
               <button

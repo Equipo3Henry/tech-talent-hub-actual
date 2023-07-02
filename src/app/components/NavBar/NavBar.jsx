@@ -6,9 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   home,
-  Vector,
-  notification,
-  favorites,
   logoff,
   dashboard,
   about,

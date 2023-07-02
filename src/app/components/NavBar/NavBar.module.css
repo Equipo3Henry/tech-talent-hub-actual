@@ -45,3 +45,11 @@
   margin: none;
   padding: none;
 }
+
+.Icons {
+  transition: transform 0.15s ease-in-out;
+}
+
+.Icons:hover {
+  transform: scale(1.35); 
+}

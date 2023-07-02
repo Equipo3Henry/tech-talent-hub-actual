@@ -21,11 +21,10 @@ export default function Layout({ children }) {
     const fetchData = async () => {
       setIsLoading(true);
       const response = await axios.get("/api/users");
-
+      setIsLoading(false);
       const sortedData = response.data.sort(
         (a, b) => b.isPremium - a.isPremium
       );
-
       setDataUsers(sortedData);
       setUsers(sortedData);
       setIsLoading(false);
@@ -43,9 +42,11 @@ export default function Layout({ children }) {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchSearchUsers = async () => {
       const response = await axios.get(`/api/searchUsers?q=${searchValue}`);
       setUsers(response.data);
+      setIsLoading(false);
     };
     fetchSearchUsers();
   }, [searchValue]);
@@ -54,6 +55,7 @@ export default function Layout({ children }) {
     const fetchFilteredUsers = async () => {
       const url = "/api/usersFilters";
       const params = {};
+      setIsLoading(true);
 
       if (selectedProgLanguage) {
         params.progLanguage = selectedProgLanguage;
@@ -75,7 +77,7 @@ export default function Layout({ children }) {
         console.log(selectedSpecialization);
         const response = await axios.get(url, { params });
         setUsers(response.data);
-        console.log(response.data);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -98,12 +100,14 @@ export default function Layout({ children }) {
     <GlobalContext.Provider
       value={{
         users,
+        isLoading,
         setSelectedProgLanguage,
         setSelectedSeniority,
         setSelectedSoftSkill,
         setSelectedSpecialization,
         setSearchValue,
         setCompanies,
+        setIsLoading,
         companies,
         selectedSpecialization,
         isLoading,

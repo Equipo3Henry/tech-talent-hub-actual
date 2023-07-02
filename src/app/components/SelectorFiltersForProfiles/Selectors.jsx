@@ -3,8 +3,7 @@ import styles from "../SelectorFiltersForCompanyDashboard/SelectorFiltersForComp
 const FiltersSelectorProfile = ({
   setSelectedProgLanguage,
   setSelectedSeniority,
-  /*   setSelectedCompanyType,
-   */ setselectedNameVacancy,
+  setselectedNameVacancy,
   setSelectedWorkday,
 }) => {
   const programming_Languages = [

@@ -25,10 +25,12 @@
   color: #000000;
   margin: 0;
 }
+
 .TitleLogIn {
   display: flex;
   flex-direction: column;
 }
+
 .subtitle {
   font-family: "Merriweather";
   font-style: normal;
