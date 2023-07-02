@@ -81,6 +81,9 @@ function MyProfileUsers() {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModal}>
+              X
+            </span>
             <h2>Are you sure you want to deactivate your account?</h2>
             <div className={styles.modal_buttons}>
               <button className={styles.btn_modal1} onClick={deactivateAccount}>
@@ -97,7 +100,10 @@ function MyProfileUsers() {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalOK}></div>
           <div className={styles.modal_content}>
-            <h2>Success!</h2>
+            <span className={styles.close_button} onClick={toggleModalOK}>
+              X
+            </span>
+            <h2 className={styles.successTitle}>Success!</h2>
             <p>
               Your account was deactivated successfully. You will now be
               redirected to the Home Page.
@@ -117,6 +123,9 @@ function MyProfileUsers() {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModalError}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModalError}>
+              X
+            </span>
             <h2>Error</h2>
             <p>
               Sorry, your account couldn't be deactivated. Please try again.

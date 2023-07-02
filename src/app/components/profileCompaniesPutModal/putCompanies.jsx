@@ -112,6 +112,9 @@ const PutCompanies = ({ companyData }) => {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModal}>
+              X
+            </span>
             <h2>Edit your personal info</h2>
 
             <div className={styles.form_container}>
