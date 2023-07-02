@@ -63,7 +63,7 @@ async function getValidate(email, password) {
       },
     });
 
-    if (updateUser.isPremium === true) {
+    if (updateUser.isPremium === true || updateUser.remainingPremiumDays < 0) {
       const remainingDays = calculatePremiumRemainingDays(
         today,
         userFound.premiumUpdateDate
@@ -81,6 +81,7 @@ async function getValidate(email, password) {
         const updatePremiumUser = await prisma.user.update({
           where: { id: userFound.id },
           data: {
+            isPremium: true,
             remainingPremiumDays: remainingDays,
           },
         });
