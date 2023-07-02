@@ -52,6 +52,7 @@ function TableVacancies({ jobs }) {
   const indexOfLastJob = currentPage * usersPerPage;
   const indexOfFirstJob = indexOfLastJob - usersPerPage;
   const currentJobs = sortedJobs.slice(indexOfFirstJob, indexOfLastJob);
+  console.log(currentJobs);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const requestSort = (key) => {
