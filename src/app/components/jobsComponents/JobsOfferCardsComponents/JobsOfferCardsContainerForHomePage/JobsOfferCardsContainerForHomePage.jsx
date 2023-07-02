@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
 import axios from "axios";
-import { GlobalContext } from "../../../../profile/layout";
 
-const JobsOfferCardsContainerForHome = ({ jobs }) => {
+const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
-  const { user } = useContext(GlobalContext);
   const [orderDirection, setOrderDirection] = useState(true);
 
   useEffect(() => {

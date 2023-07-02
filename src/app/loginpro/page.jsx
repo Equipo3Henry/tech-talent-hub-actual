@@ -89,7 +89,7 @@ const Login = () => {
           </div>
           {isLoading ? (
             <div className={styles.loaderContainer}>
-              <div className={styles.spinner}></div>
+              <div className={styles.spinner}/>
               <div>
                 <h4>Please wait while we log you in</h4>
               </div>

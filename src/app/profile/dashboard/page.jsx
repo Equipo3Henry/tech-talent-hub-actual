@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import Hi from "../../components/hi/hiUsers";
 
@@ -14,6 +14,7 @@ function HomePage() {
   const {
     jobs,
     user,
+    isLoading,
     setSelectedProgLanguage,
     setSelectedSeniority,
     setselectedNameVacancy,
@@ -22,24 +23,17 @@ function HomePage() {
     setUser,
   } = useContext(GlobalContext);
 
-  //? USE STATE LOADER
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const localStorageData = localStorage.getItem("userData");
     const userData = JSON.parse(localStorageData);
     setUser(userData);
-    setIsLoading(false);
-    console.log(userData); // <== Agrega esta línea
   }, []); // Dependency array
-
-  console.log(`mi nombre es ${user}`);
 
   return (
     <div className={styles.globalContainer}>
       <div className={styles.botonContenedor}>
         {user && <Hi user={user} />}
-        <SearchBar setSearchValue={setSearchValue} /> <br />
+        <SearchBar setSearchValue={setSearchValue}/> <br />
         {user && user.superAdmin && (
           <div className={styles.contenedorBoton}>
             <Link href={"./superAdmin"}>
@@ -57,29 +51,32 @@ function HomePage() {
         setSelectedWorkday={setSelectedWorkday}
       />
       <br />
-      <div className={styles.contenedorPadre}>
-        <div className={styles.forniculo}>
-          <div className={styles.jobsContainer}>
-            {isLoading ? (
-              <div className={styles.loaderContainer}>
-                <div className={styles.spinner}></div>
-              </div>
-            ) : (
-              jobs && (
-                <JobsOfferCardsContainerForHome
-                  jobs={jobs}
-                  user={user}
-                  isLoading={isLoading}
-                />
-              )
-            )}
-            <div className={styles.jobsDetailContainer}></div>
+      {!isLoading ? (
+        jobs.filter((job) => job.isActive).length > 0 
+        ?
+        <div className={styles.contenedorPadre}>
+          <div className={styles.forniculo}>
+            <div className={styles.jobsContainer}>
+              <JobsOfferCardsContainerForHome
+                jobs={jobs}
+                user={user}
+              />
+              <div className={styles.jobsDetailContainer}/>
+            </div>
           </div>
         </div>
-        {jobs.length === 0 ? (
-          <h3>There are no vacancies matching the search</h3>
-        ) : null}
-      </div>
+        :
+        <div className={styles.loaderContainer}>
+          <h4>Sorry, we did not find any information with the given parameters.</h4>
+        </div>
+      ) : (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}/>
+            <div>
+              <h4>Just a moment while we upload the information...</h4>
+            </div>
+        </div>
+      )}
     </div>
   );
 }

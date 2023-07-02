@@ -152,6 +152,11 @@
   height: 59px;
 }
 
+.botonUsers:hover {
+  background: #b7a7f3;
+  transition: 0.2s;
+}
+
 .botonCompany {
   background: #b682d9;
   width: 235px;
@@ -163,6 +168,11 @@
   font-size: 20px;
   line-height: 23px;
   color: #ffffff;
+}
+
+.botonCompany:hover {
+  background: #d9b7f3;
+  transition: 0.2s;
 }
 
 @media (max-width: 800px) {
