@@ -10,7 +10,6 @@ import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/
 import { useEffect } from "react";
 import Link from "next/link";
 import Hi from "../../components/hi/hiUsers";
-import { useEffect } from "react";
 
 function HomePage() {
   const {
