@@ -134,11 +134,11 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border-style: none;
-  <<<<<<<headfont-family: "Roboto";
-  =======width: 210px;
+  font-family: "Roboto Regular";
+  width: 210px;
   height: 59px;
   font-family: "Roboto Regular";
-  >>>>>>>origin/fix/front/nati-estilos-globalesfont-style: normal;
+  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
@@ -152,6 +152,11 @@
   height: 59px;
 }
 
+.botonUsers:hover {
+  background: #b7a7f3;
+  transition: 0.2s;
+}
+
 .botonCompany {
   background: #b682d9;
   width: 235px;
@@ -163,6 +168,11 @@
   font-size: 20px;
   line-height: 23px;
   color: #ffffff;
+}
+
+.botonCompany:hover {
+  background: #d9b7f3;
+  transition: 0.2s;
 }
 
 @media (max-width: 800px) {

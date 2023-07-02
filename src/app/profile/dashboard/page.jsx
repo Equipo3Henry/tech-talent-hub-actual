@@ -7,6 +7,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../layout";
 import { getLayout } from "../layout";
 import FiltersSelectorProfile from "../../components/SelectorFiltersForProfiles/Selectors";
+import { useEffect } from "react";
 import Link from "next/link";
 import Hi from "../../components/hi/hiUsers";
 import { useEffect } from "react";
@@ -28,11 +29,7 @@ function HomePage() {
     const localStorageData = localStorage.getItem("userData");
     const userData = JSON.parse(localStorageData);
     setUser(userData);
-    console.log(userData);
-  }, []);
-
-  console.log("user", user);
-  console.log("jobs", jobs);
+  }, []); // Dependency array
 
   return (
     <div className={styles.globalContainer}>
@@ -56,22 +53,31 @@ function HomePage() {
         setSelectedWorkday={setSelectedWorkday}
       />
       <br />
-      <div className={styles.contenedorPadre}>
-        <div className={styles.forniculo}>
-          <div className={styles.jobsContainer}>
-            {isLoading ? (
-              <div className={styles.loaderContainer}>
-                <div className={styles.spinner}></div>
+      {!isLoading ? (
+        jobs.filter((job) => job.isActive).length > 0 ? (
+          <div className={styles.contenedorPadre}>
+            <div className={styles.forniculo}>
+              <div className={styles.jobsContainer}>
+                <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
+                <div className={styles.jobsDetailContainer} />
               </div>
-            ) : jobs?.length ? (
-              <JobsOfferCardsContainerForHome jobs={jobs} user={user} />
-            ) : (
-              <h3>There are no vacancies matching the search</h3>
-            )}
-            <div className={styles.jobsDetailContainer}></div>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.loaderContainer}>
+            <h4>
+              Sorry, we did not find any information with the given parameters.
+            </h4>
+          </div>
+        )
+      ) : (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner} />
+          <div>
+            <h4>Just a moment while we upload the information...</h4>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
