@@ -4,7 +4,11 @@
   gap: 2rem;
   margin-left: 150px;
 }
-
+@media (max-width: 600px) {
+  .ContainerJobs {
+    margin-left: 0;
+  }
+}
 .forajido {
   display: flex;
   position: relative;

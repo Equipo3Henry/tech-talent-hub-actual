@@ -51,5 +51,24 @@
 }
 
 .Icons:hover {
-  transform: scale(1.35); 
+  transform: scale(1.35);
+}
+
+@media (max-width: 600px) {
+  .Navbar,
+  .NavbarCompanies {
+    flex-direction: row;
+    height: 70px;
+    width: 100%;
+    position: sticky;
+  }
+
+  .MenuContainer {
+    margin-top: 0;
+  }
+
+  .IconsContainer {
+    flex-direction: row;
+    gap: 3rem;
+  }
 }
