@@ -17,11 +17,12 @@ export default function Layout({ children }) {
   const [companies, setCompanies] = useState(null);
   const [allUsers, setAllUsers] = useState(null);
   const [allCompanies, setAllCompanies] = useState(null);
-  const [fullUsers, setFullUsers] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/vacancies");
+      setIsLoading(false);
       setDataJobs(response.data);
       setJobs(response.data);
     };
@@ -54,9 +55,11 @@ export default function Layout({ children }) {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchSearchVacancies = async () => {
       const response = await axios.get(`/api/searchVacancies?q=${searchValue}`);
       setJobs(response.data);
+      setIsLoading(false);
     };
     fetchSearchVacancies();
   }, [searchValue]);
@@ -65,7 +68,8 @@ export default function Layout({ children }) {
     const fetchFilteredJobs = async () => {
       const url = "/api/vacanciesFilters";
       const params = {};
-
+      setIsLoading(true);
+      
       if (selectedProgLanguage) {
         params.languajes = selectedProgLanguage;
       }
@@ -85,6 +89,7 @@ export default function Layout({ children }) {
       try {
         const response = await axios.get(url, { params });
         setJobs(response.data);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -96,7 +101,7 @@ export default function Layout({ children }) {
     } else if (jobs !== dataJobs) {
       setJobs(dataJobs);
     }
-  }, [
+  },[
     selectedProgLanguage,
     selectedSeniority,
     selectedNameVacancy,
@@ -108,17 +113,19 @@ export default function Layout({ children }) {
       value={{
         jobs,
         user,
+        companies,
+        allUsers,
+        allCompanies,
+        isLoading,
         setSelectedProgLanguage,
         setSelectedSeniority,
         setselectedNameVacancy,
         setSelectedWorkday,
         setSearchValue,
         setUser,
-        companies,
         setCompanies,
         setAllUsers,
-        allUsers,
-        allCompanies,
+        setIsLoading,
         setAllCompanies,
       }}
     >

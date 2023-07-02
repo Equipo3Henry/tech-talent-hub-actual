@@ -31,17 +31,18 @@
 
 /* LOADER */
 
-.loaderContainer {
+.loaderContainer{
   display: flex;
-  width: 2000px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  height: 75vh; 
+  width: 100vw; 
 }
 
 .spinner {
-  width: 56px;
-  height: 56px;
+  width: 100px;
+  height: 100px;
   display: grid;
   border: 4.5px solid #0000;
   border-radius: 50%;

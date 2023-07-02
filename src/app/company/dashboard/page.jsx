@@ -12,18 +12,18 @@ import Hi from "../../components/hi/hiCompanies";
 function DashboardPage() {
   const {
     users,
-    compData,
+    isLoading,
     setSelectedProgLanguage,
     setSelectedSeniority,
     setSelectedSoftSkill,
     setSelectedSpecialization,
     setSearchValue,
-    setCompanies,
   } = useContext(GlobalContext);
+
   const [companyData, setCompanyData] = useState(null);
 
   //? USE STATE LOADER
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   console.log(users);
 
@@ -31,14 +31,13 @@ function DashboardPage() {
     const localStorageData = localStorage.getItem("companyData");
     if (localStorageData) {
       const companyDataFromStorage = JSON.parse(localStorageData);
-      console.log(companyDataFromStorage); // Log the data here
       setCompanyData(companyDataFromStorage);
-      setIsLoading(false);
     } else {
       console.log("No data in localStorage");
       console.log(companyData);
     }
   }, []);
+
   return (
     <div className={styles.globalContainer}>
       <div className={styles.tituloContenedor}>
@@ -53,11 +52,9 @@ function DashboardPage() {
         setSelectedSpecialization={setSelectedSpecialization}
       />
       <br />
-      {isLoading ? (
-        <div className={styles.loaderContainer}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
+      {!isLoading ? (
+        users.length > 0
+        ?
         <div className={styles.contenedorPadre}>
           <div className={styles.forniculo}>
             <div className={styles.usersContainer}>
@@ -72,6 +69,17 @@ function DashboardPage() {
               <div className={styles.usersDetailContainer}></div>
             </div>
           </div>
+        </div>
+        :
+        <div className={styles.loaderContainer}>
+          <h4>Sorry, we did not find any information with the given parameters.</h4>
+        </div>
+      ) : (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}/>
+            <div>
+              <h4>Just a moment while we upload the information...</h4>
+            </div>
         </div>
       )}
     </div>
