@@ -58,6 +58,19 @@ body.active-modal {
     margin-right: 50px;
 }
 
+ .modal_content h2 {
+     font-size: 23px;
+     font-family: "Merriweather";
+ }
+
+ .close_button {
+     position: absolute;
+     top: 15px;
+     right: 15px;
+     cursor: pointer;
+     font-size: 24px;
+ }
+
 .cont_container {
     display: flex;
     justify-content: center;

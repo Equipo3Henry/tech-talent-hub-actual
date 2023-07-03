@@ -223,6 +223,9 @@ function SignUp() {
         <div className={styles.modal}>
           <div className={styles.overlay} onClick={toggleModal}></div>
           <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModal}>
+              X
+            </span>
             <h2>Thank you for registering!</h2>
             <p>
               Please Log In to your account to start looking for the best
