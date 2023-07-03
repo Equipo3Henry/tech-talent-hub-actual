@@ -42,7 +42,7 @@ function MyPosts(props) {
             </p>
           </div>
           <div className={styles.content}>
-            <div>
+            <div className={styles.gapMobil}>
               <MyPostsCards companyId={companyId} />
               <FormMyPosts parsedData={companyData} />
             </div>
