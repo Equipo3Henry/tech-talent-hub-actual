@@ -399,3 +399,51 @@ body.active-modal {
   letter-spacing: -0.011em;
   color: #7155d9;
 }
+
+@media only screen and (max-width: 600px) {
+  .ButtonB {
+    width: 100%;
+    padding-left: 10px;
+  }
+
+  .titles_container,
+  .form {
+    margin-left: 0px;
+  }
+
+  .form_container,
+  .name_container,
+  .logo_Company_container,
+  .email_container,
+  .type_container,
+  .password_container,
+  .country_container,
+  .vacancies_container,
+  .description_container,
+  .employes_container,
+  .jobs_container {
+    flex-direction: column;
+  }
+
+  .row1_container,
+  .row2_container,
+  .row3_container,
+  .row4_container,
+  .row5_container,
+  .row6_container,
+  .row7_container {
+    flex-direction: column;
+  }
+
+  .input_name,
+  .input_logo_Company,
+  .input_type,
+  .input_password,
+  .input_vacancies,
+  .input_country,
+  .input_description,
+  .input_employes,
+  .input_jobs {
+    width: 90%;
+  }
+}
