@@ -11,7 +11,7 @@ import { useState } from "react";
 
 /* const jobs = jobsTemplate;
  */
-const JobsLanding = () => {
+const JobsLanding = ({ section }) => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const JobsLanding = () => {
         </div>
         <div className={styles.container}>
           <div className={styles.JobsContainer}>
-            <JobsOfferCardsContainer jobs={jobs} />
+            <JobsOfferCardsContainer jobs={jobs} section={section}/>
           </div>
           <div className={styles.ImageContainer}></div>
           <Image src={samplepost} alt="imagen" className={styles.image} />
