@@ -17,7 +17,7 @@ const JobsOfferCard = ({
   salary,
   status,
   isActive,
-  section,
+  // section,
   showFinishButton, // Nueva prop
   onFinishProcess, // Manejador del evento Finish Process
   onApplicantsClick, // Agregamos esto para tener acceso a la prop
@@ -35,12 +35,13 @@ const JobsOfferCard = ({
     >
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
-          {section && (
+          {/* {section && (
 
             <Image src={logo_Company} alt="company_logo" className={styles.company_logo} width={100} height={100} />
-          )}
-          {!section &&
-            <span className={styles.span}>{company}</span>}
+          )} */}
+          {/* {!section && */}
+            <span className={styles.span}>{company}</span>
+            {/* //  */}
         </div>
         <h1 className={styles.CompanyTitle}> {name_Vacancy} </h1>
         <span className={styles.spanSeniority}> {seniority} </span>
