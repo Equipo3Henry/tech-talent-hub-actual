@@ -134,6 +134,7 @@ padding: 2rem 0;
   padding-bottom: 20px;
   font-family: "Merriweather";
   width: 520px;
+  margin-top: 30px;
 }
 
 .username_name{
@@ -149,8 +150,9 @@ padding: 2rem 0;
 
 .buttonContainer {
   display: flex;
-  justify-content: space-around;
-  padding-bottom: 2rem;
+  justify-content: center;
+  gap: 15px;
+
 }
 
 .aboutme {
@@ -190,4 +192,38 @@ padding: 2rem 0;
     text-align: left;
   padding: 0 0 0 10px;
   width: 80px;
+}
+
+@media screen and (max-width: 600px) {
+  .ContainerDetail{
+    height: auto;
+  }
+
+  .aboutme{
+    width: 85%;
+  }
+
+  .listados{
+    width: 95%;
+    gap: 20px
+  }
+
+  .buttonContainer{
+    width: 85%;
+  }
+
+  .buttonConnect, .buttonDownload{
+    padding: 15px 15px;
+    margin-bottom: 30px;
+  }
+
+  .ul_programming, .ul_softskills{
+    width: auto;
+  }
+
+   .ul_programming li, .ul_softskills li {
+      font-size: 14px;
+      max-width: 120px;
+      word-wrap: break-word;
+    }
 }

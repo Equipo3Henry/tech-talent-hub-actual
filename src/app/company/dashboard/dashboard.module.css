@@ -6,17 +6,6 @@
   justify-content: center;
 }
 
-@media only screen and (max-width: 600px) {
-  .globalContainer {
-    flex-direction: column;
-  }
-
-  .forniculo,
-  .usersContainer,
-  .jobsContainer {
-    flex-direction: column;
-  }
-}
 
 .jobsContainer {
   display: flex;
@@ -94,4 +83,27 @@
   justify-content: center;
   gap: 2rem;
   align-items: flex-end;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .globalContainer {
+    flex-direction: column;
+    padding-right: 10px;
+    overflow-x: hidden;
+  }
+  
+  .forniculo,
+  .usersContainer,
+  .jobsContainer {
+    flex-direction: column;
+  }
+
+  .tituloContenedor{
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 }
