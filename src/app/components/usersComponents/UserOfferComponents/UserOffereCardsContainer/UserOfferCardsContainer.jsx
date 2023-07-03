@@ -53,12 +53,12 @@ const UserOfferCardsContainerForDashboard = ({
         <div className={styles.contains}>
           <div className={styles.containerAll}>
             <div className={styles.scrollableList}>
-              {users.length > 0 ? (
-                <div className={styles.fixedBar}>
-                  <span className={styles.allCandidates}>Candidates</span>
-                </div>
-              ) : null}
               <ul className={styles.list}>
+                {users.length > 0 ? (
+                  <div className={styles.fixedBar}>
+                    <span className={styles.allCandidates}>Candidates</span>
+                  </div>
+                ) : null}
                 {users.map((user, index) => {
                   const formatStart = formatDate(user.start);
                   return (
@@ -103,9 +103,14 @@ const UserOfferCardsContainerForDashboard = ({
                   content: {
                     animationName: "slideInUp", // Aplica la animación
                     animationDuration: "0.5s", // Configura la duración de la animación
+                    height: "auto",
+                    marginTop: 50,
                   },
                 }}
               >
+                <button className={styles.closeButton} onClick={closeModal}>
+                  X
+                </button>
                 <UserOfferDetail
                   selectedUserId={selectedUserId}
                   users={users}
