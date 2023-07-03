@@ -1,21 +1,43 @@
 import React, { useState, useEffect } from "react";
-import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
+import ReactModal from "react-modal";
 import JobsOfferCard from "../JobsOffer Card/JobsOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import JobsOfferDetail from "../../JobsOfferDetail/JobsOfferDetail";
+import styles from "../JobsOfferCardsContainer/JobsOfferCardsContainer.module.css";
 import axios from "axios";
 
 const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);
   const [orderDirection, setOrderDirection] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const firstActiveJob = jobs?.find((job) => job.isActive);
     setSelectedJobId(firstActiveJob?.id);
   }, [jobs]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const onJobSelected = (id) => {
     setSelectedJobId(id);
+    if (windowWidth <= 600) {
+      setModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   const sendEmail = async () => {
@@ -85,13 +107,47 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
               })}
         </ul>
       </div>
-      <JobsOfferDetail
-        userData={user}
-        userId={user.id}
-        selectedJobId={selectedJobId}
-        jobs={jobs}
-        setSelectedJobId={setSelectedJobId}
-      />
+      {windowWidth > 600 && (
+        <JobsOfferDetail
+          userData={user}
+          userId={user.id}
+          selectedJobId={selectedJobId}
+          jobs={jobs}
+          setSelectedJobId={setSelectedJobId}
+        />
+      )}
+      {isModalOpen && (
+        <ReactModal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          contentLabel="Job Details"
+          className={styles.modal}
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backdropFilter: "blur(5px)", // Añade desenfoque
+              backgroundColor: "rgba(0, 0, 0, 0.5)", // Oscurece el fondo
+            },
+            content: {
+              animationName: "slideInUp", // Aplica la animación
+              animationDuration: "0.5s", // Configura la duración de la animación
+            },
+          }}
+        >
+          <JobsOfferDetail
+            userData={user}
+            userId={user.id}
+            selectedJobId={selectedJobId}
+            jobs={jobs}
+            setSelectedJobId={setSelectedJobId}
+            className={styles.jobDetail}
+          />
+        </ReactModal>
+      )}
     </div>
   );
 };
