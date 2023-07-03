@@ -65,51 +65,55 @@ const FiltersSelector = ({
   ];
 
   return (
-    <div className={styles.selectorsContainer}>
-      <select
-        onChange={(e) => setSelectedProgLanguage(e.target.value)}
-        className={styles.selectors}
-      >
-        <option value="">-- select a language --</option>
-        {progLanguages.map((language, index) => (
-          <option key={index} value={language}>
-            {language}
-          </option>
-        ))}
-      </select>
-      <select
-        onChange={(e) => setSelectedSeniority(e.target.value)}
-        className={styles.selectors}
-      >
-        <option value="">-- select a seniority --</option>
-        {seniority.map((seniority, index) => (
-          <option key={index} value={seniority}>
-            {seniority}
-          </option>
-        ))}
-      </select>
-      <select
-        onChange={(e) => setSelectedSoftSkill(e.target.value)}
-        className={styles.selectors}
-      >
-        <option value="">-- select a soft skill --</option>
-        {softSkills.map((softSkill, index) => (
-          <option key={index} value={softSkill}>
-            {softSkill}
-          </option>
-        ))}
-      </select>
-      <select
-        onChange={(e) => setSelectedSpecialization(e.target.value)}
-        className={styles.selectors}
-      >
-        <option value="">-- select a specialization --</option>
-        {specialization.map((specialization, index) => (
-          <option key={index} value={specialization}>
-            {specialization}
-          </option>
-        ))}
-      </select>
+    <div className={styles.allFilters}>
+      <div className={styles.selectorsContainer}>
+        <select
+          onChange={(e) => setSelectedProgLanguage(e.target.value)}
+          className={styles.selectors}
+        >
+          <option value="">-- select a language --</option>
+          {progLanguages.map((language, index) => (
+            <option key={index} value={language}>
+              {language}
+            </option>
+          ))}
+        </select>
+        <select
+          onChange={(e) => setSelectedSeniority(e.target.value)}
+          className={styles.selectors}
+        >
+          <option value="">-- select a seniority --</option>
+          {seniority.map((seniority, index) => (
+            <option key={index} value={seniority}>
+              {seniority}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.selectorsContainer}>
+        <select
+          onChange={(e) => setSelectedSoftSkill(e.target.value)}
+          className={styles.selectors}
+        >
+          <option value="">-- select a soft skill --</option>
+          {softSkills.map((softSkill, index) => (
+            <option key={index} value={softSkill}>
+              {softSkill}
+            </option>
+          ))}
+        </select>
+        <select
+          onChange={(e) => setSelectedSpecialization(e.target.value)}
+          className={styles.selectors}
+        >
+          <option value="">-- select a specialization --</option>
+          {specialization.map((specialization, index) => (
+            <option key={index} value={specialization}>
+              {specialization}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
