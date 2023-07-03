@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactModal from "react-modal";
 import UserOfferCard from "../UserOfferCard/UserOfferCard";
 import formatDate from "../../../../helpers/formatDate";
 import UserOfferDetail from "../UserOfferDetail/UserOfferDetail";
 import styles from "./UserOfferCardsContainer.module.css";
-import { useEffect } from "react";
 
 const UserOfferCardsContainerForDashboard = ({
   users,
@@ -11,10 +11,9 @@ const UserOfferCardsContainerForDashboard = ({
   isLoading,
 }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
-  //? USE STATE LOADER
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    // seleccionar automáticamente el primer usuario cuando se monte el componente
     if (users && users.length > 0) {
       setSelectedUserId(users[0].id);
     }
@@ -22,6 +21,11 @@ const UserOfferCardsContainerForDashboard = ({
 
   const onUserSelected = (id) => {
     setSelectedUserId(id);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -55,12 +59,27 @@ const UserOfferCardsContainerForDashboard = ({
                 })}
               </ul>
             </div>
-            <UserOfferDetail
-              selectedUserId={selectedUserId}
-              users={users}
-              companyData={companyData}
-              setSelectedUserId={setSelectedUserId}
-            />
+            <div className={styles.detail}>
+              <UserOfferDetail
+                selectedUserId={selectedUserId}
+                users={users}
+                companyData={companyData}
+                setSelectedUserId={setSelectedUserId}
+              />
+            </div>
+            <ReactModal
+              isOpen={isModalOpen}
+              onRequestClose={closeModal}
+              contentLabel="User Details"
+              className={styles.modal}
+            >
+              <UserOfferDetail
+                selectedUserId={selectedUserId}
+                users={users}
+                companyData={companyData}
+                setSelectedUserId={setSelectedUserId}
+              />
+            </ReactModal>
           </div>
         </div>
       )}

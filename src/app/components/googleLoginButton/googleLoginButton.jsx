@@ -41,11 +41,6 @@ export function GoogleLoginButton({ pathname, setGoogleData, isDisabled }) {
       disabled={isDisabled}
     >
       {textButton}
-      <Image
-        src={google}
-        alt="image"
-        className={styles.GoogleImage}
-      ></Image>{" "}
     </button>
   );
 }
