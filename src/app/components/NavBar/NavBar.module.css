@@ -11,6 +11,8 @@
   justify-content: space-evenly;
   flex-direction: row;
   flex-direction: column;
+  top: 0;
+  z-index: 9999; /* Use a high value to ensure the navbar is on top of other elements */
 }
 
 .MenuContainer {
