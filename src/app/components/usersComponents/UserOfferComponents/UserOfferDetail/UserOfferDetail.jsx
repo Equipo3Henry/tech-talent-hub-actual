@@ -67,12 +67,6 @@ function UserOfferDetail({
     <div>
       {console.log(selectedUserId)}
       <div className={styles.ContainerDetail}>
-        <div className={styles.botonera}>
-          <button className={styles.buttonConnect} onClick={handleConnect}>
-            Connect with Candidate
-          </button>
-          <button className={styles.buttonLike}>Favorite</button>
-        </div>
         <div className={styles.InfoContainer}>
           <div className={styles.UserNameCompanyContainer}>
             <h1
@@ -113,8 +107,11 @@ function UserOfferDetail({
           </div>
         </div>
         <div className={styles.buttonContainer}>
+          <button className={styles.buttonConnect} onClick={handleConnect}>
+            Connect
+          </button>
           <button className={styles.buttonDownload} onClick={handleDownload}>
-            Download the Resume
+            Download Resume
           </button>
         </div>
       </div>

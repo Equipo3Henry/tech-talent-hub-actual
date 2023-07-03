@@ -51,7 +51,7 @@ const FiltersSelectorProfile = ({
   ];
 
   return (
-    <div className={styles.container}>
+    <div className={styles.allFilters}>
       <div className={styles.selectorsContainer}>
         <select
           onChange={(e) => setSelectedProgLanguage(e.target.value)}
@@ -86,6 +86,8 @@ const FiltersSelectorProfile = ({
             </option>
           ))}
         </select> */}
+      </div>
+      <div className={styles.selectorsContainer}>
         <select
           onChange={(e) => setselectedNameVacancy(e.target.value)}
           className={styles.selectors}
