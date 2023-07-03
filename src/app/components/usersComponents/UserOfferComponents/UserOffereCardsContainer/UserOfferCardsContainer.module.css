@@ -57,7 +57,18 @@
     display: none;
   }
   .modal {
-    display: block;
+    background-color: white;
+    stroke: none;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px); /* Crea el efecto de desenfoque */
+    background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+    z-index: 999; /* Asegúrate de que la capa de desenfoque esté en la parte superior */
   }
 }
 
@@ -67,10 +78,16 @@
   }
   .modal {
     display: none;
-    background-color: none;
   }
 }
 
-.ReactModal__Overlay {
-  background-color: transparent;
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

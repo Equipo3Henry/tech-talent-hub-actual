@@ -12,6 +12,19 @@ const UserOfferCardsContainerForDashboard = ({
 }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (users && users.length > 0) {
@@ -21,7 +34,9 @@ const UserOfferCardsContainerForDashboard = ({
 
   const onUserSelected = (id) => {
     setSelectedUserId(id);
-    setModalOpen(true);
+    if (windowWidth <= 600) {
+      setModalOpen(true);
+    }
   };
 
   const closeModal = () => {
@@ -59,27 +74,47 @@ const UserOfferCardsContainerForDashboard = ({
                 })}
               </ul>
             </div>
-            <div className={styles.detail}>
-              <UserOfferDetail
-                selectedUserId={selectedUserId}
-                users={users}
-                companyData={companyData}
-                setSelectedUserId={setSelectedUserId}
-              />
-            </div>
-            <ReactModal
-              isOpen={isModalOpen}
-              onRequestClose={closeModal}
-              contentLabel="User Details"
-              className={styles.modal}
-            >
-              <UserOfferDetail
-                selectedUserId={selectedUserId}
-                users={users}
-                companyData={companyData}
-                setSelectedUserId={setSelectedUserId}
-              />
-            </ReactModal>
+            {windowWidth > 600 && (
+              <div className={styles.detail}>
+                <UserOfferDetail
+                  selectedUserId={selectedUserId}
+                  users={users}
+                  companyData={companyData}
+                  setSelectedUserId={setSelectedUserId}
+                />
+              </div>
+            )}
+            {isModalOpen && (
+              <ReactModal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                contentLabel="User Details"
+                className={styles.modal}
+                style={{
+                  overlay: {
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backdropFilter: "blur(5px)", // Añade desenfoque
+                    backgroundColor: "rgba(0, 0, 0, 0.5)", // Oscurece el fondo
+                  },
+                  content: {
+                    animationName: "slideInUp", // Aplica la animación
+                    animationDuration: "0.5s", // Configura la duración de la animación
+                  },
+                }}
+              >
+                <UserOfferDetail
+                  selectedUserId={selectedUserId}
+                  users={users}
+                  companyData={companyData}
+                  setSelectedUserId={setSelectedUserId}
+                  className={styles.userDetail}
+                />
+              </ReactModal>
+            )}
           </div>
         </div>
       )}
