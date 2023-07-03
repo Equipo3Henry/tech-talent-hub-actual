@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       });
     } else {
       if (user.limitFreeVacancies === 0) {
-        return res.status(403).json({
+        return res.status(409).json({
           success: false,
           message:
             "You've reached the maximum number of free applications this day. Please wait until tomorrow to apply again.",
