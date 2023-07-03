@@ -27,12 +27,6 @@ const UserOfferCardsContainerForDashboard = ({
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      ReactModal.setAppElement("#__next");
-    }
-  }, []);
-
-  useEffect(() => {
     if (users && users.length > 0) {
       setSelectedUserId(users[0].id);
     }

@@ -54,15 +54,6 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
 
   return (
     <div className={styles.forajido}>
-      <div className={styles.fixedBar}>
-        <span className={styles.allCandidates}>Vacancies</span>
-        <button
-          className={styles.botonOrden}
-          onClick={() => setOrderDirection(!orderDirection)}
-        >
-          Order by Salary
-        </button>
-      </div>
       <div
         style={{
           maxHeight: "572px",
@@ -78,6 +69,15 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
             textShadow: "white",
           }}
         >
+          <div className={styles.fixedBar}>
+            <span className={styles.allCandidates}>Vacancies</span>
+            <button
+              className={styles.botonOrden}
+              onClick={() => setOrderDirection(!orderDirection)}
+            >
+              Order by Salary
+            </button>
+          </div>
           {jobs &&
             jobs
               .filter((job) => job.isActive)
@@ -131,13 +131,19 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
               bottom: 0,
               backdropFilter: "blur(5px)", // Añade desenfoque
               backgroundColor: "rgba(0, 0, 0, 0.5)", // Oscurece el fondo
+              zIndex: 20000,
             },
             content: {
               animationName: "slideInUp", // Aplica la animación
               animationDuration: "0.5s", // Configura la duración de la animación
+              height: "auto",
+              marginTop: 50,
             },
           }}
         >
+          <button className={styles.closeButton} onClick={closeModal}>
+            X
+          </button>
           <JobsOfferDetail
             userData={user}
             userId={user.id}
