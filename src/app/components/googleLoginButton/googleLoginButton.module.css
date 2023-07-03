@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: left;
+  justify-content: center;
   padding-left: 40px;
   flex-direction: row-reverse;
 }
@@ -30,6 +31,7 @@
   height: 53px;
   border: none;
   color: white;
+  justify-content: center;
   font-family: "Roboto Regular";
   font-style: normal;
   font-weight: 500;
@@ -41,8 +43,4 @@
   padding-left: 40px;
   flex-direction: row-reverse;
   opacity: 0.5;
-}
-
-.GoogleImage {
-  margin-right: 50px;
 }

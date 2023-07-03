@@ -6,6 +6,18 @@
   justify-content: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .globalContainer {
+    flex-direction: column;
+  }
+
+  .forniculo,
+  .usersContainer,
+  .jobsContainer {
+    flex-direction: column;
+  }
+}
+
 .jobsContainer {
   display: flex;
   flex-direction: row;
@@ -31,13 +43,13 @@
 
 /* LOADER */
 
-.loaderContainer{
+.loaderContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 75vh; 
-  width: 100vw; 
+  height: 75vh;
+  width: 100vw;
 }
 
 .spinner {
