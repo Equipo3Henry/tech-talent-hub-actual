@@ -159,8 +159,16 @@ function SignUp() {
 
   //? ISFORMCOMPLETE FUNCTION
   const isFormComplete = () => {
-    const { name, type, email, password, country, vacancies, employes, jobs } =
-      form;
+    const {
+      name,
+      type,
+      email,
+      password,
+      country,
+      vacancies,
+      employes,
+      jobs,
+    } = form;
     const {
       name: nameError,
       type: typeError,
