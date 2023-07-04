@@ -43,9 +43,7 @@ const JobsOfferDetail = ({
       });
 
       const responseData = await response.json();
-      console.log(response);
-
-      console.log(`Response status: ${response.status}, responseData`); // Log the response status and data
+    
 
       switch (response.status) {
         case 200:
@@ -106,7 +104,10 @@ const JobsOfferDetail = ({
       </div>
       <div className={styles.contenedorSalary}>
         <span className={styles.salaryTitle}>Salary:</span>
-        <span>{job.salary}</span>
+        <span>{`${job.salary} USD`}</span>
+        <br/>
+        <span className={styles.techTitle}>Technologies:</span>
+        <span>{job.programming_Languages.join(",  ")}</span>
       </div>
       <div className={styles.contenedorSpan}>
         <span>{job.start}</span>
