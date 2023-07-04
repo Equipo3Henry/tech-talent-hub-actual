@@ -27,13 +27,10 @@ function Landing(props) {
   return (
     <div className={styles.container}>
       <LandingFirstPart />
-      {/*<Chatbot />*/}
       <AboutProject />
-      <div className={`${isMobile ? styles.hideOnMobile : ""}`}>
-        <Carrousel className={styles.logos} />
-      </div>
+      {isMobile ? null : <Carrousel className={styles.logos} />}
       <JobsLanding section="landing" />
-      <Services section="landing" />
+      <Services section="landing" alignCenter={false} />
     </div>
   );
 }

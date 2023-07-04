@@ -40,8 +40,8 @@ const JobsOfferCard = ({
             <Image src={logo_Company} alt="company_logo" className={styles.company_logo} width={100} height={100} />
           )} */}
           {/* {!section && */}
-            <span className={styles.span}>{company}</span>
-            {/* //  */}
+          <span className={styles.span}>{company}</span>
+          {/* //  */}
         </div>
         <h1 className={styles.CompanyTitle}> {name_Vacancy} </h1>
         <span className={styles.spanSeniority}> {seniority} </span>
