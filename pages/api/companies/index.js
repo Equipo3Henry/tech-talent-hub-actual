@@ -45,10 +45,10 @@ export default async function handler(req, res) {
       const mail = {
         from: "equipo3.37a@gmail.com",
         to: companyEmail,
-        subject: "Registro exitoso",
+        subject: "Successful registration",
         html: `
           <p style="color: black">
-          Mail de prueba a ${email}
+          Welcome ${newCompany.name}! Your TechTalentHub account has been successfully created!
           </p>
           `,
       };
