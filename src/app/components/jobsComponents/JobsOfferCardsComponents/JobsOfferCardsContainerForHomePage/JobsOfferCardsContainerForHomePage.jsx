@@ -56,10 +56,9 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
     <div className={styles.forajido}>
       <div
         style={{
-          maxHeight: "572px",
+          maxHeight: "582px",
           overflowY: "auto",
           display: "flex",
-          marginTop: "30px",
         }}
       >
         <ul

@@ -1,7 +1,7 @@
 .ContainerJobs {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  /* gap: 2rem; */
   margin-left: 150px;
 }
 
@@ -15,7 +15,8 @@
   align-items: center;
   background-color: #6850bf;
 height: 50px;
-  width: 554px;
+  width: 537px;
+  margin-top: -10px;
 }
 
 .allCandidates {
