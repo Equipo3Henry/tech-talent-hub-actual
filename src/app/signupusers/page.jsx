@@ -326,8 +326,6 @@ function SignUp() {
             Ready to find your dream job? Discover companies from all over
             Israel
           </h3>
-        </div>
-        <div className={styles.cont_container}>
           <div className={styles.auth_cont}>
             {!googleData ? (
               <GoogleLoginButton
@@ -338,9 +336,14 @@ function SignUp() {
               <div className={styles.logOff}>
                 <span>
                   Hello {googleData.displayName}, if you do not want to log in
-                  with google
+                  with Google
                 </span>
-                <button onClick={() => logout()}>click here</button>
+                <button
+                  className={styles.buttonLogOff}
+                  onClick={() => logout()}
+                >
+                  Click here
+                </button>
               </div>
             )}
           </div>
