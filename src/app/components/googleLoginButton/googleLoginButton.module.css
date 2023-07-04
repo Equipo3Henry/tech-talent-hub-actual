@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Product Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+
 .ButtonB {
   margin-top: 20px;
   cursor: pointer;
@@ -15,10 +23,8 @@
   line-height: 28px;
   display: flex;
   align-items: center;
-  justify-content: left;
   justify-content: center;
-  padding-left: 40px;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .ButtonD {
@@ -39,8 +45,12 @@
   line-height: 28px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding-left: 40px;
-  flex-direction: row-reverse;
+  flex-direction: row;
   opacity: 0.5;
+}
+
+.GoogleText{
+  font-family: 'Product Sans';
+  font-size: 1.5vw;
+  font-weight: bold;
 }
