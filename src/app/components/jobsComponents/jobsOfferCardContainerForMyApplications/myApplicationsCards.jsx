@@ -64,6 +64,7 @@ const MyApplicationsCards = () => {
                     onJobSelected={() => {}}
                     applicants={`${job.applicants.length} candidates applied`}
                     status={job.status}
+                    seniority={job.seniority}
                   />
                 );
               })}
