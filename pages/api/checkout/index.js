@@ -17,8 +17,8 @@ export default async function handler(req, res) {
     // console.log('Slug:', slug);
     const { id } = req.query;
     // console.log('User ID:', id);
-    const URL =
-      "https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app";
+    const URL = "localhost:3000";
+    //const URL = "tech-talent-hub-actual-git-develop-equipo3henry.vercel.app"
 
     // console.log(URL)
 
@@ -53,15 +53,15 @@ export default async function handler(req, res) {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${URL}`,
-          failure: `${URL}`,
+          success: `${URL}/profile/mydata`,
+          failure: `${URL}/profile/mydata`,
         },
         notification_url: `${URL}/api/notify?customId=${id}`,
         // notification_url: `${URL}/api/notify` + `/?customId=${id}`,
       };
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/notify?customId=472b6e1e-051c-433f-bb17-eb69b93fd4c6 // si no entro a mercadopago...
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/433f-bb17-eb69b93fd4c6                                // si entro a mercadopago...
-      console.log(preference.notification_url);
+      
 
       // const preference = {
       //   "reason": plan.title,
