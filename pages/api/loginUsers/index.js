@@ -105,6 +105,7 @@ async function getValidate(email, password) {
               image: userFound.profile_pictures,
               superAdmin: userFound.superAdmin,
               isPremium: userFound.isPremium,
+              remainingDays: userFound.remainingPremiumDays,
             },
           }
         : { response: "Your email or password are incorrect" };
@@ -120,6 +121,8 @@ async function getValidate(email, password) {
               seniority: userFound.seniority,
               image: userFound.profile_pictures,
               superAdmin: userFound.superAdmin,
+              isPremium: userFound.isPremium,
+              remainingDays: userFound.remainingPremiumDays,
             },
           }
         : { response: "Your google account is not registered" };
