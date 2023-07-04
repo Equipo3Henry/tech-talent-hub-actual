@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { landing } from "../../public/assets/imagesCodes";
 import styles from "./Landing.module.css";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 function LandingFirstPart(props) {
+  const { theme } = useTheme();
+
   return (
     <div>
       <div className={styles.landingContainer}>

@@ -1,10 +1,18 @@
+"use client";
+
 import React from "react";
 import styles from "./dark-mode.module.css";
+import { useTheme } from "next-themes";
 
 function DarkMode() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
         <label className={styles.switch}>
           <span className={styles.sun}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
