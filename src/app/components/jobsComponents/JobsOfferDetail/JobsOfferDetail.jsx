@@ -43,9 +43,9 @@ const JobsOfferDetail = ({
       });
 
       const responseData = await response.json();
-      console.log(response);
+      // console.log(response);
 
-      console.log(`Response status: ${response.status}, responseData`); // Log the response status and data
+      // console.log(`Response status: ${response.status}, responseData`); // Log the response status and data
 
       switch (response.status) {
         case 200:
@@ -61,7 +61,7 @@ const JobsOfferDetail = ({
           toggleModalError(); // Show error modal
       }
     } catch (error) {
-      console.log(`Error: ${error}`); // Log the error
+      // console.log(`Error: ${error}`); // Log the error
       toggleModalError(); // Show error modal
     }
   };

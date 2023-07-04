@@ -84,7 +84,7 @@ export default async function handler(req, res) {
         </p>
         `,
       };
-      console.log(mail);
+      // console.log(mail);
       await transporter.sendMail(mail);
 
       return res.status(200).json(updatedCompany);

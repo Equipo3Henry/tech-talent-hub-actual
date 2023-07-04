@@ -43,10 +43,10 @@ function UserOfferDetail({
             companyEmail: companyData.email,
           }),
         });
-        console.log("userEmail", user.email);
-        console.log("companyName", companyData.name);
-        console.log("companyEmail", companyData.email);
-        console.log("Response:", response); // Log the response here
+        // console.log("userEmail", user.email);
+        // console.log("companyName", companyData.name);
+        // console.log("companyEmail", companyData.email);
+        // console.log("Response:", response); // Log the response here
 
         if (response.ok) {
           alert("Connection request email sent successfully!");
@@ -65,7 +65,7 @@ function UserOfferDetail({
 
   return (
     <div>
-      {console.log(selectedUserId)}
+      {/* {console.log(selectedUserId)} */}
       <div className={styles.ContainerDetail}>
         <div className={styles.InfoContainer}>
           <div className={styles.UserNameCompanyContainer}>

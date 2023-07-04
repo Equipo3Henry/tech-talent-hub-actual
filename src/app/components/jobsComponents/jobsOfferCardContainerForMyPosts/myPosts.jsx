@@ -23,7 +23,6 @@ const MyPostsCards = () => {
     const companyData = localStorageData ? JSON.parse(localStorageData) : null;
     setCompanyData(companyData); // <--- Agrega esto
     const companyId = companyData ? companyData.id : null;
-
     if (companyId) {
       axios.get("/api/vacancies").then((response) => {
         const jobsFromServer = response.data;
@@ -137,7 +136,7 @@ const MyPostsCards = () => {
                 showButton={false}
                 showSpan={true}
                 start={job.start}
-                onJobSelected={() => {}}
+                onJobSelected={() => { }}
                 applicants={`${job.applicants.length} candidates applied`}
                 showFinishButton={true}
                 onFinishProcess={handleFinishProcess}
@@ -147,6 +146,7 @@ const MyPostsCards = () => {
           })}
         </div>
       )}
+      {!isLoading && jobs.length === 0 ? <p className={styles.p}>You have not published any vacancies yet</p> : null}
       <button className={styles.buttonChange} onClick={handleToggleOldPosts}>
         {showOldPosts ? "View Active Posts" : "Show Old Posts"}
       </button>
