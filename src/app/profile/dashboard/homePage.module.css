@@ -129,6 +129,7 @@
   .usersContainer,
   .jobsContainer {
     flex-direction: column;
+    margin-top: 0;
   }
 
   .tituloContenedor {
@@ -136,6 +137,6 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
   }
 }
