@@ -57,6 +57,11 @@
   color: #b682d9;
 }
 
+.p {
+  font-size: 1em;
+  margin: 0px 0px 100px 0px;
+}
+
 /* LOADER */
 
 .loaderContainer {

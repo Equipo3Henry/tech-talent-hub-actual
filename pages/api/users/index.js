@@ -89,7 +89,7 @@ export default async function handler(req, res) {
           </p>
           `,
         };
-        console.log(mail);
+        // console.log(mail);
         await transporter.sendMail(mail);
         // res.status(200).json({
         //   Message: `Se ha enviado un correo electrónico de prueba a ${email} `,
