@@ -84,29 +84,12 @@ export default async function handler(req, res) {
           to: userEmail,
           subject: "Registro exitoso",
           html: `
-          <p style="color: black; text-align: justify;">
-          Asunto: Welcome to TechTalentHub!<br/>
-
-          <br/>Dear ${newUser.name},<br/>
-
-          <br/>Welcome to TechTalentHub! We're thrilled to have you as part of our community.<br/>
-
-          <br/>At TechTalentHub, we're dedicated to helping tech professionals<br/> 
-          like you unlock their full potential.<br/>
-          <br/>You now have access to a wealth of resources, including job opportunities,<br/> 
-          career guidance, and networking events.<br/>
-          <br/>If you have any questions or need assistance, our team is here to support you.<br/> 
-          Stay tuned for valuable insights and updates from our platform.<br/>
-
-          <br/>Thank you for joining us. We're excited to embark on this tech journey together!<br/>
-
-          <br/>Best regards,<br/>
-
-          <br/>Natalia Malvicino<br/>
-          TechTalentHub CEO
+          <p style="color: black">
+          Mail de prueba a ${email}
           </p>
           `,
         };
+        console.log(mail);
         await transporter.sendMail(mail);
         // res.status(200).json({
         //   Message: `Se ha enviado un correo electrónico de prueba a ${email} `,
