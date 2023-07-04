@@ -18,7 +18,6 @@ import styles from "./NavBar.module.css";
 import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import DarkMode from "../dark-mode/dark-mode";
 
 const NavBar = () => {
   const [isProfile, setIsProfile] = useState(false);
@@ -96,9 +95,7 @@ const NavBar = () => {
             </Link>
           </button>
         </div>
-        <div className={styles.darkMode}>
-          <DarkMode />
-        </div>
+
         <Tooltip id="dashboard-users" place="right" />
         <Tooltip id="profile-users" place="right" />
         <Tooltip id="my-apps-users" place="right" />
@@ -150,9 +147,7 @@ const NavBar = () => {
             </Link>
           </button>
         </div>
-        <div className={styles.darkMode}>
-          <DarkMode />
-        </div>
+
         <Tooltip id="dashboard-companies" place="right" />
         <Tooltip id="profile-companies" place="right" />
         <Tooltip id="myposts-companies" place="right" />
@@ -200,9 +195,6 @@ const NavBar = () => {
               data-tooltip-content=" About us"
             />
           </Link>
-        </div>
-        <div className={styles.darkMode}>
-          <DarkMode />
         </div>
 
         <Tooltip id="landing-home" place="right" />
