@@ -5,7 +5,6 @@ import styles from "../MercadoPagoButton/MercadoPagoButton.module.css";
 import { Loader } from "../Loader/Loader";
 import Link from "next/link";
 import axios from "axios";
-import { GlobalContext } from "../../profile/layout";
 import { useRouter } from "next/navigation";
 
 export const MercadoPagoButton = ({ plan, section }) => {
@@ -120,7 +119,8 @@ export const MercadoPagoButton = ({ plan, section }) => {
               className={styles.mercadoPagoButtonDisabled}
               disabled
             >
-              Already subscribed to {plan.type}
+              Already subscribed<br/>
+              <span className={styles.remainingDays}>Remaining days: {storedUserData.remainingDays}</span> 
             </button>
           );
         } else {
@@ -154,10 +154,10 @@ export const MercadoPagoButton = ({ plan, section }) => {
           return (
             <button
               id="mercadoPagoButton"
-              className={styles.mercadoPagoButtonDisabled}
+              className={styles.FreePlanButton}
               disabled
             >
-              Already Subscribed to {plan.type}
+              Already Subscribed
             </button>
           );
         }
