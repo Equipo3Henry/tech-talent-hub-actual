@@ -29,27 +29,9 @@ export default async function handler(req, res) {
                     to: downgradeUser.email,
                     subject: "Successfull downgrade to basic",
                     html: `
-                    <p style="color: black">
-                    Subject: Switched to Basic Plan - Resubscribe to Premium Anytime<br/>
-
-                    <br/>Dear ${downgradeUser.name},<br/>
-
-                    <br/>We wanted to inform you that your subscription has been switched to our Basic Plan.<br/> 
-                    While the Basic Plan still offers valuable benefits, we understand that you may have<br/> 
-                    enjoyed the additional perks of our Premium Plan.<br/>
-
-                    <br/>Remember, you can resubscribe to the Premium Plan whenever you like to regain access<br/>
-                    to all the exclusive features and advantages it provides. Simply visit your account settings<br/> 
-                    to upgrade back to Premium.<br/>
-
-                    <br/>Thank you for being a valued member. We're here to assist you with any questions or concerns<br/> 
-                    you may have regarding our plans.<br/>
-
-                    <br/>Best regards,<br/>
-
-                    <br/>Ivan Scarsella<br/>
-                    TechTalentHub Support
-                    </p>
+      <p style="color: black">
+      Hello ${downgradeUser.name}, your TechTalentHub account has changed to the basic plan. You can resubscribe to our premium plan whenever you want.
+      </p>
       `,
                 };
                 await transporter.sendMail(mail);
