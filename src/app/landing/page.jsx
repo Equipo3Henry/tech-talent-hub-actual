@@ -30,7 +30,7 @@ function Landing(props) {
       <AboutProject />
       {isMobile ? null : <Carrousel className={styles.logos} />}
       <JobsLanding section="landing" />
-      <Services section="landing" />
+      <Services section="landing" alignCenter={false} />
     </div>
   );
 }
