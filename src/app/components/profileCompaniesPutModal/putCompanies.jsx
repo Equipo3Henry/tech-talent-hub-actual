@@ -85,7 +85,7 @@ const PutCompanies = ({ companyData }) => {
       errors,
       setErrors
     );
-    console.log(form);
+    // console.log(form);
   };
 
   //? USE EFFECT - SEND INFO TO VALIDATION.JS

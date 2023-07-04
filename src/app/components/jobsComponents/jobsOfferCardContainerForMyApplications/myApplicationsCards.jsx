@@ -20,7 +20,7 @@ const MyApplicationsCards = () => {
             job.applicants.some((applicant) => applicant.id === user.id)
           );
           setJobs(filteredJobs);
-          console.log(jobs); // Agrega esta línea
+          // console.log(jobs); // Agrega esta línea
           setIsLoading(false);
         })
         .catch((error) => {

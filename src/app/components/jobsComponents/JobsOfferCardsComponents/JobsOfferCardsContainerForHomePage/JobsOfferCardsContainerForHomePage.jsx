@@ -44,13 +44,13 @@ const JobsOfferCardsContainerForHome = ({ jobs, user }) => {
     const mail = await axios.post("/api/sendEmail/postulation", {
       string: "string------",
     });
-    console.log(mail);
+    // console.log(mail);
   };
 
   if (!user) return null;
 
-  console.log("user", user);
-  console.log("jobs del jobsOfferCardContainer", jobs);
+  // console.log("user", user);
+  // console.log("jobs del jobsOfferCardContainer", jobs);
 
   return (
     <div className={styles.forajido}>

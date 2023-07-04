@@ -13,9 +13,9 @@ mercadopago.configure({
 export default async function handler(req, res) {
     const { query } = req;
     const customId = req.query;
-    console.log('CUSTOM ID', req.query.customId);
-    console.log('REQUEST URL', req.url);
-    console.log('REQUEST METHOD', req.method);
+    // console.log('CUSTOM ID', req.query.customId);
+    // console.log('REQUEST URL', req.url);
+    // console.log('REQUEST METHOD', req.method);
     // 472b6e1e-051c-433f-bb17-eb69b93fd4c6
     // /api/notify?customId=472b6e1e-051c-433f-bb17-eb69b93fd4c6
     const topic = query.topic || query.type;
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
             let paymentStatus = payment.body.status;
 
-            console.log([payment, paymentStatus]);
+            // console.log([payment, paymentStatus]);
 
             if (paymentStatus === "approved") {
                upgradePremium(customId.customId)

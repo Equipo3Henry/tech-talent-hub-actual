@@ -2,7 +2,7 @@ import transporter from "../sendEmail";
 import prisma from "@/prisma/client";
 
 export default async function upgradePremium(userId) {
-  console.log("estoy en el upgradePremium:");
+  // console.log("estoy en el upgradePremium:");
 
   const user = await prisma.user.findUnique({
     where: {
@@ -10,7 +10,7 @@ export default async function upgradePremium(userId) {
     },
   });
 
-  console.log("UPGRADEPREMIUM:", user);
+  // console.log("UPGRADEPREMIUM:", user);
   const userPreviousRemainingDays = user.remainingPremiumDays + 30;
   if (user.isPremium === false) {
     //HASTA ACA LLEGO TODO OK
@@ -24,7 +24,7 @@ export default async function upgradePremium(userId) {
         remainingPremiumDays: userPreviousRemainingDays,
       },
     });
-    console.log("UPDATED USER 1:", updatedUser);
+    // console.log("UPDATED USER 1:", updatedUser);
 
     await transporter.verify();
 
@@ -40,7 +40,7 @@ export default async function upgradePremium(userId) {
     };
     await transporter.sendMail(mail);
 
-    console.log(`${updatedUser.name} it's now a user Premium!`);
+    // console.log(`${updatedUser.name} it's now a user Premium!`);
   } else {
     const updatedUser = await prisma.user.update({
       where: {
@@ -51,7 +51,7 @@ export default async function upgradePremium(userId) {
         remainingPremiumDays: userPreviousRemainingDays,
       },
     });
-    console.log("UPDATED USER 2:", updatedUser);
+    // console.log("UPDATED USER 2:", updatedUser);
 
     await transporter.verify();
 
@@ -67,6 +67,6 @@ export default async function upgradePremium(userId) {
     };
     await transporter.sendMail(mail);
 
-    console.log(`${updatedUser.name} upgraded his premium plan`);
+    // console.log(`${updatedUser.name} upgraded his premium plan`);
   }
 }

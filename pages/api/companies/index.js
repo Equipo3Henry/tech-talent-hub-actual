@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         employes,
         googleAuth,
       } = req.body;
-      console.log(googleAuth);
+      // console.log(googleAuth);
       const companyEmail = email;
 
       const exist = await prisma.company.findUnique({
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
           </p>
           `,
       };
-      console.log(mail);
+      // console.log(mail);
       await transporter.sendMail(mail);
 
       return res.status(201).json(newCompany);

@@ -20,12 +20,12 @@ const JobsLanding = ({ section }) => {
     axios
       .get("api/vacancies")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setJobs(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, []);
