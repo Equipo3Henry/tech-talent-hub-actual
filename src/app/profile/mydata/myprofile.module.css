@@ -71,9 +71,18 @@
   cursor: pointer;
 }
 
+.divider{
+  border: 1px solid rgb(145, 144, 144);
+  width: 100%;
+}
+
 .deactivateContainer {
   margin: 50px 0;
   width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .deactivateTitle {

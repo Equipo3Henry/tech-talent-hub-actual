@@ -163,10 +163,9 @@ function MyProfileUsers() {
             continue enjoying the premium benefits!
           </h3>
         ) : null}
-        <hr />
         <Services />
         <div className={styles.deactivateContainer}>
-          <hr />
+          <hr className={styles.divider} />
           <h3 className={styles.deactivateTitle}>Deactivate your account</h3>
           <p className={styles.p}>
             Don't worry! You can come back anytime you want - we will keep your
