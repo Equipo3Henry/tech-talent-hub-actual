@@ -49,7 +49,7 @@ const MyApplicationsCards = () => {
               </p>
             </div>
           ) : (
-            <div>
+            <div className={styles.ContenedorJobs}>
               {jobs.map((job, index) => {
                 const companyName = job.company && job.company.name;
                 return (

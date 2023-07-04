@@ -138,8 +138,6 @@
 }
 
 @media (max-width: 600px) {
-  
-
   .CompanyTitle {
     font-size: 1.2em;
     /* Ajusta el tamaño de fuente al que te parezca adecuado */
@@ -150,8 +148,10 @@
   }
 
   .button {
-    width: 80%; /* Esto hará que el botón sea un 80% del ancho del contenedor */
-    margin: 10px auto; /* Esto centrará el botón y le dará un margen superior e inferior de 10px */
+    width: 100%; /* Esto hará que el botón sea un 80% del ancho del contenedor */
+    margin: 10px auto;
+    padding-left: 2em;
+    padding-right: 2em; /* Esto centrará el botón y le dará un margen superior e inferior de 10px */
   }
 
   .button_finish {
