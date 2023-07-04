@@ -2,7 +2,7 @@ import transporter from "..";
 
 export default async function register(req, res) {
   const { method } = req;
-  console.log(req.body.string);
+  // console.log(req.body.string);
   if (method == "POST") {
     // const { email } = req.body;
     const  email  = 'scarsellaivan@gmail.com';
@@ -20,7 +20,7 @@ export default async function register(req, res) {
         `,
       };
       await transporter.sendMail(mail);
-      console.log(mail);
+      // console.log(mail);
       res.status(200).json({
         Message: `Se ha enviado un correo electrónico de prueba a ${email} `,
       });

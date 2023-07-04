@@ -11,9 +11,9 @@ export default async function handler(req, res) {
 
     const userVacancies = user.appliedVacancies;
 
-    console.log(
-      `User ${userId} has ${user.limitFreeVacancies} free vacancies left`
-    );
+    // console.log(
+    //   `User ${userId} has ${user.limitFreeVacancies} free vacancies left`
+    // );
 
     if (userVacancies.some((vacancy) => vacancy.id === jobId)) {
       return res.status(403).json({
@@ -48,9 +48,9 @@ export default async function handler(req, res) {
           },
         });
 
-        console.log(
-          `User ${userId} now has ${result.limitFreeVacancies} free vacancies left`
-        );
+        // console.log(
+        //   `User ${userId} now has ${result.limitFreeVacancies} free vacancies left`
+        // );
 
         return res.json({
           success: true,

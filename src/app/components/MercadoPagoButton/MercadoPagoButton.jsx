@@ -57,7 +57,7 @@ export const MercadoPagoButton = ({ plan, section }) => {
           });
           setUrl(data.url);
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
         setLoading(false);
       };
@@ -76,13 +76,13 @@ export const MercadoPagoButton = ({ plan, section }) => {
 
     if (data.message === "success") {
       router.push("/landing");
-      console.log("success");
+      // console.log("success");
     } else {
       alert("tu cuenta no se pudo actualizar al plan básico");
     }
   };
 
-  console.log(storedUserData);
+  // console.log(storedUserData);
 
   const renderButton = () => {
     if (section === "landing") {

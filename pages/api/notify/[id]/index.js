@@ -11,9 +11,9 @@ mercadopago.configure({
 export default async function handler(req, res) {
     const { query } = req;
     const customId = req.query;
-    console.log('CUSTOM ID 2', req.query.customId);
-    console.log('REQUEST URL 2', req.url);
-    console.log('REQUEST METHOD 2', req.method);
+    // console.log('CUSTOM ID 2', req.query.customId);
+    // console.log('REQUEST URL 2', req.url);
+    // console.log('REQUEST METHOD 2', req.method);
 
     // QUERY 2 {
     //     'data.id': '1316071395',
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
             let paymentStatus = payment.body.status;
 
-            console.log([payment, paymentStatus]);
+            // console.log([payment, paymentStatus]);
 
             if (paymentStatus === "approved") {
                await upgradePremium(customId.customId)

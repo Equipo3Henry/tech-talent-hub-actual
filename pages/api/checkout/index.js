@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
     // console.log('User ID:', id);
     const URL =
-      "https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app";
+      "https://dc4e-2800-810-525-1d07-a8fa-96a4-5a8-5d81.ngrok-free.app";
 
     // console.log(URL)
 
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
       };
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/notify?customId=472b6e1e-051c-433f-bb17-eb69b93fd4c6 // si no entro a mercadopago...
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/433f-bb17-eb69b93fd4c6                                // si entro a mercadopago...
-      console.log(preference.notification_url);
+      // console.log(preference.notification_url);
 
       // const preference = {
       //   "reason": plan.title,
@@ -82,7 +82,7 @@ export default async function handler(req, res) {
 
       res.status(200).send({ url: response.body.init_point });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   } else {
     res.status(400).json({ message: "Method not allowed" });
