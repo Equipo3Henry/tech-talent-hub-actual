@@ -12,10 +12,10 @@ export default async function register(req, res) {
       const mail = {
         from: 'equipo3.37a@gmail.com',
         to: email,
-        subject: "Registro exitoso",
+        subject: "Successful applied vacancy",
         html: `
         <p style="color: black">
-        Mail de prueba a ${email}
+        Your request has been sent successfully! You can see all the vacancies you applied for in the 'My Posts' section of your profile.
         </p>
         `,
       };

@@ -77,10 +77,10 @@ export default async function handler(req, res) {
       const mail = {
         from: "equipo3.37a@gmail.com",
         to: updatedCompany.email,
-        subject: "Registro actualizado",
+        subject: "Successful update",
         html: `
         <p style="color: black">
-        Su registro ha sido actualizado ${updatedCompany.email}
+        Your information has been successfully updated ${updatedCompany.email}
         </p>
         `,
       };

@@ -32,7 +32,7 @@ function Landing(props) {
       <div className={`${isMobile ? styles.hideOnMobile : ""}`}>
         <Carrousel className={styles.logos} />
       </div>
-      <JobsLanding />
+      <JobsLanding section="landing" />
       <Services section="landing" />
     </div>
   );

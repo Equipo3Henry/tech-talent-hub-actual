@@ -1,6 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./JobsOfferCard.module.css";
 import Link from "next/link";
+
 const JobsOfferCard = ({
   id,
   company,
@@ -11,9 +13,11 @@ const JobsOfferCard = ({
   createdAt,
   showSpan,
   onJobSelected,
+  logo_Company,
   salary,
   status,
   isActive,
+  // section,
   showFinishButton, // Nueva prop
   onFinishProcess, // Manejador del evento Finish Process
   onApplicantsClick, // Agregamos esto para tener acceso a la prop
@@ -31,7 +35,13 @@ const JobsOfferCard = ({
     >
       <div className={styles.InfoContainer}>
         <div className={styles.CompanyNameContainer}>
-          <span className={styles.span}>{company}</span>
+          {/* {section && (
+
+            <Image src={logo_Company} alt="company_logo" className={styles.company_logo} width={100} height={100} />
+          )} */}
+          {/* {!section && */}
+            <span className={styles.span}>{company}</span>
+            {/* //  */}
         </div>
         <h1 className={styles.CompanyTitle}> {name_Vacancy} </h1>
         <span className={styles.spanSeniority}> {seniority} </span>
