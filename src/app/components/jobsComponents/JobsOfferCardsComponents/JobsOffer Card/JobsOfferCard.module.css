@@ -124,14 +124,7 @@
 }
 
 @media (max-width: 600px) {
-  .Container {
-    display: flex;
-    flex-direction: column;
-    width: 450px;
-    height: auto; /* Esto hará que la altura se ajuste automáticamente al contenido */
-    flex-direction: column;
-    padding: 1em; /* Esto hará que los elementos se apilen verticalmente en lugar de horizontalmente */
-  }
+  
 
   .CompanyTitle {
     font-size: 1.2em;

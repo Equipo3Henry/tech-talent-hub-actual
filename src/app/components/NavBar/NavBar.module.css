@@ -24,6 +24,7 @@
   gap: 3rem;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .NavbarCompanies {
@@ -54,6 +55,11 @@
 
 .Icons:hover {
   transform: scale(1.35);
+}
+
+.darkMode{
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 600px) {
