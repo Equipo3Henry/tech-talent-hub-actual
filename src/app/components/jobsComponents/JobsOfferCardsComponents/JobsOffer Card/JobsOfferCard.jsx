@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./JobsOfferCard.module.css";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 const JobsOfferCard = ({
   id,
   company,
@@ -27,9 +27,14 @@ const JobsOfferCard = ({
       onFinishProcess(id);
     }
   };
+  const pathname = usePathname();
   return (
     <div
-      className={styles.Container}
+      className={
+        !pathname.includes("my-applications")
+          ? styles.Container
+          : styles.ContainerB
+      }
       key={id}
       onClick={() => onJobSelected(id)}
     >

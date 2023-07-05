@@ -12,7 +12,21 @@
 
 .Container:hover {
   border-color: #6850bf;
+  scale: 1.03;
+  transition: 0.3s;
 }
+.ContainerB {
+  border: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 9px;
+  border-color: black;
+  width: 525px;
+  height: 109px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .InfoContainer {
   display: flex;
   flex-direction: column;
@@ -127,15 +141,11 @@
   justify-content: center;
 }
 
+
 .myapps {
   color: #b682d9;
 }
 
-.myapps:hover {
-  text-decoration: underline;
-  color: #b682d9;
-  cursor: pointer;
-}
 
 @media (max-width: 600px) {
   .CompanyTitle {

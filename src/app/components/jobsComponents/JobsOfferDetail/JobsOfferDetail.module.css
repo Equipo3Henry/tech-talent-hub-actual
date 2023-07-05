@@ -144,6 +144,16 @@
   margin-right: 15px;
 }
 
+.techTitle {
+  text-transform: uppercase;
+  font-family: "Roboto Regular", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.011em;
+  color: #6850bf;
+  margin-right: 15px;
+}
+
 .buttonLike {
   background-color: #6850bf;
   border-style: none;
