@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
     // console.log('User ID:', id);
     //const URL = "localhost:3000";
-    const URL = "tech-talent-hub-actual-git-develop-equipo3henry.vercel.app"
+    const URL = "tech-talent-hub-actual-git-develop-equipo3henry.vercel.app";
 
     // console.log(URL)
 
@@ -61,11 +61,6 @@ export default async function handler(req, res) {
       };
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/notify?customId=472b6e1e-051c-433f-bb17-eb69b93fd4c6 // si no entro a mercadopago...
       // https://9c95-2800-810-525-1d07-d481-5094-5dfa-9e3a.ngrok-free.app/api/433f-bb17-eb69b93fd4c6                                // si entro a mercadopago...
-<<<<<<< HEAD
-      // console.log(preference.notification_url);
-=======
-      
->>>>>>> origin/arreglosCosmeticosChristian
 
       // const preference = {
       //   "reason": plan.title,
