@@ -17,8 +17,8 @@ export default async function handler(req, res) {
     // console.log('Slug:', slug);
     const { id } = req.query;
     // console.log('User ID:', id);
-    const URL = "localhost:3000";
-    //const URL = "tech-talent-hub-actual-git-develop-equipo3henry.vercel.app"
+    //const URL = "localhost:3000";
+    const URL = "tech-talent-hub-actual-git-develop-equipo3henry.vercel.app"
 
     // console.log(URL)
 
