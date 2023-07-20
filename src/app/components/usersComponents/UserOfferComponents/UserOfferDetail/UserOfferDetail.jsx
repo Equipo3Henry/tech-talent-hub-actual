@@ -10,6 +10,21 @@ function UserOfferDetail({
   companyData,
 }) {
   const [user, setUser] = useState(null);
+  const [noCV, setNoCV] = useState(false);
+  const [connectOK, setConnectOK] = useState(false);
+  const [connectError, setConnectError] = useState(false);
+
+  const toggleModalNoCV = () => {
+    setNoCV(!noCV);
+  };
+
+  const toggleModalConnectOK = () => {
+    setConnectOK(!connectOK);
+  };
+
+  const toggleModalConnectError = () => {
+    setConnectError(!connectError);
+  };
 
   useEffect(() => {
     if (selectedUserId && users) {
@@ -25,7 +40,11 @@ function UserOfferDetail({
     if (user && user.cv) {
       window.open(user.cv);
     } else {
+<<<<<<< HEAD
       alert("No CV available for download");
+=======
+      toggleModalNoCV();
+>>>>>>> 5df34ed699941199649aae46b7a09a95596d38e7
     }
   };
 
@@ -43,6 +62,7 @@ function UserOfferDetail({
             companyEmail: companyData.email,
           }),
         });
+<<<<<<< HEAD
         // console.log("userEmail", user.email);
         // console.log("companyName", companyData.name);
         // console.log("companyEmail", companyData.email);
@@ -50,12 +70,21 @@ function UserOfferDetail({
 
         if (response.ok) {
           alert("Connection request email sent successfully!");
+=======
+
+        if (response.ok) {
+          toggleModalConnectOK();
+>>>>>>> 5df34ed699941199649aae46b7a09a95596d38e7
         } else {
           throw new Error("Failed to send email");
         }
       } catch (error) {
         console.error("An error occurred:", error);
+<<<<<<< HEAD
         alert("An error occurred. Please try again.");
+=======
+        toggleModalConnectError();
+>>>>>>> 5df34ed699941199649aae46b7a09a95596d38e7
       }
     }
   };
@@ -65,6 +94,69 @@ function UserOfferDetail({
 
   return (
     <div>
+<<<<<<< HEAD
+=======
+      {noCV && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModalNoCV}></div>
+          <div className={styles.modal_content}>
+            <span className={styles.close_button} onClick={toggleModalNoCV}>
+              X
+            </span>
+            <h2 className={styles.successTitle}>Oops</h2>
+            <p>There isn't a CV available for this candidate.</p>
+            <button className={styles.btn_modal} onClick={toggleModalNoCV}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {connectOK && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModalConnectOK}></div>
+          <div className={styles.modal_content}>
+            <span
+              className={styles.close_button}
+              onClick={toggleModalConnectOK}
+            >
+              X
+            </span>
+            <h2 className={styles.successTitle}>Success!</h2>
+            <p>We sent an email to the candidate with your information.</p>
+            <button className={styles.btn_modal} onClick={toggleModalConnectOK}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {connectError && (
+        <div className={styles.modal}>
+          <div
+            className={styles.overlay}
+            onClick={toggleModalConnectError}
+          ></div>
+          <div className={styles.modal_content}>
+            <span
+              className={styles.close_button}
+              onClick={toggleModalConnectError}
+            >
+              X
+            </span>
+            <h2 className={styles.successTitle}>Error</h2>
+            <p>
+              There was an error trying to connect with the candidate. Please
+              try again.
+            </p>
+            <button
+              className={styles.btn_modal}
+              onClick={toggleModalConnectError}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+>>>>>>> 5df34ed699941199649aae46b7a09a95596d38e7
       {/* {console.log(selectedUserId)} */}
       <div className={styles.ContainerDetail}>
         <div className={styles.InfoContainer}>
